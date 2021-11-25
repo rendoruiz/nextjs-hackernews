@@ -1,12 +1,12 @@
 import StoryList from "../components/Story/StoryList";
 
-const HomeIndexView = () => {
+const HomeBestView = () => {
   return ( 
     <StoryList
       api="https://hacker-news.firebaseio.com/v0/topstories.json"
-      routeName="top"
+      routeName="best"
     />
   );
 }
  
-export default HomeIndexView;
+export default HomeBestView;
