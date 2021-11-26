@@ -1,12 +1,26 @@
-import StoryList from "../components/Story/StoryList";
+import { dehydrate, QueryClient } from "react-query";
+import StoryView from "../components/Story/StoryView";
+import { fetchTopStoryIds, useTopStoryIds } from "../hooks/useStoryIds";
 
 const HomeTopView = () => {
   return (  
-    <StoryList
-      api="https://hacker-news.firebaseio.com/v0/topstories.json"
-      routeName="top"
+    <StoryView 
+      useHook={useTopStoryIds()} 
+      activeRoute="/"
     />
   );
 }
+
+// for precaching
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+  await queryClient.prefetchQuery('topstoryids', fetchTopStoryIds)
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  }
+}
+ 
  
 export default HomeTopView;

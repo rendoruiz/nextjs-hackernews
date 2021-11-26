@@ -1,8 +1,10 @@
-const StoryList = ({ api, routeName }) => {
-  return (  
+
+const StoryList = ({ useHook, itemLimit = 10 }) => {
+  const { isLoading, isError, data, isSuccess } =  useHook;
+
+  return isSuccess && (  
     <div>
-      <p>{ api }</p>
-      <p>{ routeName }</p>
+      <p>{ JSON.stringify([...data].filter((x, index) => index <= itemLimit)) }</p>
     </div>
   );
 }
