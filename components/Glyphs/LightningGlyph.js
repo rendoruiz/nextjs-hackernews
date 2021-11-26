@@ -1,3 +1,4 @@
+// heroicons lightning-bolt svg
 const LightningGlyph = () => {
   return ( 
     <svg
