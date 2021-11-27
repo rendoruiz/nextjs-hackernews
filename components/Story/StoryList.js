@@ -20,7 +20,7 @@ const StoryList = ({ useHook, itemLimit = 20 }) => {
 // fetch loading
 const IsLoading = () => {
   return (
-    <div className="grid place-items-center self-stretch">
+    <div className="grid place-items-center">
       <p className="grid gap-5 justify-items-center">
         <div className="animate-spin rounded-full w-10 h-10 border-b-4 border-brandOrange" />
         <span className="font-medium text-xl">Fetching content ...</span>
@@ -32,10 +32,15 @@ const IsLoading = () => {
 // fetch error
 const IsError = () => {
   return (
-    <div className="grid place-content-center">
-      <p className="grid gap-5 text-center">
-        <span className="text-5xl" title="uoh emoji">😭</span>
-        <span className="font-medium text-xl">An error occured.</span>
+    <div className="grid place-items-center">
+      <p className="grid gap-5 text-center sm:gap-8 lg:gap-10">
+        <span 
+          className="text-5xl sm:text-6xl lg:text-8xl" 
+          title="uoh emoji"
+        >
+          😭
+        </span>
+        <span className="font-medium text-2xl sm:text-3xl lg:text-4xl">An error occured.</span>
       </p>
     </div>
   )
