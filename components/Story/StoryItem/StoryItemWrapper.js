@@ -53,9 +53,13 @@ const IsLoading = () => {
         <div className="rounded-md w-3/4 h-3 bg-brandTextSecondary/30 animate-pulse"></div>
       </div>
       <div className="grid gap-3 items-start bg-white p-2">
-        <div className="rounded-md w-5/12 h-4 bg-brandTextSecondary/30 animate-pulse"></div>
-        <div className="rounded-md w-10/12 h-5 bg-brandTextSecondary/30 animate-pulse"></div>
-        <div className="rounded-md w-7/12 h-5 bg-brandTextSecondary/30 animate-pulse"></div>
+        <div className="rounded-md w-8/12 h-4 bg-brandTextSecondary/30 animate-pulse sm:w-5/12"></div>
+        <div className="rounded-md w-11/12 h-5 bg-brandTextSecondary/30 animate-pulse sm:w-3/4"></div>
+        <div className="rounded-md w-1/2 h-4 bg-brandTextSecondary/30 animate-pulse sm:w-1/3"></div>
+        <div className="flex">
+          <div className="rounded-md w-28 h-5 bg-brandTextSecondary/30 animate-pulse"></div>
+          <div className="rounded-md ml-2 w-28 h-5 bg-brandTextSecondary/30 animate-pulse"></div>
+        </div>
       </div>
     </div>
   );
