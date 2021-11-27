@@ -1,4 +1,4 @@
-import StoryItemLayout from "./StoryItem/StoryItemLayout";
+import StoryItemWrapper from "./StoryItem/StoryItemWrapper";
 
 const StoryList = ({ useHook, itemLimit = 20 }) => {
   const { isLoading, isError, data, isSuccess } = useHook;
@@ -7,7 +7,7 @@ const StoryList = ({ useHook, itemLimit = 20 }) => {
     <div className="grid content-start gap-3">
     {
       [...data].slice(0, itemLimit).map((itemId) => 
-        <StoryItemLayout
+        <StoryItemWrapper
           key={itemId}
           storyId={itemId}
         />

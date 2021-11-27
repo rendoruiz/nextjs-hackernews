@@ -5,7 +5,7 @@ import StoryItemInfo from "./StoryItemInfo";
 import StoryItemDisplayLink from "./StoryItemDisplayLink";
 import StoryItemBottomButtons from "./StoryItemBottomButtons";
 
-const StoryItemLayout = ({ storyId }) => {
+const StoryItemWrapper = ({ storyId }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
 
   return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (
@@ -68,4 +68,4 @@ const IsError = () => {
   )
 }
  
-export default StoryItemLayout;
+export default StoryItemWrapper;
