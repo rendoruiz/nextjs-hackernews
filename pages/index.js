@@ -2,7 +2,7 @@ import { dehydrate, QueryClient } from "react-query";
 import StoryView from "../components/Story/StoryView";
 import { fetchTopStoryIds, useTopStoryIds } from "../hooks/useStoryIds";
 
-const HomeIndexView = () => {
+const HomeTopView = () => {
   return ( 
     <StoryView 
       useHook={useTopStoryIds()} 
@@ -22,4 +22,4 @@ export async function getStaticProps() {
   }
 }
  
-export default HomeIndexView;
+export default HomeTopView;
