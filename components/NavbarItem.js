@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import Link from 'next/link'
+import clsx from 'clsx';
 
 const NavbarItem = ({ route, text, glyph = null, isActive = false }) => {
   return route && ( 
