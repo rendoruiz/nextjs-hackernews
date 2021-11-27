@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import { useStory } from "../../hooks/useStory";
 import ChatGlyph from '../Glyphs/ChatGlyph';
+import ExternalLinkGlyph from '../Glyphs/ExternalLinkGlyph';
 import HackerNewsGlyph from '../Glyphs/HackerNewsGlyph';
 
 const StoryItem = ({ storyId }) => {
@@ -43,6 +44,19 @@ const StoryItem = ({ storyId }) => {
         {/* title */}
         <h3 className="font-medium text-brandTextPrimary text-lg leading-snug">{data.title}</h3>
 
+        {/* post url */}
+        { data.url && (
+          <a 
+            href={data.url}
+            target="_blank"
+            className="justify-self-start flex items-center -mt-1 mb-2 text-xs text-brandOrange hover:underline"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {getDisplayUrl(data.url)} 
+            <ExternalLinkGlyph className="ml-1 w-4 h-4" />
+          </a>
+        )}
+
         {/* buttons */}
         <div className="grid grid-flow-col auto-cols-auto justify-start gap-1 -ml-1 text-xs text-brandTextSecondary">
           {/* comment count */}
@@ -68,18 +82,26 @@ const StoryItem = ({ storyId }) => {
   );
 }
 
+const getDisplayUrl = (rawUrlString) => {
+  const url = new URL(rawUrlString);
+  let urlSuffix = url.pathname + url.search;
+  urlSuffix = urlSuffix.length <= 20
+    ? urlSuffix
+    : urlSuffix.slice(0, 17) + '...';
+  return decodeURI(url.hostname.replace('www.', '') + urlSuffix);
+}
 
 // fetch loading
 const IsLoading = () => {
   return (
     <div className="grid grid-cols-[40px,1fr] break-words overflow-hidden border-brandDefault border-brandBorder rounded">
       <div className="flex justify-center items-start py-2 bg-white/80">
-        <div className="rounded-md w-3/4 h-3 bg-brandTextSecondary animate-pulse"></div>
+        <div className="rounded-md w-3/4 h-3 bg-brandTextSecondary/80 animate-pulse"></div>
       </div>
       <div className="grid gap-3 items-start bg-white p-2">
-        <div className="rounded-md w-5/12 h-4 bg-brandTextSecondary animate-pulse"></div>
-        <div className="rounded-md w-10/12 h-5 bg-brandTextSecondary animate-pulse"></div>
-        <div className="rounded-md w-7/12 h-5 bg-brandTextSecondary animate-pulse"></div>
+        <div className="rounded-md w-5/12 h-4 bg-brandTextSecondary/80 animate-pulse"></div>
+        <div className="rounded-md w-10/12 h-5 bg-brandTextSecondary/80 animate-pulse"></div>
+        <div className="rounded-md w-7/12 h-5 bg-brandTextSecondary/80 animate-pulse"></div>
       </div>
     </div>
   );
