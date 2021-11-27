@@ -12,11 +12,11 @@ const StoryItemWrapper = ({ storyId }) => {
     <Link href={`/story/${data.id}`}>
       <a
         title="view story discussion"
-        className="grid grid-cols-[40px,1fr] break-words overflow-hidden border-brandDefault border-brandBorder rounded shadow-sm transition-colors cursor-pointer hover:border-brandBorderHover" 
+        className="grid break-words overflow-hidden border-brandDefault border-brandBorder transition-colors cursor-pointer hover:border-brandBorderHover sm:grid-cols-[40px,1fr] sm:rounded sm:shadow-sm" 
         onClick={() => console.log('clicked')}
       >
         {/* karma vertical bar */}
-        <div className="flex justify-center items-start py-2 bg-white/80">
+        <div className="hidden sm:flex sm:justify-center sm:items-start sm:py-2 sm:bg-white/80">
           <span className="font-bold text-xs text-brandTextPrimary">
             { data.score }
           </span>

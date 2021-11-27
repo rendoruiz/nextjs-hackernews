@@ -4,7 +4,7 @@ const StoryList = ({ useHook, itemLimit = 20 }) => {
   const { isLoading, isError, data, isSuccess } = useHook;
 
   return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (  
-    <div className="grid content-start gap-3">
+    <div className="grid content-start gap-2 sm:gap-3">
     {
       [...data].slice(0, itemLimit).map((itemId) => 
         <StoryItemWrapper
