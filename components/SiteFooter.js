@@ -5,7 +5,7 @@ const SiteFooter = () => {
       <p>
         <span>Fork @ </span>
         <a 
-          href="#"
+          href="https://github.com/rendoruiz/nextjs-hackernews"
           target="_blank"
           className="hover:text-brandOrange hover:underline"
         >
