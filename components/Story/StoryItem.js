@@ -1,12 +1,11 @@
-import { format, formatDistance, formatDistanceStrict, formatDistanceToNow, formatRelative, toDate } from 'date-fns';
-import { format as formatTz } from 'date-fns-tz';
-import { enCA } from 'date-fns/locale';
 import Link from 'next/link';
+import { format as formatTz } from 'date-fns-tz';
+import { formatDistanceStrict, toDate } from 'date-fns';
 
 import { useStory } from "../../hooks/useStory";
 import ChatGlyph from '../Glyphs/ChatGlyph';
-import ExternalLinkGlyph from '../Glyphs/ExternalLinkGlyph';
 import HackerNewsGlyph from '../Glyphs/HackerNewsGlyph';
+import ExternalLinkGlyph from '../Glyphs/ExternalLinkGlyph';
 
 const StoryItem = ({ storyId }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
@@ -103,7 +102,10 @@ const getLongDisplayDateTime = (unixTime) => {
 
 const getDisplayUrl = (rawUrlString) => {
   const url = new URL(rawUrlString);
-  let urlSuffix = url.pathname + url.search;
+  let urlSuffix = url.pathname.length === 1 && url.search.length === 0
+    ? ''
+    : url.pathname + url.search;
+  // shorten link
   urlSuffix = urlSuffix.length <= 20
     ? urlSuffix
     : urlSuffix.slice(0, 17) + '...';
