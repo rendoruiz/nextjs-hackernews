@@ -4,9 +4,11 @@ import StoryNav from "./StoryNav";
 
 const StoryView = ({ useHook, activeRoute }) => {
   return ( 
-    <SiteLayout>
+    <SiteLayout contentClassName="grid-rows-[auto,1fr]">
+      {/* Navbar */}
       <StoryNav activeRoute={activeRoute} />
 
+      {/* Stories */}
       <StoryList useHook={useHook} />
     </SiteLayout>
   );
