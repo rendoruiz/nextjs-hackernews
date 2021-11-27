@@ -1,3 +1,6 @@
+import { format, formatDistance, formatDistanceStrict, formatDistanceToNow, formatRelative, toDate } from 'date-fns';
+import { format as formatTz } from 'date-fns-tz';
+import { enCA } from 'date-fns/locale';
 import Link from 'next/link';
 
 import { useStory } from "../../hooks/useStory";
@@ -38,10 +41,10 @@ const StoryItem = ({ storyId }) => {
             </Link>
             &nbsp;
             <span 
-              title={data.time}
+              title={getLongDateTime(data.time)}
               className="hover:underline"
             >
-              {data.time}
+              { getLongDisplayDateTime(data.time) }
             </span>
           </p>
 
@@ -88,6 +91,14 @@ const StoryItem = ({ storyId }) => {
       </a>
     </Link>
   );
+}
+
+const getLongDateTime = (unixTime) => {
+  return formatTz(toDate(unixTime * 1000), "EEE, PP, hh:mm:ss aa zzzz");
+}
+
+const getLongDisplayDateTime = (unixTime) => {
+  return formatDistanceStrict(toDate(unixTime * 1000), Date.now(), { addSuffix: true });
 }
 
 const getDisplayUrl = (rawUrlString) => {
