@@ -1,8 +1,9 @@
+import clsx from "clsx";
 import { useEffect, useRef, useState } from "react";
 
 import HorizontalDotsGlyph from "../Glyphs/HorizontalDotsGlyph";
 
-const DropdownWrapper = ({ children, toggleContent }) => {
+const DropdownWrapper = ({ children, toggleContent, isHorizontal = false }) => {
   const wrapperRef = useRef();
   const listRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
@@ -60,7 +61,10 @@ const DropdownWrapper = ({ children, toggleContent }) => {
       { isOpen && (
         <ul 
           ref={listRef}
-          className="absolute top-[90%] z-10 grid rounded shadow-xl bg-white text-brandTextSecondary overflow-hidden"
+          className={clsx(
+            "absolute top-[90%] z-10 grid gap-[1px] border-brandDefault border-brandBorder rounded shadow-xl bg-brandBorder text-brandTextSecondary overflow-hidden",
+            { "grid-flow-col": isHorizontal }
+          )}
           onClick={(e) => handleClickList(e)}
         >
           { children }
