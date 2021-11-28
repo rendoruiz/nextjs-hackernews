@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 import HorizontalDotsGlyph from "../Glyphs/HorizontalDotsGlyph";
 
-const DropdownWrapper = ({ children, toggleContent, isHorizontal = false }) => {
+const DropdownWrapper = ({ children, toggleDisplayText, toggleDisplayGlyph, isHorizontal = false, wrapperClassName }) => {
   const wrapperRef = useRef();
   const listRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
@@ -51,14 +51,20 @@ const DropdownWrapper = ({ children, toggleContent, isHorizontal = false }) => {
   return ( 
     <div 
       ref={wrapperRef}
-      className="relative grid"
+      className={wrapperClassName ?? "relative grid"}
     >
       <button
         onClick={(e) => handleClick(e)}
         title="toggle dropdown"
-        className="rounded my-1 px-1 transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive"
+        className={clsx(
+          "rounded transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive",
+          (toggleDisplayGlyph || toggleDisplayText) ? "flex items-center pl-1 pr-2 py-1 font-bold" : "my-1 px-1"
+        )}
       >
-        { toggleContent ?? <HorizontalDotsGlyph /> }
+        { toggleDisplayGlyph ?? <HorizontalDotsGlyph /> }
+        { toggleDisplayText && (
+          <span className="ml-1">{ toggleDisplayText }</span>
+        )}
       </button>
       
       { isOpen && (

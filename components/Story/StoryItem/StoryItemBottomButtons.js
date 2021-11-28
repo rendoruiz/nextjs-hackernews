@@ -1,8 +1,11 @@
 import DropdownWrapper from "../../Dropdown/DropdownWrapper";
-import DropdownItemLink from "../../Dropdown/DropdownItemLink";
+import { DropdownItemButton, DropdownItemLink } from "../../Dropdown/DropdownItem";
 import ArrowUpGlyph from "../../Glyphs/ArrowUpGlyph";
 import ChatGlyph from "../../Glyphs/ChatGlyph";
 import HackerNewsGlyph from "../../Glyphs/HackerNewsGlyph";
+import ShareGlyph from "../../Glyphs/ShareGlyph";
+import LinkGlyph from "../../Glyphs/LinkGlyph";
+import ExternalLinkGlyph from "../../Glyphs/ExternalLinkGlyph";
 
 const StoryItemBottomButtons = ({ storyData }) => {
   return storyData.type !== "job" && (  
@@ -10,7 +13,7 @@ const StoryItemBottomButtons = ({ storyData }) => {
       {/* karma */}
       <div className="flex items-center sm:hidden">
         <ArrowUpGlyph />
-        <span className="pr-2 pl-1 font-bold text-brandTextPrimary">{ storyData.score }</span>
+        <span className="mr-2 px-1 font-bold text-brandTextPrimary">{ storyData.score }</span>
       </div>
 
       {/* comment count */}
@@ -18,6 +21,28 @@ const StoryItemBottomButtons = ({ storyData }) => {
         <ChatGlyph />
         <span className="ml-1">{ storyData.descendants === 0 ? 'No' : storyData.descendants } Comment{ storyData.descendants > 1 && 's' }</span>
       </button>
+
+      {/* share - collapsible dropdown panel */}
+      <DropdownWrapper 
+        wrapperClassName="hidden bp420:relative bp420:grid"
+        toggleDisplayGlyph={<ShareGlyph />}
+        toggleDisplayText="Share"
+      >
+        <DropdownItemButton
+          displayText="Copy Link"
+          displayGlyph={<LinkGlyph />}
+          title="copy discussion link"
+          onClick={(e) => CopyToClipboard(e, "discussion link")}
+        />
+        { storyData.url && (
+          <DropdownItemButton
+            displayText="Copy Story Link"
+            displayGlyph={<ExternalLinkGlyph />}
+            title="copy story attached link"
+            onClick={(e) => CopyToClipboard(e, "story link")}
+          />
+        )} 
+      </DropdownWrapper>
 
       {/* secondary items - collapsible dropdown panel */}
       <DropdownWrapper>
@@ -28,11 +53,29 @@ const StoryItemBottomButtons = ({ storyData }) => {
           title="view on Hacker News"
           href={'https://news.ycombinator.com/item?id=' + storyData.id}
           target="_blank"
-        >
-        </DropdownItemLink>
+        />
       </DropdownWrapper>
     </div>
   );
+}
+
+const SaveButton = () => {
+
+}
+
+const ShareButton = () => {
+  return (
+    <button
+    >
+
+    </button>
+  )
+}
+
+const CopyToClipboard = (e, textToCopy ) => {
+  e.preventDefault();
+  // e.stopPropagation();
+  console.log(textToCopy);
 }
  
 export default StoryItemBottomButtons;

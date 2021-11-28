@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   mode: 'jit',
   purge: [
@@ -6,6 +8,12 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    screens: {
+      'bp360': '360px',
+      'bp420': '420px',
+      'bp500': '500px',
+      ...defaultTheme.screens,
+    },
     extend: {
       colors: {
         brandOrange: 'rgb(255, 102, 0)',
