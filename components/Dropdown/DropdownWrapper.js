@@ -53,7 +53,7 @@ const DropdownWrapper = ({ children, toggleContent, isHorizontal = false }) => {
       <button
         onClick={(e) => handleClick(e)}
         title="toggle dropdown"
-        className="rounded my-1 px-1 hover:bg-brandButtonHover active:bg-brandButtonActive"
+        className="rounded my-1 px-1 transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive"
       >
         { toggleContent ?? <HorizontalDotsGlyph /> }
       </button>

@@ -1,5 +1,5 @@
-import DropdownItem from "../../Dropdown/DropdownItem";
 import DropdownWrapper from "../../Dropdown/DropdownWrapper";
+import DropdownItemLink from "../../Dropdown/DropdownItemLink";
 import ArrowUpGlyph from "../../Glyphs/ArrowUpGlyph";
 import ChatGlyph from "../../Glyphs/ChatGlyph";
 import HackerNewsGlyph from "../../Glyphs/HackerNewsGlyph";
@@ -22,17 +22,14 @@ const StoryItemBottomButtons = ({ storyData }) => {
       {/* secondary items - collapsible dropdown panel */}
       <DropdownWrapper>
         {/* view on hackernews link */}
-        <DropdownItem>
-          <a 
-            title="view on Hacker News"
-            href={'https://news.ycombinator.com/item?id=' + storyData.id} 
-            target="_blank"
-            className="flex items-center rounded p-2"
-          >
-            <HackerNewsGlyph />
-            <span className="ml-2 font-bold">View Original</span>
-          </a>
-        </DropdownItem>
+        <DropdownItemLink
+          title="view on Hacker News"
+          href={'https://news.ycombinator.com/item?id=' + storyData.id}
+          target="_blank"
+          displayGlyph={<HackerNewsGlyph />}
+          displayText="View Original"
+        >
+        </DropdownItemLink>
       </DropdownWrapper>
     </div>
   );
