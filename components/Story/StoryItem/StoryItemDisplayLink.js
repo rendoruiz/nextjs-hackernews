@@ -6,7 +6,7 @@ const StoryItemDisplayLink = ({ rawLink }) => {
       title="view story attached link"
       href={rawLink}
       target="_blank"
-      className="justify-self-start inline-flex items-center -mt-1 mb-2 text-xs text-brandOrange hover:underline"
+      className="justify-self-start inline-flex items-center -mt-2 pt-1 pb-2 text-xs text-brandOrange hover:underline"
       onClick={(e) => e.stopPropagation()}
     >
       {getDisplayUrl(rawLink)} 
