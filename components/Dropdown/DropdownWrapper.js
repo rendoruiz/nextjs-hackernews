@@ -1,50 +1,70 @@
-import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
 import HorizontalDotsGlyph from "../Glyphs/HorizontalDotsGlyph";
 
-const DropdownWrapper = () => {
+const DropdownWrapper = ({ children, toggleContent }) => {
+  const wrapperRef = useRef();
+  const listRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
 
+  // handle document click events
   useEffect(() => {
     if (isOpen) {
-      console.log('add listener')
-      window.addEventListener("click", handleWindowClick);
-    } 
+      document.addEventListener("click", handleClickWrapper);
+    } else {
+      document.removeEventListener("click", handleClickWrapper);
+    }
+
+    return () => {
+      document.removeEventListener("click", handleClickWrapper);
+    };
   }, [isOpen]);
 
-  const handleClick = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-
-    if (isOpen) {
-      window.removeEventListener("click", handleWindowClick);
+  // click outside dropdown wrapper
+  const handleClickWrapper = (e) => {
+    if (wrapperRef.current.contains(e.target)) {
+      e.stopPropagation();
+    } else {
+      setIsOpen(false);
     }
-    setIsOpen(!isOpen);
-    
-    console.log('toggle click')
   }
 
-  const handleWindowClick = () => {
-    console.log('window click');
-    setIsOpen(false);
-    window.removeEventListener("click", handleWindowClick);
+  // click dropdown items
+  const handleClickList = (e) => {
+    e.stopPropagation();
+    if (listRef.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  }
+
+  // click dropdown toggle
+  const handleClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsOpen(!isOpen);
   }
 
   return ( 
-    <div className="relative grid">
+    <div 
+      ref={wrapperRef}
+      className="relative grid"
+    >
       <button
-        title="dropdown toggle"
         onClick={(e) => handleClick(e)}
+        title="toggle dropdown"
+        className="rounded my-1 px-1 hover:bg-brandButtonHover active:bg-brandButtonActive"
       >
-        <HorizontalDotsGlyph />
+        { toggleContent ?? <HorizontalDotsGlyph /> }
       </button>
       
       { isOpen && (
-        <div 
-          className="absolute top-full z-10 text-red-500"
+        <ul 
+          ref={listRef}
+          className="absolute top-[90%] z-10 grid rounded shadow-xl bg-white text-brandTextSecondary overflow-hidden"
+          onClick={(e) => handleClickList(e)}
         >
-          test content
-        </div>
+          { children }
+        </ul>
       )}
     </div>
   );
