@@ -8,7 +8,7 @@ const DropdownWrapper = ({ children, toggleContent, isHorizontal = false }) => {
   const listRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
 
-  // handle document click events
+  // handle document mouse & keyboard events
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("mousedown", handleClickWrapper);
