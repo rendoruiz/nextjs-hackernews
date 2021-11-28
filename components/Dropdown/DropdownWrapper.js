@@ -71,8 +71,8 @@ const DropdownWrapper = ({ children, toggleDisplayText, toggleDisplayGlyph, isHo
         <ul 
           ref={listRef}
           className={clsx(
-            "absolute top-[90%] z-10 justify-self-end grid gap-[1px] border-brandDefault border-brandBorder rounded shadow-xl bg-brandBorder text-brandTextSecondary overflow-hidden bp360:justify-self-center bp420:justify-self-start",
-            { "grid-flow-col": isHorizontal }
+            "absolute top-[90%] z-10 justify-self-end grid border-brandDefault border-brandBorder rounded shadow-xl bg-white text-brandTextSecondary overflow-hidden bp360:justify-self-center bp420:justify-self-start",
+            isHorizontal ? "grid-flow-col divide-x-brandDefault" : "divide-y-brandDefault"
           )}
           onClick={(e) => handleClickList(e)}
         >

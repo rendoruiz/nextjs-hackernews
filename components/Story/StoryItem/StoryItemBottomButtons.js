@@ -82,7 +82,6 @@ const ShareStoryLinkButton = ({ storyUrl, wrapperClassName }) => {
   )
 }
 
-
 // copy string to clipboard
 const CopyToClipboard = (e, textToCopy ) => {
   e.preventDefault();
