@@ -11,13 +11,16 @@ const DropdownWrapper = ({ children, toggleContent, isHorizontal = false }) => {
   // handle document click events
   useEffect(() => {
     if (isOpen) {
-      document.addEventListener("click", handleClickWrapper);
+      document.addEventListener("mousedown", handleClickWrapper);
+      document.addEventListener("keydown", handleClickWrapper);
     } else {
-      document.removeEventListener("click", handleClickWrapper);
+      document.removeEventListener("mousedown", handleClickWrapper);
+      document.removeEventListener("keydown", handleClickWrapper);
     }
 
     return () => {
-      document.removeEventListener("click", handleClickWrapper);
+      document.removeEventListener("mousedown", handleClickWrapper);
+      document.removeEventListener("keydown", handleClickWrapper);
     };
   }, [isOpen]);
 
