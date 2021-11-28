@@ -6,6 +6,7 @@ import HackerNewsGlyph from "../../Glyphs/HackerNewsGlyph";
 import ShareGlyph from "../../Glyphs/ShareGlyph";
 import LinkGlyph from "../../Glyphs/LinkGlyph";
 import ExternalLinkGlyph from "../../Glyphs/ExternalLinkGlyph";
+import copy from "copy-to-clipboard";
 
 const StoryItemBottomButtons = ({ storyData }) => {
   return storyData.type !== "job" && (  
@@ -28,24 +29,20 @@ const StoryItemBottomButtons = ({ storyData }) => {
         toggleDisplayGlyph={<ShareGlyph />}
         toggleDisplayText="Share"
       >
-        <DropdownItemButton
-          displayText="Copy Link"
-          displayGlyph={<LinkGlyph />}
-          title="copy discussion link"
-          onClick={(e) => CopyToClipboard(e, "discussion link")}
-        />
-        { storyData.url && (
-          <DropdownItemButton
-            displayText="Copy Story Link"
-            displayGlyph={<ExternalLinkGlyph />}
-            title="copy story attached link"
-            onClick={(e) => CopyToClipboard(e, "story link")}
-          />
-        )} 
+        <ShareDiscussionLinkButton storyId={storyData.id} />
+        <ShareStoryLinkButton storyUrl={storyData.url} />
       </DropdownWrapper>
 
       {/* secondary items - collapsible dropdown panel */}
       <DropdownWrapper>
+        <ShareDiscussionLinkButton 
+          storyId={storyData.id} 
+          wrapperClassName="grid bp420:hidden"
+        />
+        <ShareStoryLinkButton 
+          storyUrl={storyData.url} 
+          wrapperClassName="grid bp420:hidden"
+        />
         {/* view on hackernews link */}
         <DropdownItemLink
           displayText="View Original"
@@ -59,23 +56,37 @@ const StoryItemBottomButtons = ({ storyData }) => {
   );
 }
 
-const SaveButton = () => {
-
+// copy story discussion link component
+const ShareDiscussionLinkButton = ({ storyId, wrapperClassName }) => {
+  return (
+    <DropdownItemButton
+      displayText="Copy Link"
+      displayGlyph={<LinkGlyph />}
+      wrapperClassName={wrapperClassName}
+      title="copy discussion link"
+      onClick={(e) => CopyToClipboard(e, window.location + '/story/' + storyId)}
+    />
+  );
 }
 
-const ShareButton = () => {
-  return (
-    <button
-    >
-
-    </button>
+// copy story attached link component
+const ShareStoryLinkButton = ({ storyUrl, wrapperClassName }) => {
+  return storyUrl && (
+    <DropdownItemButton
+      displayText="Copy Story Link"
+      displayGlyph={<ExternalLinkGlyph />}
+      wrapperClassName={wrapperClassName}
+      title="copy story attached link"
+      onClick={(e) => CopyToClipboard(e, storyUrl)}
+    />
   )
 }
 
+
+// copy string to clipboard
 const CopyToClipboard = (e, textToCopy ) => {
   e.preventDefault();
-  // e.stopPropagation();
-  console.log(textToCopy);
+  copy(textToCopy);
 }
  
 export default StoryItemBottomButtons;
