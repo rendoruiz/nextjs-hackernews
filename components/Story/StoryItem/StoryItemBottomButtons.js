@@ -5,7 +5,7 @@ import ChatGlyph from "../../Glyphs/ChatGlyph";
 import HackerNewsGlyph from "../../Glyphs/HackerNewsGlyph";
 
 const StoryItemBottomButtons = ({ storyData }) => {
-  return (  
+  return storyData.type !== "job" && (  
     <div className="grid grid-flow-col auto-cols-auto justify-start gap-1 -ml-1 text-xs text-brandTextSecondary whitespace-nowrap">
       {/* karma */}
       <div className="flex items-center sm:hidden">
@@ -23,11 +23,11 @@ const StoryItemBottomButtons = ({ storyData }) => {
       <DropdownWrapper>
         {/* view on hackernews link */}
         <DropdownItemLink
+          displayText="View Original"
+          displayGlyph={<HackerNewsGlyph />}
           title="view on Hacker News"
           href={'https://news.ycombinator.com/item?id=' + storyData.id}
           target="_blank"
-          displayGlyph={<HackerNewsGlyph />}
-          displayText="View Original"
         >
         </DropdownItemLink>
       </DropdownWrapper>

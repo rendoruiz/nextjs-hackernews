@@ -18,7 +18,7 @@ const StoryItemWrapper = ({ storyId }) => {
         {/* karma vertical bar */}
         <div className="hidden sm:flex sm:justify-center sm:items-start sm:rounded-l sm:py-2 sm:bg-white/80">
           <span className="font-bold text-xs text-brandTextPrimary">
-            { data.score }
+            { data.type !== "job" && data.score }
           </span>
         </div>
 
