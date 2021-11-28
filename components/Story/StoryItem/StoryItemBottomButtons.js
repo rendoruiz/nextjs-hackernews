@@ -1,3 +1,4 @@
+import DropdownWrapper from "../../Dropdown/DropdownWrapper";
 import ArrowUpGlyph from "../../Glyphs/ArrowUpGlyph";
 import ChatGlyph from "../../Glyphs/ChatGlyph";
 import HackerNewsGlyph from "../../Glyphs/HackerNewsGlyph";
@@ -28,6 +29,9 @@ const StoryItemBottomButtons = ({ storyData }) => {
         <HackerNewsGlyph />
         <span className="ml-1">View Original</span>
       </a>
+
+      {/* secondary items - collapsible panel */}
+      <DropdownWrapper />
     </div>
   );
 }
