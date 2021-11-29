@@ -12,7 +12,7 @@ const StoryItemWrapper = ({ storyId }) => {
     <Link href={`/story/${data.id}`}>
       <a
         title="view story discussion"
-        className="grid border-brandDefault border-brandBorder transition-colors cursor-pointer hover:border-brandBorderHover sm:grid-cols-[40px,1fr] sm:rounded sm:shadow-sm" 
+        className="grid border-brandDefault border-brandBorder transition-colors cursor-pointer select-none hover:border-brandBorderHover sm:grid-cols-[40px,1fr] sm:rounded sm:shadow-sm" 
         onClick={() => console.log('clicked')}
       >
         {/* karma vertical bar */}
