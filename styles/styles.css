@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* disable highlight on element pressed/tap */
+button, 
+a {
+  -webkit-tap-highlight-color: transparent;
+}
