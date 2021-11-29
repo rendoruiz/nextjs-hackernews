@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 
 import HorizontalDotsGlyph from "../Glyphs/HorizontalDotsGlyph";
 
-const DropdownWrapper = ({ children, toggleDisplayText, toggleDisplayGlyph, isHorizontal = false, wrapperClassName }) => {
+const DropdownWrapper = ({ children, toggleDisplayText, toggleDisplayGlyph, customToggle, isHorizontal = false, wrapperClassName, toggleClassName, listClassName }) => {
   const wrapperRef = useRef();
   const listRef = useRef();
   const [isOpen, setIsOpen] = useState(false);
@@ -57,13 +57,19 @@ const DropdownWrapper = ({ children, toggleDisplayText, toggleDisplayGlyph, isHo
         onClick={(e) => handleClick(e)}
         title="toggle dropdown"
         className={clsx(
-          "rounded transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive",
-          (toggleDisplayGlyph || toggleDisplayText) ? "flex items-center pl-1 pr-2 py-1 font-bold" : "my-1 px-1"
+          toggleClassName,
+          !toggleClassName && "rounded",
+          !toggleClassName && ((toggleDisplayGlyph || toggleDisplayText) ? "flex items-center pl-1 pr-2 py-1 font-bold" : "my-1 px-1"),
+          "transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive",
         )}
       >
-        { toggleDisplayGlyph ?? <HorizontalDotsGlyph /> }
-        { toggleDisplayText && (
-          <span className="ml-1">{ toggleDisplayText }</span>
+        { customToggle ?? (
+          <>
+            { toggleDisplayGlyph ?? <HorizontalDotsGlyph /> }
+            { toggleDisplayText && (
+              <span className="ml-1">{ toggleDisplayText }</span>
+            )}
+          </>
         )}
       </button>
       
@@ -71,8 +77,9 @@ const DropdownWrapper = ({ children, toggleDisplayText, toggleDisplayGlyph, isHo
         <ul 
           ref={listRef}
           className={clsx(
-            "absolute top-[90%] z-10 justify-self-end grid border-brandDefault border-brandBorder rounded shadow-xl bg-white text-brandTextSecondary overflow-hidden bp360:justify-self-center bp420:justify-self-start",
-            isHorizontal ? "grid-flow-col divide-x-brandDefault" : "divide-y-brandDefault"
+            "absolute top-[90%] z-10 grid border-brandDefault border-brandBorder rounded shadow-xl bg-white text-brandTextSecondary overflow-hidden",
+            isHorizontal ? "grid-flow-col divide-x-brandDefault" : "divide-y-brandDefault",
+            listClassName
           )}
           onClick={(e) => handleClickList(e)}
         >
