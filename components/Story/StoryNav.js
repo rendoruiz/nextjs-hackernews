@@ -1,5 +1,5 @@
-import Navbar from "../NavBar";
-import NavbarItem from "../NavBarItem";
+import NavbarWrapper from "../Navbar/NavbarWrapper";
+import NavbarItem from "../Navbar/NavbarItem";
 import FireGlyph from "../Glyphs/FireGlyph";
 import LightningGlyph from "../Glyphs/LightningGlyph";
 import TrendUpGlyph from "../Glyphs/TrendUpGlyph";
@@ -24,7 +24,7 @@ const navItems = [
 
 const StoryNav = ({ activeRoute }) => {
   return ( 
-    <Navbar>
+    <NavbarWrapper>
       {
         navItems.map((item, index) => 
           <NavbarItem
@@ -36,7 +36,7 @@ const StoryNav = ({ activeRoute }) => {
           />
         )
       }
-    </Navbar>
+    </NavbarWrapper>
   );
 }
  
