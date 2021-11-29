@@ -34,7 +34,7 @@ const StoryItemBottomButtons = ({ storyData }) => {
       </DropdownWrapper>
 
       {/* secondary items - collapsible dropdown panel */}
-      <DropdownWrapper>
+      <DropdownWrapper listClassName="justify-self-end bp360:justify-self-center bp420:justify-self-start">
         <ShareDiscussionLinkButton 
           storyId={storyData.id} 
           wrapperClassName="grid bp420:hidden"
