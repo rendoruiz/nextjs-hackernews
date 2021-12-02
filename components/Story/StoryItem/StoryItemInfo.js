@@ -1,27 +1,22 @@
 import Link from 'next/link';
 
 import { useFullDateTime, useRelativeTime } from "../../../hooks/useDate";
+import TimeTooltip from '../../Shared/TimeTooltip';
+import UserHoverCard from '../../User/UserHoverCard';
 
 const StoryItemInfo = ({ storyData }) => {
   return (  
     <p className="text-xs text-brandTextInfo tracking-wide">
       Posted by&nbsp;
-      <Link href={'/user/' + storyData.id}>
-        <a 
-          title="TODO: profile card on hover"
-          className="hover:underline"
-          onClick={(e) => e.stopPropagation()}
-        >
-          u/{ storyData.by }
-        </a>
-      </Link>
+      <UserHoverCard 
+        userId={storyData.by} 
+        withPrefix
+      />
       &nbsp;
-      <span 
-        title={useFullDateTime(storyData.time)}
-        className="hover:underline"
-      >
-        { useRelativeTime(storyData.time) }
-      </span>
+      <TimeTooltip 
+        unixTime={storyData.time} 
+        contentId={storyData.id} 
+      />
     </p>
   );
 }
