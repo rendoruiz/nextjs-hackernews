@@ -1,5 +1,5 @@
 // tablericons upload svg
-const ShareGlyph2 = () => {
+const ShareDrawerGlyph = () => {
   return (  
     <svg
       className="w-5 h-5 sm:w-6 sm:h-6"
@@ -16,4 +16,4 @@ const ShareGlyph2 = () => {
   );
 }
  
-export default ShareGlyph2;
+export default ShareDrawerGlyph;

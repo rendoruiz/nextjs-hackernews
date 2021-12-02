@@ -1,3 +1,4 @@
+import TimeRoute from '../../Shared/TimeRoute';
 import TimeTooltip from '../../Shared/TimeTooltip';
 import UserAvatar from '../../User/UserAvatar';
 import UserHoverCard from '../../User/UserHoverCard';
@@ -5,7 +6,7 @@ import UserLink from '../../User/UserLink';
 
 const StoryItemHeader = ({ storyData }) => {
   return (  
-    <p className="flex items-center relative text-sm text-brandTextInfo sm:text-xs sm:tracking-wide">
+    <p className="relative row-start-1 col-start-1 flex items-center text-sm text-brandTextInfo sm:row-start-auto sm:col-start-auto sm:text-xs sm:tracking-wide">
       <UserAvatar  
         className="inline-block mr-[0.375rem] sm:hidden"
         userId={storyData.by}
@@ -23,7 +24,14 @@ const StoryItemHeader = ({ storyData }) => {
       </span>
       &nbsp;
       <span className="sm:hidden">•&nbsp;</span>
+      <TimeRoute 
+        className="sm:hidden"
+        storyId={storyData.id}
+        unixTime={storyData.time}
+        isShort
+      />
       <TimeTooltip 
+        className="hidden sm:inline-block"
         unixTime={storyData.time} 
         contentId={storyData.id} 
       />

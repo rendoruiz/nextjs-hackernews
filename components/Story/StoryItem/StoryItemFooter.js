@@ -10,7 +10,7 @@ import copy from "copy-to-clipboard";
 
 const StoryItemFooter = ({ storyData }) => {
   return storyData.type !== "job" && (  
-    <div className="grid grid-flow-col auto-cols-auto justify-start gap-2 text-xs text-brandTextSecondary whitespace-nowrap sm:gap-1 sm:-ml-1">
+    <div className="row-start-3 col-start-1 self-end grid grid-flow-col auto-cols-auto justify-start gap-2 text-xs text-brandTextSecondary whitespace-nowrap sm:row-start-auto sm:col-start-auto sm:gap-1 sm:-ml-1">
       {/* karma (small breakpoint only) */}
       <div className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 sm:hidden">
         <ArrowUpGlyph />

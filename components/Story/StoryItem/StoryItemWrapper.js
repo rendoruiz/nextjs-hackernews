@@ -5,6 +5,8 @@ import { useStory } from "../../../hooks/useStory";
 import StoryItemHeader from "./StoryItemHeader";
 import StoryItemDisplayLink from "./StoryItemDisplayLink";
 import StoryItemFooter from "./StoryItemFooter";
+import StoryItemShareDrawerButton from './StoryItemShareDrawerButton';
+import { eachDayOfInterval } from 'date-fns';
 
 const StoryItemWrapper = ({ storyId }) => {
   const router =useRouter();
@@ -23,7 +25,7 @@ const StoryItemWrapper = ({ storyId }) => {
       </div>
 
       {/* content */}
-      <div className="relative justify-items-start grid gap-2 px-4 pt-2 pb-3 bg-white sm:rounded-r sm:p-2 sm:pb-1">
+      <div className="relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pt-2 pb-3 bg-white sm:grid-cols-none sm:rounded-r sm:p-2 sm:pb-1">
         {/* wrapper link (mobile only)  */}
         <Link href={'story/' + data.id}>
           <a className="absolute inset-0" />
@@ -33,7 +35,7 @@ const StoryItemWrapper = ({ storyId }) => {
         <StoryItemHeader storyData={data} />
 
         {/* title */}
-        <h3 className="font-medium text-brandTextPrimary text-lg leading-tight sm:leading-snug">
+        <h3 className="row-start-2 col-start-1 font-medium text-brandTextPrimary leading-tight sm:row-start-auto sm:col-start-auto sm:text-lg sm:leading-snug">
           {data.title}
         </h3>
 
@@ -44,6 +46,9 @@ const StoryItemWrapper = ({ storyId }) => {
 
         {/* footer buttons */}
         <StoryItemFooter storyData={data} />
+
+        {/* share drawer invoker */}
+        <StoryItemShareDrawerButton storyId={data.id} />
       </div>
     </div>
   );
