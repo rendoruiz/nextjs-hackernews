@@ -1,18 +1,18 @@
-import Link from 'next/link';
+import { useRouter } from 'next/dist/client/router';
 
 import { useStory } from "../../../hooks/useStory";
 import StoryItemHeader from "./StoryItemHeader";
 import StoryItemDisplayLink from "./StoryItemDisplayLink";
-import StoryItemBottomButtons from "./StoryItemBottomButtons";
-import { Router } from 'next/dist/client/router';
+import StoryItemFooter from "./StoryItemFooter";
 
 const StoryItemWrapper = ({ storyId }) => {
+  const router =useRouter();
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
 
   return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (
     <div
       className="grid border-brandDefault border-brandBorder transition-colors cursor-pointer select-none hover:border-brandBorderHover sm:grid-cols-[40px,1fr] sm:rounded sm:shadow-sm" 
-      onClick={() => Router.push('story/' + data.id)}
+      onClick={() => router.push('story/' + data.id)}
     >
       {/* karma vertical bar */}
       <div className="hidden sm:flex sm:justify-center sm:items-start sm:rounded-l sm:py-2 sm:bg-white/80">
@@ -37,7 +37,7 @@ const StoryItemWrapper = ({ storyId }) => {
         }
 
         {/* buttons */}
-        <StoryItemBottomButtons storyData={data} />
+        <StoryItemFooter storyData={data} />
       </div>
     </div>
   );
