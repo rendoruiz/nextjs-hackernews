@@ -20,11 +20,13 @@ const getDisplayUrl = (rawUrlString) => {
   let urlSuffix = url.pathname.length === 1 && url.search.length === 0
     ? ''
     : url.pathname + url.search;
+  // decode strings
+  urlSuffix = decodeURI(urlSuffix);
   // shorten link
   urlSuffix = urlSuffix.length <= 20
     ? urlSuffix
     : urlSuffix.slice(0, 17) + '...';
-  return decodeURI(url.hostname.replace('www.', '') + urlSuffix);
+  return url.hostname.replace('www.', '') + urlSuffix;
 }
  
 export default StoryItemDisplayLink;
