@@ -8,10 +8,10 @@ import LinkGlyph from "../../Glyphs/LinkGlyph";
 import ExternalLinkGlyph from "../../Glyphs/ExternalLinkGlyph";
 import copy from "copy-to-clipboard";
 
-const StoryItemBottomButtons = ({ storyData }) => {
+const StoryItemFooter = ({ storyData }) => {
   return storyData.type !== "job" && (  
     <div className="grid grid-flow-col auto-cols-auto justify-start gap-1 -ml-1 text-xs text-brandTextSecondary whitespace-nowrap">
-      {/* karma */}
+      {/* karma (small breakpoint only) */}
       <div className="flex items-center sm:hidden">
         <ArrowUpGlyph />
         <span className="mr-2 px-1 font-bold text-brandTextPrimary">{ storyData.score }</span>
@@ -88,4 +88,4 @@ const CopyToClipboard = (e, textToCopy ) => {
   copy(textToCopy);
 }
  
-export default StoryItemBottomButtons;
+export default StoryItemFooter;
