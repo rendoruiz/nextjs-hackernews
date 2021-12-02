@@ -4,13 +4,15 @@ import * as HoverCard from '@radix-ui/react-hover-card';
 const UserHoverCard = ({ userId, withPrefix }) => {
   return (  
     <HoverCard.Root>
-      <HoverCard.Trigger>
-        <Link href={'user/' + userId}>
-          <a className="hover:underline">
-            { withPrefix && "u/" }
-            { userId }
-          </a>
-        </Link>
+      <HoverCard.Trigger asChild>
+        <span>
+          <Link href={'user/' + userId}>
+            <a className="hover:underline">
+              { withPrefix && "u/" }
+              { userId }
+            </a>
+          </Link>
+        </span>
       </HoverCard.Trigger>
       <HoverCard.Content 
         className="grid gap-4 border-brandDefault border-brandBorder rounded p-3 pb-4 bg-white shadow-md"

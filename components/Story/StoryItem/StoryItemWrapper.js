@@ -1,46 +1,45 @@
 import Link from 'next/link';
 
 import { useStory } from "../../../hooks/useStory";
-import StoryItemInfo from "./StoryItemInfo";
+import StoryItemHeader from "./StoryItemHeader";
 import StoryItemDisplayLink from "./StoryItemDisplayLink";
 import StoryItemBottomButtons from "./StoryItemBottomButtons";
+import { Router } from 'next/dist/client/router';
 
 const StoryItemWrapper = ({ storyId }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
 
   return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (
-    <Link href={`/story/${data.id}`}>
-      <a
-        className="grid border-brandDefault border-brandBorder transition-colors cursor-pointer select-none hover:border-brandBorderHover sm:grid-cols-[40px,1fr] sm:rounded sm:shadow-sm" 
-        onClick={() => console.log('clicked')}
-      >
-        {/* karma vertical bar */}
-        <div className="hidden sm:flex sm:justify-center sm:items-start sm:rounded-l sm:py-2 sm:bg-white/80">
-          <span className="font-bold text-xs text-brandTextPrimary">
-            { data.type !== "job" && data.score }
-          </span>
-        </div>
+    <div
+      className="grid border-brandDefault border-brandBorder transition-colors cursor-pointer select-none hover:border-brandBorderHover sm:grid-cols-[40px,1fr] sm:rounded sm:shadow-sm" 
+      onClick={() => Router.push('story/' + data.id)}
+    >
+      {/* karma vertical bar */}
+      <div className="hidden sm:flex sm:justify-center sm:items-start sm:rounded-l sm:py-2 sm:bg-white/80">
+        <span className="font-bold text-xs text-brandTextPrimary">
+          { data.type !== "job" && data.score }
+        </span>
+      </div>
 
-        {/* content */}
-        <div className="grid gap-2 bg-white p-2 pb-1 sm:rounded-r">
-          {/* info */}
-          <StoryItemInfo storyData={data} />
+      {/* content */}
+      <div className="grid gap-2 bg-white p-2 pb-1 sm:rounded-r">
+        {/* info */}
+        <StoryItemHeader storyData={data} />
 
-          {/* title */}
-          <h3 className="font-medium text-brandTextPrimary text-lg leading-snug">
-            {data.title}
-          </h3>
+        {/* title */}
+        <h3 className="font-medium text-brandTextPrimary text-lg leading-snug">
+          {data.title}
+        </h3>
 
-          {/* display url */}
-          { data.url && 
-            (<StoryItemDisplayLink rawLink={data.url} />) 
-          }
+        {/* display url */}
+        { data.url && 
+          (<StoryItemDisplayLink rawLink={data.url} />) 
+        }
 
-          {/* buttons */}
-          <StoryItemBottomButtons storyData={data} />
-        </div>
-      </a>
-    </Link>
+        {/* buttons */}
+        <StoryItemBottomButtons storyData={data} />
+      </div>
+    </div>
   );
 }
 

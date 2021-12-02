@@ -6,13 +6,15 @@ import { useFullDateTime, useRelativeTime } from '../../hooks/useDate';
 const TimeTooltip = ({ unixTime, contentId }) => {
   return (  
     <Tooltip.Root>
-      <Tooltip.Trigger>
+      <Tooltip.Trigger asChild>
         { contentId ? (
-          <Link href={'user/' + contentId}>
-            <a className="hover:underline">
-              { useRelativeTime(unixTime) }
-            </a>
-          </Link>
+          <span>
+            <Link href={'user/' + contentId}>
+              <a className="hover:underline">
+                { useRelativeTime(unixTime) }
+              </a>
+            </Link>
+          </span>
         ) : (
           <span className="hover:underline">
             { useRelativeTime(unixTime) }
