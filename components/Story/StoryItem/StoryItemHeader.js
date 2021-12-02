@@ -1,10 +1,7 @@
-import Link from 'next/link';
-
-import { useFullDateTime, useRelativeTime } from "../../../hooks/useDate";
 import TimeTooltip from '../../Shared/TimeTooltip';
 import UserHoverCard from '../../User/UserHoverCard';
 
-const StoryItemInfo = ({ storyData }) => {
+const StoryItemHeader = ({ storyData }) => {
   return (  
     <p className="text-xs text-brandTextInfo tracking-wide">
       Posted by&nbsp;
@@ -21,4 +18,4 @@ const StoryItemInfo = ({ storyData }) => {
   );
 }
  
-export default StoryItemInfo;
+export default StoryItemHeader;
