@@ -10,31 +10,37 @@ import copy from "copy-to-clipboard";
 
 const StoryItemFooter = ({ storyData }) => {
   return storyData.type !== "job" && (  
-    <div className="grid grid-flow-col auto-cols-auto justify-start gap-1 -ml-1 text-xs text-brandTextSecondary whitespace-nowrap">
+    <div className="grid grid-flow-col auto-cols-auto justify-start gap-2 text-xs text-brandTextSecondary whitespace-nowrap sm:gap-1 sm:-ml-1">
       {/* karma (small breakpoint only) */}
-      <div className="flex items-center sm:hidden">
+      <div className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 sm:hidden">
         <ArrowUpGlyph />
-        <span className="mr-2 px-1 font-bold text-brandTextPrimary">{ storyData.score }</span>
+        <span className="ml-1 font-bold">{ storyData.score }</span>
       </div>
 
-      {/* comment count */}
-      <button className="flex items-center rounded pr-2 pl-1 py-1 font-bold transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive">
+      {/* comment count mobile */}
+      <div className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 sm:hidden">
+        <ChatGlyph />
+        <span className="ml-1 font-bold">{ storyData.descendants }</span>
+      </div>
+
+      {/* comment count desktop */}
+      <button className="hidden sm:flex items-center rounded pr-2 pl-1 py-1 font-bold transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive">
         <ChatGlyph />
         <span className="ml-1">{ storyData.descendants === 0 ? 'No' : storyData.descendants } Comment{ storyData.descendants > 1 && 's' }</span>
       </button>
 
       {/* share - collapsible dropdown panel */}
-      <DropdownWrapper 
+      {/* <DropdownWrapper 
         wrapperClassName="hidden bp420:relative bp420:grid"
         toggleDisplayGlyph={<ShareGlyph />}
         toggleDisplayText="Share"
       >
         <ShareDiscussionLinkButton storyId={storyData.id} />
         <ShareStoryLinkButton storyUrl={storyData.url} />
-      </DropdownWrapper>
+      </DropdownWrapper> */}
 
       {/* secondary items - collapsible dropdown panel */}
-      <DropdownWrapper listClassName="justify-self-end bp360:justify-self-center bp420:justify-self-start">
+      {/* <DropdownWrapper listClassName="justify-self-end bp360:justify-self-center bp420:justify-self-start">
         <ShareDiscussionLinkButton 
           storyId={storyData.id} 
           wrapperClassName="grid bp420:hidden"
@@ -43,7 +49,6 @@ const StoryItemFooter = ({ storyData }) => {
           storyUrl={storyData.url} 
           wrapperClassName="grid bp420:hidden"
         />
-        {/* view on hackernews link */}
         <DropdownItemLink
           displayText="View Original"
           displayGlyph={<HackerNewsGlyph />}
@@ -51,7 +56,7 @@ const StoryItemFooter = ({ storyData }) => {
           href={'https://news.ycombinator.com/item?id=' + storyData.id}
           target="_blank"
         />
-      </DropdownWrapper>
+      </DropdownWrapper> */}
     </div>
   );
 }

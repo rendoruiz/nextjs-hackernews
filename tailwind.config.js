@@ -21,6 +21,7 @@ module.exports = {
         brandButtonHover: 'rgba(28, 28, 28, 0.08)',
         brandButtonActive: 'rgba(28, 28, 28, 0.24)',
         brandButtonSelected: 'rgb(246, 247, 248)',
+        brandButtonOutline: 'rgb(237, 238, 241)',
         brandBorder: 'rgb(204, 204, 204)',
         brandBorderHover: 'rgb(137, 137, 137)',
         brandTextPrimary: 'rgb(34, 34, 34)',

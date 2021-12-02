@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useRouter } from 'next/dist/client/router';
 
 import { useStory } from "../../../hooks/useStory";
@@ -11,23 +12,28 @@ const StoryItemWrapper = ({ storyId }) => {
 
   return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (
     <div
-      className="grid border-brandDefault border-brandBorder transition-colors cursor-pointer select-none hover:border-brandBorderHover sm:grid-cols-[40px,1fr] sm:rounded sm:shadow-sm" 
+      className="grid transition-colors cursor-pointer sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:border-brandBorderHover" 
       onClick={() => router.push('story/' + data.id)}
     >
-      {/* karma vertical bar */}
-      <div className="hidden sm:flex sm:justify-center sm:items-start sm:rounded-l sm:py-2 sm:bg-white/80">
+      {/* karma vertical bar (desktop) */}
+      <div className="hidden sm:flex justify-center items-start rounded-l py-2 bg-white/80">
         <span className="font-bold text-xs text-brandTextPrimary">
           { data.type !== "job" && data.score }
         </span>
       </div>
 
       {/* content */}
-      <div className="grid gap-2 bg-white p-2 pb-1 sm:rounded-r">
-        {/* info */}
+      <div className="relative justify-items-start grid gap-2 px-4 pt-2 pb-3 bg-white sm:rounded-r sm:p-2 sm:pb-1">
+        {/* wrapper link (mobile only)  */}
+        <Link href={'story/' + data.id}>
+          <a className="absolute inset-0" />
+        </Link>
+
+        {/* header info */}
         <StoryItemHeader storyData={data} />
 
         {/* title */}
-        <h3 className="font-medium text-brandTextPrimary text-lg leading-snug">
+        <h3 className="font-medium text-brandTextPrimary text-lg leading-tight sm:leading-snug">
           {data.title}
         </h3>
 
@@ -36,7 +42,7 @@ const StoryItemWrapper = ({ storyId }) => {
           (<StoryItemDisplayLink rawLink={data.url} />) 
         }
 
-        {/* buttons */}
+        {/* footer buttons */}
         <StoryItemFooter storyData={data} />
       </div>
     </div>
