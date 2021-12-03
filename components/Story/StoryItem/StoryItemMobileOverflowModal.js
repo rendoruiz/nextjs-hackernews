@@ -8,7 +8,7 @@ import HackerNewsGlyph from '../../Glyphs/HackerNewsGlyph';
 import UserGlyph from '../../Glyphs/UserGlyph';
 
 const StoryItemMobileOverflowModal = ({ storyData }) => {
-  return ( 
+  return !storyData ? null : ( 
       <Dialog.Root>
         <Dialog.Trigger asChild>
           <button 

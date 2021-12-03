@@ -2,7 +2,7 @@ import clsx from "clsx";
 import ExternalLinkGlyph from "../../Glyphs/ExternalLinkGlyph";
 
 const StoryItemDisplayLink = ({ rawLink, className }) => {
-  return (  
+  return !rawLink ? null : (  
     <a 
       title="view story attached link"
       href={rawLink}
