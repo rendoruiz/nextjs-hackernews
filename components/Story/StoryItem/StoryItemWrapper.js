@@ -29,7 +29,7 @@ const StoryItemWrapper = ({ storyId }) => {
       <div className="relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pt-2 pb-3 bg-white sm:grid-cols-none sm:rounded-r sm:p-2 sm:pb-1">
         {/* wrapper link (mobile only)  */}
         <Link href={'story/' + data.id}>
-          <a className="absolute inset-0" />
+          <a className="absolute inset-0 sm:hidden" />
         </Link>
 
         {/* header info */}
