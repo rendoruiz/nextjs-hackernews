@@ -30,7 +30,10 @@ module.exports = {
       },
       borderWidth: {
         brandDefault: '1px',
-      }
+      },
+      fontFamily: {
+        primary: ['Nunito', 'sans-serif'],
+      },
     },
   },
   variants: {
