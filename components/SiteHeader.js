@@ -8,7 +8,7 @@ const SiteHeader = () => {
       <Link href="/">
         <a className="flex items-center">
           <AppIconGlyph className="w-7 h-7 text-brandOrange"/>
-          <h1 className="ml-2 font-primary font-bold text-lg">Hacker News</h1>
+          <h1 className="ml-2 font-primary font-bold text-lg sm:text-xl">Hacker News</h1>
         </a>
       </Link>
     </header>
