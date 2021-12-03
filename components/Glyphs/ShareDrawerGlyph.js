@@ -1,5 +1,5 @@
-// tablericons arrow-big-top svg
-const ArrowUpGlyph = () => {
+// tablericons upload svg
+const ShareDrawerGlyph = () => {
   return (  
     <svg
       className="w-5 h-5 sm:w-6 sm:h-6"
@@ -11,9 +11,9 @@ const ArrowUpGlyph = () => {
       xmlns="http://www.w3.org/2000/svg"
     >
       <path d="M0 0h24v24H0z" stroke="none" />
-      <path d="M9 20v-8H5.414a1 1 0 01-.707-1.707l6.586-6.586a1 1 0 011.414 0l6.586 6.586A1 1 0 0118.586 12H15v8a1 1 0 01-1 1h-4a1 1 0 01-1-1z" />
+      <path d="M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 9l5-5 5 5M12 4v12" />
     </svg>
   );
 }
  
-export default ArrowUpGlyph;
+export default ShareDrawerGlyph;

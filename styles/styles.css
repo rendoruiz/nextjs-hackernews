@@ -4,6 +4,7 @@
 
 /* disable highlight on element pressed/tap */
 button, 
-a {
+a,
+div {
   -webkit-tap-highlight-color: transparent;
 }
