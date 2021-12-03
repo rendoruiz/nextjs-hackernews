@@ -4,7 +4,7 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 import { useFullDateTime, useRelativeTime } from '../../hooks/useDate';
 
 const TimeTooltip = ({ className, unixTime, contentId }) => {
-  return (  
+  return !unixTime ? null : (  
     <Tooltip.Root>
       <Tooltip.Trigger asChild>
         { contentId ? (

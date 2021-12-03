@@ -6,7 +6,6 @@ import StoryItemHeader from "./StoryItemHeader";
 import StoryItemDisplayLink from "./StoryItemDisplayLink";
 import StoryItemFooter from "./StoryItemFooter";
 import StoryItemShareDrawerButton from './StoryItemShareDrawerButton';
-import { eachDayOfInterval } from 'date-fns';
 import StoryItemMobileOverflowModal from './StoryItemMobileOverflowModal';
 
 const StoryItemWrapper = ({ storyId }) => {
@@ -14,47 +13,47 @@ const StoryItemWrapper = ({ storyId }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
 
   return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (
-    <div
-      className="grid transition-colors cursor-pointer sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:border-brandBorderHover" 
-      onClick={() => router.push('story/' + data.id)}
-    >
-      {/* karma vertical bar (desktop) */}
-      <div className="hidden sm:flex justify-center items-start rounded-l py-2 bg-white/80">
-        <span className="font-bold text-xs text-brandTextPrimary">
-          { data.type !== "job" && data.score }
-        </span>
+    data.deleted || data.dead ? (<IsDeadOrDeleted />) : (
+      <div
+        className="grid transition-colors cursor-pointer sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:border-brandBorderHover" 
+        onClick={() => router.push('story/' + data.id)}
+      >
+        {/* karma vertical bar (desktop) */}
+        <div className="hidden sm:flex justify-center items-start rounded-l py-2 bg-white/80">
+          <span className="font-bold text-xs text-brandTextPrimary">
+            { data.type !== "job" && data.score }
+          </span>
+        </div>
+
+        {/* content */}
+        <div className="relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pt-2 pb-3 bg-white sm:grid-cols-none sm:rounded-r sm:p-2 sm:pb-1">
+          {/* wrapper link (mobile only)  */}
+          <Link href={'story/' + data.id}>
+            <a className="absolute inset-0 sm:hidden" />
+          </Link>
+
+          {/* header info */}
+          <StoryItemHeader storyData={data} />
+
+          {/* mobile overflow actions */}
+          <StoryItemMobileOverflowModal storyData={data} />
+
+          {/* title */}
+          <h3 className="row-start-2 col-start-1 font-medium text-brandTextPrimary leading-tight sm:row-start-auto sm:col-start-auto sm:text-lg sm:leading-snug">
+            {data.title}
+          </h3>
+
+          {/* display url */}
+          <StoryItemDisplayLink rawLink={data.url} />
+
+          {/* footer buttons */}
+          <StoryItemFooter storyData={data} />
+
+          {/* share drawer invoker */}
+          <StoryItemShareDrawerButton storyId={data.id} />
+        </div>
       </div>
-
-      {/* content */}
-      <div className="relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pt-2 pb-3 bg-white sm:grid-cols-none sm:rounded-r sm:p-2 sm:pb-1">
-        {/* wrapper link (mobile only)  */}
-        <Link href={'story/' + data.id}>
-          <a className="absolute inset-0 sm:hidden" />
-        </Link>
-
-        {/* header info */}
-        <StoryItemHeader storyData={data} />
-
-        {/* mobile overflow actions */}
-        <StoryItemMobileOverflowModal storyData={data} />
-
-        {/* title */}
-        <h3 className="row-start-2 col-start-1 font-medium text-brandTextPrimary leading-tight sm:row-start-auto sm:col-start-auto sm:text-lg sm:leading-snug">
-          {data.title}
-        </h3>
-
-        {/* display url */}
-        { data.url && 
-          (<StoryItemDisplayLink rawLink={data.url} />) 
-        }
-
-        {/* footer buttons */}
-        <StoryItemFooter storyData={data} />
-
-        {/* share drawer invoker */}
-        <StoryItemShareDrawerButton storyId={data.id} />
-      </div>
-    </div>
+    )
   );
 }
 
@@ -85,6 +84,12 @@ const IsLoading = () => {
 const IsError = () => {
   return (
     <div>An error occured.</div>
+  )
+}
+
+const IsDeadOrDeleted = () => {
+  return (
+    <div>Content cannot be found.</div>
   )
 }
  

@@ -5,7 +5,7 @@ import UserHoverCard from '../../User/UserHoverCard';
 import UserLink from '../../User/UserLink';
 
 const StoryItemHeader = ({ storyData }) => {
-  return (  
+  return !storyData ? null : (  
     <p className="relative row-start-1 col-start-1 flex items-center text-sm text-brandTextInfo sm:row-start-auto sm:col-start-auto sm:text-xs sm:tracking-wide">
       <UserAvatar  
         className="inline-block mr-[0.375rem] sm:hidden"

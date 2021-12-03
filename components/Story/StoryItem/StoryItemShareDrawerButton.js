@@ -10,7 +10,7 @@ const StoryItemShareDrawerButton = ({ storyId }) => {
     });
   }
 
-  return navigator.share && (  
+  return !navigator.share ? null : (  
     <button 
       className="row-start-3 col-start-2 justify-self-end self-end relative flex items-center border-brandDefault border-brandButtonOutline rounded-full mt-1 p-1 text-brandTextSecondary bp420:px-2 sm:hidden"
       onClick={(e) => handleClick(e)}

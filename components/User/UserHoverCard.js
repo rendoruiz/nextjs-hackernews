@@ -3,7 +3,7 @@ import * as HoverCard from '@radix-ui/react-hover-card';
 import UserLink from './UserLink';
 
 const UserHoverCard = ({ userId, withPrefix }) => {
-  return (  
+  return !userId ? null : (  
     <HoverCard.Root>
       <HoverCard.Trigger asChild>
         <span>
