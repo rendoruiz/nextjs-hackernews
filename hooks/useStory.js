@@ -7,8 +7,7 @@ const fetchStory = async (storyId) => {
   return response.data;
 }
 const useStory = (storyId) => {
-  return useQuery([storyId, storyId], () => fetchStory(storyId));
+  return useQuery(['story.'+storyId, storyId], () => fetchStory(storyId));
 }
 
 export { useStory, fetchStory }
-

@@ -1,8 +1,13 @@
 import * as HoverCard from '@radix-ui/react-hover-card';
+import { useRelativeTime } from '../../hooks/useDate';
+import { useUser } from '../../hooks/useUser';
+import UserAvatar from './UserAvatar';
 
 import UserLink from './UserLink';
 
 const UserHoverCard = ({ userId, withPrefix }) => {
+  const { isLoading, isError, isSuccess, data } = useUser(userId);
+
   return !userId ? null : (  
     <HoverCard.Root>
       <HoverCard.Trigger asChild>
@@ -18,46 +23,84 @@ const UserHoverCard = ({ userId, withPrefix }) => {
         sideOffset={2}
         align="start"
       >
-        {/* heading */}
-        <section className="grid grid-cols-[auto,1fr] items-end gap-2">
-          <div className="rounded bg-brandOrange w-9 h-9"></div>
-          <div className="grid">
-            <UserLink
-              className="font-medium text-lg text-brandTextPrimary leading-tight"
-              userId={userId}
-              withPrefix
+        { isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (<>
+          <section className="grid grid-cols-[auto,1fr] items-end gap-2">
+            {/* heading */}
+            <UserAvatar 
+              className="!w-9 !h-9"
+              userId={data.id}
             />
-            <p className="text-sm text-brandTextSecondary leading-tight">
-              { userId } • [relative time to creation date]
-            </p>
-          </div>
-        </section>
+            {/* <div className="rounded bg-brandOrange "></div> */}
+            <div className="grid">
+              <UserLink
+                className="font-medium text-lg text-brandTextPrimary"
+                userId={data.id}
+                withPrefix
+              />
+              <p className="text-xs text-brandTextSecondary leading-tight tracking-wide">
+                { data.id } • { useRelativeTime(data.created) }
+              </p>
+            </div>
+          </section>
 
-        {/* stats */}
-        <section className="grid grid-cols-2 gap-5">
-          {/* score */}
-          <div className="grid">
-            <p className="order-2 text-sm text-brandTextSecondary leading-snug">
-              Karma
-            </p>
-            <p className="order-1 font-medium text-lg text-brandTextPrimary leading-snug">
-              [karma score]
-            </p>
-          </div>
-          {/* creation date */}
-          <div className="grid">
-            <p className="order-2 text-sm text-brandTextSecondary leading-snug">
-              Cake Day
-            </p>
-            <p className="order-1 font-medium text-lg text-brandTextPrimary leading-snug">
-              [creation date]
-            </p>
-          </div>
-        </section>
+          {/* stats */}
+          <section className="grid grid-cols-2 gap-5">
+            {/* score */}
+            <div className="grid">
+              <p className="order-2 text-xs text-brandTextSecondary leading-snug tracking-wide">
+                Karma
+              </p>
+              <p className="order-1 font-medium text-lg text-brandTextPrimary leading-snug">
+                { data.karma }
+              </p>
+            </div>
+            {/* creation date */}
+            <div className="grid">
+              <p className="order-2 text-xs text-brandTextSecondary leading-snug tracking-wide">
+                Submissions
+              </p>
+              <p className="order-1 font-medium text-lg text-brandTextPrimary leading-snug">
+                { data.submitted.length }
+              </p>
+            </div>
+          </section>
+        </>)}
 
       </HoverCard.Content>
     </HoverCard.Root>
   );
+}
+
+// fetch loading
+const IsLoading = () => {
+  return (
+    <>
+      <div className="grid grid-cols-[auto,1fr] items-end gap-2">
+        <div className="rounded-full w-9 h-9 bg-brandTextSecondary/30 animate-pulse"></div>
+        <div className="grid gap-1">
+          <div className="rounded-md w-24 h-6 bg-brandTextSecondary/30 animate-pulse"></div>
+          <div className="rounded-md w-44 h-3 bg-brandTextSecondary/30 animate-pulse"></div>
+        </div>
+      </div>
+      <div className="grid grid-cols-2 gap-5">
+        <div className="grid gap-2">
+          <div className="rounded-md w-20 h-6 bg-brandTextSecondary/30 animate-pulse"></div>
+          <div className="rounded-md w-16 h-3 bg-brandTextSecondary/30 animate-pulse"></div>
+        </div>
+        <div className="grid gap-2">
+          <div className="rounded-md w-20 h-6 bg-brandTextSecondary/30 animate-pulse"></div>
+          <div className="rounded-md ww-16 h-3 bg-brandTextSecondary/30 animate-pulse"></div>
+        </div>
+      </div>
+    </>
+  );
+}
+
+// fetch error
+const IsError = () => {
+  return (
+    <div>An error occured.</div>
+  )
 }
  
 export default UserHoverCard;

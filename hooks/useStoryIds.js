@@ -7,7 +7,7 @@ const fetchTopStoryIds = async () => {
   return response.data;
 }
 const useTopStoryIds = () => {
-  return useQuery('topstoryids', fetchTopStoryIds);
+  return useQuery('storyids.top', fetchTopStoryIds);
 }
 
 // best story ids
@@ -16,7 +16,7 @@ const fetchBestStoryIds = async () => {
   return response.data;
 }
 const useBestStoryIds = () => {
-  return useQuery('beststoryids', fetchBestStoryIds);
+  return useQuery('storyids.best', fetchBestStoryIds);
 }
 
 // new story ids
@@ -25,7 +25,7 @@ const fetchNewStoryIds = async () => {
   return response.data;
 }
 const useNewStoryIds = () => {
-  return useQuery('newstoryids', fetchNewStoryIds);
+  return useQuery('storyids.new', fetchNewStoryIds);
 }
 
 export { useTopStoryIds, fetchTopStoryIds, useBestStoryIds, fetchBestStoryIds, useNewStoryIds, fetchNewStoryIds }
