@@ -7,6 +7,7 @@ import StoryItemDisplayLink from "./StoryItemDisplayLink";
 import StoryItemFooter from "./StoryItemFooter";
 import StoryItemShareDrawerButton from './StoryItemShareDrawerButton';
 import { eachDayOfInterval } from 'date-fns';
+import StoryItemMobileOverflowModal from './StoryItemMobileOverflowModal';
 
 const StoryItemWrapper = ({ storyId }) => {
   const router =useRouter();
@@ -33,6 +34,9 @@ const StoryItemWrapper = ({ storyId }) => {
 
         {/* header info */}
         <StoryItemHeader storyData={data} />
+
+        {/* mobile overflow actions */}
+        <StoryItemMobileOverflowModal storyData={data} />
 
         {/* title */}
         <h3 className="row-start-2 col-start-1 font-medium text-brandTextPrimary leading-tight sm:row-start-auto sm:col-start-auto sm:text-lg sm:leading-snug">
