@@ -12,7 +12,7 @@ const StoryItemWrapper = ({ storyId }) => {
   const router =useRouter();
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
 
-  return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (
+  return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && data && (
     data.deleted || data.dead ? (<IsDeadOrDeleted />) : (
       <div
         className="grid transition-colors cursor-pointer sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:border-brandBorderHover" 

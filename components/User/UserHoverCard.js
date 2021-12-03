@@ -65,7 +65,6 @@ const UserHoverCard = ({ userId, withPrefix }) => {
             </div>
           </section>
         </>)}
-
       </HoverCard.Content>
     </HoverCard.Root>
   );
