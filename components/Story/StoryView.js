@@ -3,23 +3,18 @@ import StoryNav from "./StoryNav";
 import StoryList from "./StoryList";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
-import { parse as queryStringParse } from "query-string";
+import { parse as parseQuery } from "query-string";
 
-const defaultCount = 5;
+const defaultCount = 25;
 
 const StoryView = ({ useHook, activeRoute }) => {
   const router = useRouter();
-  const [itemCount, setItemCount] = useState(null);
+  // todo: local state management & retain scroll position when navigating back
+  const [itemCount, setItemCount] = useState(null);   
 
   useEffect(() => {
-    if (itemCount === null) {
-      setItemCount(parseCountQueryString(queryStringParse(location.search).count) ?? defaultCount);
-    }
-  }, [router]);
-
-  // useEffect(() => {
-
-  // }, [itemCount])
+    setItemCount(parseCountQueryString(parseQuery(location.search).count));
+  }, []);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -33,11 +28,6 @@ const StoryView = ({ useHook, activeRoute }) => {
 
   return ( 
     <SiteLayout contentClassName=" auto-rows-auto">
-      <div>
-        {/* <p>params: {JSON.stringify(query)}</p> */}
-        <p>param count: {itemCount}</p>
-      </div>
-
       {/* Navbar */}
       <StoryNav activeRoute={activeRoute} />
 
@@ -62,7 +52,7 @@ const parseCountQueryString = (countValue) => {
     const count = parseInt(countValue);
     return (count === NaN || count < defaultCount) ? defaultCount : count;
   } 
-  return null;
+  return defaultCount;
 }
 
 export default StoryView;
