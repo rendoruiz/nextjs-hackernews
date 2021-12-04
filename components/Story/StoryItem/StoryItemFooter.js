@@ -51,7 +51,7 @@ const OverflowButtonsDropdown = ({ storyData }) => {
         <HorizontalDotsGlyph />
       </DropdownMenuTrigger>
       <DropdownMenuContent 
-        className="border-brandDefault border-brandButtonOutline rounded bg-white text-sm text-brandTextSecondary shadow-transientObject overflow-hidden"
+        className="hidden sm:grid border-brandDefault border-brandButtonOutline rounded bg-white text-sm text-brandTextSecondary shadow-transientObject overflow-hidden"
         align="start"
       >
         <DropdownMenuItem asChild>
@@ -77,7 +77,7 @@ const ShareDropdown = ({ storyData }) => {
         <span className="ml-1 font-bold">Share</span>
       </DropdownMenuTrigger>
       <DropdownMenuContent 
-        className="border-brandDefault border-brandButtonOutline rounded bg-white text-sm text-brandTextSecondary shadow-transientObject overflow-hidden"
+        className="hidden sm:grid border-brandDefault border-brandButtonOutline rounded bg-white text-sm text-brandTextSecondary shadow-transientObject overflow-hidden"
         align="start"
       >
         <ShareItem
