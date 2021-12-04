@@ -5,7 +5,7 @@ const StoryItemShareDrawerButton = ({ storyId }) => {
     e.preventDefault();
     e.stopPropagation();
     navigator.share({
-      url: window.location + 'story/' + storyId,
+      url: window.location.origin + '/story/' + storyId,
       title: 'story discussion link',
     });
   }
@@ -21,6 +21,4 @@ const StoryItemShareDrawerButton = ({ storyId }) => {
   );
 }
 
-
- 
 export default StoryItemShareDrawerButton;

@@ -69,7 +69,7 @@ const ShareDiscussionLinkButton = ({ storyId, wrapperClassName }) => {
       displayGlyph={<LinkGlyph />}
       wrapperClassName={wrapperClassName}
       title="copy discussion link"
-      onClick={(e) => CopyToClipboard(e, window.location + '/story/' + storyId)}
+      onClick={(e) => CopyToClipboard(e, window.location.origin + '/story/' + storyId)}
     />
   );
 }
