@@ -14,7 +14,8 @@ const HomeTopView = () => {
 // for precaching
 export async function getStaticProps() {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery('topstoryids', fetchTopStoryIds)
+  await queryClient.prefetchQuery('topstoryids', fetchTopStoryIds);
+  
   return {
     props: {
       dehydratedState: dehydrate(queryClient),
