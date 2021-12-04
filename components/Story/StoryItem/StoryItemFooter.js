@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 import DropdownWrapper from "../../Dropdown/DropdownWrapper";
 import { DropdownItemButton, DropdownItemLink } from "../../Dropdown/DropdownItem";
 import ArrowUpGlyph from "../../Glyphs/ArrowUpGlyph";
@@ -10,7 +12,7 @@ import copy from "copy-to-clipboard";
 
 const StoryItemFooter = ({ storyData }) => {
   return storyData.type !== "job" && (  
-    <div className="row-start-3 col-start-1 self-end grid grid-flow-col auto-cols-auto justify-start gap-2 text-xs text-brandTextSecondary whitespace-nowrap sm:row-start-auto sm:col-start-auto sm:gap-1 sm:-ml-1">
+    <div className="row-start-3 col-start-1 self-end grid grid-flow-col auto-cols-auto justify-start gap-2 text-xs text-brandTextSecondary whitespace-nowrap sm:row-start-auto sm:col-start-auto sm:relative sm:gap-1 sm:-ml-1">
       {/* karma (small breakpoint only) */}
       <div className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 sm:hidden">
         <ArrowUpGlyph />
@@ -18,16 +20,26 @@ const StoryItemFooter = ({ storyData }) => {
       </div>
 
       {/* comment count mobile */}
-      <div className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 sm:hidden">
-        <ChatGlyph />
-        <span className="ml-1 font-bold">{ storyData.descendants }</span>
-      </div>
+      <Link href={'story/' + storyData.id}>
+        <a 
+          className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 font-bold sm:border-none sm:rounded sm:pr-2 sm:pl-1 sm:transition-colors sm:hover:bg-brandButtonHover sm:active:bg-brandButtonActive"
+          title="view story discussion"
+        >
+          <ChatGlyph />
+          <span className="ml-1 sm:hidden">
+            { storyData.descendants }
+          </span>
+          <span className="hidden sm:inline-block sm:ml-1">
+            { storyData.descendants === 0 ? 'No' : storyData.descendants } Comment{ storyData.descendants > 1 && 's' }
+          </span>
+        </a>
+      </Link>
 
       {/* comment count desktop */}
-      <button className="hidden sm:flex items-center rounded pr-2 pl-1 py-1 font-bold transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive">
+      {/* <button className="hidden sm:flex items-center rounded pr-2 pl-1 py-1 font-bold transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive">
         <ChatGlyph />
         <span className="ml-1">{ storyData.descendants === 0 ? 'No' : storyData.descendants } Comment{ storyData.descendants > 1 && 's' }</span>
-      </button>
+      </button> */}
 
       {/* share - collapsible dropdown panel */}
       {/* <DropdownWrapper 
