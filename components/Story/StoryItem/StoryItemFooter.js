@@ -16,20 +16,20 @@ const StoryItemFooter = ({ storyData }) => {
       {/* karma (small breakpoint only) */}
       <div className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 sm:hidden">
         <ArrowUpGlyph />
-        <span className="ml-1 font-bold">{ storyData.score }</span>
+        <span className="ml-1 font-medium">{ storyData.score }</span>
       </div>
 
       {/* comment count */}
       <Link href={'story/' + storyData.id}>
         <a 
-          className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 font-bold sm:border-none sm:rounded sm:pr-2 sm:pl-1 sm:transition-colors sm:hover:bg-brandButtonHover sm:active:bg-brandButtonActive"
+          className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 sm:border-none sm:rounded sm:pr-2 sm:pl-1 sm:transition-colors sm:hover:bg-brandButtonHover sm:active:bg-brandButtonActive"
           title="view story discussion"
         >
           <ChatGlyph />
-          <span className="ml-1 sm:hidden">
+          <span className="ml-1 sm:hidden font-medium">
             { storyData.descendants }
           </span>
-          <span className="hidden sm:inline-block sm:ml-1">
+          <span className="hidden sm:inline-block ml-1 font-bold">
             { storyData.descendants === 0 ? 'No' : storyData.descendants } Comment{ storyData.descendants > 1 && 's' }
           </span>
         </a>
