@@ -30,7 +30,7 @@ const fetchNewStoryIds = async () => {
   return response.data;
 }
 const useNewStoryIds = () => {
-  return useQuery('storyids.new', fetchNewStoryIds, storyIdsQueryOptions);
+  return useQuery('storyids.new', fetchNewStoryIds, { ...storyIdsQueryOptions, refetchOnMount: "always" });
 }
 
 export { useTopStoryIds, fetchTopStoryIds, useBestStoryIds, fetchBestStoryIds, useNewStoryIds, fetchNewStoryIds }
