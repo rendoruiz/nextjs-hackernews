@@ -3,26 +3,35 @@ import StoryNav from "./StoryNav";
 import StoryList from "./StoryList";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
+import { parse as queryStringParse } from "query-string";
 
 const defaultCount = 5;
 
 const StoryView = ({ useHook, activeRoute }) => {
   const router = useRouter();
   const [itemCount, setItemCount] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  
-  // useEffect(() => {
-  //   console.log(router.query.count);
-  //   console.log(getCount(router.query.count));
-  //   setItemCount(getCount(router.query.count));
-  // }, []);
 
   useEffect(() => {
-    setItemCount(getCount(router.query.count));
-    setIsLoading(false);
-  }, [isLoading, router]);
+    if (itemCount === null) {
+      setItemCount(parseCountQueryString(queryStringParse(location.search).count) ?? defaultCount);
+    }
+  }, [router]);
 
-  return isLoading ? null : ( 
+  // useEffect(() => {
+
+  // }, [itemCount])
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    const newCount = itemCount + defaultCount;
+    setItemCount(newCount);
+    router.push({
+      pathname: router.pathname,
+      query: { count: newCount },
+    }, undefined, { shallow: true });
+  }
+
+  return ( 
     <SiteLayout contentClassName=" auto-rows-auto">
       <div>
         {/* <p>params: {JSON.stringify(query)}</p> */}
@@ -39,13 +48,8 @@ const StoryView = ({ useHook, activeRoute }) => {
       />
 
       <button 
-        className="place-self-start rounded-full mt-5 px-5 py-2 bg-brandOrange text-white"
-        onClick={() => {
-          console.log('button click',itemCount)
-          setItemCount(itemCount + defaultCount); 
-          console.log('button click 2',itemCount)
-          router.push(router.pathname + '?count=' + itemCount, undefined, { shallow: true })
-        }}
+        className="place-self-start rounded-full mt-5 px-5 py-1 bg-brandOrange text-white"
+        onClick={(e) => handleClick(e)}
       >
         Next
       </button>
@@ -53,12 +57,9 @@ const StoryView = ({ useHook, activeRoute }) => {
   );
 }
 
-const getCount = (countQuery) => {
-  console.log('getCount', countQuery);
-  if (countQuery) {
-    const count = parseInt(countQuery);
-    console.log('count', count)
-    console.log('return', (count === NaN || count < defaultCount) ? defaultCount : count)
+const parseCountQueryString = (countValue) => {
+  if (countValue) {
+    const count = parseInt(countValue);
     return (count === NaN || count < defaultCount) ? defaultCount : count;
   } 
   return null;
