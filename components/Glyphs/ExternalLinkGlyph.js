@@ -1,8 +1,8 @@
 // heroicons external-link svg
-const ExternalLinkGlyph = ({ className = "w-5 h-5" }) => {
+const ExternalLinkGlyph = ({ className  }) => {
   return (  
     <svg
-      className={className}
+      className={className ?? "w-5 h-5"}
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"

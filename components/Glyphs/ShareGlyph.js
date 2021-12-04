@@ -1,12 +1,21 @@
+// modified tablericons arrow-ramp-right svg
 const ShareGlyph = () => {
   return (  
     <svg
       className="w-5 h-5"
-      fill="currentColor"
-      viewBox="0 0 20 20"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeWidth="1.5"
+      viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z" />
+      <path d="M0 0h24v24H0z" stroke="none" />
+      <path d="M15.98 12.85l4.943-4.614-4.943-4.613" strokeWidth="1.791" />
+      <path
+        d="M3.623 20.923A13.593 12.687 0 0117.216 8.236h3.707"
+        strokeWidth="1.791"
+      />
     </svg>
   );
 }

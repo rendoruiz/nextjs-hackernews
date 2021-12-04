@@ -31,6 +31,9 @@ module.exports = {
       borderWidth: {
         brandDefault: '1px',
       },
+      boxShadow: {
+        transientObject: '0 2px 4px 0 rgba(28, 28, 28, 0.2)',
+      },
       fontFamily: {
         primary: ['Nunito', 'sans-serif'],
       },
