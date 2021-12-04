@@ -39,7 +39,7 @@ const StoryView = ({ useHook, activeRoute }) => {
 
       { itemCount && (
         <button 
-          className="place-self-stretch rounded-full mt-4 px-10 py-1 bg-brandOrange font-bold text-white transition-opacity hover:opacity-80 active:opacity-60 sm:place-self-center"
+          className="place-self-stretch rounded-full mx-4 mt-4 px-10 py-1 bg-brandOrange font-bold text-white transition-opacity hover:opacity-80 active:opacity-60 sm:place-self-center"
           onClick={(e) => handleClick(e)}
         >
           Next
