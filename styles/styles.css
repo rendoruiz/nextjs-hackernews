@@ -1,9 +1,14 @@
+/* Google Fonts - nunito medium */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* disable highlight on element pressed/tap */
 button, 
-a {
+a,
+div {
   -webkit-tap-highlight-color: transparent;
 }
+

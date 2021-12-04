@@ -54,9 +54,9 @@ const StoryNav = ({ activeRoute }) => {
       {/* list */}
       {
         navItems.map((item, index) => 
-          <div className="hidden bp500:grid">
+          <div className="hidden bp500:grid" key={index}>
             <NavbarItem
-              key={index}
+              
               route={item.route}
               text={item.text}
               glyph={item.glyph}

@@ -6,12 +6,18 @@
     "start": "next start"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^0.1.1",
+    "@radix-ui/react-dropdown-menu": "^0.1.1",
+    "@radix-ui/react-hover-card": "^0.1.1",
+    "@radix-ui/react-popover": "^0.1.1",
+    "@radix-ui/react-tooltip": "^0.1.1",
     "axios": "^0.24.0",
     "clsx": "^1.1.1",
     "copy-to-clipboard": "^3.3.1",
     "date-fns": "^2.26.0",
     "date-fns-tz": "^1.1.6",
     "next": "latest",
+    "query-string": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-query": "^3.33.5"
