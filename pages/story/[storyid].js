@@ -1,14 +1,12 @@
 import { useRouter } from "next/dist/client/router";
-import SiteLayout from "../../components/SiteLayout";
+import CommentView from "../../components/Comment/CommentView";
 
 const StoryDiscussionPage = () => {
   const router = useRouter();
   const { storyid } = router.query;
-  console.log({storyid})
+  
   return (  
-    <SiteLayout>
-      <span>{storyid}</span>
-    </SiteLayout>
+    <CommentView storyId={storyid} />
   );
 }
  

@@ -11,7 +11,7 @@ const TimeTooltip = ({ className, unixTime, contentId }) => {
       <Tooltip.Trigger asChild>
         { contentId ? (
           <span className={className}>
-            <Link href={'user/' + contentId}>
+            <Link href={'/story/' + contentId}>
               <a className="hover:underline">
                 { relativeTime }
               </a>
