@@ -4,7 +4,7 @@ import AppIconGlyph from "./Glyphs/AppIconGlyph";
 
 const SiteHeader = () => {
   return ( 
-    <header className="sticky top-0 z-30 flex items-center px-4 py-[0.625rem] bg-[#1d2535] text-white shadow-lg sm:bg-white sm:text-brandTextPrimary">
+    <header className="sticky top-0 z-30 flex items-center px-4 py-[0.625rem] bg-[#1d2535] text-white shadow-md sm:bg-white sm:text-brandTextPrimary">
       <Link href="/">
         <a className="flex items-center">
           <AppIconGlyph className="w-7 h-7 text-brandOrange"/>

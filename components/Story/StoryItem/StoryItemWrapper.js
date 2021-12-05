@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useRouter } from 'next/dist/client/router';
 
 import { useStory } from "../../../hooks/useStory";
 import StoryItemHeader from "./StoryItemHeader";
@@ -9,27 +8,31 @@ import StoryItemShareDrawerButton from './StoryItemShareDrawerButton';
 import StoryItemMobileOverflowModal from './StoryItemMobileOverflowModal';
 
 const StoryItemWrapper = ({ storyId }) => {
-  const router =useRouter();
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
 
   return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && data && (
     data.deleted || data.dead ? (<IsDeadOrDeleted />) : (
-      <div
-        className="grid transition-colors cursor-pointer sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:border-brandBorderHover" 
-        onClick={() => router.push('story/' + data.id)}
-      >
+      <div className="grid transition-colors cursor-pointer sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:border-brandBorderHover">
         {/* karma vertical bar (desktop) */}
-        <div className="hidden sm:flex justify-center items-start rounded-l py-2 bg-white/80">
-          <span className="font-bold text-xs text-brandTextPrimary">
-            { data.type !== "job" && data.score }
-          </span>
-        </div>
+        <Link href={'story/' + data.id}>
+          <a 
+            className="hidden sm:flex justify-center items-start rounded-l py-2 bg-white/80"
+            title="view story discussion"
+          >
+            <span className="font-bold text-xs text-brandTextPrimary">
+              { data.type !== "job" && data.score }
+            </span>
+          </a>
+        </Link>
 
         {/* content */}
         <div className="relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pt-2 pb-3 bg-white sm:grid-cols-none sm:rounded-r sm:p-2 sm:pb-1">
           {/* wrapper link (mobile only)  */}
           <Link href={'story/' + data.id}>
-            <a className="absolute inset-0 sm:hidden" />
+            <a 
+              className="absolute inset-0" 
+              title="view story discussion" 
+            />
           </Link>
 
           {/* header info */}

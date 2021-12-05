@@ -27,7 +27,7 @@ const StoryView = ({ useHook, activeRoute }) => {
   }
 
   return ( 
-    <SiteLayout contentClassName=" auto-rows-auto">
+    <SiteLayout contentClassName="grid-rows-[auto,1fr,auto]">
       {/* Navbar */}
       <StoryNav activeRoute={activeRoute} />
 
@@ -37,12 +37,14 @@ const StoryView = ({ useHook, activeRoute }) => {
         itemLimit={itemCount}
       />
 
-      <button 
-        className="place-self-start rounded-full mt-5 px-5 py-1 bg-brandOrange text-white"
-        onClick={(e) => handleClick(e)}
-      >
-        Next
-      </button>
+      { itemCount && (
+        <button 
+          className="place-self-stretch rounded-full mx-4 mt-4 px-10 py-1 bg-brandOrange font-bold text-white transition-opacity hover:opacity-80 active:opacity-60 sm:place-self-center"
+          onClick={(e) => handleClick(e)}
+        >
+          Next
+        </button>
+      )}
     </SiteLayout>
   );
 }
