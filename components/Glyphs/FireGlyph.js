@@ -1,8 +1,10 @@
+import clsx from "clsx";
+
 // heroicons fire svg
-const FireGlyph = () => {
+const FireGlyph = ({ className }) => {
   return (
     <svg
-      className="w-6 h-6 fill-current"
+      className={clsx(className ?? "w-6 h-6", "fill-current")}
       fill="currentColor"
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
