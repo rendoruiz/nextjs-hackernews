@@ -34,7 +34,7 @@ const StoryNav = () => {
   const router = useRouter();
 
   return ( 
-    <div className="grid grid-flow-col auto-cols-auto justify-between gap-5 mb-1 px-4 bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:mb-4">
+    <div className="grid grid-flow-col auto-cols-auto justify-between gap-5 mb-1 px-4 bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:mb-4 sm:py-3">
       <MobileNavDropdown router={router} />
 
       <div className="hidden sm:grid grid-flow-col auto-cols-auto gap-2">
@@ -43,9 +43,12 @@ const StoryNav = () => {
             key={index}
             href={item.route}
           >
-            <a className="flex items-center px-1 py-3">
-              <div className={clsx("w-6 h-6", { "text-brandOrange": item.route === router.pathname })}>{ item.glyph }</div>
-              <span className="ml-3 text-base text-brandTextPrimary">{ item.text }</span>
+            <a className={clsx(
+              "flex items-center rounded-full pl-2 pr-[0.625rem] py-[0.375rem] transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive", 
+              item.route === router.pathname ? "bg-brandButtonSelected text-brandOrange" : "text-brandTextSecondary"
+            )}>
+              <div className="w-6 h-6">{ item.glyph }</div>
+              <span className="ml-2 font-bold">{ item.text }</span>
             </a>
           </Link>
         ))}
@@ -66,7 +69,7 @@ const MobileNavDropdown = ({ router }) => {
   return (
     <DropdownMenu open={isOpen} onOpenChange={(state) => setIsOpen(state)}>
       <DropdownMenuTrigger 
-        className="flex items-center rounded px-2 py-3 text-brandTextSecondary transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive sm:hidden" 
+        className="flex items-center rounded px-2 py-3 text-brandTextSecondary sm:hidden" 
         id="radix-storynav-dropdownmenu.trigger"
       > 
         { navItems.map((item, index) => item.route === router.pathname && (
@@ -109,7 +112,7 @@ const MobileNavDropdown = ({ router }) => {
                   onClick={() => handleClick(item.route)}
                 >
                   <div className={clsx("w-6 h-6", { "text-brandOrange": item.route === router.pathname })}>{ item.glyph }</div>
-                  <span className="ml-3 text-base text-brandTextPrimary">{ item.text }</span>
+                  <span className="ml-3 text-brandTextPrimary">{ item.text }</span>
                 </a>
               </Link>
             </DropdownMenuItem>
