@@ -1,17 +1,17 @@
-import clsx from "clsx";
-
-const ChevronDownGlyph = ({className = "w-5 h-5"}) => {
+// tablericons chevron-down svg
+const ChevronDownGlyph = ({ className }) => {
   return (  
     <svg
-      className={clsx(className, "fill-current")}
-      fill="currentColor"
-      viewBox="0 0 20 20"
+      className={className ?? "w-5 h-5"}
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeWidth="3"
+      viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path
-        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-        fillRule="evenodd"
-      />
+      <path d="M0 0h24v24H0z" stroke="none" />
+      <path d="M6 9l6 6 6-6" />
     </svg>
   );
 }
