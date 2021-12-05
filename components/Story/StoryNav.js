@@ -86,14 +86,14 @@ const MobileNavDropdown = ({ router }) => {
         { isOpen && (<div className="fixed z-10 inset-0 bg-black/40 sm:hidden"></div>) }
       </DropdownMenuTrigger>
       <DropdownMenuContent 
-        className="grid w-[94vw] min-w-[282px] text-brandTextSecondary overflow-hidden sm:hidden"
+        className="grid -ml-4 w-screen min-w-[282px] text-brandTextSecondary overflow-hidden sm:hidden"
         align="center"
         sideOffset={-8}
       >
         {/* custom arrow */}
         <DropdownMenuLabel asChild>
           <svg
-            className="ml-10 w-4 h-2 scale-y-[-1] text-white fill-current"
+            className="ml-12 w-4 h-2 scale-y-[-1] text-white fill-current"
             preserveAspectRatio="none"
             viewBox="0 0 30 10"
           >
@@ -101,7 +101,7 @@ const MobileNavDropdown = ({ router }) => {
           </svg>
         </DropdownMenuLabel>
         {/* actual content */}
-        <DropdownMenuGroup className="grid px-2 bg-white">
+        <DropdownMenuGroup className="grid mx-3 px-2 bg-white">
           <DropdownMenuLabel className="py-3 font-bold text-xs uppercase tracking-widest">Sort Posts By:</DropdownMenuLabel>
           <DropdownMenuSeparator className="border-b-brandDefault border-brandBorder" /> 
           { navItems.map((item, index) => (
