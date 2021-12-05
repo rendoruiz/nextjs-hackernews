@@ -4,6 +4,8 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 import { useFullDateTime, useRelativeTime } from '../../hooks/useDate';
 
 const TimeTooltip = ({ className, unixTime, contentId }) => {
+  const relativeTime = useRelativeTime(unixTime);
+
   return !unixTime ? null : (  
     <Tooltip.Root>
       <Tooltip.Trigger asChild>
@@ -11,13 +13,13 @@ const TimeTooltip = ({ className, unixTime, contentId }) => {
           <span className={className}>
             <Link href={'user/' + contentId}>
               <a className="hover:underline">
-                { useRelativeTime(unixTime) }
+                { relativeTime }
               </a>
             </Link>
           </span>
         ) : (
           <span className="hover:underline">
-            { useRelativeTime(unixTime) }
+            { relativeTime }
           </span>
         )}
       </Tooltip.Trigger>

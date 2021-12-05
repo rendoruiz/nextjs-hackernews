@@ -1,6 +1,6 @@
 import SiteLayout from "../components/SiteLayout";
 
-const PageNotFoundView = () => {
+const ContentNotFoundPage = () => {
   return (  
     <SiteLayout contentClassName="place-items-center grid-rows-1">
       <div className="grid place-items-center">
@@ -18,4 +18,4 @@ const PageNotFoundView = () => {
   );
 }
  
-export default PageNotFoundView;
+export default ContentNotFoundPage;
