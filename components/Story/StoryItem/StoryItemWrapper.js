@@ -8,8 +8,9 @@ import StoryItemShareDrawerButton from './StoryItemShareDrawerButton';
 import StoryItemMobileOverflowModal from './StoryItemMobileOverflowModal';
 import clsx from 'clsx';
 import ItemIsError from '../../StatusMessage/ItemIsError';
+import { useHtmlParser } from '../../../hooks/useHtmlParser';
 
-const StoryItemWrapper = ({ storyId }) => {
+const StoryItemWrapper = ({ storyId, withText = false }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
 
   return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
@@ -18,7 +19,7 @@ const StoryItemWrapper = ({ storyId }) => {
         {/* karma vertical bar (desktop) */}
         <Link href={'/story/' + data.id}>
           <a 
-            className="hidden sm:flex justify-center items-start rounded-l py-2 bg-white/80"
+            className="hidden sm:flex justify-center items-start rounded-l py-2 bg-white/80 sm:bg-white"
             title="view story discussion"
           >
             <span className="font-bold text-xs text-brandTextPrimary">
@@ -28,7 +29,7 @@ const StoryItemWrapper = ({ storyId }) => {
         </Link>
 
         {/* content */}
-        <div className="relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pt-2 pb-3 bg-white sm:grid-cols-none sm:rounded-r sm:p-2 sm:pb-1">
+        <div className="relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pt-2 pb-3 bg-white sm:grid-cols-none sm:rounded-r sm:p-2 sm:pr-4 sm:pb-1">
           {/* wrapper link (mobile only)  */}
           <Link href={'/story/' + data.id}>
             <a 
@@ -39,7 +40,7 @@ const StoryItemWrapper = ({ storyId }) => {
 
           {/* header info */}
           <StoryItemHeader storyData={data} />
-
+          
           {/* mobile overflow actions */}
           <StoryItemMobileOverflowModal storyData={data} />
 
@@ -55,6 +56,13 @@ const StoryItemWrapper = ({ storyId }) => {
 
           {/* display url */}
           <StoryItemDisplayLink rawLink={data.url} />
+          
+          {/* text/content */}
+          { withText && data.text && (
+            <div className="col-span-2 grid gap-2 mb-1 text-sm break-words sm:col-auto sm:mb-2">
+              { useHtmlParser(data.text) }
+            </div>
+          )}
 
           {/* footer buttons */}
           <StoryItemFooter storyData={data} />

@@ -5,9 +5,12 @@ import CommentList from "./CommentList";
 const CommentView = ({ storyId }) => {
   return (  
     <SiteLayout contentClassName="grid-rows-[auto,auto,1fr] gap-4">
-      <StoryItemWrapper storyId={storyId} />
+      <StoryItemWrapper 
+        storyId={storyId} 
+        withText 
+      />
 
-      <CommentList storyId={storyId} />
+      {/* <CommentList storyId={storyId} /> */}
     </SiteLayout>
   );
 }

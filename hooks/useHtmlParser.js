@@ -8,7 +8,7 @@ const useHtmlParser = (rawHtmlString) => {
           <a 
             href={attribs.href}
             target="_blank"
-            className="text-brandOrange sm:underline"
+            className="text-brandOrange sm:underline break-all"
           >
             { domToReact(children) }
           </a>
