@@ -8,9 +8,9 @@ const CommentList = ({ storyId }) => {
   const itemLimit = 10;
 
   return isLoading ? (<IsLoading />) : isError || !storyData ? (<IsError />) : isSuccess && (  
-    <div className="grid content-start gap-1 bg-white">
-      <div>
-        <span>{!storyData.kids ? "No" : storyData.kids.length} Comments</span>
+    <div className="grid content-start gap-5 bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:p-3 sm:shadow-sm">
+      <div className="sm:hidden">
+        <span className="font-medium text-sm">{!storyData.kids ? "No" : storyData.kids.length} Comments</span>
       </div>
 
       { storyData.kids &&

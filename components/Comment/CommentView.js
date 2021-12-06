@@ -4,7 +4,7 @@ import CommentList from "./CommentList";
 
 const CommentView = ({ storyId }) => {
   return (  
-    <SiteLayout contentClassName="grid-rows-[auto,auto,1fr] gap-5">
+    <SiteLayout contentClassName="grid-rows-[auto,auto,1fr] gap-4">
       <StoryItemWrapper storyId={storyId} />
 
       <CommentList storyId={storyId} />
