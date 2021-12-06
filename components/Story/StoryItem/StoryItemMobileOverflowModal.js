@@ -24,7 +24,7 @@ const StoryItemMobileOverflowModal = ({ storyData }) => {
 
           {/* story link */}
           <div className="grid grid-cols-[1fr,auto]">
-            <Link href={'story/' + storyData.id}>
+            <Link href={'/story/' + storyData.id}>
               <a className="grid grid-cols-[auto,1fr] items-center">
                 <div className="grid place-items-center w-12 h-12 text-brandTextSecondary">
                   <LinkGlyph />
@@ -49,7 +49,7 @@ const StoryItemMobileOverflowModal = ({ storyData }) => {
           </a>
 
           {/* user link */}
-          <Link href={'user/' + storyData.by}>
+          <Link href={'/user/' + storyData.by}>
             <a className="grid grid-cols-[auto,1fr] items-center">
               <div className="grid place-items-center w-12 h-12 text-brandTextSecondary">
                 <UserGlyph className="w-6 h-6 rounded-full" />

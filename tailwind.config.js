@@ -26,6 +26,7 @@ module.exports = {
         brandBorderHover: 'rgb(137, 137, 137)',
         brandTextPrimary: 'rgb(34, 34, 34)',
         brandTextSecondary: 'rgb(135, 138, 140)',
+        brandTextLinkVisited: 'rgb(165, 164, 164)',
         brandTextInfo: 'rgb(120, 124, 126)',
       },
       borderWidth: {

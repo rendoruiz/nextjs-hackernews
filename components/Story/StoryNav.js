@@ -68,10 +68,7 @@ const MobileNavDropdown = ({ router }) => {
 
   return (
     <DropdownMenu open={isOpen} onOpenChange={(state) => setIsOpen(state)}>
-      <DropdownMenuTrigger 
-        className="flex items-center rounded px-2 py-3 text-brandTextSecondary sm:hidden" 
-        id="radix-storynav-dropdownmenu.trigger"
-      > 
+      <DropdownMenuTrigger className="flex items-center rounded px-2 py-3 text-brandTextSecondary sm:hidden"> 
         { navItems.map((item, index) => item.route === router.pathname && (
           <div 
             key={index}

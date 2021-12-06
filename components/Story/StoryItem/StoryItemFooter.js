@@ -20,7 +20,7 @@ const StoryItemFooter = ({ storyData }) => {
       </div>
 
       {/* comment count */}
-      <Link href={'story/' + storyData.id}>
+      <Link href={'/story/' + storyData.id}>
         <a 
           className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 sm:border-none sm:rounded sm:pr-2 sm:pl-1 sm:transition-colors sm:hover:bg-brandButtonHover sm:active:bg-brandButtonActive"
           title="view story discussion"

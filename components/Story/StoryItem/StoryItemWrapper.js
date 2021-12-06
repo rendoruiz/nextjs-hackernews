@@ -6,6 +6,7 @@ import StoryItemDisplayLink from "./StoryItemDisplayLink";
 import StoryItemFooter from "./StoryItemFooter";
 import StoryItemShareDrawerButton from './StoryItemShareDrawerButton';
 import StoryItemMobileOverflowModal from './StoryItemMobileOverflowModal';
+import clsx from 'clsx';
 
 const StoryItemWrapper = ({ storyId }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
@@ -14,7 +15,7 @@ const StoryItemWrapper = ({ storyId }) => {
     data.deleted || data.dead ? (<IsDeadOrDeleted />) : (
       <div className="grid transition-colors cursor-pointer sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:border-brandBorderHover">
         {/* karma vertical bar (desktop) */}
-        <Link href={'story/' + data.id}>
+        <Link href={'/story/' + data.id}>
           <a 
             className="hidden sm:flex justify-center items-start rounded-l py-2 bg-white/80"
             title="view story discussion"
@@ -28,7 +29,7 @@ const StoryItemWrapper = ({ storyId }) => {
         {/* content */}
         <div className="relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pt-2 pb-3 bg-white sm:grid-cols-none sm:rounded-r sm:p-2 sm:pb-1">
           {/* wrapper link (mobile only)  */}
-          <Link href={'story/' + data.id}>
+          <Link href={'/story/' + data.id}>
             <a 
               className="absolute inset-0" 
               title="view story discussion" 
@@ -42,9 +43,14 @@ const StoryItemWrapper = ({ storyId }) => {
           <StoryItemMobileOverflowModal storyData={data} />
 
           {/* title */}
-          <h3 className="row-start-2 col-start-1 font-medium text-brandTextPrimary leading-tight sm:row-start-auto sm:col-start-auto sm:text-lg sm:leading-snug">
-            {data.title}
-          </h3>
+          <Link href={'/story/' + data.id}>
+            <a className={clsx(
+              "row-start-2 col-start-1 font-medium text-brandTextPrimary leading-tight sm:row-start-auto sm:col-start-auto sm:text-lg sm:leading-snug",
+              { "visited:text-brandTextLinkVisited": !window.location.pathname.includes('/story') },
+            )}>
+              <h3>{data.title}</h3>
+            </a>
+          </Link>
 
           {/* display url */}
           <StoryItemDisplayLink rawLink={data.url} />
