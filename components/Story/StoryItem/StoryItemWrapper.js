@@ -6,6 +6,7 @@ import StoryItemDisplayLink from "./StoryItemDisplayLink";
 import StoryItemFooter from "./StoryItemFooter";
 import StoryItemShareDrawerButton from './StoryItemShareDrawerButton';
 import StoryItemMobileOverflowModal from './StoryItemMobileOverflowModal';
+import clsx from 'clsx';
 
 const StoryItemWrapper = ({ storyId }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
@@ -42,9 +43,14 @@ const StoryItemWrapper = ({ storyId }) => {
           <StoryItemMobileOverflowModal storyData={data} />
 
           {/* title */}
-          <h3 className="row-start-2 col-start-1 font-medium text-brandTextPrimary leading-tight sm:row-start-auto sm:col-start-auto sm:text-lg sm:leading-snug">
-            {data.title}
-          </h3>
+          <Link href={'/story/' + data.id}>
+            <a className={clsx(
+              "row-start-2 col-start-1 font-medium text-brandTextPrimary leading-tight sm:row-start-auto sm:col-start-auto sm:text-lg sm:leading-snug",
+              { "visited:text-brandTextLinkVisited": !window.location.pathname.includes('/story') },
+            )}>
+              <h3>{data.title}</h3>
+            </a>
+          </Link>
 
           {/* display url */}
           <StoryItemDisplayLink rawLink={data.url} />
