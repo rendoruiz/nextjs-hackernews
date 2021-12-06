@@ -9,7 +9,7 @@ const StoryItemDisplayLink = ({ rawLink, className }) => {
       href={rawLink}
       target="_blank"
       className={clsx(
-        className ?? "inline-flex",
+        className ?? "grid sm:inline-flex",
         "row-start-2 col-start-2 justify-self-start relative items-end w-[70px] h-[52px] bg-brandOrange text-[0.625rem] sm:row-start-auto sm:col-start-auto sm:items-center sm:-mt-1 sm:t-1 sm:pb-2 sm:w-auto sm:h-auto sm:bg-transparent sm:text-xs sm:text-brandOrange sm:hover:underline"
       )}
     >
