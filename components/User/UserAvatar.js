@@ -5,7 +5,7 @@ const UserAvatar = ({ className, userId }) => {
   return !userId ? null : (  
     <Link href={'/user/' + userId}>
       <a 
-        className={clsx(className, "rounded-full w-6 h-6 bg-brandOrange sm:w-7 sm:h-7")}
+        className={clsx(className ?? "w-5 h-5", "rounded-full bg-brandOrange")}
         title="app generated avatar"
       />
     </Link>

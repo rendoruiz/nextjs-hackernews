@@ -7,11 +7,12 @@ import StoryItemFooter from "./StoryItemFooter";
 import StoryItemShareDrawerButton from './StoryItemShareDrawerButton';
 import StoryItemMobileOverflowModal from './StoryItemMobileOverflowModal';
 import clsx from 'clsx';
+import ItemIsError from '../../StatusMessage/ItemIsError';
 
 const StoryItemWrapper = ({ storyId }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
 
-  return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && data && (
+  return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
     data.deleted || data.dead ? (<IsDeadOrDeleted />) : (
       <div className="grid transition-colors cursor-pointer sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:border-brandBorderHover">
         {/* karma vertical bar (desktop) */}
@@ -66,7 +67,7 @@ const StoryItemWrapper = ({ storyId }) => {
   );
 }
 
-// fetch loading
+// story item loader
 const IsLoading = () => {
   return (
     <div className="grid sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded">
@@ -87,13 +88,6 @@ const IsLoading = () => {
       </div>
     </div>
   );
-}
-
-// fetch error
-const IsError = () => {
-  return (
-    <div>An error occured.</div>
-  )
 }
 
 const IsDeadOrDeleted = () => {
