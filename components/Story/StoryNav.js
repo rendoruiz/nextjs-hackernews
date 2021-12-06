@@ -1,15 +1,14 @@
+
+import { useState } from 'react';
+import { useRouter } from "next/dist/client/router";
 import Link from 'next/link'
-import NavbarWrapper from "../Navbar/NavbarWrapper";
-import NavbarItem from "../Navbar/NavbarItem";
+import clsx from "clsx";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
+
 import FireGlyph from "../Glyphs/FireGlyph";
 import LightningGlyph from "../Glyphs/LightningGlyph";
 import TrendUpGlyph from "../Glyphs/TrendUpGlyph";
-import clsx from "clsx";
 import ChevronDownGlyph from "../Glyphs/ChevronDownGlyph";
-import { useRouter } from "next/dist/client/router";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
-import { useState } from 'react';
-import { useEffect } from 'react/cjs/react.development';
 
 const navItems = [
   {
@@ -28,7 +27,6 @@ const navItems = [
     glyph: <TrendUpGlyph className="w-full h-full" />,
   },
 ];
-
 
 const StoryNav = () => {
   const router = useRouter();
