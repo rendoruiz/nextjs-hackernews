@@ -8,10 +8,10 @@ const StoryList = ({ useHook, itemLimit }) => {
   return !itemLimit || isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (  
     <div className="grid content-start gap-1 sm:gap-3">
     {
-      [...data].slice(0, itemLimit).map((itemId) => 
+      [...data].slice(0, itemLimit).map((storyId) => 
         <StoryItemWrapper
-          key={itemId}
-          storyId={itemId}
+          key={storyId}
+          storyId={storyId}
         />
       )
     }
