@@ -1,13 +1,13 @@
-import { useRouter } from "next/dist/client/router";
 import SiteLayout from "../SiteLayout";
 import StoryItemWrapper from "../Story/StoryItem/StoryItemWrapper";
+import CommentList from "./CommentList";
 
 const CommentView = ({ storyId }) => {
-  const router = useRouter();
-
   return (  
-    <SiteLayout>
+    <SiteLayout contentClassName="grid-rows-[auto,auto,1fr] gap-5">
       <StoryItemWrapper storyId={storyId} />
+
+      <CommentList storyId={storyId} />
     </SiteLayout>
   );
 }
