@@ -8,6 +8,7 @@ const CommentView = ({ storyId }) => {
       <StoryItemWrapper 
         storyId={storyId} 
         withText 
+        isStatic
       />
 
       <CommentList storyId={storyId} />

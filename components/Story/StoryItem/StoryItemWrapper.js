@@ -10,16 +10,22 @@ import clsx from 'clsx';
 import ItemIsError from '../../StatusMessage/ItemIsError';
 import { useHtmlParser } from '../../../hooks/useHtmlParser';
 
-const StoryItemWrapper = ({ storyId, withText = false }) => {
+const StoryItemWrapper = ({ storyId, withText = false, isStatic = false, }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
 
   return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
     data.deleted || data.dead ? (<IsDeadOrDeleted />) : (
-      <div className="grid transition-colors cursor-pointer sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:border-brandBorderHover">
+      <div className={clsx(
+        "grid transition-colors sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm",
+        { "cursor-pointer sm:hover:border-brandBorderHover": !isStatic }
+      )}>
         {/* karma vertical bar (desktop) */}
         <Link href={'/story/' + data.id}>
           <a 
-            className="hidden sm:flex justify-center items-start rounded-l py-2 bg-white/80 sm:bg-white"
+            className={clsx(
+              "hidden sm:flex justify-center items-start rounded-l py-2 bg-white/80 sm:bg-white",
+              { "pointer-events-none": isStatic }
+            )}
             title="view story discussion"
           >
             <span className="font-bold text-xs text-brandTextPrimary">
@@ -31,12 +37,14 @@ const StoryItemWrapper = ({ storyId, withText = false }) => {
         {/* content */}
         <div className="relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pt-2 pb-3 bg-white sm:grid-cols-none sm:rounded-r sm:p-2 sm:pr-4 sm:pb-1">
           {/* wrapper link (mobile only)  */}
-          <Link href={'/story/' + data.id}>
-            <a 
-              className="absolute inset-0" 
-              title="view story discussion" 
-            />
-          </Link>
+          { !isStatic && (
+            <Link href={'/story/' + data.id}>
+              <a 
+                className="absolute inset-0" 
+                title="view story discussion" 
+              />
+            </Link>
+          )}
 
           {/* header info */}
           <StoryItemHeader storyData={data} />
