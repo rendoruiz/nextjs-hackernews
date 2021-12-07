@@ -24,7 +24,7 @@ const CommentList = ({ storyId }) => {
         </span>
       </div>
 
-      <div className="group grid content-start gap-5">
+      <div className="group grid content-start gap-5 px-4">
         { storyData.kids &&
           [...storyData.kids].slice(0, isCountLimited ? defaultCount : storyData.kids.length).map((commentId) => (
             <CommentItemWrapper

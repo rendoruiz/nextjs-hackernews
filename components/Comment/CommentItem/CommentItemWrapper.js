@@ -1,7 +1,9 @@
 
+import clsx from "clsx";
 import { useComment } from "../../../hooks/useComment";
 import { useHtmlParser } from "../../../hooks/useHtmlParser";
 import ItemIsError from "../../StatusMessage/ItemIsError";
+import CommentItemHeader from "./CommentItemHeader";
 import CommentItemReplies from "./CommentItemReplies";
 
 const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 }) => {
@@ -9,9 +11,34 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
 
   return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
     !data.deleted && (  
-      <div className="text-sm border-t-2 border-brandBorder  group-first:bg-red-500 group-first-of-type:border-t-0">
-        { data.dead && <p className="text-red-500">dead comment</p>}
+      <div className={clsx(
+        "grid grid-cols-[auto,1fr] text-sm",
+        { "border-t-brandDefault border-t-brandButtonOutline first:border-t-0": parentDepth === 0 },
+        { "opacity-60": data.dead },
+      )}>      
+        {/* dead comment indicator */}
+        { data.dead && 
+          <div className="justify-self-start col-span-2 rounded px-1 py-[0.125rem] bg-brandButtonOutline font-bold text-xs text-brandTextSecondary uppercase">
+            dead comment
+          </div>
+        }
+
+        {/* header */}
+        <CommentItemHeader 
+          commentData={data}
+          submitterId={submitterId}
+          itemDepth={parentDepth}
+        />
+
+
+        {/* text/content */}
         <p>d{parentDepth + 1} - { data.id }</p>
+
+        {/* horizontal line/desktop collapse toggle */}
+        <div>
+          <div></div>
+          <button></button>
+        </div>
         
         {/* if there are comment replies: display if meets set condition, else display trigger to load replies */}
         <CommentItemReplies 
@@ -20,6 +47,7 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
           parentDepth={parentDepth}
         />
       </div>
+
     )
   );
 }
