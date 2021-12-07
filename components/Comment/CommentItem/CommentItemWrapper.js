@@ -14,7 +14,7 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
         <div className="grid gap-2">
           <p>d{parentDepth + 1} - { data.id }</p>
 
-          {/* display comment replies if set parameters are met, else display replies trigger */}
+          {/* if there are comment replies: display replies if set conditions are met, else display trigger to load replies */}
           <CommentItemReplies 
             replyIds={data.kids}
             replyDepthLimit={replyDepthLimit}
