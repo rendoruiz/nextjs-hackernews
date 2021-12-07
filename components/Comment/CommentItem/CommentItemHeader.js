@@ -6,10 +6,7 @@ import CommentItemMobileOverflowModal from "./CommentItemMobileOverflowModal";
 
 const CommentItemHeader = ({ commentData, submitterId, itemDepth }) => {
   return (  
-    <div className={clsx(
-      "grid grid-cols-[auto,1fr] gap-2",
-      itemDepth === 0 ? "col-span-2" : "col-start-2"
-    )}>
+    <div className="grid grid-cols-[auto,1fr] gap-2">
       <UserAvatar 
         userId={commentData.by} 
         className={itemDepth === 0 ? "w-6 h-6" : "w-5 h-5"}

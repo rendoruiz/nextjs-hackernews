@@ -12,16 +12,13 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
   return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError error={error} />) : isSuccess && (
     !data.deleted && (  
       <div className={clsx(
+        "grid text-sm",
         { "opacity-60": data.dead },
-        "grid grid-cols-[auto,1fr] text-sm",
         { "border-t-brandDefault border-t-brandButtonOutline px-4 pt-2 first:border-t-0 first:pt-0": parentDepth === 0 },
       )}>      
         {/* dead comment indicator */}
         { data.dead && 
-          <div className={clsx(
-            "justify-self-start rounded px-1 py-[0.125rem] bg-brandButtonOutline font-bold text-xs text-brandTextSecondary uppercase",
-            parentDepth === 0 ? "col-span-2" : "col-start-2"
-          )}>
+          <div className="col-span-2 justify-self-start rounded px-1 py-[0.125rem] bg-brandButtonOutline font-bold text-xs text-brandTextSecondary uppercase">
             dead comment
           </div>
         }
@@ -37,7 +34,7 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
         <div className={clsx("grid",
           parentDepth === 0 
             ? "ml-8"
-            : "col-start-2 mt-[0.125rem]"
+            : "mt-[0.125rem]"
         )}>
           {/* text */}
           <div className="grid gap-2 sm:gap-3">
@@ -53,16 +50,10 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
         </div>
 
         {/* horizontal line/desktop collapse toggle */}
-        <div className={clsx("hidden",
-          parentDepth === 0 
-            ? "hidden"
-            : "row-start-1 col-start-1 row-span-2"
-        )}>
-          <div className="border-l-brandDefault border-brandButtonOutline"></div>
+        <div className={clsx("hidden")}>
           <button className="hidden"></button>
         </div>
       </div>
-
     )
   );
 }
