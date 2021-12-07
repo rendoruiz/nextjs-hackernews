@@ -15,6 +15,8 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
         <div className="grid gap-2">
           <p>d{currentDepth} - { data.id }</p>
           <p>{ data.kids && "kids: " + data.kids.length }</p>
+
+          {/* display comment replies if set parameters are met, else display replies trigger */}
           { currentDepth < replyDepthLimit || isLoadedManually ? (
             <CommentItemReplies 
               replyIds={data.kids} 
@@ -37,8 +39,9 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
   );
 }
 
+// comment replies
 const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
-  return replyIds ? replyIds.length > 0 ? (
+  return !replyIds ? null : replyIds.length <= 0 ? null : (
     <div className="grid gap-5 ml-5 mt-5">
       { replyIds.map((replyId) => (
         <CommentItemWrapper 
@@ -49,7 +52,7 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
         />
       ))}
     </div>
-  ) : null : null;
+  );
 }
 
 // comment item loader
