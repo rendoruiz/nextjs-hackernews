@@ -22,7 +22,7 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
       </div>
     ) : (
       <button 
-        className="font-bold text-xs text-brandButtonInlineText text-left hover:underline"
+        className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left hover:underline sm:text-brandTextPrimary"
         onClick={() => setIsLoadedManually(true)}
       >
         { replyIds.length } more repl{ replyIds.length > 1 ? "ies" : "y" }

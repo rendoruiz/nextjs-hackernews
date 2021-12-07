@@ -1,16 +1,16 @@
+import { useRouter } from "next/dist/client/router";
+import { useEffect, useState } from "react";
+
+import { useCountQueryString } from "../../hooks/useCountQueryString";
 import SiteLayout from "../SiteLayout";
 import StoryNav from "./StoryNav";
 import StoryList from "./StoryList";
-import { useRouter } from "next/dist/client/router";
-import { useEffect, useState } from "react";
-import { useCountQueryString } from "../../hooks/useCountQueryString";
-
-const defaultCount = 25;
 
 const StoryView = ({ useHook, activeRoute }) => {
   const router = useRouter();
   // todo: local state management & retain scroll position when navigating back
-  const [itemCount, setItemCount] = useState(null);   
+  const [itemCount, setItemCount] = useState(null);  
+  const defaultCount = 25; 
 
   useEffect(() => {
     setItemCount(useCountQueryString(defaultCount));
