@@ -3,8 +3,9 @@ import { useComment } from "../../../hooks/useComment";
 import { useHtmlParser } from "../../../hooks/useHtmlParser";
 import ItemIsError from "../../StatusMessage/ItemIsError";
 
-const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDepth = 1 }) => {
+const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 }) => {
   const { isLoading, isError, data, isSuccess } = useComment(commentId);
+  const [isLoadedManually, setIsLoadedManually] = useState(false);
   const currentDepth = parentDepth + 1;
 
   return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
@@ -12,14 +13,22 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
       <div className="text-sm border-t-2 border-brandBorder  group-first:bg-red-500 group-first-of-type:border-t-0">
         { data.dead && <p className="text-red-500">dead comment</p>}
         <div className="grid gap-2">
-          <p>{ data.id }</p>
+          <p>d{currentDepth} - { data.id }</p>
           <p>{ data.kids && "kids: " + data.kids.length }</p>
-          { currentDepth <= replyDepthLimit && (
+          { currentDepth < replyDepthLimit || isLoadedManually ? (
             <CommentItemReplies 
               replyIds={data.kids} 
               replyDepthLimit={replyDepthLimit}
               parentDepth={currentDepth}
+              manualLoad={isLoadedManually}
             />
+          ) : data.kids && (
+            <button 
+              className="text-left"
+              onClick={() => setIsLoadedManually(true)}
+            >
+              Load More Replies
+            </button>
           )}
           { console.log({parentDepth},{currentDepth},{replyDepthLimit},currentDepth < replyDepthLimit) }
         </div>

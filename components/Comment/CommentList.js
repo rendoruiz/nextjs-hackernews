@@ -5,7 +5,7 @@ import CommentItemWrapper from "./CommentItem/CommentItemWrapper";
 
 const CommentList = ({ storyId }) => {
   const { isLoading, isError, data: storyData, isSuccess } = useStory(storyId);
-  const itemLimit = 10;
+  const itemLimit = 2;
   const replyDepthLimit = 3;
 
   return isLoading ? (<IsLoading />) : isError || !storyData ? (<IsError />) : isSuccess && (  
