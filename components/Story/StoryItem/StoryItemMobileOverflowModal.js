@@ -11,7 +11,7 @@ const StoryItemMobileOverflowModal = ({ storyData }) => {
   return !storyData ? null : ( 
       <Dialog.Root>
         <Dialog.Trigger asChild>
-          <button className="justify-self-end relative -mr-2 -my-2 px-2 text-brandTextPrimary sm:hidden">
+          <button className="row-start-1 col-start-2 justify-self-end relative -mr-2 -my-2 px-2 text-brandTextPrimary sm:hidden">
             <HorizontalDotsGlyph />
           </button>
         </Dialog.Trigger>

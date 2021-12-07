@@ -5,6 +5,7 @@ module.exports = {
   purge: [
     './pages/**/*.{js,ts,jsx,tsx}', 
     './components/**/*.{js,ts,jsx,tsx}',
+    './hooks/**/*.{js,ts,jsx,tsx}',
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -22,6 +23,7 @@ module.exports = {
         brandButtonActive: 'rgba(28, 28, 28, 0.24)',
         brandButtonSelected: 'rgb(246, 247, 248)',
         brandButtonOutline: 'rgb(237, 238, 241)',
+        brandButtonInlineText: 'rgb(68, 78, 89)',
         brandBorder: 'rgb(204, 204, 204)',
         brandBorderHover: 'rgb(137, 137, 137)',
         brandTextPrimary: 'rgb(34, 34, 34)',
