@@ -8,7 +8,7 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
   const { isLoading, isError, data, isSuccess } = useComment(commentId);
 
   return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
-    data.deleted || data.dead ? (<IsDeadOrDeleted />) : (  
+    !data.deleted && (  
       <div className="text-sm border-t-2 border-brandBorder  group-first:bg-red-500 group-first-of-type:border-t-0">
         { data.dead && <p className="text-red-500">dead comment</p>}
         <p>d{parentDepth + 1} - { data.id }</p>
@@ -45,12 +45,6 @@ const IsLoading = () => {
       </div>
     </div>
   );
-}
-
-const IsDeadOrDeleted = () => {
-  return (
-    <div>Comment is dead or deleted</div>
-  )
 }
  
 export default CommentItemWrapper;
