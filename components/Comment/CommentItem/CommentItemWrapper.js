@@ -1,21 +1,46 @@
+import { useState } from "react/cjs/react.development";
 import { useComment } from "../../../hooks/useComment";
 import { useHtmlParser } from "../../../hooks/useHtmlParser";
 import ItemIsError from "../../StatusMessage/ItemIsError";
 
-const CommentItemWrapper = ({ commentId, submitterId }) => {
+const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDepth = 1 }) => {
   const { isLoading, isError, data, isSuccess } = useComment(commentId);
+  const currentDepth = parentDepth + 1;
 
   return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
     data.deleted || data.dead ? (<IsDeadOrDeleted />) : (  
-      <div className="text-sm border-t-2 first-of-type:border-t-0 border-brandBorder">
+      <div className="text-sm border-t-2 border-brandBorder  group-first:bg-red-500 group-first-of-type:border-t-0">
         { data.dead && <p className="text-red-500">dead comment</p>}
         <div className="grid gap-2">
           <p>{ data.id }</p>
           <p>{ data.kids && "kids: " + data.kids.length }</p>
+          { currentDepth <= replyDepthLimit && (
+            <CommentItemReplies 
+              replyIds={data.kids} 
+              replyDepthLimit={replyDepthLimit}
+              parentDepth={currentDepth}
+            />
+          )}
+          { console.log({parentDepth},{currentDepth},{replyDepthLimit},currentDepth < replyDepthLimit) }
         </div>
       </div>
     )
   );
+}
+
+const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
+  return replyIds ? replyIds.length > 0 ? (
+    <div className="grid gap-5 ml-5 mt-5">
+      { replyIds.map((replyId) => (
+        <CommentItemWrapper 
+          key={replyId}
+          commentId={replyId} 
+          replyDepthLimit={replyDepthLimit}
+          parentDepth={parentDepth}
+        />
+      ))}
+    </div>
+  ) : null : null;
 }
 
 // comment item loader
