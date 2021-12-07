@@ -38,12 +38,14 @@ const StoryView = ({ useHook, activeRoute }) => {
       />
 
       { itemCount && (
-        <button 
-          className="place-self-stretch rounded-full mx-4 mt-4 mb-2 px-10 py-2 bg-brandOrange font-medium text-sm text-white transition-opacity hover:opacity-80 active:opacity-60 sm:place-self-center sm:mb-0"
-          onClick={(e) => handleClick(e)}
-        >
-          View More Stories
-        </button>
+        <div className="grid mt-1 px-4 py-[0.625rem] bg-white sm:place-items-center sm:bg-transparent sm:mt-2 sm:pb-0">
+          <button 
+            className="rounded-full px-10 py-[0.375rem] bg-brandOrange font-medium text-sm text-white transition-opacity hover:opacity-80 active:opacity-60"
+            onClick={(e) => handleClick(e)}
+          >
+            View More Stories
+          </button>
+        </div>
       )}
     </SiteLayout>
   );
