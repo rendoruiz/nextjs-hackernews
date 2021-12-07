@@ -12,9 +12,8 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
       <div className="text-sm border-t-2 border-brandBorder  group-first:bg-red-500 group-first-of-type:border-t-0">
         { data.dead && <p className="text-red-500">dead comment</p>}
         <p>d{parentDepth + 1} - { data.id }</p>
-
         
-        {/* if there are comment replies: display replies if set conditions are met, else display trigger to load replies */}
+        {/* if there are comment replies: display if meets set condition, else display trigger to load replies */}
         <CommentItemReplies 
           replyIds={data.kids}
           replyDepthLimit={replyDepthLimit}
