@@ -13,14 +13,17 @@ const CommentList = ({ storyId }) => {
         <span className="font-medium text-sm">{!storyData.kids ? "No" : storyData.kids.length} Comments</span>
       </div>
 
-      { storyData.kids &&
-        [...storyData.kids].slice(0, itemLimit).map((commentId) => (
-          <CommentItemWrapper
-            key={commentId}
-            commentId={commentId}
-          />
-        ))
-      }
+      <div className="grid content-start gap-5">
+        { storyData.kids &&
+          [...storyData.kids].slice(0, itemLimit).map((commentId) => (
+            <CommentItemWrapper
+              key={commentId}
+              commentId={commentId}
+              submitterId={storyData.by}
+            />
+          ))
+        }
+      </div>
     </div>
   );
 }

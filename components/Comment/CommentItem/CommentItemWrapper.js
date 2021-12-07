@@ -2,15 +2,16 @@ import { useComment } from "../../../hooks/useComment";
 import { useHtmlParser } from "../../../hooks/useHtmlParser";
 import ItemIsError from "../../StatusMessage/ItemIsError";
 
-const CommentItemWrapper = ({ commentId }) => {
+const CommentItemWrapper = ({ commentId, submitterId }) => {
   const { isLoading, isError, data, isSuccess } = useComment(commentId);
 
   return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
     data.deleted || data.dead ? (<IsDeadOrDeleted />) : (  
-      <div className="text-sm">
+      <div className="text-sm border-t-2 first-of-type:border-t-0 border-brandBorder">
         { data.dead && <p className="text-red-500">dead comment</p>}
         <div className="grid gap-2">
-          { useHtmlParser(data.text) }
+          <p>{ data.id }</p>
+          <p>{ data.kids && "kids: " + data.kids.length }</p>
         </div>
       </div>
     )

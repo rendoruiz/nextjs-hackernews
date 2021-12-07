@@ -10,7 +10,7 @@ const CommentView = ({ storyId }) => {
         withText 
       />
 
-      {/* <CommentList storyId={storyId} /> */}
+      <CommentList storyId={storyId} />
     </SiteLayout>
   );
 }
