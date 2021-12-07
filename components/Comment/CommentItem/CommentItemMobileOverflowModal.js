@@ -11,7 +11,7 @@ const CommentItemMobileOverflowModal = ({ commentData }) => {
   return !commentData ? null : (  
     <Dialog>
       <DialogTrigger asChild>
-        <button className="text-brandTextPrimary sm:hidden">
+        <button className="-mr-2 -my-2 p-2 text-brandTextPrimary sm:hidden">
           <HorizontalDotsGlyph />
         </button>
       </DialogTrigger>

@@ -17,14 +17,14 @@ const CommentList = ({ storyId }) => {
   }
 
   return isLoading ? (<IsLoading />) : isError || !storyData ? (<IsError />) : isSuccess && (  
-    <div className="grid content-start gap-3 py-1 bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:p-3 sm:shadow-sm">
+    <div className="grid content-start gap-3 pt-1 pb-3 bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:p-3 sm:shadow-sm">
       <div className="px-4 sm:hidden">
         <span className="font-bold text-xs">
           { storyData.descendants === 0 ? "No" : storyData.descendants } Comment{ storyData.descendants !== 1 && "s" }
         </span>
       </div>
 
-      <div className="group grid content-start gap-5 px-4">
+      <div className="group grid content-start gap-5">
         { storyData.kids &&
           [...storyData.kids].slice(0, isCountLimited ? defaultCount : storyData.kids.length).map((commentId) => (
             <CommentItemWrapper

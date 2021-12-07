@@ -7,18 +7,21 @@ import CommentItemHeader from "./CommentItemHeader";
 import CommentItemReplies from "./CommentItemReplies";
 
 const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 }) => {
-  const { isLoading, isError, data, isSuccess } = useComment(commentId);
+  const { isLoading, isError, data, isSuccess, error } = useComment(commentId);
 
-  return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
+  return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError error={error} />) : isSuccess && (
     !data.deleted && (  
       <div className={clsx(
-        "grid grid-cols-[auto,1fr] text-sm",
-        { "border-t-brandDefault border-t-brandButtonOutline first:border-t-0": parentDepth === 0 },
         { "opacity-60": data.dead },
+        "grid grid-cols-[auto,1fr] text-sm",
+        { "border-t-brandDefault border-t-brandButtonOutline px-4 pt-2 first:border-t-0 first:pt-0": parentDepth === 0 },
       )}>      
         {/* dead comment indicator */}
         { data.dead && 
-          <div className="justify-self-start col-span-2 rounded px-1 py-[0.125rem] bg-brandButtonOutline font-bold text-xs text-brandTextSecondary uppercase">
+          <div className={clsx(
+            "justify-self-start rounded px-1 py-[0.125rem] bg-brandButtonOutline font-bold text-xs text-brandTextSecondary uppercase",
+            parentDepth === 0 ? "col-span-2" : "col-start-2"
+          )}>
             dead comment
           </div>
         }
@@ -30,22 +33,34 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
           itemDepth={parentDepth}
         />
 
+        {/* content */}
+        <div className={clsx("grid",
+          parentDepth === 0 
+            ? "ml-8"
+            : "col-start-2 mt-[0.125rem]"
+        )}>
+          {/* text */}
+          <div className="grid gap-2 sm:gap-3">
+            { useHtmlParser(data.text) }
+          </div>
 
-        {/* text/content */}
-        <p>d{parentDepth + 1} - { data.id }</p>
+          {/* if there are comment replies: display if meets set condition, else display trigger to load replies */}
+          <CommentItemReplies 
+            replyIds={data.kids}
+            replyDepthLimit={replyDepthLimit}
+            parentDepth={parentDepth}
+          />
+        </div>
 
         {/* horizontal line/desktop collapse toggle */}
-        <div>
-          <div></div>
-          <button></button>
+        <div className={clsx("hidden",
+          parentDepth === 0 
+            ? "hidden"
+            : "row-start-1 col-start-1 row-span-2"
+        )}>
+          <div className="border-l-brandDefault border-brandButtonOutline"></div>
+          <button className="hidden"></button>
         </div>
-        
-        {/* if there are comment replies: display if meets set condition, else display trigger to load replies */}
-        <CommentItemReplies 
-          replyIds={data.kids}
-          replyDepthLimit={replyDepthLimit}
-          parentDepth={parentDepth}
-        />
       </div>
 
     )
