@@ -9,7 +9,7 @@ const CommentList = ({ storyId }) => {
   const { isLoading, isError, data: storyData, isSuccess } = useStory(storyId);
   const [isCountLimited, setIsCountLimited] = useState(true);   // todo: save state locally
   const replyDepthLimit = 3;
-  const defaultCount = 5;
+  const defaultCount = 10;
 
   const handleClick = (e) => {
     e.preventDefault();
