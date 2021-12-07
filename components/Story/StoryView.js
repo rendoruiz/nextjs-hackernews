@@ -3,7 +3,7 @@ import StoryNav from "./StoryNav";
 import StoryList from "./StoryList";
 import { useRouter } from "next/dist/client/router";
 import { useEffect, useState } from "react";
-import { parse as parseQuery } from "query-string";
+import { useCountQueryString } from "../../hooks/useCountQueryString";
 
 const defaultCount = 25;
 
@@ -13,7 +13,7 @@ const StoryView = ({ useHook, activeRoute }) => {
   const [itemCount, setItemCount] = useState(null);   
 
   useEffect(() => {
-    setItemCount(parseCountQueryString(parseQuery(location.search).count));
+    setItemCount(useCountQueryString(defaultCount));
   }, []);
 
   const handleClick = (e) => {
@@ -49,14 +49,6 @@ const StoryView = ({ useHook, activeRoute }) => {
       )}
     </SiteLayout>
   );
-}
-
-const parseCountQueryString = (countValue) => {
-  if (countValue) {
-    const count = parseInt(countValue);
-    return (count === NaN || count < defaultCount) ? defaultCount : count;
-  } 
-  return defaultCount;
 }
 
 export default StoryView;
