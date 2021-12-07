@@ -1,7 +1,5 @@
 import { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
 
-import { useCountQueryString } from "../../hooks/useCountQueryString";
 import { useStory } from "../../hooks/useStory";
 import IsError from "../StatusMessage/IsError";
 import IsLoading from "../StatusMessage/IsLoading";
@@ -9,17 +7,13 @@ import CommentItemWrapper from "./CommentItem/CommentItemWrapper";
 
 const CommentList = ({ storyId }) => {
   const { isLoading, isError, data: storyData, isSuccess } = useStory(storyId);
-  const [itemCount, setItemCount] = useState(null);
+  const [isCountLimited, setIsCountLimited] = useState(true);   // todo: save state locally
   const replyDepthLimit = 3;
-  const defaultCount = 10;
-
-  useEffect(() => {
-    setItemCount(useCountQueryString(defaultCount));
-  }, []);
+  const defaultCount = 5;
 
   const handleClick = (e) => {
     e.preventDefault();
-    setItemCount(storyData.kids.length);
+    setIsCountLimited(false);
   }
 
   return isLoading ? (<IsLoading />) : isError || !storyData ? (<IsError />) : isSuccess && (  
@@ -32,7 +26,7 @@ const CommentList = ({ storyId }) => {
 
       <div className="group grid content-start gap-5">
         { storyData.kids &&
-          [...storyData.kids].slice(0, itemCount).map((commentId) => (
+          [...storyData.kids].slice(0, isCountLimited ? defaultCount : storyData.kids.length).map((commentId) => (
             <CommentItemWrapper
               key={commentId}
               commentId={commentId}
@@ -44,13 +38,13 @@ const CommentList = ({ storyId }) => {
       </div>
 
       {/* load more comments trigger */}
-      { storyData.kids.length > itemCount && (
+      { isCountLimited && storyData.kids.length > defaultCount && (
         <div>
           <button
             className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left hover:underline sm:text-brandTextPrimary"
             onClick={(e) => handleClick(e)}
           >
-            Show all { storyData.kids.length - itemCount} comments
+            Show all { storyData.kids.length - defaultCount} comments
           </button>
         </div>
       )}
