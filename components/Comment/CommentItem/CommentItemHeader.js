@@ -18,12 +18,9 @@ const CommentItemHeader = ({ commentData, submitterId, itemDepth, toggleDisplayS
       <div className="grid grid-cols-[auto,1fr,auto] items-center text-xs">
         <div className={clsx(
           "flex font-bold sm:font-medium sm:text-brandTextPrimary", 
-          { "text-brandOrange": commentData.by !== submitterId }
+          { "text-brandOrange": commentData.by === submitterId }
         )}>
-          <UserLink 
-            userId={commentData.by} 
-            className=""
-          />
+          <UserLink userId={commentData.by} />
           
           { commentData.by === submitterId && (
             <>
