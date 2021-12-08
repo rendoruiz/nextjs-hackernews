@@ -58,7 +58,7 @@ const StoryItemWrapper = ({ storyId, withText = false, isStatic = false, }) => {
           {/* title */}
           <Link href={'/story/' + data.id}>
             <a className={clsx(
-              "row-start-2 col-start-1 font-medium text-brandTextPrimary leading-tight sm:row-start-auto sm:col-start-auto sm:text-lg sm:leading-snug",
+              "row-start-2 col-start-1 mb-1 font-medium text-brandTextPrimary leading-tight sm:row-start-auto sm:col-start-auto sm:mb-0 sm:text-lg sm:leading-snug",
               { "visited:text-brandTextLinkVisited": !window.location.pathname.includes('/story') },
             )}>
               <h3>{data.title}</h3>
