@@ -44,11 +44,11 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
         <div className={clsx("grid",
           parentDepth === 0 
             ? "ml-8"
-            : "mt-[0.125rem]",
+            : "mt-1",
           { "hidden": isCollapsed }
         )}>
           {/* text */}
-          <div className="inline-block">
+          <div className="inline-block leading-tight sm:leading-normal">
             { useHtmlParser(data.text) }
           </div>
 

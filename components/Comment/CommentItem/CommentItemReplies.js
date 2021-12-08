@@ -10,7 +10,7 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
 
   return !replyIds ? null : replyIds.length <= 0 ? null : (
     (currentDepth < replyDepthLimit) || isLoadedManually ? (
-      <div className="grid gap-5 border-l-brandDefault border-brandButtonOutline pl-4 mt-5">
+      <div className="grid gap-4 border-l-brandDefault border-brandButtonOutline pl-4 mt-4">
         { replyIds.map((replyId) => (
           <CommentItemWrapper 
             key={replyId}
