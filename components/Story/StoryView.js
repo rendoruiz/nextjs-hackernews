@@ -7,7 +7,7 @@ const StoryView = ({ useHook, activeRoute }) => {
   return ( 
     <SiteLayout contentClassName="grid-rows-[auto,1fr,auto]">
       {/* Navbar */}
-      <StoryNav activeRoute={activeRoute} />
+      <StoryNav />
 
       {/* Stories */}
       <StoryList useHook={useHook} />
