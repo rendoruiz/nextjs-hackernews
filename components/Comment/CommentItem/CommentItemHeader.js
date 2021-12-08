@@ -1,11 +1,11 @@
 import clsx from "clsx";
+import { Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip";
 
 import { useShortRelativeTime } from "../../../hooks/useDate";
 import CommentItemMobileOverflowModal from "./CommentItemMobileOverflowModal";
 import UserAvatar from "../../User/UserAvatar";
 import UserLink from "../../User/UserLink";
 import MicrophoneGlyph from "../../Glyphs/MicrophoneGlyph";
-import { Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip";
 
 const CommentItemHeader = ({ commentData, submitterId, itemDepth, isDead = false, toggleDisplayState }) => {
   return (  
