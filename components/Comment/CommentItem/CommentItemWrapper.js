@@ -49,7 +49,7 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
           { "hidden": isCollapsed }
         )}>
           {/* text */}
-          <div className="grid gap-2 sm:gap-3">
+          <div className="inline-block">
             { useHtmlParser(data.text) }
           </div>
 

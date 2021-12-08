@@ -70,7 +70,7 @@ const StoryItemWrapper = ({ storyId, withText = false, isStatic = false, }) => {
           
           {/* text/content */}
           { withText && data.text && (
-            <div className="col-span-2 grid gap-3 mb-1 text-sm break-words sm:col-auto sm:mb-2">
+            <div className="col-span-2 inline-block mb-1 text-sm break-words sm:col-auto sm:mb-2">
               { useHtmlParser(data.text) }
             </div>
           )}
