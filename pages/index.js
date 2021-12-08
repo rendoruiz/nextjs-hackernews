@@ -4,10 +4,7 @@ import { fetchTopStoryIds, useTopStoryIds } from "../hooks/useStoryIds";
 
 const StoryListTopPage = () => {
   return ( 
-    <StoryView 
-      useHook={useTopStoryIds()} 
-      activeRoute="/"
-    />
+    <StoryView useHook={useTopStoryIds()} />
   );
 }
 

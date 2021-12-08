@@ -4,10 +4,7 @@ import { fetchNewStoryIds, useNewStoryIds } from "../hooks/useStoryIds";
 
 const StoryListNewPage = () => {
   return ( 
-    <StoryView 
-      useHook={useNewStoryIds()} 
-      activeRoute="/new"
-    />
+    <StoryView useHook={useNewStoryIds()} />
   );
 }
 

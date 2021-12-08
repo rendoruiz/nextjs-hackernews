@@ -4,10 +4,7 @@ import { fetchBestStoryIds, useBestStoryIds } from "../hooks/useStoryIds";
 
 const StoryListBestPage = () => {
   return ( 
-    <StoryView 
-      useHook={useBestStoryIds()} 
-      activeRoute="/best"
-    />
+    <StoryView useHook={useBestStoryIds()} />
   );
 }
 

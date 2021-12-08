@@ -1,8 +1,9 @@
 import clsx from "clsx";
+
 import { useShortRelativeTime } from "../../../hooks/useDate";
+import CommentItemMobileOverflowModal from "./CommentItemMobileOverflowModal";
 import UserAvatar from "../../User/UserAvatar";
 import UserLink from "../../User/UserLink";
-import CommentItemMobileOverflowModal from "./CommentItemMobileOverflowModal";
 
 const CommentItemHeader = ({ commentData, submitterId, itemDepth, toggleDisplayState }) => {
   return (  

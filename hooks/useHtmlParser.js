@@ -3,6 +3,24 @@ import parse, { domToReact } from 'html-react-parser';
 const useHtmlParser = (rawHtmlString) => {
   const options = {
     replace: ({type, name, children, attribs}) => {
+      // paragraph spacing
+      if (type === "tag" && name === "p") {
+        return (
+          <p className="mt-2 sm:mt-3">
+            { domToReact(children, options) }
+          </p>
+        )
+      }
+
+      // wrap code blocks
+      if (type === "tag" && name === "pre") {
+        return (
+          <pre className="whitespace-pre-wrap">
+            { domToReact(children, options) }
+          </pre>
+        )
+      }
+
       // add style to anchor/links
       if (type === "tag" && name === "a") {
         return (
@@ -11,18 +29,9 @@ const useHtmlParser = (rawHtmlString) => {
             target="_blank"
             className="text-brandOrange sm:underline break-all"
           >
-            { domToReact(children) }
+            { domToReact(children, options) }
           </a>
         );
-      }
-
-      // wrap code blocks
-      if (type === "tag" && name === "pre") {
-        return (
-          <pre className="whitespace-pre-wrap">
-            { domToReact(children) }
-          </pre>
-        )
       }
 
       // hide empty elements

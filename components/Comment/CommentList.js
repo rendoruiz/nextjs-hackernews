@@ -39,7 +39,7 @@ const CommentList = ({ storyId }) => {
 
       {/* load more comments trigger */}
       { isCountLimited && storyData.kids.length > defaultCount && (
-        <div>
+        <div className="px-4">
           <button
             className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left hover:underline sm:text-brandTextPrimary"
             onClick={(e) => handleClick(e)}
