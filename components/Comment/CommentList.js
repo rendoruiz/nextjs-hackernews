@@ -6,7 +6,7 @@ import IsLoading from "../StatusMessage/IsLoading";
 import CommentItemWrapper from "./CommentItem/CommentItemWrapper";
 
 const CommentList = ({ storyId }) => {
-  const { isLoading, isError, data: storyData, isSuccess } = useStory(storyId);
+  const { isLoading, isError, data: storyData, isSuccess } = useStory(storyId, false);
   const [isCountLimited, setIsCountLimited] = useState(true);   // todo: save state locally
   const replyDepthLimit = 3;
   const defaultCount = 10;

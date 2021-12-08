@@ -6,8 +6,13 @@ const fetchStory = async (storyId) => {
   const response = await axios.get(`https://hacker-news.firebaseio.com/v0/item/${storyId}.json`);
   return response.data;
 }
-const useStory = (storyId) => {
-  return useQuery(['story.'+storyId, storyId], () => fetchStory(storyId));
+
+// only refetch within 15min intervals on comment view
+const useStory = (storyId, autoRefetchOnFocus = true) => {
+  return useQuery(['story.'+storyId, storyId], () => fetchStory(storyId), {
+    staleTime: autoRefetchOnFocus ? 0 : 900000,
+    refetchOnWindowFocus: autoRefetchOnFocus,
+  });
 }
 
 export { useStory, fetchStory }

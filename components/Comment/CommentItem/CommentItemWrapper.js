@@ -1,5 +1,6 @@
 
 import clsx from "clsx";
+import { useState } from "react/cjs/react.development";
 import { useComment } from "../../../hooks/useComment";
 import { useHtmlParser } from "../../../hooks/useHtmlParser";
 import ItemIsError from "../../StatusMessage/ItemIsError";
@@ -8,17 +9,25 @@ import CommentItemReplies from "./CommentItemReplies";
 
 const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 }) => {
   const { isLoading, isError, data, isSuccess, error } = useComment(commentId);
+  const [isCollapsed, setIsCollapsed] = useState(false);    // todo: save state locally
+
+  const toggleDisplayState = (e) => {
+    e.preventDefault();
+    setIsCollapsed(!isCollapsed);
+    console.log('toggled')
+  }
 
   return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError error={error} />) : isSuccess && (
     !data.deleted && (  
       <div className={clsx(
-        "grid text-sm",
+        "grid text-sm sm:border-none sm:px-0",
         { "opacity-60": data.dead },
-        { "border-t-brandDefault border-t-brandButtonOutline px-4 pt-2 first:border-t-0 first:pt-0": parentDepth === 0 },
+        { "border-t-brandDefault border-t-brandButtonOutline px-4 pt-3 first:border-t-0 first:pt-0": parentDepth === 0 },
+        { "-mb-2 last:mb-0": isCollapsed }
       )}>      
         {/* dead comment indicator */}
         { data.dead && 
-          <div className="col-span-2 justify-self-start rounded px-1 py-[0.125rem] bg-brandButtonOutline font-bold text-xs text-brandTextSecondary uppercase">
+          <div className="justify-self-start rounded mb-1 px-1 py-[0.125rem] bg-brandButtonOutline font-bold text-xs text-brandTextSecondary uppercase">
             dead comment
           </div>
         }
@@ -28,13 +37,15 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
           commentData={data}
           submitterId={submitterId}
           itemDepth={parentDepth}
+          toggleDisplayState={toggleDisplayState}
         />
 
         {/* content */}
         <div className={clsx("grid",
           parentDepth === 0 
             ? "ml-8"
-            : "mt-[0.125rem]"
+            : "mt-[0.125rem]",
+          { "hidden": isCollapsed }
         )}>
           {/* text */}
           <div className="grid gap-2 sm:gap-3">
