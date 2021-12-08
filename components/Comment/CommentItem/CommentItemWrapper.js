@@ -1,6 +1,6 @@
 
 import clsx from "clsx";
-import { useState } from "react/cjs/react.development";
+import { useState } from "react";
 import { useComment } from "../../../hooks/useComment";
 import { useHtmlParser } from "../../../hooks/useHtmlParser";
 import ItemIsError from "../../StatusMessage/ItemIsError";
