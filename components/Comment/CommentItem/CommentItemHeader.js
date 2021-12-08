@@ -7,9 +7,12 @@ import UserLink from "../../User/UserLink";
 import MicrophoneGlyph from "../../Glyphs/MicrophoneGlyph";
 import { Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip";
 
-const CommentItemHeader = ({ commentData, submitterId, itemDepth, toggleDisplayState }) => {
+const CommentItemHeader = ({ commentData, submitterId, itemDepth, isDead = false, toggleDisplayState }) => {
   return (  
-    <div className="grid grid-cols-[auto,1fr] gap-2 text-brandTextPrimary">
+    <div className={clsx(
+      "grid grid-cols-[auto,1fr] gap-2 text-brandTextPrimary",
+      { "opacity-60": isDead }
+    )}>
       <UserAvatar 
         userId={commentData.by} 
         className={itemDepth === 0 ? "w-6 h-6" : "w-[18px] h-[18px]"}
