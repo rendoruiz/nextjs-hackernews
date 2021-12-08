@@ -1,9 +1,10 @@
 import Link from 'next/link';
+
 import { useRelativeTime, useShortRelativeTime } from '../../hooks/useDate';
 
-const TimeRoute = ({ className, storyId, unixTime, isShort }) => {
+const TimeRoute = ({ className, contentId, unixTime, isShort }) => {
   return !unixTime ? null : (  
-    <Link href={'/story/' + storyId}>
+    <Link href={'/story/' + contentId}>
       <a className={className}>{ isShort ? useShortRelativeTime(unixTime) : useRelativeTime(unixTime) }</a>
     </Link>
   );

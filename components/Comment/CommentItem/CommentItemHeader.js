@@ -1,5 +1,3 @@
-import clsx from "clsx";
-
 import { useShortRelativeTime } from "../../../hooks/useDate";
 import CommentItemMobileOverflowModal from "./CommentItemMobileOverflowModal";
 import UserAvatar from "../../User/UserAvatar";

@@ -1,14 +1,14 @@
 import Link from 'next/link';
+import clsx from 'clsx';
 
 import { useStory } from "../../../hooks/useStory";
+import { useHtmlParser } from '../../../hooks/useHtmlParser';
 import StoryItemHeader from "./StoryItemHeader";
 import StoryItemDisplayLink from "./StoryItemDisplayLink";
 import StoryItemFooter from "./StoryItemFooter";
 import StoryItemShareDrawerButton from './StoryItemShareDrawerButton';
 import StoryItemMobileOverflowModal from './StoryItemMobileOverflowModal';
-import clsx from 'clsx';
 import ItemIsError from '../../StatusMessage/ItemIsError';
-import { useHtmlParser } from '../../../hooks/useHtmlParser';
 
 const StoryItemWrapper = ({ storyId, withText = false, isStatic = false, }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);

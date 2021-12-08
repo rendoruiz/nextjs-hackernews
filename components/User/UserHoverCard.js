@@ -1,8 +1,8 @@
 import * as HoverCard from '@radix-ui/react-hover-card';
+
 import { useRelativeTime } from '../../hooks/useDate';
 import { useUser } from '../../hooks/useUser';
 import UserAvatar from './UserAvatar';
-
 import UserLink from './UserLink';
 
 const UserHoverCard = ({ userId, withPrefix }) => {

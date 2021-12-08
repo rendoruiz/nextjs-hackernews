@@ -3,7 +3,7 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 
 import { useFullDateTime, useRelativeTime } from '../../hooks/useDate';
 
-const TimeTooltip = ({ className, unixTime, contentId }) => {
+const TimeTooltip = ({ className, unixTime, contentId, isComment }) => {
   const relativeTime = useRelativeTime(unixTime);
 
   return !unixTime ? null : (  
@@ -11,7 +11,7 @@ const TimeTooltip = ({ className, unixTime, contentId }) => {
       <Tooltip.Trigger asChild>
         { contentId ? (
           <span className={className}>
-            <Link href={'/story/' + contentId}>
+            <Link href={(!isComment ? "/story/" : "/comment/") + contentId}>
               <a className="hover:underline">
                 { relativeTime }
               </a>
