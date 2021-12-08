@@ -26,7 +26,7 @@ const StoryItemHeader = ({ storyData }) => {
       <span className="sm:hidden">•&nbsp;</span>
       <TimeRoute 
         className="sm:hidden"
-        storyId={storyData.id}
+        contentId={storyData.id}
         unixTime={storyData.time}
         isShort
       />
