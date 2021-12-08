@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import { useRelativeTime, useShortRelativeTime } from '../../hooks/useDate';
 
 const TimeRoute = ({ className, contentId, unixTime, isShort }) => {
