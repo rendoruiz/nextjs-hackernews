@@ -38,7 +38,7 @@ const CommentList = ({ storyId }) => {
       </div>
 
       {/* load more comments trigger */}
-      { isCountLimited && storyData.kids.length > defaultCount && (
+      { isCountLimited && storyData.kids && storyData.kids.length > defaultCount && (
         <div className="px-4">
           <button
             className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left hover:underline sm:text-brandTextPrimary"
