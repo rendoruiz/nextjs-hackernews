@@ -9,7 +9,7 @@ import { Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "@radix-ui
 
 const CommentItemHeader = ({ commentData, submitterId, itemDepth, toggleDisplayState }) => {
   return (  
-    <div className="grid grid-cols-[auto,1fr] gap-2">
+    <div className="grid grid-cols-[auto,1fr] gap-2 text-brandTextPrimary">
       <UserAvatar 
         userId={commentData.by} 
         className={itemDepth === 0 ? "w-6 h-6" : "w-[18px] h-[18px]"}
@@ -17,8 +17,8 @@ const CommentItemHeader = ({ commentData, submitterId, itemDepth, toggleDisplayS
       
       <div className="grid grid-cols-[auto,1fr,auto] items-center text-xs">
         <div className={clsx(
-          "flex font-bold sm:font-medium sm:text-brandTextPrimary", 
-          { "text-brandOrange": commentData.by === submitterId }
+          "flex font-bold sm:font-medium", 
+          { "text-brandOrange sm:text-brandTextPrimary": commentData.by === submitterId }
         )}>
           <UserLink userId={commentData.by} />
           

@@ -21,9 +21,9 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
         ))}
       </div>
     ) : (
-      <div className="grid place-items-start border-l-brandDefault border-brandButtonOutline mt-3 px-4">
+      <div className="grid place-items-start border-l-brandDefault border-brandButtonOutline mt-2 px-4">
         <button 
-          className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left hover:underline sm:text-brandTextPrimary"
+          className="font-bold text-xs text-brandButtonInlineText tracking-wide text-left hover:underline sm:text-brandTextPrimary sm:tracking-normal"
           onClick={() => setIsLoadedManually(true)}
         >
           { replyIds.length } more repl{ replyIds.length > 1 ? "ies" : "y" }
