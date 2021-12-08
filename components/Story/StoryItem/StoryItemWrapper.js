@@ -23,8 +23,8 @@ const StoryItemWrapper = ({ storyId, withText = false, isStatic = false, }) => {
         <Link href={'/story/' + data.id}>
           <a 
             className={clsx(
-              "hidden sm:flex justify-center items-start rounded-l py-2 bg-white/80 sm:bg-white",
-              { "pointer-events-none": isStatic }
+              "hidden sm:flex justify-center items-start rounded-l py-2 bg-white/80",
+              { "pointer-events-none sm:bg-white": isStatic }
             )}
             title="view story discussion"
           >
