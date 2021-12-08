@@ -23,7 +23,7 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
         "grid text-sm sm:border-none sm:px-0",
         { "opacity-60": data.dead },
         { "border-t-brandDefault border-t-brandButtonOutline px-4 pt-3 first:border-t-0 first:pt-0": parentDepth === 0 },
-        { "-mb-2 last:mb-0": isCollapsed }
+        { "-mb-2 last:mb-0": isCollapsed && parentDepth === 0 }
       )}>      
         {/* dead comment indicator */}
         { data.dead && 
