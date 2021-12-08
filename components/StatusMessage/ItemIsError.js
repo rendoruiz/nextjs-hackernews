@@ -1,7 +1,11 @@
 // fetch error
-const ItemIsError = () => {
+const ItemIsError = ({ error }) => {
+  console.log(error)
   return (
-    <div>An error occured.</div>
+    <div>
+      <p>An error occured.</p>
+      { error && <p>{error}</p> }
+    </div>
   )
 }
  

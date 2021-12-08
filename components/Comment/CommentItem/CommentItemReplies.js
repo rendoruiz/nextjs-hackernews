@@ -10,7 +10,7 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
 
   return !replyIds ? null : replyIds.length <= 0 ? null : (
     (currentDepth < replyDepthLimit) || isLoadedManually ? (
-      <div className="grid gap-5 ml-5 mt-5">
+      <div className="grid gap-5 border-l-brandDefault border-brandButtonOutline pl-4 mt-5">
         { replyIds.map((replyId) => (
           <CommentItemWrapper 
             key={replyId}
@@ -21,12 +21,14 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
         ))}
       </div>
     ) : (
-      <button 
-        className="font-bold text-xs text-brandButtonInlineText text-left hover:underline"
-        onClick={() => setIsLoadedManually(true)}
-      >
-        { replyIds.length } more repl{ replyIds.length > 1 ? "ies" : "y" }
-      </button>
+      <div className="grid place-items-start border-l-brandDefault border-brandButtonOutline mt-3 px-4">
+        <button 
+          className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left hover:underline sm:text-brandTextPrimary"
+          onClick={() => setIsLoadedManually(true)}
+        >
+          { replyIds.length } more repl{ replyIds.length > 1 ? "ies" : "y" }
+        </button>
+      </div>
     )
   );
 }

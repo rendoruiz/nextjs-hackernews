@@ -1,30 +1,30 @@
 import Link from 'next/link';
-import * as Dialog from '@radix-ui/react-dialog';
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogOverlay, DialogTitle, DialogTrigger } from "@radix-ui/react-dialog";
 
-import HorizontalDotsGlyph from '../../Glyphs/HorizontalDotsGlyph';
+import HorizontalDotsGlyph from "../../Glyphs/HorizontalDotsGlyph";
 import CloseGlyph from '../../Glyphs/CloseGlyph';
 import LinkGlyph from '../../Glyphs/LinkGlyph';
 import HackerNewsGlyph from '../../Glyphs/HackerNewsGlyph';
 import UserGlyph from '../../Glyphs/UserGlyph';
 
-const StoryItemMobileOverflowModal = ({ storyData }) => {
-  return !storyData ? null : ( 
-    <Dialog.Root>
-      <Dialog.Trigger asChild>
-        <button className="row-start-1 col-start-2 justify-self-end relative -mr-2 -my-2 px-2 text-brandTextPrimary sm:hidden">
+const CommentItemMobileOverflowModal = ({ commentData }) => {
+  return !commentData ? null : (  
+    <Dialog>
+      <DialogTrigger asChild>
+        <button className="-mr-2 -my-2 p-2 text-brandTextPrimary sm:hidden">
           <HorizontalDotsGlyph />
         </button>
-      </Dialog.Trigger>
+      </DialogTrigger>
 
-      <Dialog.Overlay className="fixed inset-0 bg-black/40 sm:hidden" />
-      <Dialog.Content className="fixed top-1/2 left-1/2 py-1 w-[94vw] max-w-md bg-white -translate-x-1/2 -translate-y-1/2 sm:hidden">
+      <DialogOverlay className="fixed inset-0 bg-black/40 sm:hidden" />
+      <DialogContent className="fixed top-1/2 left-1/2 py-1 w-[94vw] max-w-md bg-white -translate-x-1/2 -translate-y-1/2 sm:hidden">
         {/* screen reader */}
-        <Dialog.Title className="hidden">story item links overflow</Dialog.Title>
-        <Dialog.Description className="hidden">other links associated with the current story item</Dialog.Description>
+        <DialogTitle className="hidden">comment item actionable links</DialogTitle>
+        <DialogDescription className="hidden">actions associated with the current comment item</DialogDescription>
 
-        {/* story permalink */}
+        {/* comment item permalink */}
         <div className="grid grid-cols-[1fr,auto]">
-          <Link href={'/story/' + storyData.id}>
+          <Link href={'/comment/' + commentData.id}>
             <a className="grid grid-cols-[auto,1fr] items-center">
               <div className="grid place-items-center w-12 h-12 text-brandTextSecondary">
                 <LinkGlyph />
@@ -32,14 +32,14 @@ const StoryItemMobileOverflowModal = ({ storyData }) => {
               <span className="text-brandTextPrimary">Permalink</span>
             </a>
           </Link>
-          <Dialog.Close className="grid place-items-center w-12 h-12 text-brandTextSecondary">
+          <DialogClose className="grid place-items-center w-12 h-12 text-brandTextSecondary">
             <CloseGlyph />
-          </Dialog.Close>
+          </DialogClose>
         </div>
 
-        {/* hackernews story permalink */}
+        {/* hackernews comment permalink */}
         <a 
-          href={'https://news.ycombinator.com/item?id=' + storyData.id}
+          href={'https://news.ycombinator.com/item?id=' + commentData.id}
           className="grid grid-cols-[auto,1fr] items-center"
         >
           <div className="grid place-items-center w-12 h-12 text-brandTextSecondary">
@@ -49,19 +49,19 @@ const StoryItemMobileOverflowModal = ({ storyData }) => {
         </a>
 
         {/* user link */}
-        <Link href={'/user/' + storyData.by}>
+        <Link href={'/user/' + commentData.by}>
           <a className="grid grid-cols-[auto,1fr] items-center">
             <div className="grid place-items-center w-12 h-12 text-brandTextSecondary">
               <UserGlyph className="w-6 h-6 rounded-full" />
             </div>
             <span className="py-2 text-brandTextPrimary overflow-ellipsis overflow-hidden">
-              { storyData.by }'{ storyData.by.split('').pop().toLowerCase() !== 's' && 's' } profile
+              { commentData.by }'{ commentData.by.split('').pop().toLowerCase() !== 's' && 's' } profile
             </span>
           </a>
         </Link>
-      </Dialog.Content>
-    </Dialog.Root>
+      </DialogContent>
+    </Dialog>
   );
 }
-
-export default StoryItemMobileOverflowModal;
+ 
+export default CommentItemMobileOverflowModal;
