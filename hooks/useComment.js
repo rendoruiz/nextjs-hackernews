@@ -7,7 +7,10 @@ const fetchComment = async (commentId) => {
   return response.data;
 }
 const useComment = (commentId) => {
-  return useQuery(['comment.'+commentId, commentId], () => fetchComment(commentId));
+  return useQuery(['comment.'+commentId, commentId], () => fetchComment(commentId), {
+    staleTime: 300000,
+    refetchOnWindowFocus: false,
+  });
 }
 
 export { useComment, fetchComment }
