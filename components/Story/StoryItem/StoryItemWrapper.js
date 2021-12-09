@@ -61,7 +61,7 @@ const StoryItemWrapper = ({ storyId, withText = false, isStatic = false, }) => {
               "row-start-2 col-start-1 mb-1 font-medium text-brandTextPrimary leading-tight sm:row-start-auto sm:col-start-auto sm:mb-0 sm:text-lg sm:leading-snug",
               { "visited:text-brandTextLinkVisited": !window.location.pathname.includes('/story') },
             )}>
-              <h3>{data.title}</h3>
+              { data.title }
             </a>
           </Link>
 
