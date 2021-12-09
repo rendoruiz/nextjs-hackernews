@@ -6,14 +6,16 @@ import IsLoading from "../StatusMessage/IsLoading";
 import CommentItem from "./CommentItem/CommentItem";
 
 const CommentList = ({ storyId }) => {
-  const { isLoading, isError, data: storyData, isSuccess } = useStory(storyId, false);
-  const [isCountLimited, setIsCountLimited] = useState(true);   // todo: save state locally
-  const defaultDepthLimit = 2;
   const defaultItemCount = 5;
+  const itemIncrementCount = 8;
+  const defaultDepthLimit = 2;
+  const { isLoading, isError, data: storyData, isSuccess } = useStory(storyId, false);
+  const [itemCount, setItemCount] = useState(defaultItemCount); // todo: save state locally
 
   const handleClick = (e) => {
     e.preventDefault();
-    setIsCountLimited(false);
+    const newCount = itemCount + itemIncrementCount;
+    setItemCount(newCount);
   }
 
   return isLoading ? (<IsLoading />) : isError || !storyData ? (<IsError />) : isSuccess && (  
@@ -38,7 +40,7 @@ const CommentList = ({ storyId }) => {
       { storyData.kids && (
         <div className="group grid content-start gap-5">
           {
-            [...storyData.kids].slice(0, isCountLimited ? defaultItemCount : storyData.kids.length).map((commentId) => (
+            [...storyData.kids].slice(0, itemCount).map((commentId) => (
               <CommentItem
                 key={commentId}
                 commentId={commentId}
@@ -51,13 +53,13 @@ const CommentList = ({ storyId }) => {
       )}
 
       {/* load more comments trigger */}
-      { isCountLimited && storyData.kids && storyData.kids.length > defaultItemCount && (
+      { storyData.kids && storyData.kids.length > itemCount && (
         <div className="px-4">
           <button
             className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left hover:underline sm:text-brandTextPrimary"
             onClick={(e) => handleClick(e)}
           >
-            Show all { storyData.kids.length - defaultItemCount} comments
+            Show { storyData.kids.length-itemCount > itemIncrementCount ? itemIncrementCount : storyData.kids.length-itemCount } more comment{ storyData.kids.length-itemCount > 1 && "s" }
           </button>
         </div>
       )}
