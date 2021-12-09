@@ -21,7 +21,6 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
     !data.deleted && (  
       <div className={clsx(
         "grid text-sm sm:border-none sm:px-0",
-        { "opacity-60": data.dead },
         { "border-t-brandDefault border-t-brandButtonOutline px-4 pt-3 first:border-t-0 first:pt-0": parentDepth === 0 },
         { "-mb-2 last:mb-0": isCollapsed && parentDepth === 0 }
       )}>      
@@ -37,6 +36,7 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
           commentData={data}
           submitterId={submitterId}
           itemDepth={parentDepth}
+          isDead={data.dead}
           toggleDisplayState={toggleDisplayState}
         />
 
@@ -44,11 +44,14 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
         <div className={clsx("grid",
           parentDepth === 0 
             ? "ml-8"
-            : "mt-[0.125rem]",
+            : "mt-1",
           { "hidden": isCollapsed }
         )}>
           {/* text */}
-          <div className="inline-block">
+          <div className={clsx(
+            "inline-block leading-tight sm:leading-normal",
+            { "opacity-60": data.dead }
+          )}>
             { useHtmlParser(data.text) }
           </div>
 

@@ -5,16 +5,23 @@ import { useUser } from '../../hooks/useUser';
 import UserAvatar from './UserAvatar';
 import UserLink from './UserLink';
 
-const UserHoverCard = ({ userId, withPrefix }) => {
+const UserHoverCard = ({ userId, className, withPrefix, withAvatar, avatarClassName }) => {
   return !userId ? null : (  
     <HoverCard.Root>
       <HoverCard.Trigger asChild>
-        <span>
+        <div className={className}>
+          { (withAvatar || avatarClassName) && (
+            <UserAvatar
+              className={avatarClassName ?? "w-5 h-5"}
+              userId={userId}
+            />
+          )}
           <UserLink
             userId={userId}
             withPrefix={withPrefix}
           />
-        </span>
+
+        </div>
       </HoverCard.Trigger>
       <HoverCard.Content 
         className="grid gap-4 border-brandDefault border-brandBorder rounded p-3 pb-4 bg-white shadow-md"
