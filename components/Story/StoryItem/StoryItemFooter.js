@@ -47,7 +47,10 @@ const StoryItemFooter = ({ storyData }) => {
 const OverflowButtonsDropdown = ({ storyData }) => {
   return (
     <DropdownMenu.Root modal={false}>
-      <DropdownMenu.Trigger className="hidden sm:flex self-center items-center rounded px-2 py-1 transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive"> 
+      <DropdownMenu.Trigger 
+        className="hidden sm:flex self-center items-center rounded px-2 py-1 transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive"
+        title="story overflow menu trigger"
+      > 
         <HorizontalDotsGlyph />
       </DropdownMenu.Trigger>
       <DropdownMenu.Content 
