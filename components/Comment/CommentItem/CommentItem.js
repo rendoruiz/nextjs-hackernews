@@ -7,7 +7,7 @@ import ItemIsError from "../../StatusMessage/ItemIsError";
 import CommentItemHeader from "./CommentItemHeader";
 import CommentItemReplies from "./CommentItemReplies";
 
-const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 }) => {
+const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 }) => {
   const { isLoading, isError, data, isSuccess, error } = useComment(commentId);
   const [isCollapsed, setIsCollapsed] = useState(false);    // todo: save state locally
 
@@ -101,4 +101,4 @@ const IsLoading = ({ itemDepth }) => {
   );
 }
  
-export default CommentItemWrapper;
+export default CommentItem;

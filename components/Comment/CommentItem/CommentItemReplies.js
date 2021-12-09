@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import CommentItemWrapper from "./CommentItemWrapper";
+import CommentItem from "./CommentItem";
 
 const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
   const [isLoadedManually, setIsLoadedManually] = useState(false);
@@ -12,7 +12,7 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
     (currentDepth < replyDepthLimit) || isLoadedManually ? (
       <div className="grid gap-4 border-l-brandDefault border-brandButtonOutline pl-4 mt-4">
         { replyIds.map((replyId) => (
-          <CommentItemWrapper 
+          <CommentItem 
             key={replyId}
             commentId={replyId} 
             replyDepthLimit={replyDepthLimit}

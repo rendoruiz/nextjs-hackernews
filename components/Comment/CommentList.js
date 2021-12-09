@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useStory } from "../../hooks/useStory";
 import IsError from "../StatusMessage/IsError";
 import IsLoading from "../StatusMessage/IsLoading";
-import CommentItemWrapper from "./CommentItem/CommentItemWrapper";
+import CommentItem from "./CommentItem/CommentItem";
 
 const CommentList = ({ storyId }) => {
   const { isLoading, isError, data: storyData, isSuccess } = useStory(storyId, false);
@@ -39,7 +39,7 @@ const CommentList = ({ storyId }) => {
         <div className="group grid content-start gap-5">
           {
             [...storyData.kids].slice(0, isCountLimited ? defaultCount : storyData.kids.length).map((commentId) => (
-              <CommentItemWrapper
+              <CommentItem
                 key={commentId}
                 commentId={commentId}
                 submitterId={storyData.by}

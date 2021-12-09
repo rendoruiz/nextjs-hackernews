@@ -10,7 +10,7 @@ import StoryItemShareDrawerButton from './StoryItemShareDrawerButton';
 import StoryItemMobileOverflowModal from './StoryItemMobileOverflowModal';
 import ItemIsError from '../../StatusMessage/ItemIsError';
 
-const StoryItemWrapper = ({ storyId, withText = false, isStatic = false, }) => {
+const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
 
   return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
@@ -115,4 +115,4 @@ const IsDeadOrDeleted = () => {
   )
 }
  
-export default StoryItemWrapper;
+export default StoryItem;
