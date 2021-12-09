@@ -10,7 +10,7 @@ const StoryList = ({ useHook }) => {
   const router = useRouter();
   const { isLoading, isError, data, isSuccess } = useHook;
   const [itemCount, setItemCount] = useState(null);  // todo: save state locally
-  const defaultCount = 25; 
+  const defaultCount = 15; 
 
   const handleClick = (e) => {
     e.preventDefault();
