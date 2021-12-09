@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogOverlay, DialogTitle, DialogTrigger } from "@radix-ui/react-dialog";
+import * as Dialog from '@radix-ui/react-dialog';
 
 import HorizontalDotsGlyph from "../../Glyphs/HorizontalDotsGlyph";
 import CloseGlyph from '../../Glyphs/CloseGlyph';
@@ -9,18 +9,18 @@ import UserGlyph from '../../Glyphs/UserGlyph';
 
 const CommentItemMobileOverflowModal = ({ commentData }) => {
   return !commentData ? null : (  
-    <Dialog>
-      <DialogTrigger asChild>
+    <Dialog.Root>
+      <Dialog.Trigger asChild>
         <button className="-mr-2 -my-2 p-2 text-brandTextPrimary sm:hidden">
           <HorizontalDotsGlyph />
         </button>
-      </DialogTrigger>
+      </Dialog.Trigger>
 
-      <DialogOverlay className="fixed inset-0 bg-black/40 sm:hidden" />
-      <DialogContent className="fixed top-1/2 left-1/2 py-1 w-[94vw] max-w-md bg-white -translate-x-1/2 -translate-y-1/2 sm:hidden">
+      <Dialog.Overlay className="fixed inset-0 bg-black/40 sm:hidden" />
+      <Dialog.Content className="fixed top-1/2 left-1/2 py-1 w-[94vw] max-w-md bg-white -translate-x-1/2 -translate-y-1/2 sm:hidden">
         {/* screen reader */}
-        <DialogTitle className="hidden">comment item actionable links</DialogTitle>
-        <DialogDescription className="hidden">actions associated with the current comment item</DialogDescription>
+        <Dialog.Title className="hidden">comment item actionable links</Dialog.Title>
+        <Dialog.Description className="hidden">actions associated with the current comment item</Dialog.Description>
 
         {/* comment item permalink */}
         <div className="grid grid-cols-[1fr,auto]">
@@ -32,9 +32,9 @@ const CommentItemMobileOverflowModal = ({ commentData }) => {
               <span className="text-brandTextPrimary">Permalink</span>
             </a>
           </Link>
-          <DialogClose className="grid place-items-center w-12 h-12 text-brandTextSecondary">
+          <Dialog.Close className="grid place-items-center w-12 h-12 text-brandTextSecondary">
             <CloseGlyph />
-          </DialogClose>
+          </Dialog.Close>
         </div>
 
         {/* hackernews comment permalink */}
@@ -59,8 +59,8 @@ const CommentItemMobileOverflowModal = ({ commentData }) => {
             </span>
           </a>
         </Link>
-      </DialogContent>
-    </Dialog>
+      </Dialog.Content>
+    </Dialog.Root>
   );
 }
  

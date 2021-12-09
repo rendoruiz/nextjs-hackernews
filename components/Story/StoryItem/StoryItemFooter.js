@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import copy from "copy-to-clipboard";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 import ArrowUpGlyph from "../../Glyphs/ArrowUpGlyph";
 import ChatGlyph from "../../Glyphs/ChatGlyph";
@@ -46,15 +46,15 @@ const StoryItemFooter = ({ storyData }) => {
 
 const OverflowButtonsDropdown = ({ storyData }) => {
   return (
-    <DropdownMenu modal={false}>
-      <DropdownMenuTrigger className="hidden sm:flex self-center items-center rounded px-2 py-1 transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive"> 
+    <DropdownMenu.Root modal={false}>
+      <DropdownMenu.Trigger className="hidden sm:flex self-center items-center rounded px-2 py-1 transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive"> 
         <HorizontalDotsGlyph />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent 
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content 
         className="hidden sm:grid border-brandDefault border-brandButtonOutline rounded bg-white text-sm text-brandTextSecondary shadow-transientObject overflow-hidden"
         align="start"
       >
-        <DropdownMenuItem asChild>
+        <DropdownMenu.Item asChild>
           <a 
             href={'https://news.ycombinator.com/item?id=' + storyData.id}
             target="_blank"
@@ -63,20 +63,20 @@ const OverflowButtonsDropdown = ({ storyData }) => {
             <HackerNewsGlyph className="w-4 h-4" />
             <span className="ml-2 font-medium leading-none">View Original</span>
           </a>
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+        </DropdownMenu.Item>
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
   )
 }
 
 const ShareDropdown = ({ storyData }) => {
   return (
-    <DropdownMenu modal={false}>
-      <DropdownMenuTrigger className="hidden sm:flex items-center rounded pr-2 pl-1 transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive"> 
+    <DropdownMenu.Root modal={false}>
+      <DropdownMenu.Trigger className="hidden sm:flex items-center rounded pr-2 pl-1 transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive"> 
         <ShareGlyph />
         <span className="ml-1 font-bold">Share</span>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent 
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content 
         className="hidden sm:grid border-brandDefault border-brandButtonOutline rounded bg-white text-sm text-brandTextSecondary shadow-transientObject overflow-hidden"
         align="start"
       >
@@ -86,33 +86,33 @@ const ShareDropdown = ({ storyData }) => {
           clipboardString={window.location.origin + '/story/' + storyData.id}
         />
         { storyData.url && (<>
-          <DropdownMenuSeparator className="border-b-brandDefault border-brandButtonOutline" />
+          <DropdownMenu.Separator className="border-b-brandDefault border-brandButtonOutline" />
           <ShareItem
             displayText="Copy Story Link"
             displayGlyph={<ExternalLinkGlyph className="w-4 h-4" />}
             clipboardString={storyData.url}
           />
         </>)}
-        <DropdownMenuSeparator className="border-b-brandDefault border-brandButtonOutline" />
+        <DropdownMenu.Separator className="border-b-brandDefault border-brandButtonOutline" />
         <ShareItem
           displayText="Copy Original Link"
           displayGlyph={<HackerNewsGlyph className="w-4 h-4" />}
           clipboardString={'https://news.ycombinator.com/item?id=' + storyData.id}
         />
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
   );
 }
 
 const ShareItem = ({ displayText, displayGlyph, clipboardString }) => {
   return (
-    <DropdownMenuItem 
+    <DropdownMenu.Item 
       className="flex items-center rounded-sm px-2 py-[0.625rem] transition-colors cursor-pointer hover:bg-brandOrange/30 hover:text-brandTextPrimary"
       onClick={() => copy(clipboardString)}
     >
       { displayGlyph }
       <span className="ml-2 font-medium leading-none">{ displayText }</span>
-    </DropdownMenuItem>
+    </DropdownMenu.Item>
   );
 }
  
