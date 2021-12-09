@@ -8,8 +8,8 @@ import CommentItem from "./CommentItem/CommentItem";
 const CommentList = ({ storyId }) => {
   const { isLoading, isError, data: storyData, isSuccess } = useStory(storyId, false);
   const [isCountLimited, setIsCountLimited] = useState(true);   // todo: save state locally
-  const replyDepthLimit = 3;
-  const defaultCount = 10;
+  const defaultDepthLimit = 2;
+  const defaultItemCount = 5;
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -38,12 +38,12 @@ const CommentList = ({ storyId }) => {
       { storyData.kids && (
         <div className="group grid content-start gap-5">
           {
-            [...storyData.kids].slice(0, isCountLimited ? defaultCount : storyData.kids.length).map((commentId) => (
+            [...storyData.kids].slice(0, isCountLimited ? defaultItemCount : storyData.kids.length).map((commentId) => (
               <CommentItem
                 key={commentId}
                 commentId={commentId}
                 submitterId={storyData.by}
-                replyDepthLimit={replyDepthLimit}
+                replyDepthLimit={defaultDepthLimit}
               />
             ))
           }
@@ -51,13 +51,13 @@ const CommentList = ({ storyId }) => {
       )}
 
       {/* load more comments trigger */}
-      { isCountLimited && storyData.kids && storyData.kids.length > defaultCount && (
+      { isCountLimited && storyData.kids && storyData.kids.length > defaultItemCount && (
         <div className="px-4">
           <button
             className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left hover:underline sm:text-brandTextPrimary"
             onClick={(e) => handleClick(e)}
           >
-            Show all { storyData.kids.length - defaultCount} comments
+            Show all { storyData.kids.length - defaultItemCount} comments
           </button>
         </div>
       )}
