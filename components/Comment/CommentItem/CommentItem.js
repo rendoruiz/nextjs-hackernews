@@ -14,7 +14,6 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
   const toggleDisplayState = (e) => {
     e.preventDefault();
     setIsCollapsed(!isCollapsed);
-    console.log('toggled')
   }
 
   return isLoading ? (<IsLoading itemDepth={parentDepth} />) : isError || !data ? (<ItemIsError error={error} />) : isSuccess && (

@@ -6,8 +6,6 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
   const [isLoadedManually, setIsLoadedManually] = useState(false);
   const currentDepth = parentDepth + 1;
 
-  // console.log({parentDepth},{currentDepth},{replyDepthLimit},currentDepth < replyDepthLimit)
-
   return !replyIds ? null : replyIds.length <= 0 ? null : (
     (currentDepth < replyDepthLimit) || isLoadedManually ? (
       <div className="grid gap-4 border-l-brandDefault border-brandButtonOutline pl-4 mt-4">
