@@ -17,7 +17,7 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
     setIsCollapsed(!isCollapsed);
   }
 
-  return isSuccess ? (<IsLoading itemDepth={parentDepth} />) : isError || !data ? (<ItemIsError error={error} />) : isSuccess && (
+  return isLoading ? (<IsLoading itemDepth={parentDepth} />) : isError || !data ? (<ItemIsError error={error} />) : isSuccess && (
     !data.deleted && (  
       <div className={clsx(
         "grid text-sm sm:grid-cols-[auto,1fr] sm:gap-x-2 sm:border-none sm:p-0",
