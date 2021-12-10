@@ -38,7 +38,7 @@ const CommentList = ({ storyId }) => {
       
       {/* comment list */}
       { storyData.kids && (
-        <div className="group grid content-start gap-5">
+        <div className="grid content-start gap-5">
           {
             [...storyData.kids].slice(0, itemCount).map((commentId) => (
               <CommentItem
