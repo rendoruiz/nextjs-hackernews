@@ -58,8 +58,8 @@ const CommentItemHeader = ({ commentData, submitterId, itemDepth, isDead = false
             <>
               <Tooltip.Root>
                 <Tooltip.Trigger asChild>
-                  <span className="hidden sm:block font-bold text-brandOrange cursor-default">
-                    &nbsp;OP
+                  <span className="hidden sm:block ml-1 font-bold text-brandOrange cursor-default">
+                    OP
                   </span>
                 </Tooltip.Trigger>
                 <Tooltip.Content
