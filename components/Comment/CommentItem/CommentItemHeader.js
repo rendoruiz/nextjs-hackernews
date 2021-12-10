@@ -36,7 +36,7 @@ const CommentItemHeader = ({ commentData, submitterId, itemDepth, isDead = false
       
       <div className="grid grid-cols-[auto,1fr,auto] items-center text-xs sm:auto-cols-auto">
         <div className={clsx(
-          "flex font-bold sm:font-medium", 
+          "flex items-center font-bold sm:font-medium", 
           { "text-brandOrange sm:text-brandTextPrimary": commentData.by === submitterId }
         )}>
           {/* mobile user link */}
