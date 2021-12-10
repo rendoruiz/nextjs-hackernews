@@ -2,13 +2,13 @@ import clsx from "clsx";
 import * as Tooltip from '@radix-ui/react-tooltip';
 
 import { useShortRelativeTime } from "../../../hooks/useDate";
-import CommentItemMobileActionsModal from "./CommentItemMobileActionsModal";
-import UserAvatar from "../../User/UserAvatar";
+import TimeTooltip from "../../Shared/TimeTooltip";
+import MobileActionsModal from "../../Shared/MobileActionsModal";
 import UserLink from "../../User/UserLink";
+import UserAvatar from "../../User/UserAvatar";
+import UserHoverCard from "../../User/UserHoverCard";
 import MicrophoneGlyph from "../../Glyphs/MicrophoneGlyph";
 import ExpandGlyph from "../../Glyphs/ExpandGlyph";
-import UserHoverCard from "../../User/UserHoverCard";
-import TimeTooltip from "../../Shared/TimeTooltip";
 
 const CommentItemHeader = ({ commentData, submitterId, itemDepth, isDead = false, toggleDisplayState, isCollapsed }) => {
   return (  
@@ -99,7 +99,11 @@ const CommentItemHeader = ({ commentData, submitterId, itemDepth, isDead = false
           />
         </div>
 
-        <CommentItemMobileActionsModal commentData={commentData} />
+        <MobileActionsModal 
+          itemData={commentData} 
+          route="/story" 
+          className="-mr-2 -my-2 p-2 sm:hidden"
+        />
       </div>
     </div>
   );
