@@ -47,7 +47,7 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
       { ((isReplyDepthLimitReached() && !isChildrenLoaded) || replyIds.length > replyCount) && (
         <div className="grid place-items-start sm:mt-1 sm:ml-3 sm:pb-2">
           <button 
-            className="font-bold text-xs text-brandButtonInlineText tracking-wide text-left hover:underline sm:text-brandTextPrimary sm:tracking-normal"
+            className="font-bold text-xs text-brandButtonInlineText tracking-wide text-left hover:underline sm:text-brandOrange sm:tracking-normal"
             onClick={(e) => handleClick(e)}
           >
             { isReplyDepthLimitReached() && !isChildrenLoaded ? (

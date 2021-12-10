@@ -1,14 +1,9 @@
 import Link from 'next/link';
-import copy from "copy-to-clipboard";
-import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 import ArrowUpGlyph from "../../Glyphs/ArrowUpGlyph";
 import ChatGlyph from "../../Glyphs/ChatGlyph";
-import ShareGlyph from "../../Glyphs/ShareGlyph";
-import HorizontalDotsGlyph from '../../Glyphs/HorizontalDotsGlyph';
-import HackerNewsGlyph from "../../Glyphs/HackerNewsGlyph";
-import LinkGlyph from "../../Glyphs/LinkGlyph";
-import ExternalLinkGlyph from "../../Glyphs/ExternalLinkGlyph";
+import ShareDropdown from '../../Shared/ShareDropdown';
+import OverflowDropdown from '../../Shared/OverflowDropdown';
 
 const StoryItemFooter = ({ storyData }) => {
   return storyData.type !== "job" && (  
@@ -36,86 +31,19 @@ const StoryItemFooter = ({ storyData }) => {
       </Link>
 
       {/* share dropdown */}
-      <ShareDropdown storyData={storyData} />
+      <ShareDropdown 
+        itemData={storyData} 
+        route="/story"
+        withGlyph
+        toggleClassName="hidden sm:flex pr-2 pl-1"
+      />
 
       {/* overflow dropdown */}
-      <OverflowButtonsDropdown storyData={storyData} />
+      <OverflowDropdown 
+        itemData={storyData} 
+        className="hidden sm:flex px-2 py-1"
+      />
     </div>
-  );
-}
-
-const OverflowButtonsDropdown = ({ storyData }) => {
-  return (
-    <DropdownMenu.Root modal={false}>
-      <DropdownMenu.Trigger 
-        className="hidden sm:flex self-center items-center rounded px-2 py-1 transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive"
-        title="story overflow menu trigger"
-      > 
-        <HorizontalDotsGlyph />
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Content 
-        className="hidden sm:grid border-brandDefault border-brandButtonOutline rounded bg-white text-sm text-brandTextSecondary shadow-transientObject overflow-hidden"
-        align="start"
-      >
-        <DropdownMenu.Item asChild>
-          <a 
-            href={'https://news.ycombinator.com/item?id=' + storyData.id}
-            target="_blank"
-            className="flex items-center rounded-sm px-2 py-[0.625rem] transition-colors cursor-pointer hover:bg-brandOrange/30 hover:text-brandTextPrimary"
-          >
-            <HackerNewsGlyph className="w-4 h-4" />
-            <span className="ml-2 font-medium leading-none">View Original</span>
-          </a>
-        </DropdownMenu.Item>
-      </DropdownMenu.Content>
-    </DropdownMenu.Root>
-  )
-}
-
-const ShareDropdown = ({ storyData }) => {
-  return (
-    <DropdownMenu.Root modal={false}>
-      <DropdownMenu.Trigger className="hidden sm:flex items-center rounded pr-2 pl-1 transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive"> 
-        <ShareGlyph />
-        <span className="ml-1 font-bold">Share</span>
-      </DropdownMenu.Trigger>
-      <DropdownMenu.Content 
-        className="hidden sm:grid border-brandDefault border-brandButtonOutline rounded bg-white text-sm text-brandTextSecondary shadow-transientObject overflow-hidden"
-        align="start"
-      >
-        <ShareItem
-          displayText="Copy Link"
-          displayGlyph={<LinkGlyph className="w-4 h-4" />}
-          clipboardString={window.location.origin + '/story/' + storyData.id}
-        />
-        { storyData.url && (<>
-          <DropdownMenu.Separator className="border-b-brandDefault border-brandButtonOutline" />
-          <ShareItem
-            displayText="Copy Story Link"
-            displayGlyph={<ExternalLinkGlyph className="w-4 h-4" />}
-            clipboardString={storyData.url}
-          />
-        </>)}
-        <DropdownMenu.Separator className="border-b-brandDefault border-brandButtonOutline" />
-        <ShareItem
-          displayText="Copy Original Link"
-          displayGlyph={<HackerNewsGlyph className="w-4 h-4" />}
-          clipboardString={'https://news.ycombinator.com/item?id=' + storyData.id}
-        />
-      </DropdownMenu.Content>
-    </DropdownMenu.Root>
-  );
-}
-
-const ShareItem = ({ displayText, displayGlyph, clipboardString }) => {
-  return (
-    <DropdownMenu.Item 
-      className="flex items-center rounded-sm px-2 py-[0.625rem] transition-colors cursor-pointer hover:bg-brandOrange/30 hover:text-brandTextPrimary"
-      onClick={() => copy(clipboardString)}
-    >
-      { displayGlyph }
-      <span className="ml-2 font-medium leading-none">{ displayText }</span>
-    </DropdownMenu.Item>
   );
 }
  
