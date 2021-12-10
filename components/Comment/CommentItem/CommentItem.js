@@ -76,6 +76,7 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
             replyIds={data.kids}
             replyDepthLimit={replyDepthLimit}
             parentDepth={parentDepth}
+            submitterId={submitterId}
           />
         </div>
       </div>
