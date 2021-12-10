@@ -1,22 +1,31 @@
 import Link from 'next/link';
+import clsx from 'clsx';
 
 import { useStory } from "../../../hooks/useStory";
+import { useHtmlParser } from '../../../hooks/useHtmlParser';
 import StoryItemHeader from "./StoryItemHeader";
 import StoryItemDisplayLink from "./StoryItemDisplayLink";
 import StoryItemFooter from "./StoryItemFooter";
-import StoryItemShareDrawerButton from './StoryItemShareDrawerButton';
-import StoryItemMobileOverflowModal from './StoryItemMobileOverflowModal';
+import StoryItemMobileShareTrigger from './StoryItemMobileShareTrigger';
+import StoryItemMobileActionsModal from './StoryItemMobileActionsModal';
+import ItemIsError from '../../StatusMessage/ItemIsError';
 
-const StoryItemWrapper = ({ storyId }) => {
+const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
 
-  return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && data && (
+  return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
     data.deleted || data.dead ? (<IsDeadOrDeleted />) : (
-      <div className="grid transition-colors cursor-pointer sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:border-brandBorderHover">
+      <div className={clsx(
+        "grid transition-colors sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm",
+        { "cursor-pointer sm:hover:border-brandBorderHover": !isStatic }
+      )}>
         {/* karma vertical bar (desktop) */}
-        <Link href={'story/' + data.id}>
+        <Link href={'/story/' + data.id}>
           <a 
-            className="hidden sm:flex justify-center items-start rounded-l py-2 bg-white/80"
+            className={clsx(
+              "hidden sm:flex justify-center items-start rounded-l py-2 bg-white/80",
+              { "pointer-events-none sm:bg-white": isStatic }
+            )}
             title="view story discussion"
           >
             <span className="font-bold text-xs text-brandTextPrimary">
@@ -26,41 +35,58 @@ const StoryItemWrapper = ({ storyId }) => {
         </Link>
 
         {/* content */}
-        <div className="relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pt-2 pb-3 bg-white sm:grid-cols-none sm:rounded-r sm:p-2 sm:pb-1">
+        <div className={clsx(
+          "relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pb-3 bg-white sm:grid-cols-none sm:rounded-r sm:p-2 sm:pr-4 sm:pb-1",
+          isStatic ? "pt-3" : "pt-2"
+        )}>
           {/* wrapper link (mobile only)  */}
-          <Link href={'story/' + data.id}>
-            <a 
-              className="absolute inset-0" 
-              title="view story discussion" 
-            />
-          </Link>
+          { !isStatic && (
+            <Link href={'/story/' + data.id}>
+              <a 
+                className="absolute inset-0" 
+                title="view story discussion" 
+              />
+            </Link>
+          )}
 
           {/* header info */}
           <StoryItemHeader storyData={data} />
-
+          
           {/* mobile overflow actions */}
-          <StoryItemMobileOverflowModal storyData={data} />
+          <StoryItemMobileActionsModal storyData={data} />
 
           {/* title */}
-          <h3 className="row-start-2 col-start-1 font-medium text-brandTextPrimary leading-tight sm:row-start-auto sm:col-start-auto sm:text-lg sm:leading-snug">
-            {data.title}
-          </h3>
+          <Link href={'/story/' + data.id}>
+            <a className={clsx(
+              "row-start-2 col-start-1 mb-1 font-medium text-brandTextPrimary leading-tight sm:row-start-auto sm:col-start-auto sm:mb-0 sm:text-lg sm:leading-snug",
+              { "visited:text-brandTextLinkVisited": !window.location.pathname.includes('/story') },
+            )}>
+              { data.title }
+            </a>
+          </Link>
 
           {/* display url */}
           <StoryItemDisplayLink rawLink={data.url} />
+          
+          {/* text/content */}
+          { withText && data.text && (
+            <div className="col-span-2 inline-block mb-1 text-sm break-words sm:col-auto sm:mb-2">
+              { useHtmlParser(data.text) }
+            </div>
+          )}
 
           {/* footer buttons */}
           <StoryItemFooter storyData={data} />
 
           {/* share drawer invoker */}
-          <StoryItemShareDrawerButton storyId={data.id} />
+          <StoryItemMobileShareTrigger storyId={data.id} />
         </div>
       </div>
     )
   );
 }
 
-// fetch loading
+// story item loader
 const IsLoading = () => {
   return (
     <div className="grid sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded">
@@ -83,17 +109,10 @@ const IsLoading = () => {
   );
 }
 
-// fetch error
-const IsError = () => {
-  return (
-    <div>An error occured.</div>
-  )
-}
-
 const IsDeadOrDeleted = () => {
   return (
     <div>Content cannot be found.</div>
   )
 }
  
-export default StoryItemWrapper;
+export default StoryItem;

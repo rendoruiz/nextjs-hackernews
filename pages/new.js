@@ -2,12 +2,9 @@ import { dehydrate, QueryClient } from "react-query";
 import StoryView from "../components/Story/StoryView";
 import { fetchNewStoryIds, useNewStoryIds } from "../hooks/useStoryIds";
 
-const HomeNewView = () => {
+const StoryListNewPage = () => {
   return ( 
-    <StoryView 
-      useHook={useNewStoryIds()} 
-      activeRoute="/new"
-    />
+    <StoryView useHook={useNewStoryIds()} />
   );
 }
 
@@ -21,4 +18,4 @@ export async function getStaticProps() {
   }
 }
  
-export default HomeNewView;
+export default StoryListNewPage;

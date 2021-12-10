@@ -1,15 +1,14 @@
+
+import { useState } from 'react';
+import { useRouter } from "next/dist/client/router";
 import Link from 'next/link'
-import NavbarWrapper from "../Navbar/NavbarWrapper";
-import NavbarItem from "../Navbar/NavbarItem";
+import clsx from "clsx";
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+
 import FireGlyph from "../Glyphs/FireGlyph";
 import LightningGlyph from "../Glyphs/LightningGlyph";
 import TrendUpGlyph from "../Glyphs/TrendUpGlyph";
-import clsx from "clsx";
 import ChevronDownGlyph from "../Glyphs/ChevronDownGlyph";
-import { useRouter } from "next/dist/client/router";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@radix-ui/react-dropdown-menu';
-import { useState } from 'react';
-import { useEffect } from 'react/cjs/react.development';
 
 const navItems = [
   {
@@ -28,7 +27,6 @@ const navItems = [
     glyph: <TrendUpGlyph className="w-full h-full" />,
   },
 ];
-
 
 const StoryNav = () => {
   const router = useRouter();
@@ -67,11 +65,8 @@ const MobileNavDropdown = ({ router }) => {
   }
 
   return (
-    <DropdownMenu open={isOpen} onOpenChange={(state) => setIsOpen(state)}>
-      <DropdownMenuTrigger 
-        className="flex items-center rounded px-2 py-3 text-brandTextSecondary sm:hidden" 
-        id="radix-storynav-dropdownmenu.trigger"
-      > 
+    <DropdownMenu.Root open={isOpen} onOpenChange={(state) => setIsOpen(state)}>
+      <DropdownMenu.Trigger className="flex items-center rounded px-2 py-3 text-brandTextSecondary sm:hidden"> 
         { navItems.map((item, index) => item.route === router.pathname && (
           <div 
             key={index}
@@ -84,28 +79,28 @@ const MobileNavDropdown = ({ router }) => {
         <ChevronDownGlyph />
         
         { isOpen && (<div className="fixed z-10 inset-0 bg-black/40 sm:hidden"></div>) }
-      </DropdownMenuTrigger>
-      <DropdownMenuContent 
-        className="grid w-[94vw] min-w-[282px] text-brandTextSecondary overflow-hidden sm:hidden"
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Content 
+        className="grid -ml-4 w-screen min-w-[282px] text-brandTextSecondary overflow-hidden sm:hidden"
         align="center"
         sideOffset={-8}
       >
         {/* custom arrow */}
-        <DropdownMenuLabel asChild>
+        <DropdownMenu.Label asChild>
           <svg
-            className="ml-10 w-4 h-2 scale-y-[-1] text-white fill-current"
+            className="ml-12 w-4 h-2 scale-y-[-1] text-white fill-current"
             preserveAspectRatio="none"
             viewBox="0 0 30 10"
           >
             <path d="M0 0h30L15 10z" />
           </svg>
-        </DropdownMenuLabel>
+        </DropdownMenu.Label>
         {/* actual content */}
-        <DropdownMenuGroup className="grid px-2 bg-white">
-          <DropdownMenuLabel className="py-3 font-bold text-xs uppercase tracking-widest">Sort Posts By:</DropdownMenuLabel>
-          <DropdownMenuSeparator className="border-b-brandDefault border-brandBorder" /> 
+        <DropdownMenu.Group className="grid mx-3 px-2 bg-white">
+          <DropdownMenu.Label className="py-3 font-bold text-xs uppercase tracking-widest">Sort Posts By:</DropdownMenu.Label>
+          <DropdownMenu.Separator className="border-b-brandDefault border-brandBorder" /> 
           { navItems.map((item, index) => (
-            <DropdownMenuItem key={index}>
+            <DropdownMenu.Item key={index}>
               <Link href={item.route}>
                 <a 
                   className="flex items-center px-1 py-3"
@@ -115,11 +110,11 @@ const MobileNavDropdown = ({ router }) => {
                   <span className="ml-3 text-brandTextPrimary">{ item.text }</span>
                 </a>
               </Link>
-            </DropdownMenuItem>
+            </DropdownMenu.Item>
           ))}
-        </DropdownMenuGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
+        </DropdownMenu.Group>
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
   )
 }
 

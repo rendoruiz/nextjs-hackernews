@@ -2,12 +2,9 @@ import { dehydrate, QueryClient } from "react-query";
 import StoryView from "../components/Story/StoryView";
 import { fetchBestStoryIds, useBestStoryIds } from "../hooks/useStoryIds";
 
-const HomeBestView = () => {
+const StoryListBestPage = () => {
   return ( 
-    <StoryView 
-      useHook={useBestStoryIds()} 
-      activeRoute="/best"
-    />
+    <StoryView useHook={useBestStoryIds()} />
   );
 }
 
@@ -22,4 +19,4 @@ export async function getStaticProps() {
   }
 }
  
-export default HomeBestView;
+export default StoryListBestPage;

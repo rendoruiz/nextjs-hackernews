@@ -6,9 +6,9 @@ import UserLink from '../../User/UserLink';
 
 const StoryItemHeader = ({ storyData }) => {
   return !storyData ? null : (  
-    <p className="relative row-start-1 col-start-1 flex items-center text-sm text-brandTextInfo sm:row-start-auto sm:col-start-auto sm:text-xs sm:tracking-wide">
+    <div className="relative row-start-1 col-start-1 flex items-center text-sm text-brandTextInfo sm:row-start-auto sm:col-start-auto sm:text-xs sm:tracking-wide">
       <UserAvatar  
-        className="inline-block mr-[0.375rem] sm:hidden"
+        className="inline-block mr-[0.375rem] w-6 h-6 sm:hidden"
         userId={storyData.by}
       /> 
       <UserLink
@@ -26,7 +26,7 @@ const StoryItemHeader = ({ storyData }) => {
       <span className="sm:hidden">•&nbsp;</span>
       <TimeRoute 
         className="sm:hidden"
-        storyId={storyData.id}
+        contentId={storyData.id}
         unixTime={storyData.time}
         isShort
       />
@@ -35,7 +35,7 @@ const StoryItemHeader = ({ storyData }) => {
         unixTime={storyData.time} 
         contentId={storyData.id} 
       />
-    </p>
+    </div>
   );
 }
  

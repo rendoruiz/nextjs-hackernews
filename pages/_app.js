@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
+import { IdProvider } from '@radix-ui/react-id';
 import '../styles/styles.css'
 
 function MyApp({ Component, pageProps }) {
@@ -9,7 +10,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
-        <Component {...pageProps} />
+        <IdProvider>
+          <Component {...pageProps} />
+        </IdProvider>
       </Hydrate>
 
       {/* inline debug tool */}

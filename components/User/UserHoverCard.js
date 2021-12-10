@@ -1,20 +1,27 @@
 import * as HoverCard from '@radix-ui/react-hover-card';
+
 import { useRelativeTime } from '../../hooks/useDate';
 import { useUser } from '../../hooks/useUser';
 import UserAvatar from './UserAvatar';
-
 import UserLink from './UserLink';
 
-const UserHoverCard = ({ userId, withPrefix }) => {
+const UserHoverCard = ({ userId, className, withPrefix, withAvatar, avatarClassName }) => {
   return !userId ? null : (  
     <HoverCard.Root>
       <HoverCard.Trigger asChild>
-        <span>
+        <div className={className}>
+          { (withAvatar || avatarClassName) && (
+            <UserAvatar
+              className={avatarClassName ?? "w-5 h-5"}
+              userId={userId}
+            />
+          )}
           <UserLink
             userId={userId}
             withPrefix={withPrefix}
           />
-        </span>
+
+        </div>
       </HoverCard.Trigger>
       <HoverCard.Content 
         className="grid gap-4 border-brandDefault border-brandBorder rounded p-3 pb-4 bg-white shadow-md"
@@ -34,7 +41,7 @@ const CardContent = ({ userId }) => {
     <section className="grid grid-cols-[auto,1fr] items-end gap-2">
       {/* heading */}
       <UserAvatar 
-        className="!w-9 !h-9"
+        className="w-9 h-9"
         userId={data.id}
       />
       {/* <div className="rounded bg-brandOrange "></div> */}
