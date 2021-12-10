@@ -1,17 +1,18 @@
 import Link from 'next/link';
+import clsx from 'clsx';
 import * as Dialog from '@radix-ui/react-dialog';
 
-import HorizontalDotsGlyph from '../../Glyphs/HorizontalDotsGlyph';
-import CloseGlyph from '../../Glyphs/CloseGlyph';
-import LinkGlyph from '../../Glyphs/LinkGlyph';
-import HackerNewsGlyph from '../../Glyphs/HackerNewsGlyph';
-import UserGlyph from '../../Glyphs/UserGlyph';
+import HorizontalDotsGlyph from '../Glyphs/HorizontalDotsGlyph';
+import LinkGlyph from '../Glyphs/LinkGlyph';
+import HackerNewsGlyph from '../Glyphs/HackerNewsGlyph';
+import UserGlyph from '../Glyphs/UserGlyph';
+import CloseGlyph from '../Glyphs/CloseGlyph';
 
-const StoryItemMobileActionsModal = ({ storyData }) => {
-  return !storyData ? null : ( 
+const MobileActionsModal = ({ itemData, route = "/story", triggerClassName }) => {
+  return itemData && route && (  
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className="row-start-1 col-start-2 justify-self-end relative -mr-2 -my-2 px-2 text-brandTextPrimary sm:hidden">
+        <button className={clsx(triggerClassName, "text-brandTextPrimary")}>
           <HorizontalDotsGlyph />
         </button>
       </Dialog.Trigger>
@@ -19,12 +20,12 @@ const StoryItemMobileActionsModal = ({ storyData }) => {
       <Dialog.Overlay className="fixed inset-0 bg-black/40 sm:hidden" />
       <Dialog.Content className="fixed top-1/2 left-1/2 py-1 w-[94vw] max-w-md bg-white -translate-x-1/2 -translate-y-1/2 sm:hidden">
         {/* screen reader */}
-        <Dialog.Title className="hidden">story item links overflow</Dialog.Title>
-        <Dialog.Description className="hidden">other links associated with the current story item</Dialog.Description>
+        <Dialog.Title className="hidden">item links overflow</Dialog.Title>
+        <Dialog.Description className="hidden">other links associated with the current item</Dialog.Description>
 
-        {/* story permalink */}
+        {/* item permalink */}
         <div className="grid grid-cols-[1fr,auto]">
-          <Link href={'/story/' + storyData.id}>
+          <Link href={`${route}/` + itemData.id}>
             <a className="grid grid-cols-[auto,1fr] items-center">
               <div className="grid place-items-center w-12 h-12 text-brandTextSecondary">
                 <LinkGlyph />
@@ -39,7 +40,7 @@ const StoryItemMobileActionsModal = ({ storyData }) => {
 
         {/* hackernews story permalink */}
         <a 
-          href={'https://news.ycombinator.com/item?id=' + storyData.id}
+          href={'https://news.ycombinator.com/item?id=' + itemData.id}
           className="grid grid-cols-[auto,1fr] items-center"
         >
           <div className="grid place-items-center w-12 h-12 text-brandTextSecondary">
@@ -49,13 +50,13 @@ const StoryItemMobileActionsModal = ({ storyData }) => {
         </a>
 
         {/* user link */}
-        <Link href={'/user/' + storyData.by}>
+        <Link href={'/user/' + itemData.by}>
           <a className="grid grid-cols-[auto,1fr] items-center">
             <div className="grid place-items-center w-12 h-12 text-brandTextSecondary">
               <UserGlyph className="w-6 h-6 rounded-full" />
             </div>
             <span className="py-2 text-brandTextPrimary overflow-ellipsis overflow-hidden">
-              { storyData.by }'{ storyData.by.split('').pop().toLowerCase() !== 's' && 's' } profile
+              { itemData.by }'{ itemData.by.split('').pop().toLowerCase() !== 's' && 's' } profile
             </span>
           </a>
         </Link>
@@ -63,5 +64,5 @@ const StoryItemMobileActionsModal = ({ storyData }) => {
     </Dialog.Root>
   );
 }
-
-export default StoryItemMobileActionsModal;
+ 
+export default MobileActionsModal;

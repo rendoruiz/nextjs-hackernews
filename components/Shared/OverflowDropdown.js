@@ -4,12 +4,12 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import HackerNewsGlyph from '../Glyphs/HackerNewsGlyph';
 import HorizontalDotsGlyph from '../Glyphs/HorizontalDotsGlyph';
 
-const OverflowDropdown = ({ itemData, className }) => {
+const OverflowDropdown = ({ itemData, triggerClassName }) => {
   return (  
     <DropdownMenu.Root modal={false}>
       <DropdownMenu.Trigger 
         className={clsx(
-          className,
+          triggerClassName,
           "self-center items-center rounded transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive"
         )}
         title="story overflow menu trigger"
