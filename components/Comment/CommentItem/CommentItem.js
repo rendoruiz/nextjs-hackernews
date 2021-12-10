@@ -25,7 +25,7 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
       )}>      
         {/* dead comment indicator */}
         { data.dead && 
-          <div className="justify-self-start rounded mb-1 px-1 py-[0.125rem] bg-brandButtonOutline font-bold text-xs text-brandTextSecondary uppercase">
+          <div className="justify-self-start rounded mb-1 px-1 py-[0.0625rem] bg-brandButtonOutline font-bold text-xs text-brandTextSecondary uppercase">
             dead comment
           </div>
         }
