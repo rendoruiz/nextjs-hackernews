@@ -50,7 +50,7 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
             className="font-bold text-xs text-brandButtonInlineText tracking-wide text-left hover:underline sm:text-brandTextPrimary sm:tracking-normal"
             onClick={(e) => handleClick(e)}
           >
-            { isReplyDepthLimitReached() ? (
+            { isReplyDepthLimitReached() && !isChildrenLoaded ? (
               <span>{ replyIds.length } more repl{ replyIds.length > 1 ? "ies" : "y" }</span>
             ) : (
               <span>{ replyIds.length-replyCount } more repl{ replyIds.length-replyCount > 1 ? "ies" : "y" }</span>
