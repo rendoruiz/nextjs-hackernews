@@ -5,6 +5,7 @@ import { useComment } from "../../../hooks/useComment";
 import { useHtmlParser } from "../../../hooks/useHtmlParser";
 import ItemIsError from "../../StatusMessage/ItemIsError";
 import CommentItemHeader from "./CommentItemHeader";
+import CommentItemFooter from "./CommentItemFooter";
 import CommentItemReplies from "./CommentItemReplies";
 
 const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 }) => {
@@ -67,7 +68,8 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
             { useHtmlParser(data.text) }
           </div>
 
-          {/* <div className="my-2">kek</div> */}
+          {/* desktop dropdown button */}
+          <CommentItemFooter commentData={data} />
 
           {/* if there are comment replies: display if meets set condition, else display trigger to load replies */}
           <CommentItemReplies 
