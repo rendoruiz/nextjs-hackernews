@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Tooltip, TooltipArrow, TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip";
+import * as Tooltip from '@radix-ui/react-tooltip';
 
 import { useFullDateTime, useRelativeTime } from '../../hooks/useDate';
 
@@ -7,8 +7,8 @@ const TimeTooltip = ({ className, unixTime, contentId, isComment }) => {
   const relativeTime = useRelativeTime(unixTime);
 
   return !unixTime ? null : (  
-    <Tooltip>
-      <TooltipTrigger asChild>
+    <Tooltip.Root>
+      <Tooltip.Trigger asChild>
         { contentId ? (
           <span className={className}>
             <Link href={(!isComment ? "/story/" : "/comment/") + contentId}>
@@ -22,16 +22,16 @@ const TimeTooltip = ({ className, unixTime, contentId, isComment }) => {
             { relativeTime }
           </span>
         )}
-      </TooltipTrigger>
-      <TooltipContent 
+      </Tooltip.Trigger>
+      <Tooltip.Content 
         className="rounded px-2 py-1 bg-black font-medium text-xs text-white"
         side="top"
         sideOffset={4}
       >
         <span>{ useFullDateTime(unixTime) }</span>
-        <TooltipArrow className="my-[-0.5px] text-black fill-current" />
-      </TooltipContent>
-    </Tooltip>
+        <Tooltip.Arrow className="my-[-0.5px] text-black fill-current" />
+      </Tooltip.Content>
+    </Tooltip.Root>
   );
 }
  

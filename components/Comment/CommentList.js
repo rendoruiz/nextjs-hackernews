@@ -3,17 +3,19 @@ import { useState } from "react";
 import { useStory } from "../../hooks/useStory";
 import IsError from "../StatusMessage/IsError";
 import IsLoading from "../StatusMessage/IsLoading";
-import CommentItemWrapper from "./CommentItem/CommentItemWrapper";
+import CommentItem from "./CommentItem/CommentItem";
 
 const CommentList = ({ storyId }) => {
+  const defaultItemCount = 5;
+  const itemIncrementCount = 8;
+  const defaultDepthLimit = 2;
   const { isLoading, isError, data: storyData, isSuccess } = useStory(storyId, false);
-  const [isCountLimited, setIsCountLimited] = useState(true);   // todo: save state locally
-  const replyDepthLimit = 3;
-  const defaultCount = 10;
+  const [itemCount, setItemCount] = useState(defaultItemCount); // todo: save state locally
 
   const handleClick = (e) => {
     e.preventDefault();
-    setIsCountLimited(false);
+    const newCount = itemCount + itemIncrementCount;
+    setItemCount(newCount);
   }
 
   return isLoading ? (<IsLoading />) : isError || !storyData ? (<IsError />) : isSuccess && (  
@@ -38,12 +40,12 @@ const CommentList = ({ storyId }) => {
       { storyData.kids && (
         <div className="group grid content-start gap-5">
           {
-            [...storyData.kids].slice(0, isCountLimited ? defaultCount : storyData.kids.length).map((commentId) => (
-              <CommentItemWrapper
+            [...storyData.kids].slice(0, itemCount).map((commentId) => (
+              <CommentItem
                 key={commentId}
                 commentId={commentId}
                 submitterId={storyData.by}
-                replyDepthLimit={replyDepthLimit}
+                replyDepthLimit={defaultDepthLimit}
               />
             ))
           }
@@ -51,13 +53,13 @@ const CommentList = ({ storyId }) => {
       )}
 
       {/* load more comments trigger */}
-      { isCountLimited && storyData.kids && storyData.kids.length > defaultCount && (
+      { storyData.kids && storyData.kids.length > itemCount && (
         <div className="px-4">
           <button
             className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left hover:underline sm:text-brandTextPrimary"
             onClick={(e) => handleClick(e)}
           >
-            Show all { storyData.kids.length - defaultCount} comments
+            Show { storyData.kids.length-itemCount > itemIncrementCount ? itemIncrementCount : storyData.kids.length-itemCount } more comment{ storyData.kids.length-itemCount > 1 && "s" }
           </button>
         </div>
       )}

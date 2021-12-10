@@ -4,13 +4,13 @@ import { useRouter } from "next/dist/client/router";
 import { useCountQueryString } from "../../hooks/useCountQueryString";
 import IsError from "../StatusMessage/IsError";
 import IsLoading from "../StatusMessage/IsLoading";
-import StoryItemWrapper from "./StoryItem/StoryItemWrapper";
+import StoryItem from "./StoryItem/StoryItem";
 
 const StoryList = ({ useHook }) => {
   const router = useRouter();
   const { isLoading, isError, data, isSuccess } = useHook;
   const [itemCount, setItemCount] = useState(null);  // todo: save state locally
-  const defaultCount = 25; 
+  const defaultCount = 15; 
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -31,7 +31,7 @@ const StoryList = ({ useHook }) => {
       <div className="grid content-start gap-1 sm:gap-3">
         {
           [...data].slice(0, itemCount).map((storyId) => 
-            <StoryItemWrapper
+            <StoryItem
               key={storyId}
               storyId={storyId}
             />

@@ -7,14 +7,13 @@ import ItemIsError from "../../StatusMessage/ItemIsError";
 import CommentItemHeader from "./CommentItemHeader";
 import CommentItemReplies from "./CommentItemReplies";
 
-const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 }) => {
+const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 }) => {
   const { isLoading, isError, data, isSuccess, error } = useComment(commentId);
   const [isCollapsed, setIsCollapsed] = useState(false);    // todo: save state locally
 
   const toggleDisplayState = (e) => {
     e.preventDefault();
     setIsCollapsed(!isCollapsed);
-    console.log('toggled')
   }
 
   return isLoading ? (<IsLoading itemDepth={parentDepth} />) : isError || !data ? (<ItemIsError error={error} />) : isSuccess && (
@@ -26,7 +25,7 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
       )}>      
         {/* dead comment indicator */}
         { data.dead && 
-          <div className="justify-self-start rounded mb-1 px-1 py-[0.125rem] bg-brandButtonOutline font-bold text-xs text-brandTextSecondary uppercase">
+          <div className="justify-self-start rounded mb-1 px-1 py-[0.0625rem] bg-brandButtonOutline font-bold text-xs text-brandTextSecondary uppercase">
             dead comment
           </div>
         }
@@ -76,7 +75,7 @@ const CommentItemWrapper = ({ commentId, submitterId, replyDepthLimit, parentDep
 const IsLoading = ({ itemDepth }) => {
   return (
     <div className={clsx(
-      "grid text-sm sm:border-none sm:px-0",
+      "grid gap-1 text-sm sm:border-none sm:px-0",
       { "border-t-brandDefault border-t-brandButtonOutline px-4 pt-3 first:border-t-0 first:pt-0": itemDepth === 0 },
     )}>
       <div className="grid grid-cols-[auto,1fr] gap-2">
@@ -91,7 +90,7 @@ const IsLoading = ({ itemDepth }) => {
       </div>
       
       <div className={clsx("grid", itemDepth === 0 ? "ml-8" : "mt-[0.125rem]")}>
-        <div className="grid gap-1">
+        <div className="grid gap-[2px]">
           <div className="rounded-md w-10/12 h-4 bg-brandTextSecondary/30 animate-pulse" />
           <div className="rounded-md w-full h-4 bg-brandTextSecondary/30 animate-pulse" />
           <div className="rounded-md w-3/4 h-4 bg-brandTextSecondary/30 animate-pulse" />
@@ -101,4 +100,4 @@ const IsLoading = ({ itemDepth }) => {
   );
 }
  
-export default CommentItemWrapper;
+export default CommentItem;
