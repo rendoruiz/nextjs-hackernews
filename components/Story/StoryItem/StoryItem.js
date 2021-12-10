@@ -7,8 +7,8 @@ import StoryItemHeader from "./StoryItemHeader";
 import StoryItemDisplayLink from "./StoryItemDisplayLink";
 import StoryItemFooter from "./StoryItemFooter";
 import StoryItemMobileShareTrigger from './StoryItemMobileShareTrigger';
-import StoryItemMobileActionsModal from './StoryItemMobileActionsModal';
 import ItemIsError from '../../StatusMessage/ItemIsError';
+import MobileActionsModal from '../../Shared/MobileActionsModal';
 
 const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
@@ -53,7 +53,10 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
           <StoryItemHeader storyData={data} />
           
           {/* mobile overflow actions */}
-          <StoryItemMobileActionsModal storyData={data} />
+          <MobileActionsModal 
+            itemData={data} 
+            triggerClassName="row-start-1 col-start-2 justify-self-end relative -mr-2 -my-2 px-2 sm:hidden"
+          />
 
           {/* title */}
           <Link href={'/story/' + data.id}>
