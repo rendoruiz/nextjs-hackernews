@@ -7,7 +7,7 @@ import StoryItemHeader from "./StoryItemHeader";
 import StoryItemDisplayLink from "./StoryItemDisplayLink";
 import StoryItemFooter from "./StoryItemFooter";
 import StoryItemShareDrawerButton from './StoryItemShareDrawerButton';
-import StoryItemOverflowMobileModal from './StoryItemOverflowMobileModal';
+import StoryItemMobileActionsModal from './StoryItemMobileActionsModal';
 import ItemIsError from '../../StatusMessage/ItemIsError';
 
 const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
@@ -53,7 +53,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
           <StoryItemHeader storyData={data} />
           
           {/* mobile overflow actions */}
-          <StoryItemOverflowMobileModal storyData={data} />
+          <StoryItemMobileActionsModal storyData={data} />
 
           {/* title */}
           <Link href={'/story/' + data.id}>

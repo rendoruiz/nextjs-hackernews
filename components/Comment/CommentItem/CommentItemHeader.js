@@ -2,7 +2,7 @@ import clsx from "clsx";
 import * as Tooltip from '@radix-ui/react-tooltip';
 
 import { useShortRelativeTime } from "../../../hooks/useDate";
-import CommentItemOverflowMobileModal from "./CommentItemOverflowMobileModal";
+import CommentItemMobileActionsModal from "./CommentItemMobileActionsModal";
 import UserAvatar from "../../User/UserAvatar";
 import UserLink from "../../User/UserLink";
 import MicrophoneGlyph from "../../Glyphs/MicrophoneGlyph";
@@ -99,7 +99,7 @@ const CommentItemHeader = ({ commentData, submitterId, itemDepth, isDead = false
           />
         </div>
 
-        <CommentItemOverflowMobileModal commentData={commentData} />
+        <CommentItemMobileActionsModal commentData={commentData} />
       </div>
     </div>
   );
