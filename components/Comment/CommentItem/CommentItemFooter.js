@@ -3,12 +3,12 @@ import OverflowDropdown from '../../Shared/OverflowDropdown';
 
 const CommentItemFooter = ({ commentData }) => {
   return (  
-    <div className="hidden sm:grid grid-flow-col auto-cols-auto justify-start items-center gap-1 my-1 text-xs text-brandTextSecondary">
+    <div className="hidden sm:grid grid-flow-col auto-cols-auto justify-start items-center gap-1 mt-3 mb-2 text-xs text-brandTextSecondary">
       {/* share dropdown */}
       <ShareDropdown
         itemData={commentData}
         route="comment"
-        toggleClassName="-ml-1 px-1 py-2"
+        toggleClassName="-ml-1 p-1"
       />
 
       {/* overflow dropdown */}

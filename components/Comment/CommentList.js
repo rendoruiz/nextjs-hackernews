@@ -19,7 +19,7 @@ const CommentList = ({ storyId }) => {
   }
 
   return isLoading ? (<IsLoading />) : isError || !storyData ? (<IsError />) : isSuccess && (  
-    <div className="grid content-start gap-3 pt-1 pb-3 bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:p-3 sm:shadow-sm">
+    <div className="grid content-start gap-3 pt-1 pb-3 bg-white sm:gap-1 sm:border-brandDefault sm:border-brandBorder sm:rounded sm:p-3 sm:pr-5 sm:shadow-sm">
       {/* mobile comment count (displayed by default) */}
       <div className="px-4 sm:hidden">
         <span className="font-bold text-xs sm:hidden">
@@ -38,7 +38,7 @@ const CommentList = ({ storyId }) => {
       
       {/* comment list */}
       { storyData.kids && (
-        <div className="grid content-start gap-5">
+        <div className="grid content-start gap-5 sm:gap-7">
           {
             [...storyData.kids].slice(0, itemCount).map((commentId) => (
               <CommentItem
@@ -54,12 +54,17 @@ const CommentList = ({ storyId }) => {
 
       {/* load more comments trigger */}
       { storyData.kids && storyData.kids.length > itemCount && (
-        <div className="px-4">
+        <div className="border-t-brandDefault border-t-brandButtonOutline mt-2 px-4 pt-3 pb-1 sm:border-none sm:mt-0 sm:px-2 sm:py-0">
           <button
-            className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left hover:underline sm:text-brandTextPrimary"
+            className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left hover:underline sm:text-brandOrange"
             onClick={(e) => handleClick(e)}
           >
-            Show { storyData.kids.length-itemCount > itemIncrementCount ? itemIncrementCount : storyData.kids.length-itemCount } more comment{ storyData.kids.length-itemCount > 1 && "s" }
+            <span className="sm:hidden">
+              Show { storyData.kids.length-itemCount > itemIncrementCount ? itemIncrementCount : storyData.kids.length-itemCount } more comment{ storyData.kids.length-itemCount > 1 && "s" }
+            </span>
+            <span className="hidden sm:block">
+              { storyData.kids.length-itemCount > itemIncrementCount ? itemIncrementCount : storyData.kids.length-itemCount } more repl{ storyData.kids.length-itemCount > 1 ? "ies" : "y" }
+            </span>
           </button>
         </div>
       )}

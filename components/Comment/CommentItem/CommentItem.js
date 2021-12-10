@@ -20,7 +20,7 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
   return isLoading ? (<IsLoading itemDepth={parentDepth} />) : isError || !data ? (<ItemIsError error={error} />) : isSuccess && (
     !data.deleted && (  
       <div className={clsx(
-        "grid text-sm sm:grid-cols-[auto,1fr] sm:gap-x-2 sm:border-none sm:px-0",
+        "grid text-sm sm:grid-cols-[auto,1fr] sm:gap-x-2 sm:border-none sm:p-0",
         { "border-t-brandDefault border-t-brandButtonOutline px-4 pt-3 first:border-t-0 first:pt-0": parentDepth === 0 },
         { "-mb-2 last:mb-0": isCollapsed && parentDepth === 0 }
       )}>      
