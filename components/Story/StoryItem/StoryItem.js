@@ -6,8 +6,8 @@ import { useHtmlParser } from '../../../hooks/useHtmlParser';
 import StoryItemHeader from "./StoryItemHeader";
 import StoryItemDisplayLink from "./StoryItemDisplayLink";
 import StoryItemFooter from "./StoryItemFooter";
-import StoryItemShareDrawerButton from './StoryItemShareDrawerButton';
-import StoryItemMobileOverflowModal from './StoryItemMobileOverflowModal';
+import StoryItemMobileShareTrigger from './StoryItemMobileShareTrigger';
+import StoryItemMobileActionsModal from './StoryItemMobileActionsModal';
 import ItemIsError from '../../StatusMessage/ItemIsError';
 
 const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
@@ -53,7 +53,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
           <StoryItemHeader storyData={data} />
           
           {/* mobile overflow actions */}
-          <StoryItemMobileOverflowModal storyData={data} />
+          <StoryItemMobileActionsModal storyData={data} />
 
           {/* title */}
           <Link href={'/story/' + data.id}>
@@ -79,7 +79,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
           <StoryItemFooter storyData={data} />
 
           {/* share drawer invoker */}
-          <StoryItemShareDrawerButton storyId={data.id} />
+          <StoryItemMobileShareTrigger storyId={data.id} />
         </div>
       </div>
     )

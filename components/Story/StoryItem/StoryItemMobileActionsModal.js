@@ -7,7 +7,7 @@ import LinkGlyph from '../../Glyphs/LinkGlyph';
 import HackerNewsGlyph from '../../Glyphs/HackerNewsGlyph';
 import UserGlyph from '../../Glyphs/UserGlyph';
 
-const StoryItemMobileOverflowModal = ({ storyData }) => {
+const StoryItemMobileActionsModal = ({ storyData }) => {
   return !storyData ? null : ( 
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -64,4 +64,4 @@ const StoryItemMobileOverflowModal = ({ storyData }) => {
   );
 }
 
-export default StoryItemMobileOverflowModal;
+export default StoryItemMobileActionsModal;

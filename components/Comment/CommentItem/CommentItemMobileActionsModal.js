@@ -7,7 +7,7 @@ import LinkGlyph from '../../Glyphs/LinkGlyph';
 import HackerNewsGlyph from '../../Glyphs/HackerNewsGlyph';
 import UserGlyph from '../../Glyphs/UserGlyph';
 
-const CommentItemMobileOverflowModal = ({ commentData }) => {
+const CommentItemMobileActionsModal = ({ commentData }) => {
   return !commentData ? null : (  
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -64,4 +64,4 @@ const CommentItemMobileOverflowModal = ({ commentData }) => {
   );
 }
  
-export default CommentItemMobileOverflowModal;
+export default CommentItemMobileActionsModal;

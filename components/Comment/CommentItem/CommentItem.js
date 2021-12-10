@@ -5,6 +5,7 @@ import { useComment } from "../../../hooks/useComment";
 import { useHtmlParser } from "../../../hooks/useHtmlParser";
 import ItemIsError from "../../StatusMessage/ItemIsError";
 import CommentItemHeader from "./CommentItemHeader";
+import CommentItemFooter from "./CommentItemFooter";
 import CommentItemReplies from "./CommentItemReplies";
 
 const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 }) => {
@@ -19,13 +20,13 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
   return isLoading ? (<IsLoading itemDepth={parentDepth} />) : isError || !data ? (<ItemIsError error={error} />) : isSuccess && (
     !data.deleted && (  
       <div className={clsx(
-        "grid text-sm sm:border-none sm:px-0",
+        "grid text-sm sm:grid-cols-[auto,1fr] sm:gap-x-2 sm:border-none sm:p-0",
         { "border-t-brandDefault border-t-brandButtonOutline px-4 pt-3 first:border-t-0 first:pt-0": parentDepth === 0 },
         { "-mb-2 last:mb-0": isCollapsed && parentDepth === 0 }
       )}>      
         {/* dead comment indicator */}
         { data.dead && 
-          <div className="justify-self-start rounded mb-1 px-1 py-[0.0625rem] bg-brandButtonOutline font-bold text-xs text-brandTextSecondary uppercase">
+          <div className="justify-self-start rounded mb-1 px-1 py-[0.0625rem] bg-brandButtonOutline font-bold text-xs text-brandTextSecondary uppercase sm:col-span-2">
             dead comment
           </div>
         }
@@ -37,13 +38,26 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
           itemDepth={parentDepth}
           isDead={data.dead}
           toggleDisplayState={toggleDisplayState}
+          isCollapsed={isCollapsed}
         />
 
+        {/* vertical line - desktop collapse toggle */}
+        <div className={clsx(
+          "hidden col-start-1 w-7 overflow-hidden",
+          { "sm:grid": !isCollapsed }
+        )}>
+          <button 
+            className="group grid justify-center mx-[6px]"
+            title="collapse comment item"
+            onClick={(e) => toggleDisplayState(e)}
+          >
+            <div className="border-r-2 border-brandButtonOutline mt-2 h-full group-hover:border-brandOrange"></div>
+          </button>
+        </div>
+
         {/* content */}
-        <div className={clsx("grid",
-          parentDepth === 0 
-            ? "ml-8"
-            : "mt-1",
+        <div className={clsx("grid sm:col-start-2 sm:ml-0 sm:mt-0",
+          parentDepth === 0 ? "ml-8" : "mt-1",
           { "hidden": isCollapsed }
         )}>
           {/* text */}
@@ -54,17 +68,15 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
             { useHtmlParser(data.text) }
           </div>
 
+          {/* desktop dropdown button */}
+          <CommentItemFooter commentData={data} />
+
           {/* if there are comment replies: display if meets set condition, else display trigger to load replies */}
           <CommentItemReplies 
             replyIds={data.kids}
             replyDepthLimit={replyDepthLimit}
             parentDepth={parentDepth}
           />
-        </div>
-
-        {/* horizontal line/desktop collapse toggle */}
-        <div className={clsx("hidden")}>
-          <button className="hidden"></button>
         </div>
       </div>
     )
