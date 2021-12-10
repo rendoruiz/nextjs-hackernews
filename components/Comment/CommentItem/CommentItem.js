@@ -42,7 +42,7 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
 
         {/* vertical line - desktop collapse toggle */}
         <div className={clsx(
-          "hidden col-start-1 w-7",
+          "hidden col-start-1 w-7 overflow-hidden",
           { "sm:grid": !isCollapsed }
         )}>
           <button 
@@ -55,10 +55,8 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
         </div>
 
         {/* content */}
-        <div className={clsx("grid col-start-2",
-          parentDepth === 0 
-            ? "ml-8"
-            : "mt-1",
+        <div className={clsx("grid sm:col-start-2 sm:ml-0 sm:mt-0",
+          parentDepth === 0 ? "ml-8" : "mt-1",
           { "hidden": isCollapsed }
         )}>
           {/* text */}
@@ -68,6 +66,8 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
           )}>
             { useHtmlParser(data.text) }
           </div>
+
+          {/* <div className="my-2">kek</div> */}
 
           {/* if there are comment replies: display if meets set condition, else display trigger to load replies */}
           <CommentItemReplies 

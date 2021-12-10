@@ -28,7 +28,7 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
   // if replyDepthLimit has been reached, a trigger will be displayed to manually load the replies with the provided replyIds.
   // a trigger will also be displayed if not all children are loaded.
   return !replyIds ? null : replyIds.length <= 0 ? null : (
-    <div className="grid gap-4 border-l-brandDefault border-brandButtonOutline mt-4 pl-4">
+    <div className="grid gap-4 border-l-brandDefault border-brandButtonOutline mt-4 pl-4 sm:border-none sm:-ml-3 sm:pl-0">
       {/* comment replies */}
       { (!isReplyDepthLimitReached() || isChildrenLoaded) && (
         <div className="grid gap-4">
@@ -45,7 +45,7 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
 
       {/* display load more replies button if: a) no children has been loaded, b) not all child replies are loaded */}
       { ((isReplyDepthLimitReached() && !isChildrenLoaded) || replyIds.length > replyCount) && (
-        <div className="grid place-items-start">
+        <div className="grid place-items-start sm:ml-3 sm:pb-2">
           <button 
             className="font-bold text-xs text-brandButtonInlineText tracking-wide text-left hover:underline sm:text-brandTextPrimary sm:tracking-normal"
             onClick={(e) => handleClick(e)}

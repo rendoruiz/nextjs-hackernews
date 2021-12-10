@@ -2,7 +2,7 @@ import clsx from "clsx";
 import * as Tooltip from '@radix-ui/react-tooltip';
 
 import { useShortRelativeTime } from "../../../hooks/useDate";
-import CommentItemMobileOverflowModal from "./CommentItemMobileOverflowModal";
+import CommentItemOverflowMobileModal from "./CommentItemOverflowMobileModal";
 import UserAvatar from "../../User/UserAvatar";
 import UserLink from "../../User/UserLink";
 import MicrophoneGlyph from "../../Glyphs/MicrophoneGlyph";
@@ -91,7 +91,7 @@ const CommentItemHeader = ({ commentData, submitterId, itemDepth, isDead = false
 
         {/* desktop time tooltip */}
         <div className="hidden sm:block text-brandTextSecondary sm:tracking-wide">
-          &nbsp;•&nbsp;
+          <span className="tracking-widest">&nbsp;·&nbsp;</span>
           <TimeTooltip
             unixTime={commentData.time}
             contentId={commentData.id}
@@ -99,7 +99,7 @@ const CommentItemHeader = ({ commentData, submitterId, itemDepth, isDead = false
           />
         </div>
 
-        <CommentItemMobileOverflowModal commentData={commentData} />
+        <CommentItemOverflowMobileModal commentData={commentData} />
       </div>
     </div>
   );
