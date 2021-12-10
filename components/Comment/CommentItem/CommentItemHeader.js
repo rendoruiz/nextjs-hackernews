@@ -98,7 +98,7 @@ const CommentItemHeader = ({ commentData, submitterId, itemDepth, isDead = false
             isComment
           />
         </div>
-
+        
         <MobileActionsModal 
           itemData={commentData} 
           triggerClassName="-mr-2 -my-2 p-2 sm:hidden"

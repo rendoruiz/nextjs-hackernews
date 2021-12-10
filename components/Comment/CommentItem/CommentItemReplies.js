@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import CommentItem from "./CommentItem";
 
-const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
+const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth, submitterId }) => {
   const currentDepth = parentDepth + 1;
   const defaultReplyCount = 3;
   const replyIncrementCount = 5;
@@ -36,6 +36,7 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth }) => {
             <CommentItem 
               key={replyId}
               commentId={replyId} 
+              submitterId={submitterId}
               replyDepthLimit={replyDepthLimit}
               parentDepth={currentDepth}
             />
