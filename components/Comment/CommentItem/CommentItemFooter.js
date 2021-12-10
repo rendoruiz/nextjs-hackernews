@@ -7,7 +7,6 @@ const CommentItemFooter = ({ commentData }) => {
       {/* share dropdown */}
       <ShareDropdown
         itemData={commentData}
-        route="comment"
         triggerClassName="-ml-1 p-1"
       />
 

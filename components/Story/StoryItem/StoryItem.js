@@ -55,7 +55,6 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
           {/* mobile overflow actions */}
           <MobileActionsModal 
             itemData={data} 
-            route="/story" 
             triggerClassName="row-start-1 col-start-2 justify-self-end relative -mr-2 -my-2 px-2 sm:hidden"
           />
 

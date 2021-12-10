@@ -33,7 +33,6 @@ const StoryItemFooter = ({ storyData }) => {
       {/* share dropdown */}
       <ShareDropdown 
         itemData={storyData} 
-        route="/story"
         withGlyph
         triggerClassName="hidden sm:flex pr-2 pl-1"
       />

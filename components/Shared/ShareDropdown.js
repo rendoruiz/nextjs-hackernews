@@ -7,7 +7,7 @@ import LinkGlyph from "../Glyphs/LinkGlyph";
 import ExternalLinkGlyph from "../Glyphs/ExternalLinkGlyph";
 import HackerNewsGlyph from "../Glyphs/HackerNewsGlyph";
 
-const ShareDropdown = ({ itemData, route, withGlyph, triggerClassName }) => {
+const ShareDropdown = ({ itemData, route = "/story", withGlyph, triggerClassName }) => {
   return (  
     <DropdownMenu.Root modal={false}>
       <DropdownMenu.Trigger className={clsx(

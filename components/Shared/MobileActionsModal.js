@@ -8,7 +8,7 @@ import HackerNewsGlyph from '../Glyphs/HackerNewsGlyph';
 import UserGlyph from '../Glyphs/UserGlyph';
 import CloseGlyph from '../Glyphs/CloseGlyph';
 
-const MobileActionsModal = ({ itemData, route, triggerClassName }) => {
+const MobileActionsModal = ({ itemData, route = "/story", triggerClassName }) => {
   return itemData && route && (  
     <Dialog.Root>
       <Dialog.Trigger asChild>
