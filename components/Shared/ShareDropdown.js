@@ -7,11 +7,11 @@ import LinkGlyph from "../Glyphs/LinkGlyph";
 import ExternalLinkGlyph from "../Glyphs/ExternalLinkGlyph";
 import HackerNewsGlyph from "../Glyphs/HackerNewsGlyph";
 
-const ShareDropdown = ({ itemData, route, withGlyph, toggleClassName }) => {
+const ShareDropdown = ({ itemData, route, withGlyph, triggerClassName }) => {
   return (  
     <DropdownMenu.Root modal={false}>
       <DropdownMenu.Trigger className={clsx(
-        toggleClassName, 
+        triggerClassName, 
         "items-center rounded transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive"
       )}> 
         { withGlyph && (<ShareGlyph />) }

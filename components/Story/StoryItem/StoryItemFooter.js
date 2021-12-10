@@ -35,13 +35,13 @@ const StoryItemFooter = ({ storyData }) => {
         itemData={storyData} 
         route="/story"
         withGlyph
-        toggleClassName="hidden sm:flex pr-2 pl-1"
+        triggerClassName="hidden sm:flex pr-2 pl-1"
       />
 
       {/* overflow dropdown */}
       <OverflowDropdown 
         itemData={storyData} 
-        className="hidden sm:flex px-2 py-1"
+        triggerClassName="hidden sm:flex px-2 py-1"
       />
     </div>
   );

@@ -8,13 +8,13 @@ const CommentItemFooter = ({ commentData }) => {
       <ShareDropdown
         itemData={commentData}
         route="comment"
-        toggleClassName="-ml-1 p-1"
+        triggerClassName="-ml-1 p-1"
       />
 
       {/* overflow dropdown */}
       <OverflowDropdown 
         itemData={commentData} 
-        className="p-1"
+        triggerClassName="p-1"
       />
     </div>
   );
