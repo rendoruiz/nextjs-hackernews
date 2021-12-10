@@ -1,6 +1,6 @@
 import ShareDrawerGlyph from "../../Glyphs/ShareDrawerGlyph";
 
-const StoryItemShareDrawerButton = ({ storyId }) => {
+const StoryItemMobileShareTrigger = ({ storyId }) => {
   const handleClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -21,4 +21,4 @@ const StoryItemShareDrawerButton = ({ storyId }) => {
   );
 }
 
-export default StoryItemShareDrawerButton;
+export default StoryItemMobileShareTrigger;

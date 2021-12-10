@@ -6,7 +6,7 @@ import { useHtmlParser } from '../../../hooks/useHtmlParser';
 import StoryItemHeader from "./StoryItemHeader";
 import StoryItemDisplayLink from "./StoryItemDisplayLink";
 import StoryItemFooter from "./StoryItemFooter";
-import StoryItemShareDrawerButton from './StoryItemShareDrawerButton';
+import StoryItemMobileShareTrigger from './StoryItemMobileShareTrigger';
 import StoryItemMobileActionsModal from './StoryItemMobileActionsModal';
 import ItemIsError from '../../StatusMessage/ItemIsError';
 
@@ -79,7 +79,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
           <StoryItemFooter storyData={data} />
 
           {/* share drawer invoker */}
-          <StoryItemShareDrawerButton storyId={data.id} />
+          <StoryItemMobileShareTrigger storyId={data.id} />
         </div>
       </div>
     )
