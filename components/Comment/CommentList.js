@@ -27,7 +27,6 @@ const CommentList = ({ storyId }) => {
           return;
         }
       }
-      
       setItemIds([...storyData.kids].slice(0, itemCount));
     }
   }, [itemCount, storyData]);
