@@ -8,7 +8,7 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth, submitterI
   const replyIncrementCount = 5;
   const [replyCount, setReplyCount] = useState(defaultReplyCount);
   const [isChildrenLoaded, setIsChildrenLoaded] = useState(false);
-  const [isReplyDepthLimitReached, setIsReplyDepthLimitReached] = useState(null);
+  const [isReplyDepthLimitReached, setIsReplyDepthLimitReached] = useState(true);
 
   useEffect(() => {
     setIsReplyDepthLimitReached((currentDepth >= replyDepthLimit) ? true : false)
