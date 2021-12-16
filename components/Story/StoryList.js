@@ -31,7 +31,7 @@ const StoryList = ({ useHook }) => {
 
   useEffect(() => {
     if (data) {
-      setItemIds([...data]).slice(0, itemCount);
+      setItemIds([...data].slice(0, itemCount));
     }
   }, [itemCount, data]);
 
