@@ -10,11 +10,13 @@ import CloseGlyph from '../Glyphs/CloseGlyph';
 import { useEffect, useState } from 'react';
 
 const MobileActionsModal = ({ itemData, route = "/story", triggerClassName }) => {
-  const [hasApostrophe, setHasApostrophe] = useState(false);
+  const [hasApostropheS, setHasApostropheS] = useState(false);
 
   useEffect(()=> {
     if (itemData.by) {
-      setHasApostrophe(true);
+      if (itemData.by.split('').pop().toLowerCase() !== 's') {
+        setHasApostropheS(true);
+      }
     }
   }, [itemData.by]);
 
@@ -72,7 +74,7 @@ const MobileActionsModal = ({ itemData, route = "/story", triggerClassName }) =>
               <UserGlyph className="w-6 h-6 rounded-full" />
             </div>
             <span className="py-2 text-brandTextPrimary overflow-ellipsis overflow-hidden">
-              { itemData.by }'{ hasApostrophe && 's' } profile
+              { itemData.by }'{ hasApostropheS && 's' } profile
             </span>
           </a>
         </Link>
