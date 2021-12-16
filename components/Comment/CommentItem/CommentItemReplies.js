@@ -4,9 +4,10 @@ import CommentItem from "./CommentItem";
 
 const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth, submitterId, parentId }) => {
   const currentDepth = parentDepth + 1;
-  const defaultReplyCount = 3;
-  const replyIncrementCount = 5;
-  const [replyCount, setReplyCount] = useState(defaultReplyCount);
+  const defaultReplyItemCount = 3;
+  const replyItemIncrementCount = 5;
+  const [replyItemCount, setReplyItemCount] = useState(defaultReplyItemCount);
+  const [replyItemIds, setReplyItemIds] = useState(null);
   const [isChildrenLoaded, setIsChildrenLoaded] = useState(false);
   const [isReplyDepthLimitReached, setIsReplyDepthLimitReached] = useState(true);
 
@@ -14,14 +15,23 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth, submitterI
     setIsReplyDepthLimitReached((currentDepth >= replyDepthLimit) ? true : false)
   }, [replyDepthLimit]);
 
+  useEffect(() => {
+    if (replyIds) {
+      if (replyItemIds >= replyIds.length) {
+        return;
+      }
+      setReplyItemIds([...replyIds].slice(0, replyItemCount));
+    }
+  }, [replyIds, replyItemCount]);
+
   const handleClick = (e) => {
     e.preventDefault();
     if (isReplyDepthLimitReached && !isChildrenLoaded) {
       setIsChildrenLoaded(true);
     } 
     else {
-      const newCount = replyCount + replyIncrementCount;
-      setReplyCount(newCount);
+      const newCount = replyItemCount + replyItemIncrementCount;
+      setReplyItemCount(newCount);
     }
   }
 
@@ -33,21 +43,23 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth, submitterI
       {/* comment replies */}
       { (!isReplyDepthLimitReached || isChildrenLoaded) && (
         <div className="grid gap-4 sm:mt-4">
-          { [...replyIds].slice(0, replyCount).map((replyId) => (
-            <CommentItem 
-              key={replyId}
-              commentId={replyId} 
-              submitterId={submitterId}
-              parentId={parentId}
-              replyDepthLimit={replyDepthLimit}
-              parentDepth={currentDepth}
-            />
-          ))}
+          { replyItemIds && (
+            replyItemIds.map((replyId) => (
+              <CommentItem 
+                key={replyId}
+                commentId={replyId} 
+                submitterId={submitterId}
+                parentId={parentId}
+                replyDepthLimit={replyDepthLimit}
+                parentDepth={currentDepth}
+              />
+            ))
+          )}
         </div>
       )}
 
       {/* display load more replies button if: a) no children has been loaded, b) not all child replies are loaded */}
-      { ((isReplyDepthLimitReached && !isChildrenLoaded) || replyIds.length > replyCount) && (
+      { ((isReplyDepthLimitReached && !isChildrenLoaded) || replyIds.length > replyItemCount) && (
         <div className="grid place-items-start sm:mt-1 sm:ml-3 sm:pb-2">
           <button 
             className="font-bold text-xs text-brandButtonInlineText tracking-wide text-left hover:underline sm:text-brandOrange sm:tracking-normal"
@@ -59,7 +71,7 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth, submitterI
               </span>
             ) : (
               <span>
-                { replyIds.length-replyCount } more repl{ replyIds.length-replyCount > 1 ? "ies" : "y" }
+                { replyIds.length-replyItemCount } more repl{ replyIds.length-replyItemCount > 1 ? "ies" : "y" }
               </span>
             )}
           </button>
