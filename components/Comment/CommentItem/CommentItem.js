@@ -8,7 +8,7 @@ import CommentItemHeader from "./CommentItemHeader";
 import CommentItemFooter from "./CommentItemFooter";
 import CommentItemReplies from "./CommentItemReplies";
 
-const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 }) => {
+const CommentItem = ({ commentId, submitterId, parentId, replyDepthLimit, parentDepth = 0 }) => {
   const { isLoading, isError, data, isSuccess, error } = useComment(commentId);
   const [isCollapsed, setIsCollapsed] = useState(false);    // todo: save state locally
   const [textContent, setTextContent] = useState(false);
@@ -84,6 +84,7 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
             replyDepthLimit={replyDepthLimit}
             parentDepth={parentDepth}
             submitterId={submitterId}
+            parentId={parentDepth === 0 ? data.id : parentId}
           />
         </div>
       </div>
