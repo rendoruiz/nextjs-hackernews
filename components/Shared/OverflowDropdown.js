@@ -27,7 +27,9 @@ const OverflowDropdown = ({ itemData, triggerClassName }) => {
             className="flex items-center rounded-sm px-2 py-[0.625rem] transition-colors cursor-pointer hover:bg-brandOrange/30 hover:text-brandTextPrimary"
           >
             <HackerNewsGlyph className="w-4 h-4" />
-            <span className="ml-2 font-medium leading-none">View Original</span>
+            <span className="ml-2 font-medium leading-none">
+              View Original
+            </span>
           </a>
         </DropdownMenu.Item>
       </DropdownMenu.Content>

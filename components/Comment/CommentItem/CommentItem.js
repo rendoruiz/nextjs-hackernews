@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { useComment } from "../../../hooks/useComment";
 import { useHtmlParser } from "../../../hooks/useHtmlParser";
@@ -8,14 +8,21 @@ import CommentItemHeader from "./CommentItemHeader";
 import CommentItemFooter from "./CommentItemFooter";
 import CommentItemReplies from "./CommentItemReplies";
 
-const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 }) => {
+const CommentItem = ({ commentId, submitterId, parentId, replyDepthLimit, parentDepth = 0 }) => {
   const { isLoading, isError, data, isSuccess, error } = useComment(commentId);
-  const [isCollapsed, setIsCollapsed] = useState(false);    // todo: save state locally
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [textContent, setTextContent] = useState(false);
 
   const toggleDisplayState = (e) => {
     e.preventDefault();
     setIsCollapsed(!isCollapsed);
   }
+
+  useEffect(() => {
+    if (data) {
+      setTextContent(useHtmlParser(data.text));
+    }
+  }, [data]);
 
   return isLoading ? (<IsLoading itemDepth={parentDepth} />) : isError || !data ? (<ItemIsError error={error} />) : isSuccess && (
     !data.deleted && (  
@@ -51,7 +58,7 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
             title="collapse comment item"
             onClick={(e) => toggleDisplayState(e)}
           >
-            <div className="border-r-2 border-brandButtonOutline mt-2 h-full group-hover:border-brandOrange"></div>
+            <div className="border-r-2 border-brandButtonOutline mt-2 h-full group-hover:border-brandOrange" />
           </button>
         </div>
 
@@ -65,7 +72,7 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
             "inline-block leading-tight sm:leading-normal",
             { "opacity-60": data.dead }
           )}>
-            { useHtmlParser(data.text) }
+            { textContent }
           </div>
 
           {/* desktop dropdown button */}
@@ -77,6 +84,7 @@ const CommentItem = ({ commentId, submitterId, replyDepthLimit, parentDepth = 0 
             replyDepthLimit={replyDepthLimit}
             parentDepth={parentDepth}
             submitterId={submitterId}
+            parentId={parentDepth === 0 ? data.id : parentId}
           />
         </div>
       </div>

@@ -1,13 +1,34 @@
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import * as Tooltip from '@radix-ui/react-tooltip';
 
 import { useFullDateTime, useRelativeTime } from '../../hooks/useDate';
 
 const TimeTooltip = ({ className, unixTime, contentId, isComment }) => {
-  const relativeTime = useRelativeTime(unixTime);
+  const [isOpen, setIsOpen] = useState(false);
+  const [relativeTime, setRelativeTime] = useState(null);
+  const [fullDateTime, setFullDateTime] = useState(null);
 
-  return !unixTime ? null : (  
-    <Tooltip.Root>
+  useEffect(() => {
+    setRelativeTime(useRelativeTime(unixTime));
+    // also update if already loaded
+    if (fullDateTime) {
+      setFullDateTime(useFullDateTime(unixTime));
+    }
+  }, [unixTime]);
+
+  // run once
+  useEffect(() => {
+    if (isOpen && !fullDateTime) {
+      setFullDateTime(useFullDateTime(unixTime));
+    }
+  }, [unixTime, isOpen])
+
+  return !relativeTime ? null : (  
+    <Tooltip.Root 
+      open={isOpen} 
+      onOpenChange={(newState) => setIsOpen(newState)}
+    >
       <Tooltip.Trigger asChild>
         { contentId ? (
           <span className={className}>
@@ -28,7 +49,7 @@ const TimeTooltip = ({ className, unixTime, contentId, isComment }) => {
         side="top"
         sideOffset={4}
       >
-        <span>{ useFullDateTime(unixTime) }</span>
+        <span>{ fullDateTime }</span>
         <Tooltip.Arrow className="my-[-0.5px] text-black fill-current" />
       </Tooltip.Content>
     </Tooltip.Root>

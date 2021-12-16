@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import * as HoverCard from '@radix-ui/react-hover-card';
 
 import { useRelativeTime } from '../../hooks/useDate';
@@ -6,8 +7,13 @@ import UserAvatar from './UserAvatar';
 import UserLink from './UserLink';
 
 const UserHoverCard = ({ userId, className, withPrefix, withAvatar, avatarClassName }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return !userId ? null : (  
-    <HoverCard.Root>
+    <HoverCard.Root 
+      open={isOpen}
+      onOpenChange={(newState) => setIsOpen(newState)}
+    >
       <HoverCard.Trigger asChild>
         <div className={className}>
           { (withAvatar || avatarClassName) && (
@@ -28,14 +34,26 @@ const UserHoverCard = ({ userId, className, withPrefix, withAvatar, avatarClassN
         sideOffset={2}
         align="start"
       >
-        <CardContent userId={userId} />
+        <CardContent 
+          userId={userId} 
+          isOpen={isOpen}
+        />
       </HoverCard.Content>
     </HoverCard.Root>
   );
 }
 
-const CardContent = ({ userId }) => {
+const CardContent = ({ userId, isOpen }) => {
   const { isLoading, isError, isSuccess, data } = useUser(userId);
+  const [relativeTime, setRelativeTime] = useState(null);
+
+  useEffect(() => {
+    if (isOpen && data) {
+      if (data.created && !relativeTime) {
+        setRelativeTime(useRelativeTime(data.created))
+      }
+    }
+  }, [isOpen, data]);
 
   return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (<>
     <section className="grid grid-cols-[auto,1fr] items-end gap-2">
@@ -52,7 +70,7 @@ const CardContent = ({ userId }) => {
           withPrefix
         />
         <p className="text-xs text-brandTextSecondary leading-tight tracking-wide">
-          { data.id } • { useRelativeTime(data.created) }
+          { data.id } • { relativeTime }
         </p>
       </div>
     </section>

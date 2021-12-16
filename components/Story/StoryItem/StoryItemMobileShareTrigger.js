@@ -16,7 +16,9 @@ const StoryItemMobileShareTrigger = ({ storyId }) => {
       onClick={(e) => handleClick(e)}
     >
       <ShareDrawerGlyph />
-      <span className="hidden bp420:inline-block ml-1 font-medium text-xs">Share</span>
+      <span className="hidden bp420:inline-block ml-1 font-medium text-xs">
+        Share
+      </span>
     </button>
   );
 }

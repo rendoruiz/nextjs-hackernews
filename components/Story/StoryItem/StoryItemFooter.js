@@ -11,7 +11,9 @@ const StoryItemFooter = ({ storyData }) => {
       {/* karma (small breakpoint only) */}
       <div className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 sm:hidden">
         <ArrowUpGlyph />
-        <span className="ml-1 font-medium">{ storyData.score }</span>
+        <span className="ml-1 font-medium">
+          { storyData.score }
+        </span>
       </div>
 
       {/* comment count */}

@@ -7,14 +7,17 @@ import IsLoading from "../StatusMessage/IsLoading";
 import StoryItem from "./StoryItem/StoryItem";
 
 const StoryList = ({ useHook }) => {
+  const defaultItemCount = 15; 
+  const itemIncrementCount = defaultItemCount;
   const router = useRouter();
   const { isLoading, isError, data, isSuccess } = useHook;
-  const [itemCount, setItemCount] = useState(null);  // todo: save state locally
-  const defaultCount = 15; 
+  const [itemCount, setItemCount] = useState(null);
+  const [itemIds, setItemIds] = useState(null);
 
   const handleClick = (e) => {
     e.preventDefault();
-    const newCount = itemCount + defaultCount;
+    // set new count value then update count url query string
+    const newCount = itemCount + itemIncrementCount;
     setItemCount(newCount);
     router.push({
       pathname: router.pathname,
@@ -23,20 +26,26 @@ const StoryList = ({ useHook }) => {
   }
 
   useEffect(() => {
-    setItemCount(useCountQueryString(defaultCount));
+    setItemCount(useCountQueryString(defaultItemCount));
   }, []);
+
+  useEffect(() => {
+    if (data) {
+      setItemIds([...data].slice(0, itemCount));
+    }
+  }, [itemCount, data]);
 
   return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (  
     <div className="grid gap-1 sm:gap-2">
       <div className="grid content-start gap-1 sm:gap-3">
-        {
-          [...data].slice(0, itemCount).map((storyId) => 
+        { itemIds && (
+          itemIds.map((storyId) => 
             <StoryItem
               key={storyId}
               storyId={storyId}
             />
           )
-        }
+        )}
       </div>
 
       { itemCount && itemCount < data.length && (

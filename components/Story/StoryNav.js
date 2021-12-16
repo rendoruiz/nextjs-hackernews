@@ -10,6 +10,20 @@ import LightningGlyph from "../Glyphs/LightningGlyph";
 import TrendUpGlyph from "../Glyphs/TrendUpGlyph";
 import ChevronDownGlyph from "../Glyphs/ChevronDownGlyph";
 
+const StoryNav = () => {
+  const router = useRouter();
+
+  return ( 
+    <div className="grid grid-flow-col auto-cols-auto justify-between gap-5 mb-1 px-4 bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:mb-4 sm:py-3">
+      {/* mobile nav */}
+      <MobileNavDropdown router={router} />
+
+      {/* desktop nav */}
+      <DesktopNavList router={router} />
+    </div>
+  );
+}
+
 const navItems = [
   {
     route: '/',
@@ -28,33 +42,6 @@ const navItems = [
   },
 ];
 
-const StoryNav = () => {
-  const router = useRouter();
-
-  return ( 
-    <div className="grid grid-flow-col auto-cols-auto justify-between gap-5 mb-1 px-4 bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:mb-4 sm:py-3">
-      <MobileNavDropdown router={router} />
-
-      <div className="hidden sm:grid grid-flow-col auto-cols-auto gap-2">
-        { navItems.map((item, index) => (
-          <Link 
-            key={index}
-            href={item.route}
-          >
-            <a className={clsx(
-              "flex items-center rounded-full pl-2 pr-[0.625rem] py-[0.375rem] transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive", 
-              item.route === router.pathname ? "bg-brandButtonSelected text-brandOrange" : "text-brandTextSecondary"
-            )}>
-              <div className="w-6 h-6">{ item.glyph }</div>
-              <span className="ml-2 font-bold">{ item.text }</span>
-            </a>
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 const MobileNavDropdown = ({ router }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -72,8 +59,12 @@ const MobileNavDropdown = ({ router }) => {
             key={index}
             className="flex self-center items-center -ml-2"
           >
-            <span className="w-5 h-5">{ item.glyph }</span>
-            <span className="mx-2">{ item.text }</span>
+            <span className="w-5 h-5">
+              { item.glyph }
+            </span>
+            <span className="mx-2">
+              { item.text }
+            </span>
           </div>
         ))}
         <ChevronDownGlyph />
@@ -106,8 +97,12 @@ const MobileNavDropdown = ({ router }) => {
                   className="flex items-center px-1 py-3"
                   onClick={() => handleClick(item.route)}
                 >
-                  <div className={clsx("w-6 h-6", { "text-brandOrange": item.route === router.pathname })}>{ item.glyph }</div>
-                  <span className="ml-3 text-brandTextPrimary">{ item.text }</span>
+                  <div className={clsx("w-6 h-6", { "text-brandOrange": item.route === router.pathname })}>
+                    { item.glyph }
+                  </div>
+                  <span className="ml-3 text-brandTextPrimary">
+                    { item.text }
+                  </span>
                 </a>
               </Link>
             </DropdownMenu.Item>
@@ -115,6 +110,31 @@ const MobileNavDropdown = ({ router }) => {
         </DropdownMenu.Group>
       </DropdownMenu.Content>
     </DropdownMenu.Root>
+  )
+}
+
+const DesktopNavList = ({ router }) => {
+  return (
+    <div className="hidden sm:grid grid-flow-col auto-cols-auto gap-2">
+      { navItems.map((item, index) => (
+        <Link 
+          key={index}
+          href={item.route}
+        >
+          <a className={clsx(
+            "flex items-center rounded-full pl-2 pr-[0.625rem] py-[0.375rem] transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive", 
+            item.route === router.pathname ? "bg-brandButtonSelected text-brandOrange" : "text-brandTextSecondary"
+          )}>
+            <div className="w-6 h-6">
+              { item.glyph }
+            </div>
+            <span className="ml-2 font-bold">
+              { item.text }
+            </span>
+          </a>
+        </Link>
+      ))}
+    </div>
   )
 }
 
