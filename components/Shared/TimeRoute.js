@@ -1,11 +1,24 @@
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 import { useRelativeTime, useShortRelativeTime } from '../../hooks/useDate';
 
 const TimeRoute = ({ className, contentId, unixTime, isShort }) => {
-  return !unixTime ? null : (  
+  const [itemTime, setItemTime] = useState(null);
+
+  useEffect(() => {
+    if (isShort) {
+      setItemTime(useShortRelativeTime(unixTime));
+    } else {
+      setItemTime(useRelativeTime(unixTime));
+    }
+  }, [unixTime, isShort])
+
+  return !itemTime ? null : (  
     <Link href={'/story/' + contentId}>
-      <a className={className}>{ isShort ? useShortRelativeTime(unixTime) : useRelativeTime(unixTime) }</a>
+      <a className={className}>
+        { itemTime }
+      </a>
     </Link>
   );
 }

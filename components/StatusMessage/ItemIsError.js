@@ -4,7 +4,9 @@ const ItemIsError = ({ error }) => {
   return (
     <div>
       <p>An error occured.</p>
-      { error && <p>{error}</p> }
+      { error && (
+        <p>{error}</p> 
+      )}
     </div>
   )
 }

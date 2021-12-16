@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import clsx from "clsx";
 import * as Tooltip from '@radix-ui/react-tooltip';
 
@@ -11,6 +12,12 @@ import MicrophoneGlyph from "../../Glyphs/MicrophoneGlyph";
 import ExpandGlyph from "../../Glyphs/ExpandGlyph";
 
 const CommentItemHeader = ({ commentData, submitterId, itemDepth, isDead = false, toggleDisplayState, isCollapsed }) => {
+  const [shortRelativeTime, setShortRelativeTime] = useState(null);
+
+  useEffect(() => {
+    setShortRelativeTime(useShortRelativeTime(commentData.time));
+  }, [commentData.time]);
+
   return (  
     <div className={clsx(
       "grid grid-cols-[auto,1fr] gap-2 text-brandTextPrimary sm:col-span-2 sm:gap-0",
@@ -86,12 +93,14 @@ const CommentItemHeader = ({ commentData, submitterId, itemDepth, isDead = false
           onClick={(e) => toggleDisplayState(e)}
         >
           &nbsp;&nbsp;
-          { useShortRelativeTime(commentData.time) }
+          { shortRelativeTime }
         </button>
 
         {/* desktop time tooltip */}
         <div className="hidden sm:block text-brandTextSecondary sm:tracking-wide">
-          <span className="tracking-widest">&nbsp;·&nbsp;</span>
+          <span className="tracking-widest">
+            &nbsp;·&nbsp;
+          </span>
           <TimeTooltip
             unixTime={commentData.time}
             contentId={commentData.id}

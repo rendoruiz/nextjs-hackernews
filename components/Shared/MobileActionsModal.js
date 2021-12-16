@@ -7,12 +7,26 @@ import LinkGlyph from '../Glyphs/LinkGlyph';
 import HackerNewsGlyph from '../Glyphs/HackerNewsGlyph';
 import UserGlyph from '../Glyphs/UserGlyph';
 import CloseGlyph from '../Glyphs/CloseGlyph';
+import { useEffect, useState } from 'react';
 
 const MobileActionsModal = ({ itemData, route = "/story", triggerClassName }) => {
+  const [hasApostropheS, setHasApostropheS] = useState(false);
+
+  useEffect(()=> {
+    if (itemData.by) {
+      if (itemData.by.split('').pop().toLowerCase() !== 's') {
+        setHasApostropheS(true);
+      }
+    }
+  }, [itemData.by]);
+
   return itemData && route && (  
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className={clsx(triggerClassName, "text-brandTextPrimary")}>
+        <button 
+          className={clsx(triggerClassName, "text-brandTextPrimary")}
+          title="modal trigger"
+        >
           <HorizontalDotsGlyph />
         </button>
       </Dialog.Trigger>
@@ -30,7 +44,9 @@ const MobileActionsModal = ({ itemData, route = "/story", triggerClassName }) =>
               <div className="grid place-items-center w-12 h-12 text-brandTextSecondary">
                 <LinkGlyph />
               </div>
-              <span className="text-brandTextPrimary">Permalink</span>
+              <span className="text-brandTextPrimary">
+                Permalink
+              </span>
             </a>
           </Link>
           <Dialog.Close className="grid place-items-center w-12 h-12 text-brandTextSecondary">
@@ -46,7 +62,9 @@ const MobileActionsModal = ({ itemData, route = "/story", triggerClassName }) =>
           <div className="grid place-items-center w-12 h-12 text-brandTextSecondary">
             <HackerNewsGlyph className="w-6 h-6" />
           </div>
-          <span className="text-brandTextPrimary">Original Permalink</span>
+          <span className="text-brandTextPrimary">
+            Original Permalink
+          </span>
         </a>
 
         {/* user link */}
@@ -56,7 +74,7 @@ const MobileActionsModal = ({ itemData, route = "/story", triggerClassName }) =>
               <UserGlyph className="w-6 h-6 rounded-full" />
             </div>
             <span className="py-2 text-brandTextPrimary overflow-ellipsis overflow-hidden">
-              { itemData.by }'{ itemData.by.split('').pop().toLowerCase() !== 's' && 's' } profile
+              { itemData.by }'{ hasApostropheS && 's' } profile
             </span>
           </a>
         </Link>
