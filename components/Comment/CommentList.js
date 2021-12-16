@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useStory } from "../../hooks/useStory";
 import IsError from "../StatusMessage/IsError";
@@ -10,13 +10,26 @@ const CommentList = ({ storyId }) => {
   const itemIncrementCount = 8;
   const defaultDepthLimit = 2;
   const { isLoading, isError, data: storyData, isSuccess } = useStory(storyId, false);
-  const [itemCount, setItemCount] = useState(defaultItemCount); // todo: save state locally
+  const [itemCount, setItemCount] = useState(defaultItemCount);
+  const [itemIds, setItemIds] = useState(null);
 
   const handleClick = (e) => {
     e.preventDefault();
     const newCount = itemCount + itemIncrementCount;
     setItemCount(newCount);
   }
+
+  useEffect(() => {
+    if (storyData) {
+      if (itemIds && storyData.kids) {
+        if (itemIds.length === storyData.kids.length) {
+          return;
+        }
+      }
+      
+      setItemIds([...storyData.kids].slice(0, itemCount));
+    }
+  }, [itemCount, storyData]);
 
   return isLoading ? (<IsLoading />) : isError || !storyData ? (<IsError />) : isSuccess && (  
     <div className="grid content-start gap-3 pt-1 pb-3 bg-white sm:gap-1 sm:border-brandDefault sm:border-brandBorder sm:rounded sm:p-3 sm:pr-5 sm:shadow-sm">
@@ -39,8 +52,8 @@ const CommentList = ({ storyId }) => {
       {/* comment list */}
       { storyData.kids && (
         <div className="grid content-start gap-5 sm:gap-7">
-          {
-            [...storyData.kids].slice(0, itemCount).map((commentId) => (
+          { itemIds && (
+            itemIds.map((commentId) => (
               <CommentItem
                 key={commentId}
                 commentId={commentId}
@@ -48,7 +61,7 @@ const CommentList = ({ storyId }) => {
                 replyDepthLimit={defaultDepthLimit}
               />
             ))
-          }
+          )}
         </div>
       )}
 
