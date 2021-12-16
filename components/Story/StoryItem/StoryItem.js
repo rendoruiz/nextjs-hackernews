@@ -19,7 +19,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
         "grid transition-colors sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm",
         { "cursor-pointer sm:hover:border-brandBorderHover": !isStatic }
       )}>
-        {/* karma vertical bar (desktop) */}
+        {/* karma left side bar (desktop) */}
         <Link href={'/story/' + data.id}>
           <a 
             className={clsx(
@@ -39,7 +39,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
           "relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pb-3 bg-white sm:grid-cols-none sm:rounded-r sm:p-2 sm:pr-4 sm:pb-1",
           isStatic ? "pt-3" : "pt-2"
         )}>
-          {/* wrapper link (mobile only)  */}
+          {/* wrapper link  */}
           { !isStatic && (
             <Link href={'/story/' + data.id}>
               <a 
@@ -49,10 +49,10 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
             </Link>
           )}
 
-          {/* header info */}
+          {/* header info - poster id, date created */}
           <StoryItemHeader storyData={data} />
           
-          {/* mobile overflow actions */}
+          {/* mobile overflow actions - story links, poster link */}
           <MobileActionsModal 
             itemData={data} 
             triggerClassName="row-start-1 col-start-2 justify-self-end relative -mr-2 -my-2 px-2 sm:hidden"
@@ -68,7 +68,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
             </a>
           </Link>
 
-          {/* display url */}
+          {/* story link */}
           <StoryItemDisplayLink rawLink={data.url} />
           
           {/* text/content */}

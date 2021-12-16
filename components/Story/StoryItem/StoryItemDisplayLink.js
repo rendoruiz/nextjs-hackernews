@@ -1,25 +1,34 @@
-import clsx from "clsx";
+import { useEffect, useState } from "react";
 
 import ExternalLinkGlyph from "../../Glyphs/ExternalLinkGlyph";
 
-const StoryItemDisplayLink = ({ rawLink, className }) => {
-  return !rawLink ? null : (  
+const StoryItemDisplayLink = ({ rawLink }) => {
+  const [displayUrl, setDisplayUrl] = useState(null);
+
+  useEffect(() => {
+    setDisplayUrl(getDisplayUrl(rawLink));
+  }, [rawLink])
+
+  return !displayUrl ? null : (  
     <a 
       title="view story attached link"
       href={rawLink}
       target="_blank"
-      className={clsx(
-        className ?? "grid sm:inline-flex",
-        "row-start-2 col-start-2 justify-self-end relative items-end w-[70px] h-[52px] bg-brandOrange text-[0.625rem] sm:row-start-auto sm:col-start-auto sm:justify-self-start sm:items-center sm:-mt-1 sm:t-1 sm:pb-2 sm:w-auto sm:h-auto sm:bg-transparent sm:text-xs sm:text-brandOrange sm:hover:underline"
-      )}
+      className="row-start-2 col-start-2 justify-self-end relative grid items-end w-[70px] h-[52px] bg-brandOrange text-[0.625rem] sm:row-start-auto sm:col-start-auto sm:justify-self-start sm:inline-flex sm:items-center sm:-mt-1 sm:t-1 sm:pb-2 sm:w-auto sm:h-auto sm:bg-transparent sm:text-xs sm:text-brandOrange sm:hover:underline"
     >
-      <span className="p-1 bg-black/70 text-white truncate sm:p-0 sm:px-0 sm:bg-transparent sm:text-current sm:overflow-auto">{ getDisplayUrl(rawLink) } </span>
+      <span className="p-1 bg-black/70 text-white truncate sm:p-0 sm:px-0 sm:bg-transparent sm:text-current sm:overflow-auto">
+        { displayUrl }
+      </span>
       <ExternalLinkGlyph className="hidden ml-1 w-4 h-4 sm:inline-block" />
     </a>
   );
 }
 
 const getDisplayUrl = (rawUrlString) => {
+  if (!rawUrlString){
+    return null;
+  }
+
   const url = new URL(rawUrlString);
   let urlSuffix = url.pathname.length === 1 && url.search.length === 0
     ? ''
