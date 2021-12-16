@@ -26,7 +26,7 @@ const TimeTooltip = ({ className, unixTime, contentId, isComment }) => {
 
   return !relativeTime ? null : (  
     <Tooltip.Root 
-      isOpen={isOpen} 
+      open={isOpen} 
       onOpenChange={(newState) => setIsOpen(newState)}
     >
       <Tooltip.Trigger asChild>
