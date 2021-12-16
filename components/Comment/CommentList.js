@@ -21,6 +21,7 @@ const CommentList = ({ storyId }) => {
 
   useEffect(() => {
     if (storyData) {
+      // skip array operations if lengths are equal
       if (itemIds && storyData.kids) {
         if (itemIds.length === storyData.kids.length) {
           return;
