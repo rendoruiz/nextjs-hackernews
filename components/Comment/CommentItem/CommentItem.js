@@ -10,7 +10,7 @@ import CommentItemReplies from "./CommentItemReplies";
 
 const CommentItem = ({ commentId, submitterId, parentId, replyDepthLimit, parentDepth = 0 }) => {
   const { isLoading, isError, data, isSuccess, error } = useComment(commentId);
-  const [isCollapsed, setIsCollapsed] = useState(false);    // todo: save state locally
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const [textContent, setTextContent] = useState(false);
 
   const toggleDisplayState = (e) => {
