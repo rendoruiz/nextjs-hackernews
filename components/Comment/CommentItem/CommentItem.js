@@ -8,7 +8,7 @@ import CommentItemHeader from "./CommentItemHeader";
 import CommentItemFooter from "./CommentItemFooter";
 import CommentItemReplies from "./CommentItemReplies";
 
-const CommentItem = ({ commentId, submitterId, parentId, replyDepthLimit, parentDepth = 0 }) => {
+const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentDepth = 0, isPermalink = false }) => {
   const { isLoading, isError, data, isSuccess, error } = useComment(commentId);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [textContent, setTextContent] = useState(false);
@@ -42,6 +42,7 @@ const CommentItem = ({ commentId, submitterId, parentId, replyDepthLimit, parent
         <CommentItemHeader 
           commentData={data}
           submitterId={submitterId}
+          storyId={storyId}
           itemDepth={parentDepth}
           isDead={data.dead}
           toggleDisplayState={toggleDisplayState}
@@ -50,7 +51,7 @@ const CommentItem = ({ commentId, submitterId, parentId, replyDepthLimit, parent
 
         {/* vertical line - desktop collapse toggle */}
         <div className={clsx(
-          "hidden col-start-1 w-7 overflow-hidden",
+          "hidden col-start-1 w-6 overflow-hidden",
           { "sm:grid": !isCollapsed }
         )}>
           <button 
@@ -76,7 +77,11 @@ const CommentItem = ({ commentId, submitterId, parentId, replyDepthLimit, parent
           </div>
 
           {/* desktop dropdown button */}
-          <CommentItemFooter commentData={data} />
+          <CommentItemFooter 
+            commentData={data} 
+            storyId={storyId}
+            isDead={data.dead}
+          />
 
           {/* if there are comment replies: display if meets set condition, else display trigger to load replies */}
           <CommentItemReplies 
@@ -84,7 +89,7 @@ const CommentItem = ({ commentId, submitterId, parentId, replyDepthLimit, parent
             replyDepthLimit={replyDepthLimit}
             parentDepth={parentDepth}
             submitterId={submitterId}
-            parentId={parentDepth === 0 ? data.id : parentId}
+            storyId={storyId}
           />
         </div>
       </div>

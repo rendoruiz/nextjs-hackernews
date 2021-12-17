@@ -1,12 +1,18 @@
+import clsx from 'clsx';
+
 import ShareDropdown from '../../Shared/ShareDropdown';
 import OverflowDropdown from '../../Shared/OverflowDropdown';
 
-const CommentItemFooter = ({ commentData }) => {
+const CommentItemFooter = ({ commentData, storyId, isDead }) => {
   return (  
-    <div className="hidden sm:grid grid-flow-col auto-cols-auto justify-start items-center gap-1 mt-3 mb-2 text-xs text-brandTextSecondary">
+    <div className={clsx(
+      "hidden sm:grid grid-flow-col auto-cols-auto justify-start items-center gap-1 mt-3 mb-1 text-xs text-brandTextSecondary",
+      { "opacity-60": isDead }
+    )}>
       {/* share dropdown */}
       <ShareDropdown
         itemData={commentData}
+        storyId={storyId}
         triggerClassName="-ml-1 p-1"
       />
 

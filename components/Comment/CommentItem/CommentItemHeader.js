@@ -11,7 +11,7 @@ import UserHoverCard from "../../User/UserHoverCard";
 import MicrophoneGlyph from "../../Glyphs/MicrophoneGlyph";
 import ExpandGlyph from "../../Glyphs/ExpandGlyph";
 
-const CommentItemHeader = ({ commentData, submitterId, itemDepth, isDead = false, toggleDisplayState, isCollapsed }) => {
+const CommentItemHeader = ({ commentData, submitterId, storyId, itemDepth, isDead = false, toggleDisplayState, isCollapsed }) => {
   const [shortRelativeTime, setShortRelativeTime] = useState(null);
 
   useEffect(() => {
@@ -103,13 +103,14 @@ const CommentItemHeader = ({ commentData, submitterId, itemDepth, isDead = false
           </span>
           <TimeTooltip
             unixTime={commentData.time}
-            contentId={commentData.id}
+            contentId={`${storyId}/${commentData.id}`}
             isComment
           />
         </div>
         
         <MobileActionsModal 
           itemData={commentData} 
+          storyId={storyId}
           triggerClassName="-mr-2 -my-2 p-2 sm:hidden"
         />
       </div>

@@ -1,6 +1,10 @@
 import parse, { domToReact } from 'html-react-parser';
 
 const useHtmlParser = (rawHtmlString) => {
+  if (!rawHtmlString) {
+    return null;
+  }
+  
   const options = {
     replace: ({type, name, children, attribs}) => {
       // paragraph spacing
