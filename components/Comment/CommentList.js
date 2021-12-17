@@ -32,7 +32,7 @@ const CommentList = ({ storyId, permalinkId }) => {
       // only have permalink in the list if its present
       if (permalinkId) {
         setItemIds([permalinkId]);
-      } else {
+      } else if (storyData.kids) {
         setItemIds([...storyData.kids].slice(0, itemCount));
       }
     }
