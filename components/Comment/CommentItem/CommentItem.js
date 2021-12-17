@@ -80,6 +80,7 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
           <CommentItemFooter 
             commentData={data} 
             storyId={storyId}
+            isDead={data.dead}
           />
 
           {/* if there are comment replies: display if meets set condition, else display trigger to load replies */}
