@@ -24,7 +24,7 @@ const UserDetails = ({ userData }) => {
   return (  
     <div className="grid content-start py-2 bg-white overflow-hidden md:order-2 md:rounded md:py-0 md:w-[310px]">
       {/* desktop header background */}
-      <div className="hidden h-[94px] bg-brandOrange/50 md:block" />
+      <div className="hidden h-[94px] bg-brandOrange/60 md:block" />
 
       {/* avatar */}
       <div className="grid justify-items-center md:justify-items-start md:border-x-brandDefault md:border-brandBorder md:py-0">
