@@ -8,7 +8,7 @@ import CommentItemHeader from "./CommentItemHeader";
 import CommentItemFooter from "./CommentItemFooter";
 import CommentItemReplies from "./CommentItemReplies";
 
-const CommentItem = ({ commentId, submitterId, storyId, rootId, replyDepthLimit, parentDepth = 0, isPermalink = false }) => {
+const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentDepth = 0, isPermalink = false }) => {
   const { isLoading, isError, data, isSuccess, error } = useComment(commentId);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [textContent, setTextContent] = useState(false);
@@ -89,7 +89,6 @@ const CommentItem = ({ commentId, submitterId, storyId, rootId, replyDepthLimit,
             parentDepth={parentDepth}
             submitterId={submitterId}
             storyId={storyId}
-            rootId={parentDepth === 0 ? data.id : rootId}
           />
         </div>
       </div>
