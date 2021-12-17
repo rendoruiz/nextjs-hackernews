@@ -57,7 +57,7 @@ const CommentItemHeader = ({ commentData, submitterId, storyId, itemDepth, isDea
             userId={commentData.by} 
             withAvatar
             className="hidden sm:flex items-center font-medium"
-            avatarClassName="mr-2 w-7 h-7"
+            avatarClassName="mr-2 w-7 h-7 text-base"
           />
           
           {/* original poster indicator */}
