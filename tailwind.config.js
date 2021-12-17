@@ -40,6 +40,10 @@ module.exports = {
       fontFamily: {
         primary: ['Nunito', 'sans-serif'],
       },
+      fontSize: {
+        xs2: ['0.625rem', '1'],
+        xs3: ['0.5rem', '1'],
+      }
     },
   },
   variants: {

@@ -26,7 +26,7 @@ const CommentItemHeader = ({ commentData, submitterId, storyId, itemDepth, isDea
       {/* mobile user avatar */}
       <UserAvatar 
         userId={commentData.by} 
-        className={clsx(itemDepth === 0 ? "w-6 h-6" : "w-[18px] h-[18px]", "sm:hidden")}
+        className={clsx(itemDepth === 0 ? "w-6 h-6 text-xs2" : "w-[18px] h-[18px] text-xs3", "sm:hidden")}
       />
 
       {/* desktop expand toggle */}

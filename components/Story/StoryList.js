@@ -36,7 +36,7 @@ const StoryList = ({ useHook }) => {
   }, [itemCount, data]);
 
   return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (  
-    <div className="grid gap-1 sm:gap-2">
+    <div className="grid content-start gap-1 sm:gap-2">
       <div className="grid content-start gap-1 sm:gap-3">
         { itemIds && (
           itemIds.map((storyId) => 
