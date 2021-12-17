@@ -1,4 +1,5 @@
 import { useRouter } from "next/dist/client/router";
+
 import UserView from "../../components/User/UserView";
 
 const UserPage = () => {

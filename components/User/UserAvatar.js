@@ -11,7 +11,7 @@ const UserAvatar = ({ className, userId }) => {
       setBackgroundColor(generateHslColor(userId));
       setUserInitial(userId.split('').shift().toUpperCase());
     }
-  }, [userId])
+  }, [userId]);
 
   return !userId ? null : (  
     <Link href={'/user/' + userId}>

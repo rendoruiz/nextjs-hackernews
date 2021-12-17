@@ -9,7 +9,10 @@ const SiteLayout = ({ children, contentClassName }) => {
       <SiteHeader />
 
       <main 
-        className={clsx("justify-self-center grid content-start w-full max-w-screen-lg sm:px-6 sm:py-5", contentClassName)}
+        className={clsx(
+          contentClassName,
+          "justify-self-center grid content-start w-full max-w-screen-lg sm:px-6 sm:py-5", 
+        )}
       >
         { children }
       </main>
