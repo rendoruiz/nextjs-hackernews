@@ -39,7 +39,7 @@ const getHashCode = (str) => {
 }
 const generateHslColor = (str) => {
   if (str) {
-    return `hsl(${getHashCode(str) % 360}, 60%, 80%)`;
+    return `hsl(${getHashCode(str) % 360}, 75%, 80%)`;
   }
   return false;
 }
