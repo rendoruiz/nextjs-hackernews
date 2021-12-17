@@ -63,7 +63,7 @@ const CommentList = ({ storyId, permalinkId }) => {
       { isPermalink && (
         <div className="grid justify-end px-4 pt-2 pb-1 sm:justify-start sm:p-0 sm:pb-4">
           <Link href={"/story/" + storyId}>
-            <a className="font-bold text-xs text-brandOrange tracking-wide">
+            <a className="font-bold text-xs text-brandOrange tracking-wide sm:hover:underline">
               <span className="sm:hidden">See full discussion</span>
               <span className="hidden sm:block">View all comments</span>
             </a>
