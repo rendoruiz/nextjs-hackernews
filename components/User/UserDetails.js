@@ -92,7 +92,7 @@ const UserDetails = ({ userData }) => {
         <a 
           href={"https://news.ycombinator.com/user?id=" + userData.id}
           target="_blank"
-          className="justify-self-center rounded-full mt-2 px-5 py-[0.375rem] bg-brandOrange/90 font-bold text-xs text-white text-center uppercase transition-opacity hover:opacity-80 active:opacity-60 md:justify-self-stretch md:mt-5 md:text-sm md:normal-case"
+          className="justify-self-center rounded-full mt-1 px-5 py-[0.375rem] bg-brandOrange/90 font-bold text-xs text-white text-center uppercase transition-opacity hover:opacity-80 active:opacity-60 md:justify-self-stretch md:mt-5 md:text-sm md:normal-case"
         >
           View on Y Combinator
         </a>
