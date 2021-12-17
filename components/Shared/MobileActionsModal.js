@@ -63,7 +63,7 @@ const MobileActionsModal = ({ itemData, storyId, triggerClassName }) => {
             <HackerNewsGlyph className="w-6 h-6" />
           </div>
           <span className="text-brandTextPrimary">
-            Original Permalink
+            Y Combinator Permalink
           </span>
         </a>
 

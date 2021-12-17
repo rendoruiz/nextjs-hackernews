@@ -28,7 +28,7 @@ const OverflowDropdown = ({ itemData, triggerClassName }) => {
           >
             <HackerNewsGlyph className="w-4 h-4" />
             <span className="ml-2 font-medium leading-none">
-              View Original
+              View at Y Combinator
             </span>
           </a>
         </DropdownMenu.Item>

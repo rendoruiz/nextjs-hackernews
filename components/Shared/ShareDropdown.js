@@ -37,7 +37,7 @@ const ShareDropdown = ({ itemData, storyId, withGlyph, triggerClassName }) => {
         </>)}
         <DropdownMenu.Separator className="border-b-brandDefault border-brandButtonOutline" />
         <ShareItem
-          displayText="Copy Original Link"
+          displayText="Copy Y Combinator Link"
           displayGlyph={<HackerNewsGlyph className="w-4 h-4" />}
           clipboardString={'https://news.ycombinator.com/item?id=' + itemData.id}
         />
