@@ -59,7 +59,7 @@ const CardContent = ({ userId, isOpen }) => {
     <section className="grid grid-cols-[auto,1fr] items-end gap-2">
       {/* heading */}
       <UserAvatar 
-        className="w-9 h-9"
+        className="w-9 h-9 text-2xl"
         userId={data.id}
       />
       {/* <div className="rounded bg-brandOrange "></div> */}
