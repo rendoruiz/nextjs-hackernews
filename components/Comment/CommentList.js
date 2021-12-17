@@ -5,13 +5,14 @@ import IsError from "../StatusMessage/IsError";
 import IsLoading from "../StatusMessage/IsLoading";
 import CommentItem from "./CommentItem/CommentItem";
 
-const CommentList = ({ storyId }) => {
+const CommentList = ({ storyId, permalinkId }) => {
   const defaultItemCount = 5;
   const itemIncrementCount = 8;
   const defaultDepthLimit = 2;
   const { isLoading, isError, data: storyData, isSuccess } = useStory(storyId, false);
   const [itemCount, setItemCount] = useState(defaultItemCount);
   const [itemIds, setItemIds] = useState(null);
+  const [isPermalink, setIsPermalink] = useState(permalinkId ? true : false);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -27,26 +28,35 @@ const CommentList = ({ storyId }) => {
           return;
         }
       }
-      setItemIds([...storyData.kids].slice(0, itemCount));
+      // only have permalink in the list if its present
+      if (permalinkId) {
+        setItemIds([permalinkId]);
+      } else {
+        setItemIds([...storyData.kids].slice(0, itemCount));
+      }
     }
   }, [itemCount, storyData]);
 
   return isLoading ? (<IsLoading />) : isError || !storyData ? (<IsError />) : isSuccess && (  
     <div className="grid content-start gap-3 pt-1 pb-3 bg-white sm:gap-1 sm:border-brandDefault sm:border-brandBorder sm:rounded sm:p-3 sm:pr-5 sm:shadow-sm">
-      {/* mobile comment count (displayed by default) */}
-      <div className="px-4 sm:hidden">
-        <span className="font-bold text-xs sm:hidden">
-          { storyData.descendants === 0 ? "No" : storyData.descendants } Comment{ storyData.descendants !== 1 && "s" }
-        </span>
-      </div>
-
-      {/* desktop comment count (only displayed if there are no comments) */}
-      { storyData.descendants === 0 && (
-        <div className="hidden sm:block">
-          <span className="font-medium">
-            No Comments
-          </span>
-        </div>
+      {/* hide on permalink */}
+      { !isPermalink && (
+        <>
+          {/* mobile comment count (displayed by default) */}
+          <div className="grid px-4 pt-2 pb-1 sm:hidden">
+            <span className="font-bold text-xs sm:hidden">
+              { storyData.descendants === 0 ? "No" : storyData.descendants } Comment{ storyData.descendants !== 1 && "s" }
+            </span>
+          </div>
+          {/* desktop comment count (only displayed if there are no comments) */}
+          { storyData.descendants === 0 && (
+            <div className="hidden sm:block">
+              <span className="font-medium">
+                No Comments
+              </span>
+            </div>
+          )}
+        </>
       )}
       
       {/* comment list */}
@@ -58,6 +68,7 @@ const CommentList = ({ storyId }) => {
                 key={commentId}
                 commentId={commentId}
                 submitterId={storyData.by}
+                storyId={storyId}
                 replyDepthLimit={defaultDepthLimit}
               />
             ))
@@ -66,7 +77,7 @@ const CommentList = ({ storyId }) => {
       )}
 
       {/* load more comments trigger */}
-      { storyData.kids && storyData.kids.length > itemCount && (
+      { !isPermalink && storyData.kids && storyData.kids.length > itemCount && (
         <div className="border-t-brandDefault border-t-brandButtonOutline mt-2 px-4 pt-3 pb-1 sm:border-none sm:mt-0 sm:px-2 sm:py-0">
           <button
             className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left hover:underline sm:text-brandOrange"

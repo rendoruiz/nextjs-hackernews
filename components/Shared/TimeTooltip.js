@@ -32,7 +32,7 @@ const TimeTooltip = ({ className, unixTime, contentId, isComment }) => {
       <Tooltip.Trigger asChild>
         { contentId ? (
           <span className={className}>
-            <Link href={(!isComment ? "/story/" : "/comment/") + contentId}>
+            <Link href={"/story/" + contentId}>
               <a className="hover:underline">
                 { relativeTime }
               </a>
