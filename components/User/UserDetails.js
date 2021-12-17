@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
+import { useState, useEffect } from "react";
+
 import { useFullDateTime, useRelativeTime } from "../../hooks/useDate";
 import { useHtmlParser } from "../../hooks/useHtmlParser";
 import CakeGlyph from "../Glyphs/CakeGlyph";
@@ -37,7 +37,7 @@ const UserDetails = ({ userData }) => {
       </div>
 
       {/* details */}
-      <div className="grid text-center px-4 text-sm md:gap-2 md:border-brandDefault md:border-brandBorder md:border-t-0 md:rounded md:rounded-t-none md:px-3 md:pb-4 md:text-left">
+      <div className="grid text-center px-4 text-sm md:gap-2 md:border-brandDefault md:border-brandBorder md:border-t-0 md:rounded md:rounded-t-none md:px-3 md:pb-5 md:text-left">
         {/* name */}
         <h2 className="font-medium text-2xl leading-normal md:mt-1 md:text-xs">
           u/{ userData.id }
@@ -79,24 +79,24 @@ const UserDetails = ({ userData }) => {
         </div>
 
         {/* notes */}
-        <div className="hidden md:grid gap-1 mt-1">
-          <span className="font-medium">About</span>
-          <p className="text-xs break-words">
-            { textContent }
-          </p>
-        </div>
-
+        { textContent && (
+          <div className="hidden md:grid gap-1 mt-1">
+            <span className="font-medium">About</span>
+            <p className="text-xs break-words">
+              { textContent }
+            </p>
+          </div>
+        )}
+        
+        {/* hackernews link */}
         <a 
           href={"https://news.ycombinator.com/user?id=" + userData.id}
           target="_blank"
-          className="justify-self-center rounded-full mt-2 px-5 py-[0.375rem] bg-brandOrange font-bold text-xs text-white text-center uppercase transition-opacity hover:opacity-80 active:opacity-60 md:justify-self-stretch md:mt-5 md:text-sm md:normal-case"
+          className="justify-self-center rounded-full mt-2 px-5 py-[0.375rem] bg-brandOrange/90 font-bold text-xs text-white text-center uppercase transition-opacity hover:opacity-80 active:opacity-60 md:justify-self-stretch md:mt-5 md:text-sm md:normal-case"
         >
           View on Y Combinator
         </a>
       </div>
-
-      
-
     </div>
   );
 }
