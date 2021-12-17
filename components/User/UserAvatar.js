@@ -18,7 +18,7 @@ const UserAvatar = ({ className, userId }) => {
       <a 
         className={clsx(
           className ?? "w-5 h-5 text-sm", 
-          "grid place-items-center font-mono font-bold text-brandTextPrimary rounded-full shadow-sm"
+          "grid place-items-center font-mono font-bold leading-[0] text-brandTextPrimary rounded-full shadow-sm"
         )}
         style={{ backgroundColor: backgroundColor }}
         title="app generated avatar"
