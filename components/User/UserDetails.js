@@ -37,7 +37,7 @@ const UserDetails = ({ userData }) => {
       </div>
 
       {/* details */}
-      <div className="grid text-center px-4 text-sm md:gap-2 md:border-brandDefault md:border-brandBorder md:border-t-0 md:rounded md:rounded-t-none md:px-3 md:pb-5 md:text-left">
+      <div className="grid text-center px-4 pb-1 text-sm md:gap-2 md:border-brandDefault md:border-brandBorder md:border-t-0 md:rounded md:rounded-t-none md:px-3 md:pb-5 md:text-left">
         {/* name */}
         <h2 className="font-medium text-2xl leading-normal md:mt-1 md:text-xs">
           u/{ userData.id }
