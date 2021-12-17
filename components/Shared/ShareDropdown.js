@@ -7,7 +7,7 @@ import LinkGlyph from "../Glyphs/LinkGlyph";
 import ExternalLinkGlyph from "../Glyphs/ExternalLinkGlyph";
 import HackerNewsGlyph from "../Glyphs/HackerNewsGlyph";
 
-const ShareDropdown = ({ itemData, route = "/story", withGlyph, triggerClassName }) => {
+const ShareDropdown = ({ itemData, storyId, withGlyph, triggerClassName }) => {
   return (  
     <DropdownMenu.Root modal={false}>
       <DropdownMenu.Trigger className={clsx(
@@ -21,13 +21,11 @@ const ShareDropdown = ({ itemData, route = "/story", withGlyph, triggerClassName
         className="hidden sm:grid border-brandDefault border-brandButtonOutline rounded bg-white text-sm text-brandTextSecondary shadow-transientObject overflow-hidden"
         align="start"
       >
-        { route && (
-          <ShareItem
-            displayText="Copy Link"
-            displayGlyph={<LinkGlyph className="w-4 h-4" />}
-            clipboardString={window.location.origin + `${route}/` + itemData.id}
-          />
-        )}
+        <ShareItem
+          displayText="Copy Link"
+          displayGlyph={<LinkGlyph className="w-4 h-4" />}
+          clipboardString={window.location.origin + `/story/` + (storyId ? `${storyId}/${itemData.id}` : itemData.id)}
+        />
         
         { itemData.url && (<>
           <DropdownMenu.Separator className="border-b-brandDefault border-brandButtonOutline" />
@@ -39,7 +37,7 @@ const ShareDropdown = ({ itemData, route = "/story", withGlyph, triggerClassName
         </>)}
         <DropdownMenu.Separator className="border-b-brandDefault border-brandButtonOutline" />
         <ShareItem
-          displayText="Copy Original Link"
+          displayText="Copy Y Combinator Link"
           displayGlyph={<HackerNewsGlyph className="w-4 h-4" />}
           clipboardString={'https://news.ycombinator.com/item?id=' + itemData.id}
         />

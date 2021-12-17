@@ -2,7 +2,7 @@ import SiteLayout from "../SiteLayout";
 import StoryItem from "../Story/StoryItem/StoryItem";
 import CommentList from "./CommentList";
 
-const CommentView = ({ storyId }) => {
+const CommentView = ({ storyId, permalinkId }) => {
   return (  
     <SiteLayout contentClassName="grid-rows-[auto,auto,1fr] gap-2 sm:gap-4">
       <StoryItem 
@@ -11,7 +11,10 @@ const CommentView = ({ storyId }) => {
         isStatic
       />
 
-      <CommentList storyId={storyId} />
+      <CommentList 
+        storyId={storyId} 
+        permalinkId={permalinkId} 
+      />
     </SiteLayout>
   );
 }

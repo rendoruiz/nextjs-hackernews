@@ -14,7 +14,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
 
   return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
-    data.deleted || data.dead ? (<IsDeadOrDeleted />) : (
+    data.deleted || data.dead ? (<IsDeadOrDeleted />) : data.type === "comment" ? null : (
       <div className={clsx(
         "grid transition-colors sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm",
         { "cursor-pointer sm:hover:border-brandBorderHover": !isStatic }
