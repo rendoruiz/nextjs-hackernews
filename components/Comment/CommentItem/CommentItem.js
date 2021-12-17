@@ -51,7 +51,7 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
 
         {/* vertical line - desktop collapse toggle */}
         <div className={clsx(
-          "hidden col-start-1 w-7 overflow-hidden",
+          "hidden col-start-1 w-6 overflow-hidden",
           { "sm:grid": !isCollapsed }
         )}>
           <button 

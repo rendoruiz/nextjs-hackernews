@@ -70,7 +70,7 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth, submitterI
                 { replyIds.length } more repl{ replyIds.length > 1 ? "ies" : "y" }
               </span>
             ) : (
-              <span>
+              <span className="sm:-ml-1">
                 { replyIds.length-replyItemCount } more repl{ replyIds.length-replyItemCount > 1 ? "ies" : "y" }
               </span>
             )}
