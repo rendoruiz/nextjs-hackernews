@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useState, useEffect } from "react";
 
 import { useStory } from "../../hooks/useStory";
@@ -58,6 +59,17 @@ const CommentList = ({ storyId, permalinkId }) => {
           )}
         </>
       )}
+
+      { isPermalink && (
+        <div className="grid justify-end px-4 pt-2 pb-1 sm:justify-start sm:p-0 sm:pb-4">
+          <Link href={"/story/" + storyId}>
+            <a className="font-bold text-xs text-brandOrange tracking-wide">
+              <span className="sm:hidden">See full discussion</span>
+              <span className="hidden sm:block">View all comments</span>
+            </a>
+          </Link>
+        </div>
+      )}
       
       {/* comment list */}
       { storyData.kids && (
@@ -70,6 +82,7 @@ const CommentList = ({ storyId, permalinkId }) => {
                 submitterId={storyData.by}
                 storyId={storyId}
                 replyDepthLimit={defaultDepthLimit}
+                isPermalink
               />
             ))
           )}
@@ -78,9 +91,9 @@ const CommentList = ({ storyId, permalinkId }) => {
 
       {/* load more comments trigger */}
       { !isPermalink && storyData.kids && storyData.kids.length > itemCount && (
-        <div className="border-t-brandDefault border-t-brandButtonOutline mt-2 px-4 pt-3 pb-1 sm:border-none sm:mt-0 sm:px-2 sm:py-0">
+        <div className="grid border-t-brandDefault border-t-brandButtonOutline mt-2 px-4 pt-3 pb-1 sm:border-none sm:mt-0 sm:px-2 sm:pt-2 sm:pb-1">
           <button
-            className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left hover:underline sm:text-brandOrange"
+            className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left sm:text-brandOrange sm:hover:underline"
             onClick={(e) => handleClick(e)}
           >
             <span className="sm:hidden">
