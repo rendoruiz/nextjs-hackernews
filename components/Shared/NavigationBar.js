@@ -104,7 +104,10 @@ const MobileNavigationDropdown = ({ navigationItems, routePrefix, activeItem }) 
           <DropdownMenu.Separator className="border-b-brandDefault border-brandBorder" /> 
           { navigationItems.map((item, index) => (
             <DropdownMenu.Item key={index}>
-              <Link href={routePrefix + (item.route ?? "/")}>
+              <Link 
+                href={routePrefix + (item.route ?? "/")} 
+                shallow
+              >
                 <a 
                   className="flex items-center px-1 py-3"
                   onClick={() => handleClick(index)}
@@ -133,6 +136,7 @@ const DesktopNavigationList = ({ navigationItems, routePrefix, activeItem }) => 
         <Link 
           key={index}
           href={routePrefix + (item.route ?? "/")}
+          shallow
         >
           <a className={clsx(
             "flex items-center rounded-full pl-2 pr-[0.625rem] py-[0.375rem] transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive", 
