@@ -26,7 +26,7 @@ const CommentItemHeader = ({ commentData, submitterId, storyId, itemDepth, isDea
       {/* mobile user avatar */}
       <UserAvatar 
         userId={commentData.by} 
-        className={clsx(itemDepth === 0 ? "w-6 h-6" : "w-[18px] h-[18px]", "sm:hidden")}
+        className={clsx(itemDepth === 0 ? "w-6 h-6 text-xs2" : "w-[18px] h-[18px] text-xs3", "sm:hidden")}
       />
 
       {/* desktop expand toggle */}
@@ -57,7 +57,7 @@ const CommentItemHeader = ({ commentData, submitterId, storyId, itemDepth, isDea
             userId={commentData.by} 
             withAvatar
             className="hidden sm:flex items-center font-medium"
-            avatarClassName="mr-2 w-7 h-7"
+            avatarClassName="mr-2 w-7 h-7 text-base"
           />
           
           {/* original poster indicator */}

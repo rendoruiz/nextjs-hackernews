@@ -1,8 +1,8 @@
 // modified heroicons chat svg
-const ChatGlyph = () => {
+const ChatGlyph = ({className}) => {
   return (  
     <svg
-      className="w-5 h-5 sm:w-6 sm:h-6"
+      className={className ?? "w-5 h-5 sm:w-6 sm:h-6"}
       fill="none"
       stroke="currentColor"
       viewBox="0 0 24 24"

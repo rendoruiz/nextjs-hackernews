@@ -20,7 +20,7 @@ const MobileActionsModal = ({ itemData, storyId, triggerClassName }) => {
     }
   }, [itemData.by]);
 
-  return !itemData ? null : !storyId ? null : (  
+  return !itemData ? null : (  
     <Dialog.Root>
       <Dialog.Trigger asChild>
         <button 
@@ -39,7 +39,7 @@ const MobileActionsModal = ({ itemData, storyId, triggerClassName }) => {
 
         {/* item permalink */}
         <div className="grid grid-cols-[1fr,auto]">
-          <Link href={`/story/${storyId}/${itemData.id}`}>
+          <Link href={"/story/" + (storyId ? `${storyId}/${itemData.id}` : itemData.id)}>
             <a className="grid grid-cols-[auto,1fr] items-center">
               <div className="grid place-items-center w-12 h-12 text-brandTextSecondary">
                 <LinkGlyph />

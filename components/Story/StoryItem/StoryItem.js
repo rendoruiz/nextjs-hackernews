@@ -9,9 +9,19 @@ import StoryItemFooter from "./StoryItemFooter";
 import StoryItemMobileShareTrigger from './StoryItemMobileShareTrigger';
 import ItemIsError from '../../StatusMessage/ItemIsError';
 import MobileActionsModal from '../../Shared/MobileActionsModal';
+import { useEffect, useState } from 'react';
 
 const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
+  const [textContent, setTextContent] = useState(null);
+
+  useEffect(() => {
+    if (withText && data) {
+      if (data.text) {
+        setTextContent(useHtmlParser(data.text));
+      }
+    }
+  }, [withText, data])
 
   return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
     data.deleted || data.dead ? (<IsDeadOrDeleted />) : data.type === "comment" ? null : (
@@ -62,7 +72,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
           <Link href={'/story/' + data.id}>
             <a className={clsx(
               "row-start-2 col-start-1 mb-1 font-medium text-brandTextPrimary leading-tight sm:row-start-auto sm:col-start-auto sm:mb-0 sm:text-lg sm:leading-snug",
-              { "visited:text-brandTextLinkVisited": !window.location.pathname.includes('/story') },
+              { "visited:text-brandTextLinkVisited": !isStatic },
             )}>
               { data.title }
             </a>
@@ -72,9 +82,9 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
           <StoryItemDisplayLink rawLink={data.url} />
           
           {/* text/content */}
-          { withText && data.text && (
+          { textContent && (
             <div className="col-span-2 inline-block mb-1 text-sm break-words sm:col-auto sm:mb-2">
-              { useHtmlParser(data.text) }
+              { textContent }
             </div>
           )}
 

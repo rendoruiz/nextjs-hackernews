@@ -5,6 +5,7 @@ import { useRelativeTime } from '../../hooks/useDate';
 import { useUser } from '../../hooks/useUser';
 import UserAvatar from './UserAvatar';
 import UserLink from './UserLink';
+import { useNumberFormatter } from '../../hooks/useNumberFormatter';
 
 const UserHoverCard = ({ userId, className, withPrefix, withAvatar, avatarClassName }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,11 +47,19 @@ const UserHoverCard = ({ userId, className, withPrefix, withAvatar, avatarClassN
 const CardContent = ({ userId, isOpen }) => {
   const { isLoading, isError, isSuccess, data } = useUser(userId);
   const [relativeTime, setRelativeTime] = useState(null);
+  const [karma, setKarma] = useState(null);
+  const [submissions, setSubmissions] = useState(null);
 
   useEffect(() => {
     if (isOpen && data) {
-      if (data.created && !relativeTime) {
+      if (!relativeTime && data.created) {
         setRelativeTime(useRelativeTime(data.created))
+      }
+      if (!karma) {
+        setKarma(useNumberFormatter(data.karma));
+      }
+      if (!submissions) {
+        setSubmissions(!data.submitted ? "0" : useNumberFormatter(data.submitted.length));
       }
     }
   }, [isOpen, data]);
@@ -59,7 +68,7 @@ const CardContent = ({ userId, isOpen }) => {
     <section className="grid grid-cols-[auto,1fr] items-end gap-2">
       {/* heading */}
       <UserAvatar 
-        className="w-9 h-9"
+        className="w-9 h-9 text-2xl"
         userId={data.id}
       />
       {/* <div className="rounded bg-brandOrange "></div> */}
@@ -83,7 +92,7 @@ const CardContent = ({ userId, isOpen }) => {
           Karma
         </p>
         <p className="order-1 font-medium text-lg text-brandTextPrimary leading-snug">
-          { data.karma }
+          { karma }
         </p>
       </div>
       {/* creation date */}
@@ -92,7 +101,7 @@ const CardContent = ({ userId, isOpen }) => {
           Submissions
         </p>
         <p className="order-1 font-medium text-lg text-brandTextPrimary leading-snug">
-          { data.submitted.length }
+          { submissions }
         </p>
       </div>
     </section>
