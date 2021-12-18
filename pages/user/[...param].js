@@ -4,10 +4,12 @@ import UserView from "../../components/User/UserView";
 
 const UserPage = () => {
   const router = useRouter();
-  const { userid } = router.query;
+  const { param } = router.query;
 
-  return (  
-    <UserView userId={userid} />
+  return !param ? null : param[0] && (  
+    <UserView 
+      userId={param[0]}
+    />
   );
 }
  

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from "next/dist/client/router";
 import Link from 'next/link'
 import clsx from "clsx";
@@ -8,8 +8,22 @@ import ChevronDownGlyph from '../Glyphs/ChevronDownGlyph';
 
 const NavigationBar = ({ navigationItems, routePrefix = "", className }) => {
   const router = useRouter();
-  const [activeItem, setActiveItem] = useState(0);
+  const [activeItem, setActiveItem] = useState(null);
   console.log({router})
+
+  useEffect(() => {
+    if (navigationItems) {
+      [...navigationItems].every((item, index) => {
+        if (router.asPath.includes(item.route)) {
+          setActiveItem(index);
+          return false;
+        } else {
+          setActiveItem(0);
+        }
+        return true;
+      });
+    }
+  }, [router]);
 
   return (
     <div className={clsx(
@@ -18,31 +32,31 @@ const NavigationBar = ({ navigationItems, routePrefix = "", className }) => {
     )}>
       {/* mobile nav */}
       <MobileNavigationDropdown 
-        router={router} 
         navigationItems={navigationItems}
         routePrefix={routePrefix}
         activeItem={activeItem}
-        setActiveItem={setActiveItem}
       />
 
       {/* desktop nav */}
       <DesktopNavigationList
-        router={router}
         navigationItems={navigationItems}
         routePrefix={routePrefix}
+        activeItem={activeItem}
       />
     </div>
   );
 }
 
 // navigation dropdown
-const MobileNavigationDropdown = ({ router, navigationItems, routePrefix }) => {
+const MobileNavigationDropdown = ({ navigationItems, routePrefix, activeItem }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleClick = (itemRoute) => {
-    // if (routePrefix + itemRoute === router.pathname) {
+  // close if same route is accessed
+  const handleClick = (routeIndex) => {
+    console.log({routeIndex}, {activeItem})
+    if (routeIndex === activeItem) {
       setIsOpen(false);
-    // }
+    }
   }
 
   return (
@@ -51,7 +65,7 @@ const MobileNavigationDropdown = ({ router, navigationItems, routePrefix }) => {
       onOpenChange={(state) => setIsOpen(state)}
     >
       <DropdownMenu.Trigger className="flex items-center rounded px-2 py-3 text-brandTextSecondary sm:hidden"> 
-        { navigationItems.map((item, index) => ((!item.route && index === 0) || (router.asPath.includes(item.route)) && index !== 0) && (
+        { navigationItems.map((item, index) => index === activeItem && (
           <div 
             key={index}
             className="flex self-center items-center -ml-2"
@@ -65,8 +79,9 @@ const MobileNavigationDropdown = ({ router, navigationItems, routePrefix }) => {
           </div>
         ))}
         <ChevronDownGlyph />
-        
-        { isOpen && (<div className="fixed z-10 inset-0 bg-black/40 sm:hidden"></div>) }
+
+        {/* custom overlay */}
+        { isOpen && (<div className="fixed z-10 inset-0 bg-black/40 sm:hidden" />) }
       </DropdownMenu.Trigger>
       <DropdownMenu.Content 
         className="grid -ml-4 w-screen min-w-[282px] text-brandTextSecondary overflow-hidden sm:hidden"
@@ -92,9 +107,9 @@ const MobileNavigationDropdown = ({ router, navigationItems, routePrefix }) => {
               <Link href={routePrefix + (item.route ?? "/")}>
                 <a 
                   className="flex items-center px-1 py-3"
-                  onClick={() => handleClick(item.route)}
+                  onClick={() => handleClick(index)}
                 >
-                  <div className={clsx("w-6 h-6", { "text-brandOrange": (!item.route && index === 0) })}>
+                  <div className={clsx("w-6 h-6", { "text-brandOrange": index === activeItem })}>
                     { item.glyph }
                   </div>
                   <span className="ml-3 text-brandTextPrimary">
@@ -111,7 +126,7 @@ const MobileNavigationDropdown = ({ router, navigationItems, routePrefix }) => {
 }
 
 // desktop nav list
-const DesktopNavigationList = ({ router, navigationItems, routePrefix }) => {
+const DesktopNavigationList = ({ navigationItems, routePrefix, activeItem }) => {
   return (
     <div className="hidden sm:grid grid-flow-col auto-cols-auto gap-2">
       { navigationItems.map((item, index) => (
@@ -121,7 +136,7 @@ const DesktopNavigationList = ({ router, navigationItems, routePrefix }) => {
         >
           <a className={clsx(
             "flex items-center rounded-full pl-2 pr-[0.625rem] py-[0.375rem] transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive", 
-            ((!item.route && index === 0) || router.asPath.includes(item.route)) ? "bg-brandButtonSelected text-brandOrange" : "text-brandTextSecondary"
+            index === activeItem ? "bg-brandButtonSelected text-brandOrange" : "text-brandTextSecondary"
           )}>
             <div className="w-6 h-6">
               { item.glyph }
