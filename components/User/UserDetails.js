@@ -21,7 +21,7 @@ const UserDetails = ({ userData }) => {
       setRelativeTime(useRelativeTime(userData.created, false));
       setFullDateTime(useFullDateTime(userData.created, true));
       setKarma(useNumberFormatter(userData.karma));
-      setSubmissions(!userData.submitted ? "0" :  useNumberFormatter(userData.submitted.length))
+      setSubmissions(!userData.submitted ? "0" :  useNumberFormatter(userData.submitted.length));
       if (userData.about) {
         setTextContent(useHtmlParser(userData.about));
       }
