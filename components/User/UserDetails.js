@@ -29,7 +29,7 @@ const UserDetails = ({ userData }) => {
   }, [userData]);
 
   return (  
-    <div className="grid content-start pt-2 bg-white overflow-hidden sm:hidden md:grid md:order-2 md:rounded md:pt-0 md:w-[250px] bp960:w-[310px]">
+    <div className="grid content-start pt-3 bg-white overflow-hidden sm:hidden md:grid md:order-2 md:rounded md:pt-0 md:w-[250px] bp960:w-[310px]">
       {/* desktop header background */}
       <div className="hidden h-[94px] bg-brandOrange/60 md:block" />
 
@@ -56,7 +56,7 @@ const UserDetails = ({ userData }) => {
         {/* mobile stats */}
         <div className="flex flex-wrap justify-center mb-2 font-extralight md:hidden">
           <div>
-            <span className="font-bold">{ userData.karma }</span>
+            <span className="font-bold">{ karma }</span>
             <span> karma</span>
           </div>
           <div>
