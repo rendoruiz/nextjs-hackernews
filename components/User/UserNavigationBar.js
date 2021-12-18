@@ -5,7 +5,7 @@ import TrendUpGlyph from "../Glyphs/TrendUpGlyph";
 
 const navigationItems = [
   {
-    text: 'Submissions',
+    text: 'Overview',
     glyph: <FireGlyph className="w-full h-full" />,
   },
   {
