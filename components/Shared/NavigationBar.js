@@ -6,8 +6,10 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 import ChevronDownGlyph from '../Glyphs/ChevronDownGlyph';
 
-const NavigationBar = ({ navigationItems, className }) => {
+const NavigationBar = ({ navigationItems, routePrefix = "", className }) => {
   const router = useRouter();
+  const [activeItem, setActiveItem] = useState(0);
+  console.log({router})
 
   return (
     <div className={clsx(
@@ -18,25 +20,29 @@ const NavigationBar = ({ navigationItems, className }) => {
       <MobileNavigationDropdown 
         router={router} 
         navigationItems={navigationItems}
+        routePrefix={routePrefix}
+        activeItem={activeItem}
+        setActiveItem={setActiveItem}
       />
 
       {/* desktop nav */}
       <DesktopNavigationList
         router={router}
         navigationItems={navigationItems}
+        routePrefix={routePrefix}
       />
     </div>
   );
 }
 
 // navigation dropdown
-const MobileNavigationDropdown = ({ router, navigationItems }) => {
+const MobileNavigationDropdown = ({ router, navigationItems, routePrefix }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = (itemRoute) => {
-    if (itemRoute === router.pathname) {
+    // if (routePrefix + itemRoute === router.pathname) {
       setIsOpen(false);
-    }
+    // }
   }
 
   return (
@@ -45,7 +51,7 @@ const MobileNavigationDropdown = ({ router, navigationItems }) => {
       onOpenChange={(state) => setIsOpen(state)}
     >
       <DropdownMenu.Trigger className="flex items-center rounded px-2 py-3 text-brandTextSecondary sm:hidden"> 
-        { navigationItems.map((item, index) => item.route === router.pathname && (
+        { navigationItems.map((item, index) => ((!item.route && index === 0) || (router.asPath.includes(item.route)) && index !== 0) && (
           <div 
             key={index}
             className="flex self-center items-center -ml-2"
@@ -83,12 +89,12 @@ const MobileNavigationDropdown = ({ router, navigationItems }) => {
           <DropdownMenu.Separator className="border-b-brandDefault border-brandBorder" /> 
           { navigationItems.map((item, index) => (
             <DropdownMenu.Item key={index}>
-              <Link href={item.route}>
+              <Link href={routePrefix + (item.route ?? "/")}>
                 <a 
                   className="flex items-center px-1 py-3"
                   onClick={() => handleClick(item.route)}
                 >
-                  <div className={clsx("w-6 h-6", { "text-brandOrange": item.route === router.pathname })}>
+                  <div className={clsx("w-6 h-6", { "text-brandOrange": (!item.route && index === 0) })}>
                     { item.glyph }
                   </div>
                   <span className="ml-3 text-brandTextPrimary">
@@ -105,17 +111,17 @@ const MobileNavigationDropdown = ({ router, navigationItems }) => {
 }
 
 // desktop nav list
-const DesktopNavigationList = ({ router, navigationItems }) => {
+const DesktopNavigationList = ({ router, navigationItems, routePrefix }) => {
   return (
     <div className="hidden sm:grid grid-flow-col auto-cols-auto gap-2">
       { navigationItems.map((item, index) => (
         <Link 
           key={index}
-          href={item.route}
+          href={routePrefix + (item.route ?? "/")}
         >
           <a className={clsx(
             "flex items-center rounded-full pl-2 pr-[0.625rem] py-[0.375rem] transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive", 
-            item.route === router.pathname ? "bg-brandButtonSelected text-brandOrange" : "text-brandTextSecondary"
+            ((!item.route && index === 0) || router.asPath.includes(item.route)) ? "bg-brandButtonSelected text-brandOrange" : "text-brandTextSecondary"
           )}>
             <div className="w-6 h-6">
               { item.glyph }

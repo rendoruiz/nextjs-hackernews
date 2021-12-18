@@ -5,7 +5,6 @@ import TrendUpGlyph from "../Glyphs/TrendUpGlyph";
 
 const navItems = [
   {
-    route: '/',
     text: 'Top',
     glyph: <FireGlyph className="w-full h-full" />,
   },
