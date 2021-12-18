@@ -9,7 +9,6 @@ import ChevronDownGlyph from '../Glyphs/ChevronDownGlyph';
 const NavigationBar = ({ navigationItems, routePrefix = "", className }) => {
   const router = useRouter();
   const [activeItem, setActiveItem] = useState(null);
-  console.log({router})
 
   useEffect(() => {
     if (navigationItems) {
@@ -52,11 +51,8 @@ const MobileNavigationDropdown = ({ navigationItems, routePrefix, activeItem }) 
   const [isOpen, setIsOpen] = useState(false);
 
   // close if same route is accessed
-  const handleClick = (routeIndex) => {
-    console.log({routeIndex}, {activeItem})
-    if (routeIndex === activeItem) {
-      setIsOpen(false);
-    }
+  const handleClick = () => {
+    setIsOpen(false);
   }
 
   return (
@@ -108,10 +104,7 @@ const MobileNavigationDropdown = ({ navigationItems, routePrefix, activeItem }) 
                 href={routePrefix + (item.route ?? "/")} 
                 shallow
               >
-                <a 
-                  className="flex items-center px-1 py-3"
-                  onClick={() => handleClick(index)}
-                >
+                <a className="flex items-center px-1 py-3">
                   <div className={clsx("w-6 h-6", { "text-brandOrange": index === activeItem })}>
                     { item.glyph }
                   </div>
