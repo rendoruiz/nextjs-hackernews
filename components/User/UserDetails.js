@@ -102,11 +102,11 @@ const UserDetails = ({ userData }) => {
           </div>
         </div>
 
-        {/* notes */}
+        {/* about */}
         { textContent && (
-          <div className="hidden md:grid gap-1 mt-1">
-            <span className="font-medium tracking-wide">About</span>
-            <div className="text-xs break-words overflow-hidden">
+          <div className="grid gap-1 mt-1 mb-2 md:mb-0">
+            <span className="md:font-medium tracking-wide">About</span>
+            <div className="font-light text-xs break-words overflow-hidden md:font-normal">
               { textContent }
             </div>
           </div>
