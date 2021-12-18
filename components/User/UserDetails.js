@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import * as Tooltip from '@radix-ui/react-tooltip';
 
 import { useFullDateTime, useRelativeTime } from "../../hooks/useDate";
 import { useHtmlParser } from "../../hooks/useHtmlParser";
@@ -11,6 +12,7 @@ import UserLink from "./UserLink";
 
 const UserDetails = ({ userData }) => {
   const [relativeTime, setRelativeTime] = useState(null);
+  const [relativeTimeWithSuffix, setRelativeTimeWithSuffix] = useState(null);
   const [fullDateTime, setFullDateTime] = useState(null);
   const [textContent, setTextContent] = useState(null);
   const [karma, setKarma] = useState(null);
@@ -19,6 +21,7 @@ const UserDetails = ({ userData }) => {
   useEffect(() => {
     if (userData) {
       setRelativeTime(useRelativeTime(userData.created, false));
+      setRelativeTimeWithSuffix(useRelativeTime(userData.created));
       setFullDateTime(useFullDateTime(userData.created, true));
       setKarma(useNumberFormatter(userData.karma));
       setSubmissions(!userData.submitted ? "0" :  useNumberFormatter(userData.submitted.length));
@@ -67,7 +70,7 @@ const UserDetails = ({ userData }) => {
         </div>
 
         {/* desktop stats */}
-        <div className="hidden md:grid bp960:grid-cols-2 gap-y-3">
+        <div className="hidden md:grid bp960:grid-cols-2 gap-y-3 tracking-wide">
           <div className="grid gap-1">
             <span className="font-medium">Karma</span>
             <div className="flex items-center">
@@ -81,9 +84,11 @@ const UserDetails = ({ userData }) => {
             <span className="font-medium">Cake day</span>
             <div className="flex items-center">
               <CakeGlyph className="w-4 h-4 text-brandOrange/80" />
-              <span className="ml-1 text-xs text-brandTextSecondary">
-                { fullDateTime }
-              </span>
+              <CakeDayTooltip tooltip={relativeTimeWithSuffix}>
+                <span className="ml-1 text-xs text-brandTextSecondary">
+                  { fullDateTime }
+                </span>
+              </CakeDayTooltip>
             </div>
           </div>
           <div className="grid gap-1">
@@ -100,7 +105,7 @@ const UserDetails = ({ userData }) => {
         {/* notes */}
         { textContent && (
           <div className="hidden md:grid gap-1 mt-1">
-            <span className="font-medium">About</span>
+            <span className="font-medium tracking-wide">About</span>
             <div className="text-xs break-words overflow-hidden">
               { textContent }
             </div>
@@ -120,6 +125,23 @@ const UserDetails = ({ userData }) => {
   );
 }
 
+const CakeDayTooltip = ({ children, tooltip }) => {
+  return (
+    <Tooltip.Root>
+      <Tooltip.Trigger asChild>
+        { children }
+      </Tooltip.Trigger>
+      <Tooltip.Content 
+        className="rounded px-2 py-1 bg-black font-medium text-xs text-white"
+        side="bottom"
+        sideOffset={5}
+      >
+        <span>{ tooltip }</span>
+        <Tooltip.Arrow className="my-[-0.5px] text-black fill-current" />
+      </Tooltip.Content>
+    </Tooltip.Root>
+  );
+}
 
  
 export default UserDetails;
