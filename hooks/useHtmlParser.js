@@ -19,7 +19,7 @@ const useHtmlParser = (rawHtmlString) => {
       // wrap code blocks
       if (type === "tag" && name === "pre") {
         return (
-          <pre className="whitespace-pre-wrap break-all sm:break-words">
+          <pre className="whitespace-pre-wrap break-all md:break-words">
             { domToReact(children, options) }
           </pre>
         )

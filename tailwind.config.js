@@ -1,19 +1,16 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-  mode: 'jit',
-  purge: [
+  content: [
     './pages/**/*.{js,ts,jsx,tsx}', 
     './components/**/*.{js,ts,jsx,tsx}',
     './hooks/**/*.{js,ts,jsx,tsx}',
   ],
-  darkMode: false, // or 'media' or 'class'
   theme: {
     screens: {
-      'bp360': '360px',
       'bp420': '420px',
-      'bp500': '500px',
       ...defaultTheme.screens,
+      'bp960': '960px',
     },
     extend: {
       colors: {
@@ -45,9 +42,6 @@ module.exports = {
         xs3: ['0.5rem', '1'],
       },
     },
-  },
-  variants: {
-    extend: {},
   },
   plugins: [],
 }

@@ -11,14 +11,14 @@ const UserAvatar = ({ className, userId }) => {
       setBackgroundColor(generateHslColor(userId));
       setUserInitial(userId.split('').shift().toUpperCase());
     }
-  }, [userId])
+  }, [userId]);
 
   return !userId ? null : (  
     <Link href={'/user/' + userId}>
       <a 
         className={clsx(
           className ?? "w-5 h-5 text-sm", 
-          "grid place-items-center font-mono font-bold leading-[0] text-brandTextPrimary rounded-full shadow-sm"
+          "grid place-items-center font-mono font-bold leading-[0] text-brandTextPrimary rounded-full shadow-sm overflow-hidden"
         )}
         style={{ backgroundColor: backgroundColor }}
         title="app generated avatar"
