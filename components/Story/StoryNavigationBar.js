@@ -20,9 +20,9 @@ const navItems = [
   },
 ];
 
-const StoryNav = () => {
+const StoryNavigationBar = () => {
   return ( 
     <NavigationBar navigationItems={navItems} />
   );
 }
-export default StoryNav;
+export default StoryNavigationBar;

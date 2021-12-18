@@ -1,12 +1,12 @@
 import SiteLayout from "../SiteLayout";
-import StoryNav from "./StoryNav";
+import StoryNavigationBar from "./StoryNavigationBar";
 import StoryList from "./StoryList";
 
 const StoryView = ({ useHook }) => {
   return ( 
     <SiteLayout contentClassName="grid-rows-[auto,1fr,auto]">
       {/* Navbar */}
-      <StoryNav />
+      <StoryNavigationBar />
 
       {/* Stories */}
       <StoryList useHook={useHook} />
