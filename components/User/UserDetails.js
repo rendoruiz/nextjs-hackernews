@@ -29,7 +29,7 @@ const UserDetails = ({ userData }) => {
   }, [userData]);
 
   return (  
-    <div className="grid content-start py-2 bg-white overflow-hidden sm:hidden md:grid md:order-2 md:rounded md:py-0 md:w-[250px] bp960:w-[310px]">
+    <div className="grid content-start pt-2 bg-white overflow-hidden sm:hidden md:grid md:order-2 md:rounded md:pt-0 md:w-[250px] bp960:w-[310px]">
       {/* desktop header background */}
       <div className="hidden h-[94px] bg-brandOrange/60 md:block" />
 
@@ -44,7 +44,7 @@ const UserDetails = ({ userData }) => {
       </div>
 
       {/* details */}
-      <div className="grid text-center px-4 pb-1 text-sm cursor-default md:gap-2 md:border-brandDefault md:border-brandBorder md:border-t-0 md:rounded md:rounded-t-none md:px-3 md:pb-5 md:text-left">
+      <div className="grid border-b-brandDefault border-brandBorder px-4 pb-3 text-sm text-center cursor-default md:gap-2 md:border-brandDefault md:border-t-0 md:rounded md:rounded-t-none md:px-3 md:pb-5 md:text-left">
         {/* name */}
         <h2 className="font-medium text-2xl leading-normal md:text-xs">
           <UserLink 
@@ -54,7 +54,7 @@ const UserDetails = ({ userData }) => {
         </h2>
 
         {/* mobile stats */}
-        <div className="flex flex-wrap justify-center font-extralight md:hidden">
+        <div className="flex flex-wrap justify-center mb-2 font-extralight md:hidden">
           <div>
             <span className="font-bold">{ userData.karma }</span>
             <span> karma</span>
