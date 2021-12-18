@@ -8,11 +8,9 @@ module.exports = {
   ],
   theme: {
     screens: {
-      'bp360': '360px',
       'bp420': '420px',
-      'bp500': '500px',
-      'bp960': '960px',
       ...defaultTheme.screens,
+      'bp960': '960px',
     },
     extend: {
       colors: {

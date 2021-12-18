@@ -10,7 +10,7 @@ const StoryView = ({ userId }) => {
   const { isLoading, isError, data, isSuccess } = useUser(userId);
 
   return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (  
-    <SiteLayout contentClassName="md:grid-cols-[1fr,auto]">
+    <SiteLayout contentClassName="md:grid-cols-[1fr,auto] md:gap-x-6">
       <UserDetails userData={data} />
       <div>
         <UserNavigationBar userId={data.id} />

@@ -2,19 +2,26 @@ import { useState, useEffect } from "react";
 
 import { useFullDateTime, useRelativeTime } from "../../hooks/useDate";
 import { useHtmlParser } from "../../hooks/useHtmlParser";
+import { useNumberFormatter } from "../../hooks/useNumberFormatter";
 import CakeGlyph from "../Glyphs/CakeGlyph";
+import PlusGlyph from "../Glyphs/PlusGlyph";
 import StarGlyph from "../Glyphs/StarGlyph";
 import UserAvatar from "./UserAvatar";
+import UserLink from "./UserLink";
 
 const UserDetails = ({ userData }) => {
   const [relativeTime, setRelativeTime] = useState(null);
   const [fullDateTime, setFullDateTime] = useState(null);
   const [textContent, setTextContent] = useState(null);
+  const [karma, setKarma] = useState(null);
+  const [submissions, setSubmissions] = useState(null);
 
   useEffect(() => {
     if (userData) {
       setRelativeTime(useRelativeTime(userData.created, false));
       setFullDateTime(useFullDateTime(userData.created, true));
+      setKarma(useNumberFormatter(userData.karma));
+      setSubmissions(!userData.submitted ? "0" :  useNumberFormatter(userData.submitted.length))
       if (userData.about) {
         setTextContent(useHtmlParser(userData.about));
       }
@@ -22,7 +29,7 @@ const UserDetails = ({ userData }) => {
   }, [userData]);
 
   return (  
-    <div className="grid content-start py-2 bg-white overflow-hidden md:order-2 md:rounded md:py-0 md:w-[310px]">
+    <div className="grid content-start py-2 bg-white overflow-hidden sm:hidden md:grid md:order-2 md:rounded md:py-0 md:w-[250px] bp960:w-[310px]">
       {/* desktop header background */}
       <div className="hidden h-[94px] bg-brandOrange/60 md:block" />
 
@@ -37,10 +44,13 @@ const UserDetails = ({ userData }) => {
       </div>
 
       {/* details */}
-      <div className="grid text-center px-4 pb-1 text-sm md:gap-2 md:border-brandDefault md:border-brandBorder md:border-t-0 md:rounded md:rounded-t-none md:px-3 md:pb-5 md:text-left">
+      <div className="grid text-center px-4 pb-1 text-sm cursor-default md:gap-2 md:border-brandDefault md:border-brandBorder md:border-t-0 md:rounded md:rounded-t-none md:px-3 md:pb-5 md:text-left">
         {/* name */}
-        <h2 className="font-medium text-2xl leading-normal md:mt-1 md:text-xs">
-          u/{ userData.id }
+        <h2 className="font-medium text-2xl leading-normal md:text-xs">
+          <UserLink 
+            userId={userData.id} 
+            withPrefix 
+          />
         </h2>
 
         {/* mobile stats */}
@@ -57,22 +67,31 @@ const UserDetails = ({ userData }) => {
         </div>
 
         {/* desktop stats */}
-        <div className="hidden md:grid grid-cols-2">
+        <div className="hidden md:grid bp960:grid-cols-2 gap-y-3">
           <div className="grid gap-1">
             <span className="font-medium">Karma</span>
             <div className="flex items-center">
-              <StarGlyph className="w-4 h-4 text-brandOrange" />
+              <StarGlyph className="w-4 h-4 text-brandOrange/80" />
               <span className="ml-1 text-xs text-brandTextSecondary">
-                { userData.karma }
+                { karma }
+              </span>
+            </div>
+          </div>
+          <div className="grid gap-1 order-3 bp960:order-none">
+            <span className="font-medium">Cake day</span>
+            <div className="flex items-center">
+              <CakeGlyph className="w-4 h-4 text-brandOrange/80" />
+              <span className="ml-1 text-xs text-brandTextSecondary">
+                { fullDateTime }
               </span>
             </div>
           </div>
           <div className="grid gap-1">
-            <span className="font-medium">Cake day</span>
+            <span className="font-medium">Submissions</span>
             <div className="flex items-center">
-              <CakeGlyph className="w-4 h-4 text-brandOrange" />
+              <PlusGlyph className="w-4 h-4 text-brandOrange/80" />
               <span className="ml-1 text-xs text-brandTextSecondary">
-                { fullDateTime }
+                { submissions }
               </span>
             </div>
           </div>
@@ -82,7 +101,7 @@ const UserDetails = ({ userData }) => {
         { textContent && (
           <div className="hidden md:grid gap-1 mt-1">
             <span className="font-medium">About</span>
-            <div className="text-xs break-words">
+            <div className="text-xs break-words overflow-hidden">
               { textContent }
             </div>
           </div>
@@ -100,5 +119,7 @@ const UserDetails = ({ userData }) => {
     </div>
   );
 }
+
+
  
 export default UserDetails;
