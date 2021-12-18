@@ -1,14 +1,15 @@
 import { useRouter } from "next/dist/client/router";
+
 import CommentView from "../../components/Comment/CommentView";
 
 const StoryPermalinkPage = () => {
   const router = useRouter();
-  const { permalink } = router.query;
+  const { param } = router.query;
 
-  return !permalink ? null : (  
+  return !param ? null : (  
     <CommentView 
-      storyId={permalink[0]} 
-      permalinkId={permalink[1]} 
+      storyId={param[0]} 
+      permalinkId={param[1]} 
     />
   );
 }
