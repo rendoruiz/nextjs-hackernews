@@ -54,7 +54,7 @@ const UserDetails = ({ userData }) => {
         </h2>
 
         {/* mobile stats */}
-        <div className="flex flex-wrap justify-center mb-2 font-extralight md:hidden">
+        <div className="flex flex-wrap justify-center mb-2 font-extralight leading-tight md:hidden">
           <div>
             <span className="font-bold">{ karma }</span>
             <span> karma</span>
