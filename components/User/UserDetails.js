@@ -136,7 +136,7 @@ const CakeDayTooltip = ({ children, tooltip }) => {
   );
 }
 
-const AboutExpander = (textContent) => {
+const AboutExpander = ({ textContent }) => {
   const [isExpanded, setIsExpanded] = useState(null);
 
   return !textContent ? null : (
