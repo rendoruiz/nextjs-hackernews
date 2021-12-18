@@ -1,3 +1,5 @@
+import { useRouter } from "next/dist/client/router";
+import { useEffect, useState } from "react";
 import { useUser } from "../../hooks/useUser";
 import SiteLayout from "../SiteLayout";
 import IsError from "../StatusMessage/IsError";
@@ -6,10 +8,12 @@ import UserContentList from "./UserContent/UserContentList";
 import UserDetails from "./UserDetails";
 import UserNavigationBar from "./UserNavigationBar";
 
-const StoryView = ({ userId }) => {
-  const { isLoading, isError, data, isSuccess } = useUser(userId);
+const UserView = () => {
+  const router = useRouter();
+  const { userid } = router.query;
+  const { isLoading, isError, data, isSuccess } = useUser(userid);
 
-  return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (  
+  return userid && isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (  
     <SiteLayout contentClassName="md:grid-cols-[1fr,auto] md:gap-x-6">
       <UserDetails userData={data} />
       <div>
@@ -20,4 +24,4 @@ const StoryView = ({ userId }) => {
   );
 }
  
-export default StoryView;
+export default UserView;
