@@ -103,7 +103,7 @@ const UserDetails = ({ userData }) => {
         </div>
 
         {/* about */}
-        <AboutExpander />
+        <AboutExpander textContent={textContent} />
         
         {/* hackernews link */}
         <a 
