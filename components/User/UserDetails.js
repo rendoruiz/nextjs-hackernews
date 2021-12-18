@@ -82,9 +82,9 @@ const UserDetails = ({ userData }) => {
         { textContent && (
           <div className="hidden md:grid gap-1 mt-1">
             <span className="font-medium">About</span>
-            <p className="text-xs break-words">
+            <div className="text-xs break-words">
               { textContent }
-            </p>
+            </div>
           </div>
         )}
         
