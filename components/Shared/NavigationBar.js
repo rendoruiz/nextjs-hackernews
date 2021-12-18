@@ -3,14 +3,17 @@ import { useRouter } from "next/dist/client/router";
 import Link from 'next/link'
 import clsx from "clsx";
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
+
 import ChevronDownGlyph from '../Glyphs/ChevronDownGlyph';
 
-
-const NavigationBar = ({ navigationItems }) => {
+const NavigationBar = ({ navigationItems, className }) => {
   const router = useRouter();
 
   return (
-    <div className="grid grid-flow-col auto-cols-auto justify-between gap-5 mb-1 px-4 bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:mb-4 sm:py-3">
+    <div className={clsx(
+      className,
+      "grid grid-flow-col auto-cols-auto justify-between gap-5 mb-1 px-4 bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:mb-4 sm:py-3",
+    )}>
       {/* mobile nav */}
       <MobileNavigationDropdown 
         router={router} 
