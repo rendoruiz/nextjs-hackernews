@@ -51,7 +51,7 @@ const UserDetailsAboutExpander = ({ rawHtmlString }) => {
           )}
           onClick={() => setIsExpanded(!isExpanded)}
         >
-          <span className="mr-1 tracking-wider leading-none">
+          <span className="mr-1 tracking-wider leading-[0]">
             { !isExpanded ? "Expand": "Collapse" }
           </span>
           <ChevronDownGlyph className={clsx(
