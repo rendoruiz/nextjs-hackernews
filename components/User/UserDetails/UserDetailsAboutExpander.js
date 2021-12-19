@@ -29,7 +29,7 @@ const UserDetailsAboutExpander = ({ rawHtmlString }) => {
   });
 
   return textContent && (  
-    <div className="grid gap-1 mt-1 mb-3 md:mb-0">
+    <div className="grid gap-1 mb-2 md:mb-0">
       <span className="hidden md:block tracking-wide font-medium">About</span>
       <div 
         ref={textWrapperRef}
@@ -46,12 +46,12 @@ const UserDetailsAboutExpander = ({ rawHtmlString }) => {
         <button 
           title="show all about text trigger"
           className={clsx(
-            "flex justify-center items-center -mb-1 font-medium text-xs2 text-brandTextSecondary uppercase transition-all md:hidden",
+            "flex justify-center items-center font-medium text-xs2 text-brandTextSecondary uppercase transition-all md:hidden",
             { "mt-1": isExpanded }
           )}
           onClick={() => setIsExpanded(!isExpanded)}
         >
-          <span className="mr-1">{ !isExpanded ? "Expand": "Collapse" }</span>
+          <span className="mr-1 tracking-wider">{ !isExpanded ? "Expand": "Collapse" }</span>
           <ChevronDownGlyph className={clsx(
             "w-3 h-3 transition-transform duration-300",
             { "-rotate-180": isExpanded }
