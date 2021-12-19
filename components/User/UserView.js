@@ -1,12 +1,10 @@
 import { useRouter } from "next/dist/client/router";
-import { useEffect, useState } from "react";
 import { useUser } from "../../hooks/useUser";
 import SiteLayout from "../SiteLayout";
 import IsError from "../StatusMessage/IsError";
 import IsLoading from "../StatusMessage/IsLoading";
-import UserContentList from "./UserContent/UserContentList";
-import UserDetails from "./UserDetails";
-import UserNavigationBar from "./UserNavigationBar";
+import UserDetails from "./UserDetails/UserDetails";
+import UserContent from "./UserContent/UserContent";
 
 const UserView = () => {
   const router = useRouter();
@@ -15,11 +13,11 @@ const UserView = () => {
 
   return userid && isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (  
     <SiteLayout contentClassName="md:grid-cols-[1fr,auto] md:gap-x-6">
+      {/* details header (mobile)/sidebar (desktop) */}
       <UserDetails userData={data} />
-      <div>
-        <UserNavigationBar userId={data.id} />
-        <UserContentList userData={data} /> 
-      </div>
+
+      {/* user submitted contents */}
+      <UserContent userData={data} />
     </SiteLayout>
   );
 }
