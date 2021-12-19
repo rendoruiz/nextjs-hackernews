@@ -4,7 +4,7 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 
 import { useFullDateTime, useRelativeTime } from '../../hooks/useDate';
 
-const TimeTooltip = ({ className, unixTime, contentId, isComment }) => {
+const TimeTooltip = ({ className, unixTime, contentId }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [relativeTime, setRelativeTime] = useState(null);
   const [fullDateTime, setFullDateTime] = useState(null);
