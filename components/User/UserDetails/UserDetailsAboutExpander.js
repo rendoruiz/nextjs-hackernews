@@ -5,11 +5,11 @@ import { useHtmlParser } from "../../../hooks/useHtmlParser";
 import ChevronDownGlyph from "../../Glyphs/ChevronDownGlyph";
 
 const UserDetailsAboutExpander = ({ rawHtmlString }) => {
-  const [textContent, setTextContent] = useState(null);
   const mobileWrapperMaxHeight = 18;
   const textWrapperRef = useRef(null);
+  const [textContent, setTextContent] = useState(null);
   const [textWrapperHeight, setTextWrapperHeight] = useState(null);
-  const [isLongText, setIsLongText] = useState(null);
+  const [isLongText, setIsLongText] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
   // parse html
