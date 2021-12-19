@@ -5,11 +5,11 @@ import { useHtmlParser } from "../../../hooks/useHtmlParser";
 import ChevronDownGlyph from "../../Glyphs/ChevronDownGlyph";
 
 const UserDetailsAboutExpander = ({ rawHtmlString }) => {
-  const [textContent, setTextContent] = useState(null);
   const mobileWrapperMaxHeight = 18;
   const textWrapperRef = useRef(null);
+  const [textContent, setTextContent] = useState(null);
   const [textWrapperHeight, setTextWrapperHeight] = useState(null);
-  const [isLongText, setIsLongText] = useState(null);
+  const [isLongText, setIsLongText] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
   // parse html
@@ -46,12 +46,14 @@ const UserDetailsAboutExpander = ({ rawHtmlString }) => {
         <button 
           title="show all about text trigger"
           className={clsx(
-            "flex justify-center items-center font-medium text-xs2 text-brandTextSecondary uppercase transition-all md:hidden",
+            "flex justify-center items-center mb-1 font-medium text-xs2 text-brandTextSecondary uppercase transition-all md:hidden",
             { "mt-1": isExpanded }
           )}
           onClick={() => setIsExpanded(!isExpanded)}
         >
-          <span className="mr-1 tracking-wider">{ !isExpanded ? "Expand": "Collapse" }</span>
+          <span className="mr-1 tracking-wider leading-none">
+            { !isExpanded ? "Expand": "Collapse" }
+          </span>
           <ChevronDownGlyph className={clsx(
             "w-3 h-3 transition-transform duration-300",
             { "-rotate-180": isExpanded }
