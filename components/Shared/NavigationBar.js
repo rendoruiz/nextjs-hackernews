@@ -95,7 +95,10 @@ const MobileNavigationDropdown = ({ navigationItems, routePrefix, activeItem }) 
           </svg>
         </DropdownMenu.Label>
         {/* actual content */}
-        <DropdownMenu.Group className="grid mx-3 px-2 bg-white">
+        <DropdownMenu.Group 
+          className="grid mx-3 px-2 bg-white" 
+          onClick={() => handleClick()}
+        >
           <DropdownMenu.Label className="py-3 font-bold text-xs uppercase tracking-widest">Sort Posts By:</DropdownMenu.Label>
           <DropdownMenu.Separator className="border-b-brandDefault border-brandBorder" /> 
           { navigationItems.map((item, index) => (
