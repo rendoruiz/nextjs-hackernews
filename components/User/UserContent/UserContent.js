@@ -3,9 +3,12 @@ import UserContentNavigationBar from "./UserContentNavigationBar";
 
 const UserContent = ({ userData }) => {
   return (  
-    <div>
+    <div className="grid grid-rows-[auto,1fr]">
       <UserContentNavigationBar userId={userData.id} />
-      <UserContentList userData={userData} />
+      <UserContentList 
+        contentIds={userData.submitted} 
+        userId={userData.id}
+      />
     </div>
   );
 }

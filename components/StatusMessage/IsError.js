@@ -4,7 +4,7 @@ const IsError = () => {
     <div className="grid place-items-center only:row-span-3">
       <p className="grid gap-5 text-center sm:gap-8 lg:gap-10">
         <span 
-          className="text-5xl sm:text-6xl lg:text-8xl" 
+          className="text-5xl drop-shadow-md sm:text-6xl lg:text-8xl lg:drop-shadow-lg"
           title="uoh emoji"
         >
           😭

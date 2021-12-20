@@ -25,6 +25,7 @@ const UserContentNavigationBar = ({ userId }) => {
     <NavigationBar
       navigationItems={navigationItems} 
       routePrefix={"/user/" + userId}
+      withPersistQueryString
     />
   );
 }
