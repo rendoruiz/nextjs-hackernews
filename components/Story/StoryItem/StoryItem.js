@@ -124,7 +124,9 @@ const IsLoading = () => {
 
 const IsDeadOrDeleted = () => {
   return (
-    <div className="font-medium text-xs text-brandTextSecondary italic">Content cannot be found. Story status is dead or deleted.</div>
+    <div className="py-1 px-2 font-medium text-xs text-brandTextSecondary italic sm:py-0">
+      Content cannot be found. Story status is dead or deleted.
+    </div>
   )
 }
  
