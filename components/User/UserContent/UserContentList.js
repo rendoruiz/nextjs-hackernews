@@ -71,7 +71,7 @@ const UserContentList = ({ contentIds, userId }) => {
             className="rounded-full px-10 py-[0.375rem] bg-brandOrange font-medium text-sm text-white transition-opacity hover:opacity-80 active:opacity-60"
             onClick={(e) => handleClick(e)}
           >
-            View More Stories
+            View More Submissions
           </button>
         </div>
       )}
