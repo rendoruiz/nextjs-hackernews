@@ -3,18 +3,19 @@ import { useEffect, useState } from "react";
 import { useComment } from "../../../hooks/useComment";
 import StoryItem from "../../Story/StoryItem/StoryItem";
 
-const UserContentItem = ({ contentId, restrictedContent }) => {
+const UserContentItem = ({ contentId, contentTypeFilter }) => {
   const { data, isSuccess } = useComment(contentId);
   const [contentItem, setContentItem] = useState(null);
 
+  // show content if filter has not been set, else return null if item type is equal to the filter
   const setContent = () => {
-    if (data.type === "comment" && restrictedContent !== "comment") {
-      setContentItem(
-        <div>this is a comment</div>
-      );
-    } else if (data.type !== "comment" && restrictedContent !== "story") {
+    if (data.type !== "comment" && (!contentTypeFilter || contentTypeFilter === "story")) {
       setContentItem(
         <StoryItem storyId={contentId} />
+      );
+    } else if (data.type === "comment" && (!contentTypeFilter || contentTypeFilter === "comment")) {
+      setContentItem(
+        <div>this is a comment</div>
       );
     } else {
       setContentItem(null);
@@ -33,7 +34,7 @@ const UserContentItem = ({ contentId, restrictedContent }) => {
     if (contentItem) {
       setContent();
     }
-  }, [restrictedContent]);
+  }, [contentTypeFilter]);
 
   return isSuccess && data && contentItem;
 }

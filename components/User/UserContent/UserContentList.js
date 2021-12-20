@@ -10,6 +10,7 @@ const UserContentList = ({ contentIds, userId }) => {
   const router = useRouter();
   const [itemCount, setItemCount] = useState(null);
   const [itemIds, setItemIds] = useState(null);
+  const [contentTypeFilter, setContentTypeFilter] = useState(null);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -34,6 +35,20 @@ const UserContentList = ({ contentIds, userId }) => {
     setItemCount(useCountQueryString(defaultItemCount));
   }, []);
 
+  // set content type filter, only set if different from old value
+  useEffect(() => {
+    const path = router.pathname;
+    if (path) {
+      if (path.includes("stories") && contentTypeFilter !== "story") {
+        setContentTypeFilter("story");
+      } else if (path.includes("comments") && contentTypeFilter !== "comment") {
+        setContentTypeFilter("comment");
+      } else if (contentTypeFilter) {
+        setContentTypeFilter(null);
+      }
+    }
+  }, [router?.pathname]);
+
   return !itemIds ? (<MessageNoContentFound userId={userId} />) : (  
     <div className="grid content-start gap-1 sm:gap-2">
       {/* list */}
@@ -43,6 +58,7 @@ const UserContentList = ({ contentIds, userId }) => {
             <UserContentItem
               key={contentId}
               contentId={contentId}
+              contentTypeFilter={contentTypeFilter}
             />
           ))
         )}
