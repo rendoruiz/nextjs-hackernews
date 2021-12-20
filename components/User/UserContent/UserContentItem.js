@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { useComment } from "../../../hooks/useComment";
 import StoryItem from "../../Story/StoryItem/StoryItem";
+import UserContentCommentPreview from "./UserContentCommentPreview";
 
 const UserContentItem = ({ contentId, contentTypeFilter }) => {
   const { data, isSuccess } = useComment(contentId);
@@ -15,7 +16,7 @@ const UserContentItem = ({ contentId, contentTypeFilter }) => {
       );
     } else if (data.type === "comment" && (!contentTypeFilter || contentTypeFilter === "comment")) {
       setContentItem(
-        <div>this is a comment</div>
+        <UserContentCommentPreview commentId={contentId} />
       );
     } else {
       setContentItem(null);
