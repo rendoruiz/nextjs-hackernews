@@ -9,7 +9,7 @@ const fetchStory = async (storyId) => {
 
 // only refetch within 15min intervals on comment view
 const useStory = (storyId, autoRefetchOnFocus = true) => {
-  return useQuery(['story.'+storyId, storyId], () => fetchStory(storyId), {
+  return useQuery(['content.'+storyId, storyId], () => fetchStory(storyId), {
     staleTime: autoRefetchOnFocus ? 0 : 900000,
     refetchOnWindowFocus: autoRefetchOnFocus,
   });
