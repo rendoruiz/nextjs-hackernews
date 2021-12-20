@@ -6,14 +6,16 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 
 import ChevronDownGlyph from '../Glyphs/ChevronDownGlyph';
 
-const NavigationBar = ({ navigationItems, routePrefix = "", className }) => {
+const NavigationBar = ({ navigationItems, routePrefix = "", withPersistQueryString, className }) => {
   const router = useRouter();
   const [activeItem, setActiveItem] = useState(null);
+  const [countQueryString, setCountQueryString] = useState(null);
 
+  // for assigning active state
   useEffect(() => {
-    if (navigationItems) {
+    if (navigationItems && router) {
       [...navigationItems].every((item, index) => {
-        if (router.asPath.includes(item.route)) {
+        if (router?.pathname.includes(item.route)) {
           setActiveItem(index);
           return false;
         } else {
@@ -22,7 +24,17 @@ const NavigationBar = ({ navigationItems, routePrefix = "", className }) => {
         return true;
       });
     }
-  }, [router]);
+  }, [router?.pathname]);
+
+  // for assigning count querystring
+  useEffect(() => {
+    if (withPersistQueryString && router) {
+      const countQuery = router?.query?.count;
+      if (countQuery) {
+        setCountQueryString(countQuery);
+      }
+    }
+  }, [router?.query?.count]);
 
   return (
     <div className={clsx(
@@ -33,6 +45,7 @@ const NavigationBar = ({ navigationItems, routePrefix = "", className }) => {
       <MobileNavigationDropdown 
         navigationItems={navigationItems}
         routePrefix={routePrefix}
+        countQueryString={countQueryString}
         activeItem={activeItem}
       />
 
@@ -40,6 +53,7 @@ const NavigationBar = ({ navigationItems, routePrefix = "", className }) => {
       <DesktopNavigationList
         navigationItems={navigationItems}
         routePrefix={routePrefix}
+        countQueryString={countQueryString}
         activeItem={activeItem}
       />
     </div>
@@ -47,7 +61,7 @@ const NavigationBar = ({ navigationItems, routePrefix = "", className }) => {
 }
 
 // navigation dropdown
-const MobileNavigationDropdown = ({ navigationItems, routePrefix, activeItem }) => {
+const MobileNavigationDropdown = ({ navigationItems, routePrefix, countQueryString, activeItem }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   // close if same route is accessed
@@ -104,7 +118,10 @@ const MobileNavigationDropdown = ({ navigationItems, routePrefix, activeItem }) 
           { navigationItems.map((item, index) => (
             <DropdownMenu.Item key={index}>
               <Link 
-                href={routePrefix + (item.route ?? "/")} 
+                href={{ 
+                  pathname: routePrefix + (item.route ?? "/"),
+                  query: countQueryString && { count: countQueryString },
+                }}
                 shallow
               >
                 <a className="flex items-center px-1 py-3">
@@ -125,13 +142,16 @@ const MobileNavigationDropdown = ({ navigationItems, routePrefix, activeItem }) 
 }
 
 // desktop nav list
-const DesktopNavigationList = ({ navigationItems, routePrefix, activeItem }) => {
+const DesktopNavigationList = ({ navigationItems, routePrefix, countQueryString, activeItem }) => {
   return (
     <div className="hidden sm:grid grid-flow-col auto-cols-auto gap-2">
       { navigationItems.map((item, index) => (
         <Link 
           key={index}
-          href={routePrefix + (item.route ?? "/")}
+          href={{ 
+            pathname: routePrefix + (item.route ?? "/"),
+            query: countQueryString && { count: countQueryString },
+           }}
           shallow
         >
           <a className={clsx(
