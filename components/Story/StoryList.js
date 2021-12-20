@@ -25,26 +25,28 @@ const StoryList = ({ useHook }) => {
     }, undefined, { shallow: true });
   }
 
-  useEffect(() => {
-    setItemCount(useCountQueryString(defaultItemCount));
-  }, []);
-
+  // set item ids
   useEffect(() => {
     if (data) {
       setItemIds([...data].slice(0, itemCount));
     }
-  }, [itemCount, data]);
+  }, [data, itemCount]);
+
+  // get count query string
+  useEffect(() => {
+    setItemCount(useCountQueryString(defaultItemCount));
+  }, []);
 
   return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (  
     <div className="grid content-start gap-1 sm:gap-2">
       <div className="grid content-start gap-1 sm:gap-3">
         { itemIds && (
-          itemIds.map((storyId) => 
+          itemIds.map((storyId) => (
             <StoryItem
               key={storyId}
               storyId={storyId}
             />
-          )
+          ))
         )}
       </div>
 

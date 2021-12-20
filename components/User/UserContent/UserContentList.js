@@ -1,9 +1,65 @@
-const UserContentList = () => {
-  return (  
-    <div>
-      content list
+import { useEffect, useState } from "react";
+import { useRouter } from "next/dist/client/router";
+import { useCountQueryString } from "../../../hooks/useCountQueryString";
+import UserContentItem from "./UserContentItem";
+
+const UserContentList = ({ contentIds, userId }) => {
+  const defaultItemCount = 15; 
+  const itemIncrementCount = defaultItemCount;
+  const router = useRouter();
+  const [itemCount, setItemCount] = useState(null);
+  const [itemIds, setItemIds] = useState(null);
+
+  // set item ids
+  useEffect(() => {
+    if (contentIds) {
+      setItemIds([...contentIds].slice(0, itemCount));
+    }
+  }, [contentIds, itemCount]);
+
+  // get count query string
+  useEffect(() => {
+    setItemCount(useCountQueryString(defaultItemCount));
+  }, []);
+
+  return !itemIds ? (<MessageNoContentFound userId={userId} />) : (  
+    <div className="grid content-start gap-1 sm:gap-2">
+      {/* list */}
+      <div className="grid content-start gap-1 sm:gap-3">
+        { itemIds && (
+          itemIds.map((contentId) => (
+            <UserContentItem
+              key={contentId}
+              contentId={contentId}
+            />
+          ))
+        )}
+      </div>
+
+      {/* view more contents button */}
+      <div>
+
+      </div>
     </div>
   );
+}
+
+const MessageNoContentFound = ({ userId }) => {
+  return (
+    <div className="grid place-items-center px-5 py-10 md:py-20">
+      <p className="grid gap-5 text-center sm:gap-8 lg:gap-10">
+        <span 
+          className="text-5xl drop-shadow-md sm:text-6xl lg:text-8xl lg:drop-shadow-lg"
+          title="thinking emoji"
+        >
+          🤔
+        </span>
+        <span className="font-medium text-lg tracking-wide">
+          hmm... u/{ userId } hasn't posted anything
+        </span>
+      </p>
+    </div>
+  )
 }
  
 export default UserContentList;

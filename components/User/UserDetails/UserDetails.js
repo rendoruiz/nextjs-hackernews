@@ -5,7 +5,7 @@ import UserDetailsStats from "./UserDetailsStats";
 
 const UserDetails = ({ userData }) => {
   return (  
-    <div className="grid content-start pt-3 bg-white overflow-hidden sm:hidden md:grid md:order-2 md:rounded md:pt-0 md:w-[250px] bp960:w-[310px]">
+    <div className="self-start grid content-start pt-3 bg-white overflow-hidden sm:hidden md:grid md:order-2 md:rounded md:pt-0 md:w-[250px] bp960:w-[310px]">
     {/* desktop header background */}
     <div className="hidden h-[94px] bg-brandOrange/60 md:block" />
 
