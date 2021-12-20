@@ -8,35 +8,32 @@ const UserContentCommentPreview = ({ commentId }) => {
   const [parentStory, setParentStory] = useState(null);
   const [comment, setComment] = useState(null);
 
-  // set user comment
   useEffect(() => {
-    // set user comment
+    // run indefinitely until parent story has been set
     if (data && !parentStory) {
+      // assign comment, parentComment and/or parentStory
       if (!comment) {
         setComment(data);
-        setContentId(null);
-        setContentId(data.parent);
       } else if (comment && !parentComment && !parentStory && data.id !== comment.id) {
         if (data.type === "comment") {
           setParentComment(data);
-          setContentId(null);
-          setContentId(data.parent);
         } else {
           setParentStory(data);
         }
       } else if (comment && parentComment && !parentStory && data.id !== parentComment.id) {
         if (data.type !== "comment") {
           setParentStory(data);
-        } else {
-          setContentId(null);
-          setContentId(data.parent);
-        }
+        } 
       }
+      // refetch data
+      setContentId(null);
+      setContentId(data.parent);
     }
   }, [contentId, data]);
 
-  return !parentStory ? null : (  
+  return !parentStory ? <IsLoading /> : (  
     <div className="bg-white sm:border-brandBorder sm:rounded sm:shadow-sm">
+
       <div className="break-all">
         <h2 className="font-medium text-sm uppercase">story:</h2> 
         <p>{ JSON.stringify(parentStory) }</p>
@@ -51,6 +48,14 @@ const UserContentCommentPreview = ({ commentId }) => {
         <h2 className="font-medium text-sm uppercase">comment:</h2> 
         <p>{ JSON.stringify(comment) }</p>
       </div>
+    </div>
+  );
+}
+
+const IsLoading = () => {
+  return (
+    <div className="px-4 py-2 bg-white sm:border-brandBorder sm:rounded sm:shadow-sm">
+      <p className="font-medium text-sm uppercase text-red-500">Loading comment...</p>
     </div>
   );
 }
