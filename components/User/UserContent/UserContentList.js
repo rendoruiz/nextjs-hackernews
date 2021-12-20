@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
+
 import { useCountQueryString } from "../../../hooks/useCountQueryString";
 import UserContentItem from "./UserContentItem";
 
@@ -9,6 +10,17 @@ const UserContentList = ({ contentIds, userId }) => {
   const router = useRouter();
   const [itemCount, setItemCount] = useState(null);
   const [itemIds, setItemIds] = useState(null);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    // set new count value then update count url query string
+    const newCount = itemCount + itemIncrementCount;
+    setItemCount(newCount);
+    router.push({
+      pathname: router.pathname,
+      query: { userid: userId, count: newCount },
+    }, undefined, { shallow: true });
+  }
 
   // set item ids
   useEffect(() => {
@@ -37,9 +49,16 @@ const UserContentList = ({ contentIds, userId }) => {
       </div>
 
       {/* view more contents button */}
-      <div>
-
-      </div>
+      { itemCount && itemCount < contentIds.length && (
+        <div className="grid px-4 py-[0.625rem] bg-white sm:place-items-center sm:bg-transparent sm:pb-0">
+          <button 
+            className="rounded-full px-10 py-[0.375rem] bg-brandOrange font-medium text-sm text-white transition-opacity hover:opacity-80 active:opacity-60"
+            onClick={(e) => handleClick(e)}
+          >
+            View More Stories
+          </button>
+        </div>
+      )}
     </div>
   );
 }
