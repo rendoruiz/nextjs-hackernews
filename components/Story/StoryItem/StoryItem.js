@@ -11,7 +11,7 @@ import ItemIsError from '../../StatusMessage/ItemIsError';
 import MobileActionsModal from '../../Shared/MobileActionsModal';
 import { useEffect, useState } from 'react';
 
-const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
+const StoryItem = ({ storyId, withText = false, isStatic = false, userView = false }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
   const [textContent, setTextContent] = useState(null);
 
@@ -58,7 +58,10 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
           )}
 
           {/* header info - poster id, date created */}
-          <StoryItemHeader storyData={data} />
+          <StoryItemHeader 
+            storyData={data} 
+            userView={userView}
+          />
           
           {/* mobile overflow actions - story links, poster link */}
           <MobileActionsModal 

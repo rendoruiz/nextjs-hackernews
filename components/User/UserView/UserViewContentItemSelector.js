@@ -12,7 +12,10 @@ const UserViewContentItemSelector = ({ contentId, contentTypeFilter }) => {
   const setContent = () => {
     if (data.type !== "comment" && (!contentTypeFilter || contentTypeFilter === "story")) {
       setContentItem(
-        <StoryItem storyId={contentId} />
+        <StoryItem 
+          storyId={contentId} 
+          userView
+        />
       );
     } else if (data.type === "comment" && (!contentTypeFilter || contentTypeFilter === "comment")) {
       setContentItem(
