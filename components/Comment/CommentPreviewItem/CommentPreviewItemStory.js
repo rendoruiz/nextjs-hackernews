@@ -60,6 +60,7 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
               &nbsp;commented on&nbsp;
             </span>
             { storyText }
+            
           </div>
 
           <span className="hidden sm:inline-block">
