@@ -11,7 +11,7 @@ const CommentPreviewItemContent = ({ commentData, parentData, storyId }) => {
   }, [commentData?.text]);
 
   return commentData && storyId && (  
-    <div className="relative px-4 pt-1 pb-[0.625rem] sm:border-brandDefault sm:border-transparent sm:rounded-b sm:hover:border-brandBorderHover">
+    <div className="relative px-4 pt-1 pb-[0.625rem] sm:border-brandDefault sm:border-brandBorder sm:border-t-transparent sm:rounded-b sm:mt-[-1.5px] sm:p-2 sm:hover:border-brandBorderHover">
       {/* wrapper link */}
       <Link href={`/story/${storyId}/${commentData.id}`}>
         <a 

@@ -45,7 +45,7 @@ const CommentPreviewItem = ({ commentId, userId }) => {
       />
 
       {/* desktop border */}
-      <div className="hidden mx-2 mb-[-2px] border-t-2 border-brandButtonOutline sm:block"></div>
+      <div className="hidden mx-2 mb-[-2px] border-t-2 border-t-brandButtonOutline sm:block"></div>
 
       {/* comment and/or parent comment */}
       <CommentPreviewItemContent
