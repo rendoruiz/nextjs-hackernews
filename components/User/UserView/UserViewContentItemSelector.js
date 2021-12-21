@@ -4,7 +4,7 @@ import { useComment } from "../../../hooks/useComment";
 import StoryItem from "../../Story/StoryItem/StoryItem";
 import CommentPreviewItem from "../../Comment/CommentPreviewItem/CommentPreviewItem";
 
-const UserViewContentItemSelector = ({ contentId, contentTypeFilter }) => {
+const UserViewContentItemSelector = ({ contentId, contentTypeFilter, userId }) => {
   const { data, isSuccess } = useComment(contentId);
   const [contentItem, setContentItem] = useState(null);
 
@@ -19,7 +19,10 @@ const UserViewContentItemSelector = ({ contentId, contentTypeFilter }) => {
       );
     } else if (data.type === "comment" && (!contentTypeFilter || contentTypeFilter === "comment")) {
       setContentItem(
-        <CommentPreviewItem commentId={contentId} />
+        <CommentPreviewItem 
+          commentId={contentId} 
+          userId={userId} 
+        />
       );
     } else {
       setContentItem(null);

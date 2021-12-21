@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 
 import { useCountQueryString } from "../../../hooks/useCountQueryString";
-import UserContentSelector from "./UserViewContentItemSelector";
+import UserViewContentItemSelector from "./UserViewContentItemSelector";
 
 const UserViewContentList = ({ contentIds, userId }) => {
   const defaultItemCount = 15; 
@@ -55,10 +55,11 @@ const UserViewContentList = ({ contentIds, userId }) => {
       <div className="grid content-start gap-1 sm:gap-3">
         { itemIds && (
           itemIds.map((contentId) => (
-            <UserContentSelector
+            <UserViewContentItemSelector
               key={contentId}
               contentId={contentId}
               contentTypeFilter={contentTypeFilter}
+              userId={userId}
             />
           ))
         )}

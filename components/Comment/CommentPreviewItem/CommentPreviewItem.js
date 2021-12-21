@@ -4,7 +4,7 @@ import { useComment } from "../../../hooks/useComment";
 import CommentPreviewItemContent from "./CommentPreviewItemContent";
 import CommentPreviewItemStory from "./CommentPreviewItemStory";
 
-const CommentPreviewItem = ({ commentId }) => {
+const CommentPreviewItem = ({ commentId, userId }) => {
   const [contentId, setContentId] = useState(commentId)
   const { data } = useComment(contentId)
   const [parentComment, setParentComment] = useState(null);
@@ -38,6 +38,7 @@ const CommentPreviewItem = ({ commentId }) => {
     <div className="grid bg-white text-sm leading-snug sm:border-brandBorder sm:rounded sm:shadow-sm">
       <CommentPreviewItemStory
         storyData={parentStory}
+        userId={userId}
         commentTime={comment.time}
       />
 

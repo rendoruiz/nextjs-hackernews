@@ -47,7 +47,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
           "relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pb-3 bg-white sm:grid-cols-none sm:rounded-r sm:p-2 sm:pr-4 sm:pb-1",
           isStatic ? "pt-3" : "pt-2"
         )}>
-          {/* wrapper link  */}
+          {/* wrapper link */}
           { !isStatic && (
             <Link href={'/story/' + data.id}>
               <a 
