@@ -36,7 +36,7 @@ const CommentPreviewItem = ({ commentId, userId }) => {
 
   return !parentStory ? <IsLoading /> : (  
     comment.deleted ? <DeletedItem /> : (
-    <div className="grid content-start bg-white text-sm leading-snug sm:rounded sm:shadow-sm">
+    <div className="grid content-start bg-white text-sm leading-snug sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm">
       {/* story */}
       <CommentPreviewItemStory
         storyData={parentStory}
