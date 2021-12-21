@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { useStory } from "../../../hooks/useStory";
 import { useHtmlParser } from '../../../hooks/useHtmlParser';
 import StoryItemHeader from "./StoryItemHeader";
-import StoryItemDisplayLink from "./StoryItemDisplayLink";
+import ShortenedExternalLink from '../../Shared/ShortenedExternalLink';
 import StoryItemFooter from "./StoryItemFooter";
 import StoryItemMobileShareTrigger from './StoryItemMobileShareTrigger';
 import ItemIsError from '../../StatusMessage/ItemIsError';
@@ -80,7 +80,12 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
           </Link>
 
           {/* story link */}
-          <StoryItemDisplayLink rawLink={data.url} />
+          <ShortenedExternalLink 
+            rawLink={data.url}
+            wrapperClassName="row-start-2 col-start-2 justify-self-end relative grid items-end w-[70px] h-[52px] bg-brandOrange text-[0.625rem] sm:row-start-auto sm:col-start-auto sm:justify-self-start sm:inline-flex sm:items-center sm:-mt-1 sm:t-1 sm:pb-2 sm:w-auto sm:h-auto sm:bg-transparent sm:text-xs sm:text-brandOrange sm:hover:underline"
+            textClassName="p-1 bg-black/70 text-white truncate sm:p-0 sm:px-0 sm:bg-transparent sm:text-current sm:overflow-auto"
+            glyphClassName="hidden ml-1 w-4 h-4 sm:inline-block"
+          />
           
           {/* text/content */}
           { textContent && (

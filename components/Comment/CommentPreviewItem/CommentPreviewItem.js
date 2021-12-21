@@ -35,22 +35,21 @@ const CommentPreviewItem = ({ commentId, userId }) => {
   }, [contentId, data]);
 
   return !parentStory ? <IsLoading /> : (  
+    comment.deleted ? <DeletedItem /> : (
     <div className="grid bg-white text-sm leading-snug sm:border-brandBorder sm:rounded sm:shadow-sm">
+      {/* story */}
       <CommentPreviewItemStory
         storyData={parentStory}
         userId={userId}
         commentTime={comment.time}
       />
 
+      {/* comment and/or parent comment */}
       <CommentPreviewItemContent
         commentData={comment}
         parentData={parentComment}
         storyId={parentStory.id}
       />
-      {/* <div className="break-all">
-        <h2 className="font-medium text-sm uppercase">story:</h2> 
-        <p>{ JSON.stringify(parentStory) }</p>
-      </div> */}
       {/* { parentComment && (
         <div className="break-all">
           <h2 className="font-medium text-sm uppercase">parent comment:</h2> 
@@ -62,7 +61,7 @@ const CommentPreviewItem = ({ commentId, userId }) => {
         <p>{ JSON.stringify(comment) }</p>
       </div> */}
     </div>
-  );
+  ));
 }
 
 const IsLoading = () => {
@@ -71,6 +70,14 @@ const IsLoading = () => {
       <p className="font-medium text-sm uppercase text-red-500">Loading comment...</p>
     </div>
   );
+}
+
+const DeletedItem = () => {
+  return (
+    <div className="py-1 px-2 font-medium text-xs text-brandTextSecondary italic sm:py-0">
+      Content cannot be found. Comment status is dead or deleted.
+    </div>
+  )
 }
  
 export default CommentPreviewItem;

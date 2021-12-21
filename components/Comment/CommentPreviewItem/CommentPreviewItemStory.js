@@ -6,6 +6,7 @@ import { useHtmlParser } from '../../../hooks/useHtmlParser';
 import ChatGlyph from '../../Glyphs/ChatGlyph';
 import UserLink from '../../User/UserLink';
 import UserHoverCard from '../../User/UserHoverCard';
+import ShortenedExternalLink from '../../Shared/ShortenedExternalLink';
 
 const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
   const [storyText, setStoryText] = useState(null);
@@ -39,7 +40,7 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
         </Link>
 
         {/* story content */}
-        <div className="relative block pt-[0.375rem] px-4 sm:p-2">
+        <div className="relative block pt-[0.375rem] px-4 sm:p-2 sm:leading-normal">
           {/* wrapper link */}
           <Link href={'/story/' + storyData.id}>
             <a 
@@ -55,20 +56,28 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
           />
 
           {/* mobile title */}
-          <div className="sm:inline-block sm:text-brandTextPrimary">
-            <span className="hidden sm:inline-block">
+          <div className="sm:inline sm:text-brandTextPrimary">
+            <span className="hidden sm:inline">
               &nbsp;commented on&nbsp;
             </span>
-            { storyText }
-            
+            <div className="sm:inline">{ storyText }</div>
+            <span className="hidden mx-1 sm:inline">&nbsp;</span>
           </div>
 
-          <span className="hidden sm:inline-block">
+          {/* desktop external link */}
+          <ShortenedExternalLink 
+            wrapperClassName="group relative hidden items-center text-brandOrange sm:inline-flex"
+            textClassName="inline-block group-hover:underline"
+            glyphClassName="inline-block ml-1 w-3 h-3"
+            rawLink={storyData.url}
+          />
+
+          <span className="hidden sm:inline">
             &nbsp;· Posted by&nbsp;
           </span>
           <UserHoverCard 
-            className="hidden sm:inline-block" 
-            userId={userId} 
+            className="relative hidden sm:inline-block" 
+            userId={storyData.by} 
             withPrefix
           />
         </div>

@@ -21,7 +21,7 @@ const CommentPreviewItemContent = ({ commentData, parentData, storyId }) => {
       </Link>
 
       <div className="italic">
-        { commentText }
+        { commentText ?? JSON.stringify(commentData) }
       </div>
     </div>
   );
