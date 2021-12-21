@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
-import { useHtmlParser } from "../../../hooks/useHtmlParser";
-import ChevronDownGlyph from "../../Glyphs/ChevronDownGlyph";
+import { useHtmlParser } from "../../../../hooks/useHtmlParser";
+import ChevronDownGlyph from "../../../Glyphs/ChevronDownGlyph";
 
-const UserDetailsAboutExpander = ({ rawHtmlString }) => {
+const UserViewDetailsAboutExpander = ({ rawHtmlString }) => {
   const mobileWrapperMaxHeight = 18;
   const textWrapperRef = useRef(null);
   const [textContent, setTextContent] = useState(null);
@@ -64,4 +64,4 @@ const UserDetailsAboutExpander = ({ rawHtmlString }) => {
   );
 }
  
-export default UserDetailsAboutExpander;
+export default UserViewDetailsAboutExpander;

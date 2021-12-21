@@ -1,4 +1,4 @@
-import UserView from "../../../components/User/UserView";
+import UserView from "../../../components/User/UserView/UserView"
 
 const UserOverviewPage = () => {
   return (  

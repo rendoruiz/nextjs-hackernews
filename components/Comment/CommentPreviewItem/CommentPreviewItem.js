@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+
 import { useComment } from "../../../hooks/useComment";
 
-const UserContentCommentPreview = ({ commentId }) => {
+const CommentPreviewItem = ({ commentId }) => {
   const [contentId, setContentId] = useState(commentId)
-  const { data, isLoading, isError, isSuccess } = useComment(contentId)
+  const { data } = useComment(contentId)
   const [parentComment, setParentComment] = useState(null);
   const [parentStory, setParentStory] = useState(null);
   const [comment, setComment] = useState(null);
@@ -60,4 +61,4 @@ const IsLoading = () => {
   );
 }
  
-export default UserContentCommentPreview;
+export default CommentPreviewItem;

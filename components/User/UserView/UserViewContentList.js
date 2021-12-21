@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 
 import { useCountQueryString } from "../../../hooks/useCountQueryString";
-import UserContentItem from "./UserContentItem";
+import UserContentSelector from "./UserViewContentItemSelector";
 
-const UserContentList = ({ contentIds, userId }) => {
+const UserViewContentList = ({ contentIds, userId }) => {
   const defaultItemCount = 15; 
   const itemIncrementCount = defaultItemCount;
   const router = useRouter();
@@ -55,7 +55,7 @@ const UserContentList = ({ contentIds, userId }) => {
       <div className="grid content-start gap-1 sm:gap-3">
         { itemIds && (
           itemIds.map((contentId) => (
-            <UserContentItem
+            <UserContentSelector
               key={contentId}
               contentId={contentId}
               contentTypeFilter={contentTypeFilter}
@@ -97,4 +97,4 @@ const MessageNoContentFound = ({ userId }) => {
   )
 }
  
-export default UserContentList;
+export default UserViewContentList;

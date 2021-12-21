@@ -1,9 +1,9 @@
-import UserAvatar from "../UserAvatar";
-import UserLink from "../UserLink";
-import UserDetailsAboutExpander from "./UserDetailsAboutExpander";
-import UserDetailsStats from "./UserDetailsStats";
+import UserAvatar from "../../UserAvatar";
+import UserLink from "../../UserLink";
+import UserViewDetailsAboutExpander from "./UserViewDetailsAboutExpander";
+import UserViewDetailsStats from "./UserViewDetailsStats";
 
-const UserDetails = ({ userData }) => {
+const UserViewDetails = ({ userData }) => {
   return (  
     <div className="self-start grid content-start pt-3 bg-white overflow-hidden sm:hidden md:grid md:order-2 md:rounded md:pt-0 md:w-[250px] bp960:w-[310px]">
     {/* desktop header background */}
@@ -30,10 +30,10 @@ const UserDetails = ({ userData }) => {
       </h2>
 
       {/* stats */}
-      <UserDetailsStats userData={userData} />
+      <UserViewDetailsStats userData={userData} />
 
       {/* about */}
-      <UserDetailsAboutExpander rawHtmlString={userData.about} />
+      <UserViewDetailsAboutExpander rawHtmlString={userData.about} />
       
       {/* hackernews link */}
       <a 
@@ -48,4 +48,4 @@ const UserDetails = ({ userData }) => {
   );
 }
  
-export default UserDetails;
+export default UserViewDetails;
