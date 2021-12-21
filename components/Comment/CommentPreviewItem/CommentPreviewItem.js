@@ -36,13 +36,16 @@ const CommentPreviewItem = ({ commentId, userId }) => {
 
   return !parentStory ? <IsLoading /> : (  
     comment.deleted ? <DeletedItem /> : (
-    <div className="grid bg-white text-sm leading-snug sm:rounded sm:shadow-sm">
+    <div className="grid content-start bg-white text-sm leading-snug sm:rounded sm:shadow-sm">
       {/* story */}
       <CommentPreviewItemStory
         storyData={parentStory}
         userId={userId}
         commentTime={comment.time}
       />
+
+      {/* desktop border */}
+      <div className="hidden mx-2 mb-[-2px] border-t-2 border-brandButtonOutline sm:block"></div>
 
       {/* comment and/or parent comment */}
       <CommentPreviewItemContent

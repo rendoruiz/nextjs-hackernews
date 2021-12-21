@@ -11,7 +11,7 @@ const CommentPreviewItemContent = ({ commentData, parentData, storyId }) => {
   }, [commentData?.text]);
 
   return commentData && storyId && (  
-    <div className="relative px-4 pt-1 pb-[0.625rem]">
+    <div className="relative px-4 pt-1 pb-[0.625rem] sm:border-brandDefault sm:border-transparent sm:rounded-b sm:hover:border-brandBorderHover">
       {/* wrapper link */}
       <Link href={`/story/${storyId}/${commentData.id}`}>
         <a 
@@ -19,6 +19,8 @@ const CommentPreviewItemContent = ({ commentData, parentData, storyId }) => {
           title="view comment permalink"
         />
       </Link>
+
+      
 
       <div className="italic">
         { commentText ?? JSON.stringify(commentData) }
