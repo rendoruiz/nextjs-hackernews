@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 
 import { useCountQueryString } from "../../../hooks/useCountQueryString";
-import UserContentItem from "./UserContentItem";
+import UserViewContentItemSelector from "./UserViewContentItemSelector";
 
-const UserContentList = ({ contentIds, userId }) => {
+const UserViewContentList = ({ contentIds, userId }) => {
   const defaultItemCount = 15; 
   const itemIncrementCount = defaultItemCount;
   const router = useRouter();
@@ -55,10 +55,11 @@ const UserContentList = ({ contentIds, userId }) => {
       <div className="grid content-start gap-1 sm:gap-3">
         { itemIds && (
           itemIds.map((contentId) => (
-            <UserContentItem
+            <UserViewContentItemSelector
               key={contentId}
               contentId={contentId}
               contentTypeFilter={contentTypeFilter}
+              userId={userId}
             />
           ))
         )}
@@ -71,7 +72,7 @@ const UserContentList = ({ contentIds, userId }) => {
             className="rounded-full px-10 py-[0.375rem] bg-brandOrange font-medium text-sm text-white transition-opacity hover:opacity-80 active:opacity-60"
             onClick={(e) => handleClick(e)}
           >
-            View More Stories
+            View More Submissions
           </button>
         </div>
       )}
@@ -97,4 +98,4 @@ const MessageNoContentFound = ({ userId }) => {
   )
 }
  
-export default UserContentList;
+export default UserViewContentList;

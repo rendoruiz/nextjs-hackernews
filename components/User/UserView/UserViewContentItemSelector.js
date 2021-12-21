@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 import { useComment } from "../../../hooks/useComment";
 import StoryItem from "../../Story/StoryItem/StoryItem";
-import UserContentCommentPreview from "./UserContentCommentPreview";
+import CommentPreviewItem from "../../Comment/CommentPreviewItem/CommentPreviewItem";
 
-const UserContentItem = ({ contentId, contentTypeFilter }) => {
+const UserViewContentItemSelector = ({ contentId, contentTypeFilter, userId }) => {
   const { data, isSuccess } = useComment(contentId);
   const [contentItem, setContentItem] = useState(null);
 
@@ -12,11 +12,17 @@ const UserContentItem = ({ contentId, contentTypeFilter }) => {
   const setContent = () => {
     if (data.type !== "comment" && (!contentTypeFilter || contentTypeFilter === "story")) {
       setContentItem(
-        <StoryItem storyId={contentId} />
+        <StoryItem 
+          storyId={contentId} 
+          userView
+        />
       );
     } else if (data.type === "comment" && (!contentTypeFilter || contentTypeFilter === "comment")) {
       setContentItem(
-        <UserContentCommentPreview commentId={contentId} />
+        <CommentPreviewItem 
+          commentId={contentId} 
+          userId={userId} 
+        />
       );
     } else {
       setContentItem(null);
@@ -40,4 +46,4 @@ const UserContentItem = ({ contentId, contentTypeFilter }) => {
   return isSuccess && data && contentItem;
 }
  
-export default UserContentItem;
+export default UserViewContentItemSelector;

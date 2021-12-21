@@ -20,7 +20,7 @@ const navigationItems = [
   },
 ];
 
-const UserContentNavigationBar = ({ userId }) => {
+const UserViewNavigationBar = ({ userId }) => {
   return (  
     <NavigationBar
       navigationItems={navigationItems} 
@@ -30,4 +30,4 @@ const UserContentNavigationBar = ({ userId }) => {
   );
 }
  
-export default UserContentNavigationBar;
+export default UserViewNavigationBar;

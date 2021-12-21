@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import * as Tooltip from '@radix-ui/react-tooltip';
 
-import { useRelativeTime, useFullDateTime } from "../../../hooks/useDate";
-import { useNumberFormatter } from "../../../hooks/useNumberFormatter";
-import CakeGlyph from "../../Glyphs/CakeGlyph";
-import PlusGlyph from "../../Glyphs/PlusGlyph";
-import StarGlyph from "../../Glyphs/StarGlyph";
+import { useRelativeTime, useFullDateTime } from "../../../../hooks/useDate";
+import { useNumberFormatter } from "../../../../hooks/useNumberFormatter";
+import StarGlyph from "../../../Glyphs/StarGlyph";
+import CakeGlyph from "../../../Glyphs/CakeGlyph";
+import PlusGlyph from "../../../Glyphs/PlusGlyph";
 
-const UserDetailsStats = ({ userData }) => {
+const UserViewDetailsStats = ({ userData }) => {
   const [relativeTime, setRelativeTime] = useState(null);
   const [relativeTimeWithSuffix, setRelativeTimeWithSuffix] = useState(null);
   const [fullDateTime, setFullDateTime] = useState(null);
@@ -93,4 +93,4 @@ const CakeDayTooltip = ({ children, tooltip }) => {
   );
 }
  
-export default UserDetailsStats;
+export default UserViewDetailsStats;
