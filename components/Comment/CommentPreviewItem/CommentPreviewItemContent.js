@@ -16,7 +16,7 @@ const CommentPreviewItemContent = ({ commentData, parentData, storyId }) => {
       <Link href={`/story/${storyId}/${commentData.id}`}>
         <a 
           className="absolute inset-0"
-          title="view story discussion"
+          title="view comment permalink"
         />
       </Link>
 

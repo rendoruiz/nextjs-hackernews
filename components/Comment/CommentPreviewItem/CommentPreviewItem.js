@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 import { useComment } from "../../../hooks/useComment";
-import CommentPreviewItemContent from "./CommentPreviewItemContent";
 import CommentPreviewItemStory from "./CommentPreviewItemStory";
+import CommentPreviewItemContent from "./CommentPreviewItemContent";
 
 const CommentPreviewItem = ({ commentId, userId }) => {
   const [contentId, setContentId] = useState(commentId)
@@ -36,7 +36,7 @@ const CommentPreviewItem = ({ commentId, userId }) => {
 
   return !parentStory ? <IsLoading /> : (  
     comment.deleted ? <DeletedItem /> : (
-    <div className="grid bg-white text-sm leading-snug sm:border-brandBorder sm:rounded sm:shadow-sm">
+    <div className="grid bg-white text-sm leading-snug sm:rounded sm:shadow-sm">
       {/* story */}
       <CommentPreviewItemStory
         storyData={parentStory}
