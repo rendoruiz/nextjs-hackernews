@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 
 import { useComment } from "../../../hooks/useComment";
+import CommentPreviewItemContent from "./CommentPreviewItemContent";
+import CommentPreviewItemStory from "./CommentPreviewItemStory";
 
 const CommentPreviewItem = ({ commentId }) => {
   const [contentId, setContentId] = useState(commentId)
@@ -33,13 +35,22 @@ const CommentPreviewItem = ({ commentId }) => {
   }, [contentId, data]);
 
   return !parentStory ? <IsLoading /> : (  
-    <div className="bg-white sm:border-brandBorder sm:rounded sm:shadow-sm">
+    <div className="grid bg-white text-sm leading-snug sm:border-brandBorder sm:rounded sm:shadow-sm">
+      <CommentPreviewItemStory
+        storyData={parentStory}
+        commentTime={comment.time}
+      />
 
-      <div className="break-all">
+      <CommentPreviewItemContent
+        commentData={comment}
+        parentData={parentComment}
+        storyId={parentStory.id}
+      />
+      {/* <div className="break-all">
         <h2 className="font-medium text-sm uppercase">story:</h2> 
         <p>{ JSON.stringify(parentStory) }</p>
-      </div>
-      { parentComment && (
+      </div> */}
+      {/* { parentComment && (
         <div className="break-all">
           <h2 className="font-medium text-sm uppercase">parent comment:</h2> 
           <p>{ JSON.stringify(parentComment) }</p>
@@ -48,7 +59,7 @@ const CommentPreviewItem = ({ commentId }) => {
       <div className="break-all">
         <h2 className="font-medium text-sm uppercase">comment:</h2> 
         <p>{ JSON.stringify(comment) }</p>
-      </div>
+      </div> */}
     </div>
   );
 }

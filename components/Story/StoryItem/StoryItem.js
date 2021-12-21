@@ -17,11 +17,9 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
 
   useEffect(() => {
     if (withText && data) {
-      if (data.text) {
-        setTextContent(useHtmlParser(data.text));
-      }
+      setTextContent(useHtmlParser(data.text));
     }
-  }, [withText, data])
+  }, [withText, data?.text])
 
   return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
     data.deleted || data.dead ? (<IsDeadOrDeleted />) : data.type === "comment" ? null : (
