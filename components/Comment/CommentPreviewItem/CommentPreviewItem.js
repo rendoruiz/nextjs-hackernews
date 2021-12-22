@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 import { useComment } from "../../../hooks/useComment";
-import CommentPreviewItemContent from "./CommentPreviewItemContent";
 import CommentPreviewItemStory from "./CommentPreviewItemStory";
+import CommentPreviewItemContent from "./CommentPreviewItemContent";
 
 const CommentPreviewItem = ({ commentId, userId }) => {
   const [contentId, setContentId] = useState(commentId)
@@ -36,7 +36,7 @@ const CommentPreviewItem = ({ commentId, userId }) => {
 
   return !parentStory ? <IsLoading /> : (  
     comment.deleted ? <DeletedItem /> : (
-    <div className="grid bg-white text-sm leading-snug sm:border-brandBorder sm:rounded sm:shadow-sm">
+    <div className="grid content-start bg-white text-sm leading-snug sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:cursor-pointer">
       {/* story */}
       <CommentPreviewItemStory
         storyData={parentStory}
@@ -44,22 +44,15 @@ const CommentPreviewItem = ({ commentId, userId }) => {
         commentTime={comment.time}
       />
 
+      {/* desktop border */}
+      <div className="hidden mx-2 mb-[-2px] border-t-2 border-t-brandButtonOutline sm:block"></div>
+
       {/* comment and/or parent comment */}
       <CommentPreviewItemContent
         commentData={comment}
         parentData={parentComment}
         storyId={parentStory.id}
       />
-      {/* { parentComment && (
-        <div className="break-all">
-          <h2 className="font-medium text-sm uppercase">parent comment:</h2> 
-          <p>{ JSON.stringify(parentComment) }</p>
-        </div>
-      )}
-      <div className="break-all">
-        <h2 className="font-medium text-sm uppercase">comment:</h2> 
-        <p>{ JSON.stringify(comment) }</p>
-      </div> */}
     </div>
   ));
 }
