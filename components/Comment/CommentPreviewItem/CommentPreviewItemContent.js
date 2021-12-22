@@ -53,7 +53,7 @@ const CommentPreviewItemContentDesktop = ({ commentData, parentData, storyId, pe
   return (
     <div className={clsx(
       "hidden sm:grid grid-cols-[auto,1fr]",
-      { "border-brandDefault border-brandBorder border-t-transparent rounded-b m-[-1px] mt-0 p-2 hover:border-brandBorderHover": isRoot },
+      { "border-brandDefault border-brandBorder border-t-transparent rounded-b m-[-1px] mt-0 p-2 transition-colors hover:border-brandBorderHover": isRoot },
     )}>
       {/* vertical line */}
       <Link href={`/story/${storyId}/${permalinkId}`}>

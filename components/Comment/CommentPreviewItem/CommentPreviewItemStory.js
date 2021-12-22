@@ -28,7 +28,7 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
       </div>
 
       {/* story item preview */}
-      <div className="grid text-brandTextSecondary sm:border-brandDefault sm:border-brandBorder sm:border-b-transparent sm:rounded-t sm:m-[-1px] sm:mb-0 sm:grid-cols-[auto,1fr] sm:items-center sm:text-xs sm:hover:border-brandBorderHover">
+      <div className="grid text-brandTextSecondary transition-colors sm:border-brandDefault sm:border-brandBorder sm:border-b-transparent sm:rounded-t sm:m-[-1px] sm:mb-0 sm:grid-cols-[auto,1fr] sm:items-center sm:text-xs sm:hover:border-brandBorderHover">
         {/* chat icon link */}
         <Link href={"/story/" + storyData.id}>
           <a 
