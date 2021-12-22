@@ -1,15 +1,16 @@
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 
 import { useStory } from "../../../hooks/useStory";
 import { useHtmlParser } from '../../../hooks/useHtmlParser';
+import ItemIsError from '../../StatusMessage/ItemIsError';
+import ItemIsDeadOrDeleted from '../../StatusMessage/ItemIsDeadOrDeleted';
 import StoryItemHeader from "./StoryItemHeader";
 import ShortenedExternalLink from '../../Shared/ShortenedExternalLink';
 import StoryItemFooter from "./StoryItemFooter";
 import StoryItemMobileShareTrigger from './StoryItemMobileShareTrigger';
-import ItemIsError from '../../StatusMessage/ItemIsError';
 import MobileActionsModal from '../../Shared/MobileActionsModal';
-import { useEffect, useState } from 'react';
 
 const StoryItem = ({ storyId, withText = false, isStatic = false, userView = false }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
@@ -22,7 +23,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
   }, [withText, data?.text])
 
   return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
-    data.deleted || data.dead ? (<IsDeadOrDeleted />) : data.type === "comment" ? null : (
+    data.deleted || data.dead ? (<ItemIsDeadOrDeleted />) : data.type === "comment" ? null : (
       <div className={clsx(
         "grid transition-colors sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm",
         { "cursor-pointer sm:hover:border-brandBorderHover": !isStatic }
@@ -126,14 +127,6 @@ const IsLoading = () => {
       </div>
     </div>
   );
-}
-
-const IsDeadOrDeleted = () => {
-  return (
-    <div className="py-1 px-2 font-medium text-xs text-brandTextSecondary italic sm:py-0">
-      Content cannot be found. Story status is dead or deleted.
-    </div>
-  )
 }
  
 export default StoryItem;
