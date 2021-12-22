@@ -8,7 +8,7 @@ import UserLink from './UserLink';
 import { useNumberFormatter } from '../../hooks/useNumberFormatter';
 
 const UserHoverCard = ({ userId, className, withPrefix, withAvatar, avatarClassName }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); 
 
   return !userId ? null : (  
     <HoverCard.Root 
@@ -27,7 +27,6 @@ const UserHoverCard = ({ userId, className, withPrefix, withAvatar, avatarClassN
             userId={userId}
             withPrefix={withPrefix}
           />
-
         </div>
       </HoverCard.Trigger>
       <HoverCard.Content 

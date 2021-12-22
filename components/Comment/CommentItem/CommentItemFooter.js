@@ -3,10 +3,11 @@ import clsx from 'clsx';
 import ShareDropdown from '../../Shared/ShareDropdown';
 import OverflowDropdown from '../../Shared/OverflowDropdown';
 
-const CommentItemFooter = ({ commentData, storyId, isDead }) => {
+const CommentItemFooter = ({ commentData, storyId, isDead, className }) => {
   return (  
     <div className={clsx(
-      "hidden sm:grid grid-flow-col auto-cols-auto justify-start items-center gap-1 mt-3 mb-1 text-xs text-brandTextSecondary",
+      className ?? "mt-3 mb-1",
+      "hidden sm:grid grid-flow-col auto-cols-auto justify-start items-center gap-1 text-xs text-brandTextSecondary",
       { "opacity-60": isDead }
     )}>
       {/* share dropdown */}
