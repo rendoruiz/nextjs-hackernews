@@ -70,8 +70,8 @@ const CommentPreviewItemContentDesktop = ({ commentData, parentData, storyId, pe
 
       {/* comment data */}
       <div className={clsx(
-        "relative grid",
-        { "rounded px-2 py-1 bg-brandOrange/10": isHighlighted },
+        "relative grid content-start",
+        { "rounded px-2 pt-[6px] pb-1 bg-brandOrange/10": isHighlighted },
       )}>
         {/* wrapper link */}
         <Link href={`/story/${storyId}/${permalinkId}`}>
