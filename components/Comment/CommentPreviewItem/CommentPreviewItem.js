@@ -6,7 +6,7 @@ import CommentPreviewItemContent from "./CommentPreviewItemContent";
 
 const CommentPreviewItem = ({ commentId, userId }) => {
   const [contentId, setContentId] = useState(commentId)
-  const { data } = useComment(contentId)
+  const { data, isLoading, isError, isSuccess } = useComment(contentId)
   const [parentComment, setParentComment] = useState(null);
   const [parentStory, setParentStory] = useState(null);
   const [comment, setComment] = useState(null);
@@ -34,7 +34,7 @@ const CommentPreviewItem = ({ commentId, userId }) => {
     }
   }, [contentId, data]);
 
-  return !parentStory ? <IsLoading /> : (  
+  return !comment && isLoading ? <IsLoading heading="comment" /> : (!parentComment || !parentStory) && isLoading ? <IsLoading heading="parent story/comment" /> : parentStory && (  
     comment.deleted ? <DeletedItem /> : (
     <div className="grid content-start bg-white text-sm leading-snug sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:cursor-pointer">
       {/* story */}
@@ -57,10 +57,10 @@ const CommentPreviewItem = ({ commentId, userId }) => {
   ));
 }
 
-const IsLoading = () => {
+const IsLoading = ({ heading }) => {
   return (
     <div className="px-4 py-2 bg-white sm:border-brandBorder sm:rounded sm:shadow-sm">
-      <p className="font-medium text-sm uppercase text-red-500">Loading comment...</p>
+      <p className="font-medium text-sm uppercase text-red-500">Loading { heading }...</p>
     </div>
   );
 }
