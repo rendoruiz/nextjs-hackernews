@@ -63,7 +63,9 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
             <div className="sm:inline">
               { storyText }
             </div>
-            <span className="hidden mx-1 sm:inline">&nbsp;</span>
+            { storyData.url && (
+              <span className="hidden mx-1 sm:inline">&nbsp;</span>
+            )}
           </div>
 
           {/* desktop external link */}
