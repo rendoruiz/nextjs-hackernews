@@ -60,7 +60,9 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
             <span className="hidden sm:inline">
               &nbsp;commented on&nbsp;
             </span>
-            <div className="sm:inline">{ storyText }</div>
+            <div className="sm:inline">
+              { storyText }
+            </div>
             <span className="hidden mx-1 sm:inline">&nbsp;</span>
           </div>
 
