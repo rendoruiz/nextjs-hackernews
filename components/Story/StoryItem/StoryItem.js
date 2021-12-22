@@ -4,24 +4,22 @@ import clsx from 'clsx';
 import { useStory } from "../../../hooks/useStory";
 import { useHtmlParser } from '../../../hooks/useHtmlParser';
 import StoryItemHeader from "./StoryItemHeader";
-import StoryItemDisplayLink from "./StoryItemDisplayLink";
+import ShortenedExternalLink from '../../Shared/ShortenedExternalLink';
 import StoryItemFooter from "./StoryItemFooter";
 import StoryItemMobileShareTrigger from './StoryItemMobileShareTrigger';
 import ItemIsError from '../../StatusMessage/ItemIsError';
 import MobileActionsModal from '../../Shared/MobileActionsModal';
 import { useEffect, useState } from 'react';
 
-const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
+const StoryItem = ({ storyId, withText = false, isStatic = false, userView = false }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
   const [textContent, setTextContent] = useState(null);
 
   useEffect(() => {
     if (withText && data) {
-      if (data.text) {
-        setTextContent(useHtmlParser(data.text));
-      }
+      setTextContent(useHtmlParser(data.text));
     }
-  }, [withText, data])
+  }, [withText, data?.text])
 
   return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
     data.deleted || data.dead ? (<IsDeadOrDeleted />) : data.type === "comment" ? null : (
@@ -49,7 +47,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
           "relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pb-3 bg-white sm:grid-cols-none sm:rounded-r sm:p-2 sm:pr-4 sm:pb-1",
           isStatic ? "pt-3" : "pt-2"
         )}>
-          {/* wrapper link  */}
+          {/* wrapper link */}
           { !isStatic && (
             <Link href={'/story/' + data.id}>
               <a 
@@ -60,7 +58,10 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
           )}
 
           {/* header info - poster id, date created */}
-          <StoryItemHeader storyData={data} />
+          <StoryItemHeader 
+            storyData={data} 
+            userView={userView}
+          />
           
           {/* mobile overflow actions - story links, poster link */}
           <MobileActionsModal 
@@ -79,7 +80,12 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, }) => {
           </Link>
 
           {/* story link */}
-          <StoryItemDisplayLink rawLink={data.url} />
+          <ShortenedExternalLink 
+            rawLink={data.url}
+            wrapperClassName="row-start-2 col-start-2 justify-self-end relative grid items-end w-[70px] h-[52px] bg-brandOrange text-[0.625rem] sm:row-start-auto sm:col-start-auto sm:justify-self-start sm:inline-flex sm:items-center sm:-mt-1 sm:t-1 sm:pb-2 sm:w-auto sm:h-auto sm:bg-transparent sm:text-xs sm:text-brandOrange sm:hover:underline"
+            textClassName="p-1 bg-black/70 text-white truncate sm:p-0 sm:px-0 sm:bg-transparent sm:text-current sm:overflow-auto"
+            glyphClassName="hidden ml-1 w-4 h-4 sm:inline-block"
+          />
           
           {/* text/content */}
           { textContent && (
@@ -124,7 +130,9 @@ const IsLoading = () => {
 
 const IsDeadOrDeleted = () => {
   return (
-    <div>Content cannot be found.</div>
+    <div className="py-1 px-2 font-medium text-xs text-brandTextSecondary italic sm:py-0">
+      Content cannot be found. Story status is dead or deleted.
+    </div>
   )
 }
  

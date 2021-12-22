@@ -13,7 +13,7 @@ const CommentList = ({ storyId, permalinkId }) => {
   const { isLoading, isError, data: storyData, isSuccess } = useStory(storyId, false);
   const [itemCount, setItemCount] = useState(defaultItemCount);
   const [itemIds, setItemIds] = useState(null);
-  const [isPermalink, setIsPermalink] = useState(permalinkId ? true : false);
+  const isPermalink = permalinkId ? true : false;
 
   const handleClick = (e) => {
     e.preventDefault();

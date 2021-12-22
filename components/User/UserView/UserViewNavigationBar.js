@@ -1,7 +1,7 @@
-import NavigationBar from "../Shared/NavigationBar";
-import FireGlyph from "../Glyphs/FireGlyph";
-import LightningGlyph from "../Glyphs/LightningGlyph";
-import TrendUpGlyph from "../Glyphs/TrendUpGlyph";
+import NavigationBar from "../../Shared/NavigationBar";
+import FireGlyph from "../../Glyphs/FireGlyph";
+import LightningGlyph from "../../Glyphs/LightningGlyph";
+import TrendUpGlyph from "../../Glyphs/TrendUpGlyph";
 
 const navigationItems = [
   {
@@ -20,13 +20,14 @@ const navigationItems = [
   },
 ];
 
-const UserNavigationBar = ({ userId }) => {
+const UserViewNavigationBar = ({ userId }) => {
   return (  
-    <NavigationBar 
+    <NavigationBar
       navigationItems={navigationItems} 
       routePrefix={"/user/" + userId}
+      withPersistQueryString
     />
   );
 }
  
-export default UserNavigationBar;
+export default UserViewNavigationBar;
