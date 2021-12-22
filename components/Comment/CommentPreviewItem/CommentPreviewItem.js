@@ -6,7 +6,7 @@ import CommentPreviewItemContent from "./CommentPreviewItemContent";
 
 const CommentPreviewItem = ({ commentId, userId }) => {
   const [contentId, setContentId] = useState(commentId)
-  const { data, isLoading, isError, isSuccess } = useComment(contentId)
+  const { data, isLoading } = useComment(contentId)
   const [parentComment, setParentComment] = useState(null);
   const [parentStory, setParentStory] = useState(null);
   const [comment, setComment] = useState(null);
