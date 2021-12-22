@@ -56,17 +56,16 @@ const CommentPreviewItemContentDesktop = ({ commentData, parentData, storyId, pe
       { "border-brandDefault border-brandBorder border-t-transparent rounded-b m-[-1px] mt-0 p-2 transition-colors hover:border-brandBorderHover": isRoot },
     )}>
       {/* vertical line */}
-      <Link href={`/story/${storyId}/${permalinkId}`}>
-        <a 
-          className={clsx(
-            "grid",
-            isRoot ? "mr-2 px-[0.6875rem]" : "mr-4"
-          )}
-          title="view comment permalink"
-        >
-          <div className="border-l-2 border-l-brandButtonOutline border-dashed" />
-        </a>
-      </Link>
+      <PermalinkRoute 
+        storyId={storyId} 
+        permalinkId={permalinkId} 
+        className={clsx(
+          "grid",
+          isRoot ? "mr-2 px-[0.6875rem]" : "mr-4"
+        )}
+      >
+        <div className="border-l-2 border-l-brandButtonOutline border-dashed" />
+      </PermalinkRoute>
 
       {/* comment data */}
       <div className={clsx(
@@ -74,12 +73,10 @@ const CommentPreviewItemContentDesktop = ({ commentData, parentData, storyId, pe
         { "rounded px-2 pt-[6px] pb-1 bg-brandOrange/10": isHighlighted },
       )}>
         {/* wrapper link */}
-        <Link href={`/story/${storyId}/${permalinkId}`}>
-          <a 
-            className="absolute inset-0"
-            title="view comment permalink"
-          />
-        </Link>
+        <PermalinkRoute 
+          storyId={storyId} 
+          permalinkId={permalinkId} 
+        />
 
         {/* header */}
         <div className="justify-self-start relative text-xs text-brandTextSecondary">
@@ -95,10 +92,14 @@ const CommentPreviewItemContentDesktop = ({ commentData, parentData, storyId, pe
 
         {/* content */}
         <div className={clsx(
-          "mt-1",
+          "relative mt-1",
           { "mb-3": parentData && isRoot },
           { "pr-1": isRoot }
         )}>
+          <PermalinkRoute 
+            storyId={storyId} 
+            permalinkId={permalinkId} 
+          />
           { parentCommentText ?? commentText }
         </div>
 
@@ -120,6 +121,19 @@ const CommentPreviewItemContentDesktop = ({ commentData, parentData, storyId, pe
       </div>
     </div>
   )
+}
+
+const PermalinkRoute = ({ children, className, storyId, permalinkId }) => {
+  return (
+    <Link href={`/story/${storyId}/${permalinkId}`}>
+      <a 
+        className={className ?? "absolute inset-0"}
+        title="view comment permalink"
+      >
+        { children }
+      </a>
+    </Link>
+  );
 }
  
 export default CommentPreviewItemContent;
