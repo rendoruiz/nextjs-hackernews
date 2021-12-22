@@ -6,11 +6,11 @@ const useFullDateTime = (unixTime, dateOnly = false) => {
 }
 
 const useRelativeTime = (unixTime, withSuffix = true) => {
-  return formatDistanceStrict(toDate(unixTime * 1000), Date.now(), { addSuffix: withSuffix });
+  return formatDistanceStrict(toDate(unixTime * 1000), new Date(), { addSuffix: withSuffix });
 }
 
 const useShortRelativeTime = (unixTime) => {
-  const formattedTime =  formatDistanceStrict(toDate(unixTime * 1000), Date.now()).split(' ');
+  const formattedTime =  formatDistanceStrict(toDate(unixTime * 1000), new Date()).split(' ');
   return formattedTime.shift() + formattedTime.pop().split('').shift();
 }
 
