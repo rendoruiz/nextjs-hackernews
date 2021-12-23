@@ -1,7 +1,7 @@
 // fetch error
 const IsError = () => {
   return (  
-    <div className="grid place-items-center only:row-span-3">
+    <div className="grid place-items-center px-5 py-10 only:row-span-2">
       <p className="grid gap-5 text-center sm:gap-8 lg:gap-10">
         <span 
           className="text-5xl drop-shadow-md sm:text-6xl lg:text-8xl lg:drop-shadow-lg"
