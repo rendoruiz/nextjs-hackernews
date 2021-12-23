@@ -33,6 +33,7 @@ module.exports = {
         brandDarkAppBackground: 'rgb(3, 3, 3)',
         brandDarkObjectBackground: 'rgb(26, 26, 27)',
         brandDarkBorder: 'rgb(52, 53, 54)',
+        brandDarkBorderHover: 'rgb(129, 131, 132)',
         brandDarkBorderSeparator: 'rgb(84, 84, 82)',
         brandDarkTextPrimary: 'rgb(207, 208, 202)',
         brandDarkTextSecondary: 'rgb(129, 131, 132)',

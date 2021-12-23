@@ -35,7 +35,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
 
         <div className={clsx(
           "grid transition-colors sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:dark:border-brandDarkBorder",
-          { "cursor-pointer sm:hover:border-brandBorderHover": !isStatic }
+          { "cursor-pointer sm:hover:border-brandBorderHover sm:hover:dark:border-brandDarkBorderHover": !isStatic }
         )}>
           {/* karma left side bar (desktop) */}
           <Link href={'/story/' + data.id}>
