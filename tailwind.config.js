@@ -37,9 +37,11 @@ module.exports = {
         brandDarkBorderSeparator: 'rgb(84, 84, 82)',
         brandDarkTextPrimary: 'rgb(207, 208, 202)',
         brandDarkTextSecondary: 'rgb(129, 131, 132)',
+        brandDarkTextLinkVisited: 'rgb(129, 131, 132)',
         brandDarkButtonHover: 'rgba(215, 218, 220, 0.08)',
         brandDarkButtonActive: 'rgba(215, 218, 220, 0.24)',
         brandDarkButtonSelected: 'rgb(39, 39, 41)',
+        brandDarkButtonOutline: 'rgb(53, 53, 53)',
       },
       borderWidth: {
         brandDefault: '1px',

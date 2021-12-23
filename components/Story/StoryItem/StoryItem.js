@@ -46,7 +46,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
               )}
               title="view story discussion"
             >
-              <span className="font-bold text-xs text-brandTextPrimary">
+              <span className="font-bold text-xs text-brandTextPrimary dark:text-brandDarkTextPrimary">
                 { data.type !== "job" && data.score }
               </span>
             </a>
@@ -76,14 +76,14 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
             {/* mobile overflow actions - story links, poster link */}
             <MobileActionsModal 
               itemData={data} 
-              triggerClassName="row-start-1 col-start-2 justify-self-end relative -mr-2 -my-2 px-2 sm:hidden"
+              triggerClassName="row-start-1 col-start-2 justify-self-end relative -mr-2 -my-2 px-2 dark:text-brandDarkTextSecondary sm:hidden"
             />
 
             {/* title */}
             <Link href={'/story/' + data.id}>
               <a className={clsx(
-                "row-start-2 col-start-1 mb-1 font-medium text-brandTextPrimary leading-tight sm:row-start-auto sm:col-start-auto sm:mb-0 sm:text-lg sm:leading-snug",
-                { "visited:text-brandTextLinkVisited": !isStatic },
+                "row-start-2 col-start-1 mb-1 font-medium text-brandTextPrimary leading-tight dark:text-brandDarkTextPrimary sm:row-start-auto sm:col-start-auto sm:mb-0 sm:text-lg sm:leading-snug",
+                { "visited:text-brandTextLinkVisited dark:visited:text-brandDarkTextLinkVisited": !isStatic },
               )}>
                 { data.title }
               </a>
