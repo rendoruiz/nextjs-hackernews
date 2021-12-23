@@ -44,19 +44,21 @@ const CommentList = ({ storyId, permalinkId }) => {
       { !isPermalink && (
         <>
           {/* mobile */}
-          <div className="grid px-4 py-3 sm:hidden">
+          <div className="grid mb-1 px-4 py-3 sm:hidden">
             <span className="font-bold text-xs">
               { storyData.descendants === 0 ? "No" : storyData.descendants } Comment{ storyData.descendants !== 1 && "s" }
             </span>
           </div>
 
           {/* desktop */}
-          { storyData.descendants === 0 && (
+          { storyData.descendants === 0 ? (
             <div className="hidden p-3 sm:grid">
               <span className="font-medium">
                 No Comments
               </span>
             </div>
+          ) : (
+            <div className="hidden pb-3 sm:block" />
           )}
         </>
       )}
@@ -75,7 +77,7 @@ const CommentList = ({ storyId, permalinkId }) => {
       
       {/* comment list */}
       { storyData.kids && (
-        <div className="grid content-start last:mb-2 sm:mt-3">
+        <div className="grid content-start last:mb-2 sm:first:mt-3">
           { itemIds && (
             itemIds.map((commentId) => (
               <CommentItem

@@ -6,9 +6,10 @@ import OverflowDropdown from '../../Shared/OverflowDropdown';
 const CommentItemFooter = ({ commentData, storyId, isDead, className }) => {
   return (  
     <div className={clsx(
-      className ?? "mt-3",
+      className,
       "hidden sm:grid grid-flow-col auto-cols-auto justify-start items-center gap-1 text-xs text-brandTextSecondary",
-      { "opacity-60": isDead }
+      { "opacity-60": isDead },
+      !className && commentData.dead ? "mt-1" : "mt-3"
     )}>
       {/* share dropdown */}
       <ShareDropdown

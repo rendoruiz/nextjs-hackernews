@@ -27,10 +27,9 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
   return isLoading ? (<IsLoading itemDepth={parentDepth} />) : isError || !data ? (<ItemIsError error={error} />) : isSuccess && (
     !data.deleted && (  
       <div className={clsx(
-        "relative grid text-sm sm:grid-cols-[auto,1fr] sm:gap-x-2 sm:border-none",
-        { "border-t-brandDefault border-t-brandButtonOutline px-3 first:border-t-0 sm:px-2": parentDepth === 0 },
-        { "-mb-2 last:mb-0": isCollapsed && parentDepth === 0 },
-        { "py-3 sm:py-2": isPermalink },
+        "relative grid text-sm sm:grid-cols-[auto,1fr] sm:gap-x-2 sm:border-none sm:last:pb-0",
+        { "border-t-brandDefault border-t-brandButtonOutline px-4 py-3 first:border-t-0 first:pt-0 sm:px-2": parentDepth === 0 },
+        { "py-3 first:pt-3 sm:py-2 sm:first:pt-2": isPermalink },
       )}>    
         {/* permalink highlight */}
         { isPermalink && (
@@ -50,30 +49,34 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
 
         {/* vertical line - desktop collapse toggle */}
         <div className={clsx(
-          "relative hidden row-span-2 col-start-1 w-6 overflow-hidden",
-          { "sm:grid": !isCollapsed },
+          "relative hidden row-span-2 col-start-1 w-7 overflow-hidden",
+          { "sm:!grid": !isCollapsed },
         )}>
           <button 
             className="group grid justify-center mx-[6px]"
             title="collapse comment item"
             onClick={(e) => toggleDisplayState(e)}
           >
-            <div className="border-r-2 border-brandButtonOutline mt-2 h-full group-hover:border-brandOrange" />
+            <div className="border-r-2 border-r-brandButtonOutline mt-2 h-full group-hover:border-brandOrange" />
           </button>
         </div>
 
         {/* content + actions */}
-        <div className={clsx("relative grid sm:col-start-2 sm:ml-1 sm:mt-0",
+        <div className={clsx(
+          "relative grid sm:col-start-2 sm:ml-0 sm:mt-0",
           parentDepth === 0 ? "ml-8" : "mt-1",
-          { "hidden": isCollapsed },
-          
+          { "!hidden": isCollapsed },
         )}>
           {/* text */}
           <div className={clsx(
             "inline-block leading-tight sm:leading-normal",
             { "opacity-60": data.dead }
           )}>
-            { textContent }
+            { textContent ?? (
+              <div className="text-xs2 uppercase font-bold text-brandTextSecondary italic">
+                (empty content)
+              </div>
+            )}
           </div>
 
           {/* desktop dropdown button */}
@@ -85,16 +88,19 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
         </div>
 
         {/* if there are comment replies: display if meets set condition, else display trigger to load replies */}
-        <CommentItemReplies 
-          replyIds={data.kids}
-          replyDepthLimit={replyDepthLimit}
-          parentDepth={parentDepth}
-          submitterId={submitterId}
-          storyId={storyId}
-          className={clsx(
-            { "mt-[28px]": isPermalink }
-          )}
-        />
+        <div className={clsx(
+          "relative grid sm:col-start-2",
+          { "!hidden": isCollapsed },
+          { "mt-3 sm:mt-0": isPermalink },
+        )}>
+          <CommentItemReplies 
+            replyIds={data.kids}
+            replyDepthLimit={replyDepthLimit}
+            parentDepth={parentDepth}
+            submitterId={submitterId}
+            storyId={storyId}
+          />
+        </div>
       </div>
     )
   );
