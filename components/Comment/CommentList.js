@@ -42,19 +42,23 @@ const CommentList = ({ storyId, permalinkId }) => {
     <div className="grid content-start bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:pl-1 sm:pr-5 sm:shadow-sm">
       {/* hide on permalink */}
       { !isPermalink && (
-        <div className="grid px-4 py-2">
+        <>
           {/* mobile */}
-          <span className="font-bold text-xs sm:hidden">
-            { storyData.descendants === 0 ? "No" : storyData.descendants } Comment{ storyData.descendants !== 1 && "s" }
-          </span>
+          <div className="grid px-4 py-3 sm:hidden">
+            <span className="font-bold text-xs">
+              { storyData.descendants === 0 ? "No" : storyData.descendants } Comment{ storyData.descendants !== 1 && "s" }
+            </span>
+          </div>
 
           {/* desktop */}
           { storyData.descendants === 0 && (
-            <span className="hidden sm:block font-medium">
-              No Comments
-            </span>
+            <div className="hidden p-3 sm:grid">
+              <span className="font-medium">
+                No Comments
+              </span>
+            </div>
           )}
-        </div>
+        </>
       )}
       
       {/* story link on permalink route */}
@@ -71,7 +75,7 @@ const CommentList = ({ storyId, permalinkId }) => {
       
       {/* comment list */}
       { storyData.kids && (
-        <div className="grid content-start last:mb-2">
+        <div className="grid content-start last:mb-2 sm:mt-3">
           { itemIds && (
             itemIds.map((commentId) => (
               <CommentItem
@@ -89,7 +93,7 @@ const CommentList = ({ storyId, permalinkId }) => {
 
       {/* load more comments trigger */}
       { !isPermalink && storyData.kids && storyData.kids.length > itemCount && (
-        <div className="grid border-t-brandDefault border-t-brandButtonOutline mt-2 px-4 pt-3 pb-1 sm:border-none sm:mt-0 sm:px-2 sm:pt-2 sm:pb-1">
+        <div className="grid border-t-brandDefault border-t-brandButtonOutline px-4 py-3 sm:border-none sm:p-3">
           <button
             className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left sm:text-brandOrange sm:hover:underline"
             onClick={(e) => handleClick(e)}
