@@ -7,7 +7,7 @@ import OverflowDropdown from '../../Shared/OverflowDropdown';
 
 const StoryItemFooter = ({ storyData }) => {
   return storyData.type !== "job" && (  
-    <div className="col-start-1 self-end grid grid-flow-col auto-cols-auto justify-start gap-2 text-xs text-brandTextSecondary whitespace-nowrap dark:text-brandDarkBorderSeparator sm:row-start-auto sm:col-start-auto sm:relative sm:gap-1 sm:-ml-1">
+    <div className="col-start-1 self-end grid grid-flow-col auto-cols-auto justify-start gap-2 text-xs text-brandTextSecondary whitespace-nowrap dark:text-brandDarkBorderSeparator sm:row-start-auto sm:col-start-auto sm:relative sm:gap-1 sm:-ml-1 sm:dark:text-brandDarkTextSecondary">
       {/* karma (small breakpoint only) */}
       <div className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 dark:border-brandDarkButtonOutline sm:hidden">
         <ArrowUpGlyph />

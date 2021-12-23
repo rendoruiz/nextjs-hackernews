@@ -41,7 +41,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
           <Link href={'/story/' + data.id}>
             <a 
               className={clsx(
-                "hidden sm:flex justify-center items-start rounded-l py-2 bg-brandObjectBackground/80 dark:bg-brandDarkObjectBackground/80",
+                "hidden sm:flex justify-center items-start rounded-l py-2 bg-brandObjectBackground/80 transition-colors dark:bg-brandDarkObjectBackground/80",
                 { "pointer-events-none sm:bg-brandObjectBackground": isStatic }
               )}
               title="view story discussion"
@@ -54,7 +54,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
 
           {/* content */}
           <div className={clsx(
-            "relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pb-3 bg-brandObjectBackground dark:bg-brandDarkAppBackground sm:grid-cols-none sm:rounded-r sm:p-2 sm:pr-4 sm:pb-1 sm:dark:bg-brandDarkObjectBackground",
+            "relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pb-3 bg-brandObjectBackground transition-colors dark:bg-brandDarkAppBackground sm:grid-cols-none sm:rounded-r sm:p-2 sm:pr-4 sm:pb-1 sm:dark:bg-brandDarkObjectBackground",
             isStatic ? "pt-3" : "pt-2"
           )}>
             {/* wrapper link */}
@@ -76,7 +76,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
             {/* mobile overflow actions - story links, poster link */}
             <MobileActionsModal 
               itemData={data} 
-              triggerClassName="row-start-1 col-start-2 justify-self-end relative -mr-2 -my-2 px-2 dark:text-brandDarkTextSecondary sm:hidden"
+              triggerClassName="row-start-1 col-start-2 justify-self-end relative -mr-2 -my-2 px-2 sm:hidden"
             />
 
             {/* title */}

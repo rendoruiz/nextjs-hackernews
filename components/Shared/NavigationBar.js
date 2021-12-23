@@ -91,7 +91,7 @@ const MobileNavigationDropdown = ({ navigationItems, routePrefix, countQueryStri
         <ChevronDownGlyph />
 
         {/* custom overlay */}
-        { isOpen && (<div className="fixed z-10 inset-0 bg-black/40 sm:hidden" />) }
+        { isOpen && (<div className="fixed z-10 inset-0 bg-bg-brandDarkAppBackground/40 dark:bg-brandDarkAppBackground/70 sm:hidden" />) }
       </DropdownMenu.Trigger>
       <DropdownMenu.Content 
         className="grid -ml-4 w-screen min-w-[282px] text-brandTextSecondary overflow-hidden dark:text-brandDarkTextSecondary sm:hidden"
@@ -110,10 +110,10 @@ const MobileNavigationDropdown = ({ navigationItems, routePrefix, countQueryStri
         </DropdownMenu.Label>
         {/* actual content */}
         <DropdownMenu.Group 
-          className="grid border-brandDefault border-brandBorder mx-3 px-2 bg-brandObjectBackground dark:border-brandDarkBorder dark:bg-brandDarkObjectBackground" 
+          className="grid border-brandDefault border-brandBorder mx-3 px-2 bg-brandObjectBackground dark:bg-brandDarkAppBackground" 
           onClick={() => handleClick()}
         >
-          <DropdownMenu.Label className="py-3 font-bold text-xs uppercase tracking-widest">Sort Posts By:</DropdownMenu.Label>
+          <DropdownMenu.Label className="py-4 font-bold text-xs2 uppercase tracking-widest">Sort Posts By:</DropdownMenu.Label>
           <DropdownMenu.Separator className="border-b-brandDefault border-brandBorder dark:border-brandDarkBorderSeparator" /> 
           { navigationItems.map((item, index) => (
             <DropdownMenu.Item key={index}>
