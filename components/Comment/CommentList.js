@@ -39,33 +39,31 @@ const CommentList = ({ storyId, permalinkId }) => {
   }, [itemCount, storyData]);
 
   return isLoading ? (<IsLoading />) : isError || !storyData ? (<IsError />) : isSuccess && (storyData.type === "story" || storyData.type === "poll") && (  
-    <div className="grid content-start gap-3 pt-1 pb-3 bg-white sm:gap-1 sm:border-brandDefault sm:border-brandBorder sm:rounded sm:p-3 sm:pr-5 sm:shadow-sm">
+    <div className="grid content-start bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:py-0 sm:pl-1 sm:pr-5 sm:shadow-sm">
       {/* hide on permalink */}
       { !isPermalink && (
-        <>
-          {/* mobile comment count (displayed by default) */}
-          <div className="grid px-4 pt-2 pb-1 sm:hidden">
-            <span className="font-bold text-xs sm:hidden">
-              { storyData.descendants === 0 ? "No" : storyData.descendants } Comment{ storyData.descendants !== 1 && "s" }
-            </span>
-          </div>
-          {/* desktop comment count (only displayed if there are no comments) */}
-          { storyData.descendants === 0 && (
-            <div className="hidden sm:block">
-              <span className="font-medium">
-                No Comments
-              </span>
-            </div>
-          )}
-        </>
-      )}
+        <div className="grid px-4 py-2">
+          {/* mobile */}
+          <span className="font-bold text-xs sm:hidden">
+            { storyData.descendants === 0 ? "No" : storyData.descendants } Comment{ storyData.descendants !== 1 && "s" }
+          </span>
 
+          {/* desktop */}
+          { storyData.descendants === 0 && (
+            <span className="hidden sm:block font-medium">
+              No Comments
+            </span>
+          )}
+        </div>
+      )}
+      
+      {/* story link on permalink route */}
       { isPermalink && (
-        <div className="grid justify-end px-4 pt-2 pb-1 sm:justify-start sm:p-0 sm:pb-4">
+        <div className="grid justify-end px-4 py-3 sm:justify-start sm:p-3 sm:pl-8">
           <Link href={"/story/" + storyId}>
-            <a className="font-bold text-xs text-brandOrange tracking-wide sm:hover:underline">
-              <span className="sm:hidden">See full discussion</span>
-              <span className="hidden sm:block">View all comments</span>
+            <a className="text-xs text-brandOrange sm:hover:underline">
+              <span className="font-medium sm:hidden">See full discussion</span>
+              <span className="hidden font-bold tracking-wide sm:block">View all comments</span>
             </a>
           </Link>
         </div>
@@ -73,7 +71,7 @@ const CommentList = ({ storyId, permalinkId }) => {
       
       {/* comment list */}
       { storyData.kids && (
-        <div className="grid content-start gap-5 sm:gap-7">
+        <div className="grid content-start">
           { itemIds && (
             itemIds.map((commentId) => (
               <CommentItem
@@ -82,7 +80,7 @@ const CommentList = ({ storyId, permalinkId }) => {
                 submitterId={storyData.by}
                 storyId={storyId}
                 replyDepthLimit={defaultDepthLimit}
-                isPermalink
+                isPermalink={isPermalink}
               />
             ))
           )}

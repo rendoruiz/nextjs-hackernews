@@ -1,8 +1,9 @@
+import clsx from "clsx";
 import { useEffect, useState } from "react";
 
 import CommentItem from "./CommentItem";
 
-const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth, submitterId, storyId }) => {
+const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth, submitterId, storyId, className }) => {
   const currentDepth = parentDepth + 1;
   const defaultReplyItemCount = 3;
   const replyItemIncrementCount = 5;
@@ -39,7 +40,11 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth, submitterI
   // if replyDepthLimit has been reached, a trigger will be displayed to manually load the replies with the provided replyIds.
   // a trigger will also be displayed if not all children are loaded.
   return !replyIds ? null : replyIds.length <= 0 ? null : (
-    <div className="grid gap-4 border-l-brandDefault border-brandButtonOutline mt-4 pl-4 sm:gap-2 sm:border-none sm:mt-0 sm:-ml-3 sm:pl-0">
+    <div className={clsx(
+      className,
+      "relative grid gap-4 border-l-brandDefault border-brandButtonOutline mt-4 pl-4 sm:col-start-2 sm:gap-2 sm:border-none sm:mt-0 sm:-ml-3 sm:pl-0",
+      { "ml-8": parentDepth === 0 }
+    )}>
       {/* comment replies */}
       { (!isReplyDepthLimitReached || isChildrenLoaded) && (
         <div className="grid gap-4 sm:mt-4">
