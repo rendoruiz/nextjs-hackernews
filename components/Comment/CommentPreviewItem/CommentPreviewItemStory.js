@@ -7,6 +7,7 @@ import ChatGlyph from '../../Glyphs/ChatGlyph';
 import UserLink from '../../User/UserLink';
 import UserHoverCard from '../../User/UserHoverCard';
 import ShortenedExternalLink from '../../Shared/ShortenedExternalLink';
+import ItemIsDeadOrDeleted from '../../StatusMessage/ItemIsDeadOrDeleted';
 
 const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
   const [storyText, setStoryText] = useState(null);
@@ -20,7 +21,7 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
     setShortRelativeTime(useShortRelativeTime(commentTime));
   }, [commentTime]);
 
-  return storyData && commentTime && (
+  return storyData && (storyData.dead || storyData.deleted) ? <ItemIsDeadOrDeleted /> : commentTime && (
     <>
       {/* mobile time */}
       <div className="px-4 mt-2 sm:hidden">
@@ -63,7 +64,9 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
             <div className="sm:inline">
               { storyText }
             </div>
-            <span className="hidden mx-1 sm:inline">&nbsp;</span>
+            { storyData.url && (
+              <span className="hidden mx-1 sm:inline">&nbsp;</span>
+            )}
           </div>
 
           {/* desktop external link */}
