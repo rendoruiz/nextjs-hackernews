@@ -64,17 +64,17 @@ const CommentItemReplies = ({ replyIds, replyDepthLimit, parentDepth, submitterI
 
       {/* display load more replies button if: a) no children has been loaded, b) not all child replies are loaded */}
       { ((isReplyDepthLimitReached && !isChildrenLoaded) || replyIds.length > replyItemCount) && (
-        <div className="grid sm:place-items-start sm:mt-1 sm:ml-3 sm:pb-2">
+        <div className="grid sm:place-items-start sm:mt-1 sm:pb-2">
           <button 
-            className="font-bold text-xs text-brandButtonInlineText tracking-wide text-left sm:text-brandOrange sm:tracking-normal sm:hover:underline"
+            className="flex font-bold text-xs text-brandButtonInlineText tracking-wide text-left sm:text-brandOrange sm:tracking-normal sm:hover:underline"
             onClick={(e) => handleClick(e)}
           >
             { isReplyDepthLimitReached && !isChildrenLoaded ? (
-              <span>
+              <span className="sm:ml-1 sm:pt-1">
                 { replyIds.length } more repl{ replyIds.length > 1 ? "ies" : "y" }
               </span>
             ) : (
-              <span className="sm:-ml-1">
+              <span className="sm:ml-2">
                 { replyIds.length-replyItemCount } more repl{ replyIds.length-replyItemCount > 1 ? "ies" : "y" }
               </span>
             )}
