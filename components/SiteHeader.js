@@ -1,9 +1,10 @@
 import Link from 'next/link';
+import { useRecoilState } from 'recoil';
 import * as Switch from '@radix-ui/react-switch';
+import clsx from 'clsx';
 
 import AppIconGlyph from "./Glyphs/AppIconGlyph";
-import { useState } from 'react';
-import clsx from 'clsx';
+import { isDarkModeState } from '../states/appConfig';
 
 const SiteHeader = () => {
   return ( 
@@ -21,21 +22,22 @@ const SiteHeader = () => {
 }
 
 const DarkModeSwitch = () => {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useRecoilState(isDarkModeState);
+
   return (
     <div className="flex items-center">
-      UwU
+      <span className='mr-3 font-medium text-sm uppercase'>{ isChecked ? "Dark" : "Light" }</span>
       <Switch.Root  
         checked={isChecked}
         onCheckedChange={(oldState) => setIsChecked(oldState)}
         className={clsx(
-          "flex items-center rounded-full w-10 h-6 transition-colors",
+          "group flex items-center rounded-full w-10 h-6 transition-colors hover:bg-opacity-80",
           isChecked ? "bg-brandOrange" : "bg-brandTextPrimary"
         )}
       >
         <Switch.Thumb className={clsx(
-          "rounded-full mx-[2px] w-5 h-5 bg-white transition-transform",
-          { "translate-x-4": isChecked },
+          "rounded-full mx-[2px] w-full h-5 max-w-[20px] bg-white scale-[0.80] transition-all group-hover:scale-90 group-active:scale-90 group-active:max-w-[24px] ",
+          isChecked ? "translate-x-4 group-active:translate-x-3" : ""
         )} />
       </Switch.Root>
     </div>

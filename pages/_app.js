@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import Head from 'next/head';
+import { RecoilRoot } from 'recoil';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query'
-import { ReactQueryDevtools } from 'react-query/devtools'
+// import { ReactQueryDevtools } from 'react-query/devtools'
 import { IdProvider } from '@radix-ui/react-id';
 import '../styles/styles.css'
 
@@ -10,6 +11,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
+      {/* global seo */}
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -26,16 +28,18 @@ function MyApp({ Component, pageProps }) {
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
 
-      <QueryClientProvider client={queryClient}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <IdProvider>
-            <Component {...pageProps} />
-          </IdProvider>
-        </Hydrate>
+      <RecoilRoot>
+        <QueryClientProvider client={queryClient}>
+          <Hydrate state={pageProps.dehydratedState}>
+            <IdProvider>
+              <Component {...pageProps} />
+            </IdProvider>
+          </Hydrate>
 
-        {/* inline debug tool */}
-        {/* <ReactQueryDevtools /> */}
-      </QueryClientProvider>
+          {/* inline debug tool */}
+          {/* <ReactQueryDevtools /> */}
+        </QueryClientProvider>
+      </RecoilRoot>
     </>
   );
 }
