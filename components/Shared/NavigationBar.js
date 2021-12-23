@@ -39,7 +39,7 @@ const NavigationBar = ({ navigationItems, routePrefix = "", withPersistQueryStri
   return (
     <div className={clsx(
       className,
-      "grid grid-flow-col auto-cols-auto justify-between gap-5 mb-1 px-4 bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:mb-4 sm:py-3",
+      "grid grid-flow-col auto-cols-auto justify-between gap-5 mb-1 px-4 bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:mb-4 sm:px-3 sm:py-[0.625rem]",
     )}>
       {/* mobile nav */}
       <MobileNavigationDropdown 
@@ -144,7 +144,7 @@ const MobileNavigationDropdown = ({ navigationItems, routePrefix, countQueryStri
 // desktop nav list
 const DesktopNavigationList = ({ navigationItems, routePrefix, countQueryString, activeItem }) => {
   return (
-    <div className="hidden sm:grid grid-flow-col auto-cols-auto gap-2">
+    <div className="hidden sm:grid grid-flow-col auto-cols-auto gap-2 text-sm tracking-wide">
       { navigationItems.map((item, index) => (
         <Link 
           key={index}
@@ -155,7 +155,7 @@ const DesktopNavigationList = ({ navigationItems, routePrefix, countQueryString,
           shallow
         >
           <a className={clsx(
-            "flex items-center rounded-full pl-2 pr-[0.625rem] py-[0.375rem] transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive", 
+            "flex items-center rounded-full pl-2 pr-[0.625rem] py-1 transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive", 
             index === activeItem ? "bg-brandButtonSelected text-brandOrange" : "text-brandTextSecondary"
           )}>
             <div className="w-6 h-6">
