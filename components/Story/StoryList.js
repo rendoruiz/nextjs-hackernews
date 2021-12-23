@@ -38,7 +38,7 @@ const StoryList = ({ useHook }) => {
   }, []);
 
   return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (  
-    <div className="grid content-start gap-1 sm:gap-2">
+    <div className="grid content-start gap-1 dark:bg-brandDarkObjectBackground sm:gap-2 sm:dark:bg-transparent">
       <div className="grid content-start gap-1 sm:gap-3">
         { itemIds && (
           itemIds.map((storyId) => (
@@ -51,7 +51,7 @@ const StoryList = ({ useHook }) => {
       </div>
 
       { itemCount && itemCount < data.length && (
-        <div className="grid px-4 py-[0.625rem] bg-white sm:place-items-center sm:bg-transparent sm:pb-0">
+        <div className="grid px-4 py-[0.625rem] bg-brandObjectBackground dark:bg-brandDarkAppBackground sm:place-items-center sm:bg-transparent sm:pb-0">
           <button 
             className="rounded-full px-10 py-[0.375rem] bg-brandOrange font-medium text-sm text-white transition-opacity hover:opacity-80 active:opacity-60"
             onClick={(e) => handleClick(e)}

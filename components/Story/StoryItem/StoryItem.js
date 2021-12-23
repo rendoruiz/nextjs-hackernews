@@ -34,15 +34,15 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
         )}
 
         <div className={clsx(
-          "grid transition-colors sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm",
+          "grid transition-colors sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:dark:border-brandDarkBorder",
           { "cursor-pointer sm:hover:border-brandBorderHover": !isStatic }
         )}>
           {/* karma left side bar (desktop) */}
           <Link href={'/story/' + data.id}>
             <a 
               className={clsx(
-                "hidden sm:flex justify-center items-start rounded-l py-2 bg-white/80",
-                { "pointer-events-none sm:bg-white": isStatic }
+                "hidden sm:flex justify-center items-start rounded-l py-2 bg-brandObjectBackground/80 dark:bg-brandDarkObjectBackground/80",
+                { "pointer-events-none sm:bg-brandObjectBackground": isStatic }
               )}
               title="view story discussion"
             >
@@ -54,7 +54,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
 
           {/* content */}
           <div className={clsx(
-            "relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pb-3 bg-white sm:grid-cols-none sm:rounded-r sm:p-2 sm:pr-4 sm:pb-1",
+            "relative justify-items-start grid grid-cols-[1fr,auto] gap-2 px-4 pb-3 bg-brandObjectBackground dark:bg-brandDarkAppBackground sm:grid-cols-none sm:rounded-r sm:p-2 sm:pr-4 sm:pb-1 sm:dark:bg-brandDarkObjectBackground",
             isStatic ? "pt-3" : "pt-2"
           )}>
             {/* wrapper link */}
@@ -120,10 +120,10 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
 const IsLoading = () => {
   return (
     <div className="grid sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded">
-      <div className="hidden sm:flex justify-center items-start py-2 bg-white/80">
+      <div className="hidden sm:flex justify-center items-start py-2 bg-brandObjectBackground/80">
         <div className="rounded-md w-3/4 h-3 bg-brandTextSecondary/30 animate-pulse"></div>
       </div>
-      <div className="grid gap-3 items-start bg-white px-4 pt-2 pb-3 sm:p-2">
+      <div className="grid gap-3 items-start bg-brandObjectBackground px-4 pt-2 pb-3 sm:p-2">
         <div className="flex items-center">
           <div className="rounded-full mr-[0.375rem] w-6 h-6 bg-brandTextSecondary/30 animate-pulse"></div>
           <div className="rounded-md w-1/2 h-4 bg-brandTextSecondary/30 animate-pulse sm:w-5/12"></div>
