@@ -19,7 +19,7 @@ const StoryItemFooter = ({ storyData }) => {
       {/* comment count */}
       <Link href={'/story/' + storyData.id}>
         <a 
-          className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 dark:border-brandDarkButtonOutline sm:border-none sm:rounded sm:pr-2 sm:pl-1 sm:transition-colors sm:hover:bg-brandButtonHover sm:active:bg-brandButtonActive"
+          className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 dark:border-brandDarkButtonOutline sm:border-none sm:rounded sm:pr-2 sm:pl-1 sm:transition-colors sm:hover:bg-brandButtonHover sm:active:bg-brandButtonActive sm:dark:hover:bg-brandDarkButtonHover sm:dark:active:bg-brandDarkButtonActive"
           title="view story discussion"
         >
           <ChatGlyph />

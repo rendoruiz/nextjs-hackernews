@@ -10,7 +10,7 @@ const OverflowDropdown = ({ itemData, triggerClassName }) => {
       <DropdownMenu.Trigger 
         className={clsx(
           triggerClassName,
-          "self-center items-center rounded transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive"
+          "self-center items-center rounded transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive sm:dark:hover:bg-brandDarkButtonHover sm:dark:active:bg-brandDarkButtonActive"
         )}
         title="story overflow menu trigger"
       > 
