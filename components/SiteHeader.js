@@ -1,14 +1,13 @@
 import Link from 'next/link';
-import { useRecoilState } from 'recoil';
 import * as Switch from '@radix-ui/react-switch';
 import clsx from 'clsx';
 
+import { useDarkMode } from '../states/appConfig';
 import AppIconGlyph from "./Glyphs/AppIconGlyph";
-import { isDarkModeState } from '../states/appConfig';
 
 const SiteHeader = () => {
   return ( 
-    <header className="sticky top-0 z-30 flex items-center justify-between px-4 py-[0.625rem] bg-[#1d2535] text-white shadow-md sm:bg-white sm:text-brandTextPrimary">
+    <header className="sticky top-0 z-30 flex items-center justify-between px-4 py-[0.625rem] bg-[#1d2535] text-brandDarkTextPrimary shadow-md transition-colors sm:bg-brandObjectBackground sm:text-brandTextPrimary sm:dark:bg-brandDarkObjectBackground sm:dark:text-brandDarkTextPrimary">
       <Link href="/">
         <a className="flex items-center">
           <AppIconGlyph className="w-7 h-7 text-brandOrange"/>
@@ -22,7 +21,7 @@ const SiteHeader = () => {
 }
 
 const DarkModeSwitch = () => {
-  const [isChecked, setIsChecked] = useRecoilState(isDarkModeState);
+  const [isChecked, setIsChecked] = useDarkMode();
 
   return (
     <div className="flex items-center">
@@ -32,11 +31,11 @@ const DarkModeSwitch = () => {
         onCheckedChange={(oldState) => setIsChecked(oldState)}
         className={clsx(
           "group flex items-center rounded-full w-10 h-6 transition-colors hover:bg-opacity-80",
-          isChecked ? "bg-brandOrange" : "bg-brandTextPrimary"
+          isChecked ? "bg-brandOrange" : "bg-brandDarkObjectBackground"
         )}
       >
         <Switch.Thumb className={clsx(
-          "rounded-full mx-[2px] w-full h-5 max-w-[20px] bg-white scale-[0.80] transition-all group-hover:scale-90 group-active:scale-90 group-active:max-w-[24px] ",
+          "rounded-full mx-[2px] w-full h-5 max-w-[20px] bg-brandObjectBackground scale-[0.80] transition-all group-hover:scale-90 group-active:scale-90 group-active:max-w-[24px] ",
           isChecked ? "translate-x-4 group-active:translate-x-3" : ""
         )} />
       </Switch.Root>
