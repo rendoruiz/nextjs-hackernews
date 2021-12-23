@@ -48,6 +48,7 @@ module.exports = {
       },
       boxShadow: {
         transientObject: '0 2px 4px 0 rgba(28, 28, 28, 0.2)',
+        transientObjectDark: '0px 2px 4px 0px rgba(215, 218, 220, 0.2)',
       },
       fontFamily: {
         primary: ['Nunito', 'sans-serif'],
