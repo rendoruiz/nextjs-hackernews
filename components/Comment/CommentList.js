@@ -77,7 +77,7 @@ const CommentList = ({ storyId, permalinkId }) => {
       
       {/* comment list */}
       { storyData.kids && (
-        <div className="grid content-start last:mb-2 sm:first:mt-3">
+        <div className="grid content-start sm:first:mt-3 sm:last:mb-3">
           { itemIds && (
             itemIds.map((commentId) => (
               <CommentItem

@@ -33,7 +33,7 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
       )}>    
         {/* permalink highlight */}
         { isPermalink && (
-          <div className="absolute inset-0 row-start-1 row-span-2 rounded -my-3 bg-brandOrange/5 sm:col-span-2 sm:-my-2"></div>
+          <div className="absolute inset-0 row-start-1 row-span-2 rounded -my-3 bg-brandOrange/5 sm:col-span-2 sm:-my-2" />
         )}
 
         {/* header */}
