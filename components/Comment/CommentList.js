@@ -39,7 +39,7 @@ const CommentList = ({ storyId, permalinkId }) => {
   }, [itemCount, storyData]);
 
   return isLoading ? (<IsLoading />) : isError || !storyData ? (<IsError />) : isSuccess && (storyData.type === "story" || storyData.type === "poll") && (  
-    <div className="grid content-start bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:py-0 sm:pl-1 sm:pr-5 sm:shadow-sm">
+    <div className="grid content-start bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:pl-1 sm:pr-5 sm:shadow-sm">
       {/* hide on permalink */}
       { !isPermalink && (
         <div className="grid px-4 py-2">
@@ -71,7 +71,7 @@ const CommentList = ({ storyId, permalinkId }) => {
       
       {/* comment list */}
       { storyData.kids && (
-        <div className="grid content-start">
+        <div className="grid content-start last:mb-2">
           { itemIds && (
             itemIds.map((commentId) => (
               <CommentItem
