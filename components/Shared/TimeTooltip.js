@@ -4,7 +4,7 @@ import * as Tooltip from '@radix-ui/react-tooltip';
 
 import { useFullDateTime, useRelativeTime } from '../../hooks/useDate';
 
-const TimeTooltip = ({ className, unixTime, contentId }) => {
+const TimeTooltip = ({ className, unixTime, contentId, openNewTab }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [relativeTime, setRelativeTime] = useState(null);
   const [fullDateTime, setFullDateTime] = useState(null);
@@ -33,7 +33,7 @@ const TimeTooltip = ({ className, unixTime, contentId }) => {
         { contentId ? (
           <span className={className}>
             <Link href={"/story/" + contentId}>
-              <a className="hover:underline">
+              <a className="hover:underline" target={openNewTab && "_blank"}>
                 { relativeTime }
               </a>
             </Link>

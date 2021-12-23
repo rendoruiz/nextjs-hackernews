@@ -112,6 +112,7 @@ const CommentItemHeader = ({ commentData, submitterId, storyId, itemDepth, isDea
             unixTime={commentData.time}
             contentId={`${storyId}/${commentData.id}`}
             isComment
+            openNewTab
           />
         </div>
         
