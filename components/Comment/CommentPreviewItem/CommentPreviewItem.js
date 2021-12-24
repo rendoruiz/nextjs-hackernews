@@ -30,8 +30,6 @@ const CommentPreviewItem = ({ commentId, userId }) => {
           setParentStory(data);
         } 
       }
-      // refetch data
-      setContentId(null);
       setContentId(data.parent);
     }
   }, [contentId, data]);
