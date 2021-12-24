@@ -59,7 +59,7 @@ const CommentPreviewItem = ({ commentId, userId }) => {
 
 const IsLoading = ({ heading }) => {
   return (
-    <div className="px-4 py-2 bg-brandObjectBackground sm:border-brandBorder sm:rounded sm:shadow-sm">
+    <div className="px-4 py-2 bg-brandObjectBackground dark:bg-brandDarkAppBackground sm:border-brandBorder  sm:rounded sm:shadow-sm sm:dark:border-brandDarkBorder sm:dark:bg-brandDarkObjectBackground">
       <p className="font-medium text-sm uppercase text-red-500">Loading { heading }...</p>
     </div>
   );
