@@ -5,8 +5,8 @@ import SiteHeader from "./SiteHeader";
 
 const SiteLayout = ({ children, contentClassName }) => {
   return (  
-    <div className="grid min-w-[300px] min-h-screen">
-      <div className="grid grid-rows-[auto,1fr,auto] bg-brandAppBackground transition-colors dark:bg-brandDarkAppBackground">
+    <div className="grid min-w-[300px] min-h-screen bg-brandAppBackground transition-colors dark:bg-brandDarkAppBackground">
+      <div className="grid grid-rows-[auto,1fr,auto]">
         <SiteHeader />
 
         <main 

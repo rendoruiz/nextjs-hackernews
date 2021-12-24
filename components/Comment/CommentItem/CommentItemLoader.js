@@ -4,7 +4,7 @@ const CommentItemLoader = ({ itemDepth }) => {
   return (  
     <div className={clsx(
       "grid sm:grid-cols-[auto,1fr] sm:gap-x-2 sm:gap-y-1 sm:last:pb-0",
-      { "border-t-brandDefault border-t-brandButtonOutline px-4 py-3 first:border-t-0 first:pt-0 dark:border-t-brandDarkBorder sm:border-nonesm:px-2": itemDepth === 0 },
+      { "border-t-brandDefault border-t-brandButtonOutline px-4 py-3 first:border-t-0 first:pt-0 dark:border-t-brandDarkBorder sm:border-none sm:px-2": itemDepth === 0 },
     )}>
       {/* mobile loader, depth > 0 */}
       <span className={clsx(
