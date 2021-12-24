@@ -20,10 +20,10 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
   }
 
   useEffect(() => {
-    if (data) {
+    if (data?.text) {
       setTextContent(useHtmlParser(data.text));
     }
-  }, [data]);
+  }, [data?.text]);
 
   return isLoading ? (<CommentItemLoader itemDepth={parentDepth} /> ) : isError || !data ? (<ItemIsError error={error} />) : isSuccess && (
     !data.deleted && (  
