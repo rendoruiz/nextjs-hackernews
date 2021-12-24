@@ -13,6 +13,7 @@ const CommentView = ({ storyId, permalinkId }) => {
           withText 
           isStatic
           useTitle
+          noError
         />
 
         <CommentList 

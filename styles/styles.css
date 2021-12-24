@@ -11,3 +11,7 @@ a,
 div {
   -webkit-tap-highlight-color: transparent;
 }
+
+html, body {
+  @apply bg-brandDarkAppBackground;
+}

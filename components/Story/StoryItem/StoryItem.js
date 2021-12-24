@@ -14,7 +14,7 @@ import StoryItemFooter from "./StoryItemFooter";
 import StoryItemMobileShareTrigger from './StoryItemMobileShareTrigger';
 import MobileActionsModal from '../../Shared/MobileActionsModal';
 
-const StoryItem = ({ storyId, withText = false, isStatic = false, userView = false, useTitle = false }) => {
+const StoryItem = ({ storyId, withText = false, isStatic = false, userView = false, useTitle = false, noError = false }) => {
   const { isLoading, isError, isSuccess, data } = useStory(storyId);
   const [textContent, setTextContent] = useState(null);
 
@@ -24,7 +24,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
     }
   }, [withText, data?.text])
 
-  return isLoading ? (<StoryItemLoader />) : isError || !data ? (<ItemIsError />) : isSuccess && (
+  return isLoading ? (<StoryItemLoader />) : isError || !data ? (<ItemIsError noError={noError} />) : isSuccess && (
     data.deleted || data.dead ? (<ItemIsDeadOrDeleted />) : data.type === "comment" ? null : (
       <>
         { useTitle && (
