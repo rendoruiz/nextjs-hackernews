@@ -92,7 +92,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
             {/* story link */}
             <ShortenedExternalLink 
               rawLink={data.url}
-              wrapperClassName="row-start-2 col-start-2 justify-self-end relative grid items-end w-[70px] h-[52px] bg-brandOrange text-[0.625rem] sm:row-start-auto sm:col-start-auto sm:justify-self-start sm:inline-flex sm:items-center sm:-mt-1 sm:t-1 sm:pb-2 sm:w-auto sm:h-auto sm:bg-transparent sm:text-xs sm:text-brandOrange sm:hover:underline"
+              wrapperClassName="row-start-2 col-start-2 justify-self-end relative grid items-end w-[70px] h-[52px] bg-brandOrange text-[0.625rem] dark:bg-brandOrange/80 sm:row-start-auto sm:col-start-auto sm:justify-self-start sm:inline-flex sm:items-center sm:-mt-1 sm:t-1 sm:pb-2 sm:w-auto sm:h-auto sm:bg-transparent sm:text-xs sm:text-brandOrange sm:hover:underline sm:dark:bg-transparent"
               textClassName="p-1 bg-black/70 text-white truncate sm:p-0 sm:px-0 sm:bg-transparent sm:text-current sm:overflow-auto"
               glyphClassName="hidden ml-1 w-4 h-4 sm:inline-block"
             />

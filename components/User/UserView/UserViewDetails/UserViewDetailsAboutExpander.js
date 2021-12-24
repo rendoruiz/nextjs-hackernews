@@ -46,7 +46,7 @@ const UserViewDetailsAboutExpander = ({ rawHtmlString }) => {
         <button 
           title="show all about text trigger"
           className={clsx(
-            "flex justify-center items-center mb-1 font-medium text-xs2 text-brandTextSecondary uppercase transition-all md:hidden",
+            "flex justify-center items-center mb-1 font-medium text-xs2 text-brandTextSecondary uppercase transition-all dark:text-brandDarkTextSecondary md:hidden",
             { "mt-1": isExpanded }
           )}
           onClick={() => setIsExpanded(!isExpanded)}
