@@ -74,7 +74,7 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
             { "opacity-60": data.dead }
           )}>
             { textContent ?? (
-              <div className="text-xs2 uppercase font-bold text-brandTextSecondary italic">
+              <div className="text-xs2 uppercase font-bold text-brandTextSecondary italic dark:text-brandDarkTextSecondary">
                 (empty content)
               </div>
             )}
