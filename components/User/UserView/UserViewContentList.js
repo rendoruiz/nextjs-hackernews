@@ -85,12 +85,12 @@ const MessageNoContentFound = ({ userId }) => {
     <div className="grid place-items-center px-5 py-10 md:py-20">
       <p className="grid gap-5 text-center sm:gap-8 lg:gap-10">
         <span 
-          className="text-5xl drop-shadow-md sm:text-6xl lg:text-8xl lg:drop-shadow-lg"
+          className="text-6xl drop-shadow-md sm:text-7xl lg:text-8xl lg:drop-shadow-lg"
           title="thinking emoji"
         >
           🤔
         </span>
-        <span className="font-medium text-lg tracking-wide">
+        <span className="font-medium text-lg text-brandTextPrimary dark:text-brandDarkTextPrimary tracking-wide">
           hmm... u/{ userId } hasn't posted anything
         </span>
       </p>
