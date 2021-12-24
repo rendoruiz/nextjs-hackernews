@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useComment } from "../../../hooks/useComment";
 import CommentPreviewItemStory from "./CommentPreviewItemStory";
 import CommentPreviewItemContent from "./CommentPreviewItemContent";
+import ItemIsDeadOrDeleted from "../../StatusMessage/ItemIsDeadOrDeleted";
 
 const CommentPreviewItem = ({ commentId, userId }) => {
   const [contentId, setContentId] = useState(commentId)
@@ -35,7 +36,7 @@ const CommentPreviewItem = ({ commentId, userId }) => {
   }, [contentId, data]);
 
   return !comment && isLoading ? <IsLoading heading="comment" isLoading={isLoading} isError={isError} /> : (!parentComment || !parentStory) && isLoading ? <IsLoading heading="parent story/comment" isLoading={isLoading} isError={isError} /> : parentStory && (  
-    comment.deleted ? <DeletedItem /> : (
+    comment.deleted ? <ItemIsDeadOrDeleted type="comment" /> : (
     <div className="grid content-start bg-brandObjectBackground text-sm leading-snug transition-colors dark:bg-brandDarkAppBackground sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:cursor-pointer sm:dark:border-brandDarkBorder sm:dark:bg-brandDarkObjectBackground">
       {/* story */}
       <CommentPreviewItemStory
@@ -69,14 +70,6 @@ const IsLoading = ({ heading, isLoading, isError }) => {
       <p className="font-medium text-sm uppercase text-red-500">Loading { heading }...</p>
     </div>
   );
-}
-
-const DeletedItem = () => {
-  return (
-    <div className="py-1 px-2 font-medium text-xs text-brandTextSecondary italic dark:bg-brandDarkAppBackground dark:text-brandDarkTextSecondary sm:py-0 sm:dark:bg-transparent">
-      Content invalid. Comment status is dead or deleted.
-    </div>
-  )
 }
  
 export default CommentPreviewItem;
