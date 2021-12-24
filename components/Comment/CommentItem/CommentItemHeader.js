@@ -87,7 +87,7 @@ const CommentItemHeader = ({ commentData, submitterId, storyId, itemDepth, isDea
               </Tooltip.Root>
               
               <MicrophoneGlyph 
-                className="ml-1 w-4 h-4 text-brandOrange dark:bg-brandDarkAppBackground sm:hidden" 
+                className="ml-1 w-4 h-4 sm:hidden" 
                 title="original poster indicator"
               />
             </>
