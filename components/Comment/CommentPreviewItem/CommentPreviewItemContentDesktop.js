@@ -37,10 +37,10 @@ const CommentPreviewItemContentDesktop = ({ commentData, parentData, storyId, pe
         />
 
         {/* header */}
-        <div className="justify-self-start relative text-xs text-brandTextSecondary">
+        <div className="justify-self-start relative text-xs text-brandTextSecondary dark:text-brandDarkTextSecondary">
           <UserHoverCard 
             userId={parentData?.by ?? commentData.by} 
-            className="inline-block text-brandTextPrimary"
+            className="inline-block text-brandTextPrimary dark:text-brandDarkTextPrimary"
           />
           <span className="tracking-widest">
             &nbsp;·&nbsp;
@@ -50,7 +50,7 @@ const CommentPreviewItemContentDesktop = ({ commentData, parentData, storyId, pe
 
         {/* content */}
         <div className={clsx(
-          "relative mt-1",
+          "relative mt-1 text-brandTextPrimary dark:text-brandDarkTextPrimary",
           { "mb-3": parentData && isRoot },
           { "pr-1": isRoot }
         )}>
