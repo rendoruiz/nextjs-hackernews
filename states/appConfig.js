@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useEffect } from "react/cjs/react.development";
+import { useState, useEffect } from "react";
 import { atom, useRecoilState } from "recoil";
 import { recoilPersist } from "recoil-persist";
 
@@ -11,6 +10,7 @@ export const isDarkModeState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
+// https://stackoverflow.com/a/68112852
 export const useDarkMode = () => {
   const [isInitial, setIsInitial] = useState(true);
   const [darkModeStored, setDarkModeStored] = useRecoilState(isDarkModeState);
