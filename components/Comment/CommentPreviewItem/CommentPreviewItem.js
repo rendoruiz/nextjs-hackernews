@@ -6,7 +6,7 @@ import CommentPreviewItemContent from "./CommentPreviewItemContent";
 
 const CommentPreviewItem = ({ commentId, userId }) => {
   const [contentId, setContentId] = useState(commentId)
-  const { data, isLoading } = useComment(contentId)
+  const { data, isLoading, isError } = useComment(contentId)
   const [parentComment, setParentComment] = useState(null);
   const [parentStory, setParentStory] = useState(null);
   const [comment, setComment] = useState(null);
@@ -34,7 +34,7 @@ const CommentPreviewItem = ({ commentId, userId }) => {
     }
   }, [contentId, data]);
 
-  return !comment && isLoading ? <IsLoading heading="comment" /> : (!parentComment || !parentStory) && isLoading ? <IsLoading heading="parent story/comment" /> : parentStory && (  
+  return !comment && isLoading ? <IsLoading heading="comment" isLoading={isLoading} isError={isError} /> : (!parentComment || !parentStory) && isLoading ? <IsLoading heading="parent story/comment" isLoading={isLoading} isError={isError} /> : parentStory && (  
     comment.deleted ? <DeletedItem /> : (
     <div className="grid content-start bg-brandObjectBackground text-sm leading-snug transition-colors dark:bg-brandDarkAppBackground sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:cursor-pointer sm:dark:border-brandDarkBorder sm:dark:bg-brandDarkObjectBackground">
       {/* story */}
@@ -57,9 +57,15 @@ const CommentPreviewItem = ({ commentId, userId }) => {
   ));
 }
 
-const IsLoading = ({ heading }) => {
+const IsLoading = ({ heading, isLoading, isError }) => {
   return (
-    <div className="px-4 py-2 bg-brandObjectBackground dark:bg-brandDarkAppBackground sm:border-brandBorder  sm:rounded sm:shadow-sm sm:dark:border-brandDarkBorder sm:dark:bg-brandDarkObjectBackground">
+    <div className="grid content-start px-4 py-2 bg-brandObjectBackground dark:bg-brandDarkAppBackground sm:border-brandBorder  sm:rounded sm:shadow-sm sm:dark:border-brandDarkBorder sm:dark:bg-brandDarkObjectBackground">
+      {/* debug */}
+      { (isLoading || isError) && (
+        <span className="justify-self-start rounded mb-1 px-1 py-[0.125rem] bg-brandButtonOutline font-bold text-xs2 text-brandTextSecondary uppercase dark:bg-brandDarkButtonOutline dark:text-brandTextSecondary">
+          { isLoading ? "isLoading" : isError && "isError" }
+        </span>
+      )}
       <p className="font-medium text-sm uppercase text-red-500">Loading { heading }...</p>
     </div>
   );
