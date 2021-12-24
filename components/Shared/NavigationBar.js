@@ -28,11 +28,8 @@ const NavigationBar = ({ navigationItems, routePrefix = "", withPersistQueryStri
 
   // for assigning count querystring
   useEffect(() => {
-    if (withPersistQueryString && router) {
-      const countQuery = router?.query?.count;
-      if (countQuery) {
-        setCountQueryString(countQuery);
-      }
+    if (withPersistQueryString && router?.query?.count) {
+      setCountQueryString(router.query.count);
     }
   }, [router?.query?.count]);
 

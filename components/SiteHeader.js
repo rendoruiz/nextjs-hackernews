@@ -2,7 +2,7 @@ import Link from 'next/link';
 import * as Switch from '@radix-ui/react-switch';
 import clsx from 'clsx';
 
-import { useDarkMode } from '../states/appConfig';
+import { useDarkMode } from '../stores/appConfig';
 import AppIconGlyph from "./Glyphs/AppIconGlyph";
 
 const SiteHeader = () => {

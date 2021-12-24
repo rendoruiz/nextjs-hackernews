@@ -21,22 +21,23 @@ const CommentList = ({ storyId, permalinkId }) => {
     setItemCount(newCount);
   }
 
+  // if permalink
   useEffect(() => {
-    if (storyData) {
-      // skip array operations if lengths are equal
-      if (itemIds && storyData.kids) {
-        if (itemIds.length === storyData.kids.length) {
-          return;
-        }
-      }
-      // only have permalink in the list if its present
-      if (permalinkId) {
-        setItemIds([permalinkId]);
-      } else if (storyData.kids) {
-        setItemIds([...storyData.kids].slice(0, itemCount));
+    if (permalinkId) {
+      setItemIds([permalinkId]);
+    }
+  }, [permalinkId]);
+
+  // on story data kids change, append on end + deduplicate
+  useEffect(() => {
+    if (!permalinkId && storyData?.kids) {
+      if (itemIds) {
+        setItemIds([...new Set([...itemIds,...storyData.kids])]);
+      } else {
+        setItemIds(storyData.kids);
       }
     }
-  }, [itemCount, storyData]);
+  }, [storyData?.kids]);
 
   return isLoading ? (<IsLoading />) : isError || !storyData ? (<IsError />) : isSuccess && (storyData.type === "story" || storyData.type === "poll") && (  
     <div className="self-start grid content-start bg-brandObjectBackground text-brandTextPrimary transition-colors dark:border-b-brandDefault dark:border-b-brandDarkBorder dark:bg-brandDarkAppBackground dark:text-brandDarkTextPrimary sm:border-brandDefault sm:border-brandBorder sm:rounded sm:pl-1 sm:pr-5 sm:shadow-sm sm:dark:border-brandDarkBorder sm:dark:bg-brandDarkObjectBackground">
@@ -76,10 +77,9 @@ const CommentList = ({ storyId, permalinkId }) => {
       )}
       
       {/* comment list */}
-      { storyData.kids && (
+      { itemIds && (
         <div className="grid content-start sm:first:mt-3 sm:last:mb-3">
-          { itemIds && (
-            itemIds.map((commentId) => (
+          { [...itemIds].slice(0, itemCount).map((commentId) => (
               <CommentItem
                 key={commentId}
                 commentId={commentId}
@@ -88,23 +88,23 @@ const CommentList = ({ storyId, permalinkId }) => {
                 replyDepthLimit={defaultDepthLimit}
                 isPermalink={isPermalink}
               />
-            ))
+            )
           )}
         </div>
       )}
 
       {/* load more comments trigger */}
-      { !isPermalink && storyData.kids && storyData.kids.length > itemCount && (
+      { !isPermalink && itemIds && itemIds.length > itemCount && (
         <div className="grid border-t-brandDefault border-t-brandButtonOutline px-4 py-3 transition-colors dark:border-t-brandDarkBorder sm:border-none sm:p-3">
           <button
             className="font-medium text-xs text-brandButtonInlineText tracking-wider text-left dark:text-brandDarkTextPrimary sm:text-brandOrange sm:hover:underline sm:dark:text-brandOrange"
             onClick={(e) => handleClick(e)}
           >
             <span className="sm:hidden">
-              Show { storyData.kids.length-itemCount > itemIncrementCount ? itemIncrementCount : storyData.kids.length-itemCount } more comment{ storyData.kids.length-itemCount > 1 && "s" }
+              Show { itemIds.length-itemCount > itemIncrementCount ? itemIncrementCount : itemIds.length-itemCount } more comment{ itemIds.length-itemCount > 1 && "s" }
             </span>
             <span className="hidden sm:block">
-              { storyData.kids.length-itemCount > itemIncrementCount ? itemIncrementCount : storyData.kids.length-itemCount } more repl{ storyData.kids.length-itemCount > 1 ? "ies" : "y" }
+              { itemIds.length-itemCount > itemIncrementCount ? itemIncrementCount : itemIds.length-itemCount } more repl{ itemIds.length-itemCount > 1 ? "ies" : "y" }
             </span>
           </button>
         </div>

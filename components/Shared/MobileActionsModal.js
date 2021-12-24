@@ -10,15 +10,14 @@ import CloseGlyph from '../Glyphs/CloseGlyph';
 import { useEffect, useState } from 'react';
 
 const MobileActionsModal = ({ itemData, storyId, triggerClassName }) => {
-  const [hasApostropheS, setHasApostropheS] = useState(false);
+  const [hasApostropheS, setHasApostropheS] = useState(null);
 
+  // run once
   useEffect(()=> {
-    if (itemData.by) {
-      if (itemData.by.split('').pop().toLowerCase() !== 's') {
-        setHasApostropheS(true);
-      }
+    if (hasApostropheS === null && itemData?.by) {
+      setHasApostropheS(itemData.by.split('').pop().toLowerCase() !== 's' ? true : false);
     }
-  }, [itemData.by]);
+  }, [itemData?.by]);
 
   return !itemData ? null : (  
     <Dialog.Root>

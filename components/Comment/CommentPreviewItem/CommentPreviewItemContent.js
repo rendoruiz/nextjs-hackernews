@@ -8,10 +8,12 @@ const CommentPreviewItemContent = ({ commentData, parentData, storyId }) => {
   const [commentText, setCommentText] = useState(null);
   const [parentCommentText, setParentCommentText] = useState(null);
 
+  // parent comment
   useEffect(() => {
     setParentCommentText(useHtmlParser(parentData?.text));
-  }, [parentData?.text])
+  }, [parentData?.text]);
 
+  // comment
   useEffect(() => {
     setCommentText(useHtmlParser(commentData.text));
   }, [commentData?.text]);

@@ -13,10 +13,12 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
   const [storyText, setStoryText] = useState(null);
   const [shortRelativeTime, setShortRelativeTime] = useState(null);
 
+  // story data title
   useEffect(() => {
     setStoryText(useHtmlParser(storyData.title));
   }, [storyData?.title])
 
+  // comment time
   useEffect(() => {
     setShortRelativeTime(useShortRelativeTime(commentTime));
   }, [commentTime]);
