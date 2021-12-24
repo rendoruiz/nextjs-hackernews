@@ -30,7 +30,7 @@ const CommentList = ({ storyId, permalinkId }) => {
 
   // on story data kids change, append on end + deduplicate
   useEffect(() => {
-    if (storyData?.kids) {
+    if (!permalinkId && storyData?.kids) {
       if (itemIds) {
         setItemIds([...new Set([...itemIds,...storyData.kids])]);
       } else {
