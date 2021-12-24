@@ -51,7 +51,7 @@ const StoryList = ({ useHook }) => {
       </div>
 
       { itemCount && itemCount < data.length && (
-        <div className="grid px-4 py-[0.625rem] bg-brandObjectBackground transition-colors dark:bg-brandDarkAppBackground sm:place-items-center sm:bg-transparent sm:dark:bg-transparent sm:pb-0">
+        <div className="grid px-4 py-[0.625rem] bg-brandObjectBackground transition-colors dark:bg-brandDarkAppBackground sm:justify-center sm:bg-transparent sm:dark:bg-transparent sm:pb-0">
           <button 
             className="rounded-full px-10 py-[9px] bg-brandOrange font-bold text-sm text-white tracking-wide leading-none transition-all hover:opacity-80 active:opacity-60 dark:bg-brandDarkButton dark:text-brandTextPrimary"
             onClick={(e) => handleClick(e)}

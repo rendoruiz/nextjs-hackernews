@@ -29,7 +29,7 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
       </div>
 
       {/* story item preview */}
-      <div className="grid text-brandTextSecondary transition-colors sm:border-brandDefault sm:border-brandBorder sm:border-b-transparent sm:rounded-t sm:m-[-1px] sm:mb-0 sm:grid-cols-[auto,1fr] sm:items-center sm:text-xs sm:hover:border-brandBorderHover">
+      <div className="grid text-brandTextSecondary transition-colors dark:border-brandDarkBorder dark:text-brandDarkTextSecondary sm:border-brandDefault sm:border-brandBorder sm:border-b-transparent sm:rounded-t sm:m-[-1px] sm:mb-0 sm:grid-cols-[auto,1fr] sm:items-center sm:text-xs sm:dark:border-b-transparent sm:hover:border-brandBorderHover sm:hover:dark:border-brandDarkBorderHover">
         {/* chat icon link */}
         <Link href={"/story/" + storyData.id}>
           <a 
@@ -53,15 +53,15 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
           {/* desktop userview user id */}
           <UserLink 
             userId={userId} 
-            className="relative hidden text-brandOrange sm:inline-block"
+            className="relative hidden text-brandOrange dark:text-brandDarkTextPrimary sm:inline-block"
           />
 
           {/* mobile title */}
-          <div className="sm:inline sm:text-brandTextPrimary">
+          <div className="sm:inline">
             <span className="hidden sm:inline">
               &nbsp;commented on&nbsp;
             </span>
-            <div className="sm:inline">
+            <div className="sm:inline sm:text-brandTextPrimary sm:dark:text-brandDarkTextPrimary">
               { storyText }
             </div>
             { storyData.url && (
