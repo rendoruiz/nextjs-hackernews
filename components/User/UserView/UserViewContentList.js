@@ -23,19 +23,12 @@ const UserViewContentList = ({ contentIds, userId }) => {
     }, undefined, { shallow: true });
   }
 
-  // set item ids
-  useEffect(() => {
-    if (contentIds) {
-      setItemIds([...contentIds].slice(0, itemCount));
-    }
-  }, [contentIds, itemCount]);
-
-  // get count query string
+  // set count from count query string on page load
   useEffect(() => {
     setItemCount(useCountQueryString(defaultItemCount));
   }, []);
 
-  // set content type filter, only set if different from old value
+  // set and update filter on pathname change
   useEffect(() => {
     const path = router.pathname;
     if (path) {
@@ -43,18 +36,29 @@ const UserViewContentList = ({ contentIds, userId }) => {
         setContentTypeFilter("story");
       } else if (path.includes("comments") && contentTypeFilter !== "comment") {
         setContentTypeFilter("comment");
-      } else if (contentTypeFilter) {
+      } else if (!path.includes("stories") && !path.includes("comments")) {
         setContentTypeFilter(null);
       }
     }
   }, [router?.pathname]);
+
+  // on content ids change, append on end + deduplicate
+  useEffect(() => {
+    if (contentIds) {
+      if (itemIds) {
+        setItemIds([...new Set([...itemIds, ...contentIds])]);
+      } else {
+        setItemIds(contentIds);
+      }
+    }
+  }, [contentIds]);
 
   return !itemIds ? (<MessageNoContentFound userId={userId} />) : (  
     <div className="grid content-start gap-1 sm:gap-2">
       {/* list */}
       <div className="grid content-start gap-1 sm:gap-3">
         { itemIds && (
-          itemIds.map((contentId) => (
+          [...itemIds].slice(0, itemCount).map((contentId) => (
             <UserViewContentItemSelector
               key={contentId}
               contentId={contentId}
@@ -63,10 +67,25 @@ const UserViewContentList = ({ contentIds, userId }) => {
             />
           ))
         )}
+        
+        {/* add prompt if there are not filtered items */}
+        { itemIds && contentTypeFilter && (
+          <div className="hidden only:grid gap-5 px-5 py-10 text-center sm:gap-8 md:py-20 lg:gap-10">
+            <p
+              className="text-6xl drop-shadow-md sm:text-7xl lg:text-8xl lg:drop-shadow-lg"
+              title="thinking emoji"
+            >
+              🤔
+            </p>
+            <p className="font-medium text-lg text-brandTextPrimary dark:text-brandDarkTextPrimary tracking-wide">
+              hmm... u/{ userId } hasn't posted any { contentTypeFilter } from their past { itemCount } submissions
+            </p>
+          </div>
+        )}
       </div>
 
       {/* view more contents button */}
-      { itemCount && itemCount < contentIds.length && (
+      { itemCount && itemCount < itemIds.length && (
         <div className="grid px-4 py-[0.625rem] bg-brandObjectBackground transition-colors dark:bg-brandDarkAppBackground sm:justify-center sm:bg-transparent sm:dark:bg-transparent sm:pb-0">
           <button 
             className="rounded-full px-10 py-[9px] bg-brandOrange font-bold text-sm text-white tracking-wide leading-none transition-all hover:opacity-80 active:opacity-60 dark:bg-brandDarkButton dark:text-brandTextPrimary"
