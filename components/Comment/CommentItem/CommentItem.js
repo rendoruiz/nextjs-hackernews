@@ -30,7 +30,7 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
       <div className={clsx(
         "relative grid text-sm sm:grid-cols-[auto,1fr] sm:gap-x-2 sm:last:pb-0",
         { "border-t-brandDefault border-t-brandButtonOutline px-4 py-3 transition-colors first:border-t-0 first:pt-0 dark:border-t-brandDarkBorder sm:border-none sm:px-2": parentDepth === 0 },
-        { "py-3 first:pt-3 sm:py-2 sm:first:pt-2": isPermalink },
+        { "py-3 overflow-hidden first:pt-3 sm:py-2 sm:first:pt-2 sm:overflow-visible": isPermalink },
       )}>    
         {/* permalink highlight */}
         { isPermalink && (
