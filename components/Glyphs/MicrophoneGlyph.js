@@ -23,18 +23,6 @@ const MicrophoneGlyph = ({ className, title }) => {
         strokeWidth="1" fill="currentColor" stroke="#ffffff"
       />
     </svg>
-    // <svg
-    //   className={clsx("stroke-current", className ?? "w-5 h-5")}
-    //   fill="none"
-    //   stroke="white"
-    //   strokeLinecap="round"
-    //   strokeWidth="0.75"
-    //   viewBox="0 0 24 24"
-    //   xmlns="http://www.w3.org/2000/svg"
-    // >
-    //   <path d="M0 0h24v24H0z" stroke="none" />
-    //   <path d="M15.002 12.9A5 5 0 1011.1 9M15.002 12.9L11.1 9.001l-7.513 8.584a2 2 0 102.827 2.83l8.588-7.515z" fill="currentColor" stroke="white" />
-    // </svg>
   );
 }
  
