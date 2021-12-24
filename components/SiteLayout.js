@@ -12,7 +12,7 @@ const SiteLayout = ({ children, contentClassName }) => {
         <main 
           className={clsx(
             contentClassName,
-            "justify-self-center grid content-start w-full max-w-screen-lg sm:px-6 sm:py-5", 
+            "justify-self-center grid content-start w-full max-w-screen-lg transition-colors dark:bg-brandDarkObjectBackground sm:px-6 sm:py-5 sm:dark:bg-transparent", 
           )}
         >
           { children }
