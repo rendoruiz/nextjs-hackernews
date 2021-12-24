@@ -36,7 +36,7 @@ const CommentPreviewItem = ({ commentId, userId }) => {
 
   return !comment && isLoading ? <IsLoading heading="comment" /> : (!parentComment || !parentStory) && isLoading ? <IsLoading heading="parent story/comment" /> : parentStory && (  
     comment.deleted ? <DeletedItem /> : (
-    <div className="grid content-start bg-white text-sm leading-snug sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:cursor-pointer">
+    <div className="grid content-start bg-brandObjectBackground text-sm leading-snug transition-colors dark:bg-brandDarkAppBackground sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:cursor-pointer sm:dark:border-brandDarkBorder sm:dark:bg-brandDarkObjectBackground">
       {/* story */}
       <CommentPreviewItemStory
         storyData={parentStory}
@@ -45,7 +45,7 @@ const CommentPreviewItem = ({ commentId, userId }) => {
       />
 
       {/* desktop border */}
-      <div className="hidden mx-2 mb-[-2px] border-t-2 border-t-brandButtonOutline sm:block"></div>
+      <div className="hidden mx-2 mb-[-2px] border-t-2 border-t-brandButtonOutline transition-colors dark:border-t-brandDarkBorder sm:block"></div>
 
       {/* comment and/or parent comment */}
       <CommentPreviewItemContent
@@ -59,7 +59,7 @@ const CommentPreviewItem = ({ commentId, userId }) => {
 
 const IsLoading = ({ heading }) => {
   return (
-    <div className="px-4 py-2 bg-white sm:border-brandBorder sm:rounded sm:shadow-sm">
+    <div className="px-4 py-2 bg-brandObjectBackground sm:border-brandBorder sm:rounded sm:shadow-sm">
       <p className="font-medium text-sm uppercase text-red-500">Loading { heading }...</p>
     </div>
   );
@@ -67,7 +67,7 @@ const IsLoading = ({ heading }) => {
 
 const DeletedItem = () => {
   return (
-    <div className="py-1 px-2 font-medium text-xs text-brandTextSecondary italic sm:py-0">
+    <div className="py-1 px-2 font-medium text-xs text-brandTextSecondary italic dark:text-brandDarkTextSecondary sm:py-0">
       Content cannot be found. Comment status is dead or deleted.
     </div>
   )

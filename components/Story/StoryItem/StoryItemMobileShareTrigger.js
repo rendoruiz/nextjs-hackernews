@@ -13,7 +13,7 @@ const StoryItemMobileShareTrigger = ({ storyId }) => {
   return !navigator.share ? null : (  
     <button 
       title="share drawer trigger"
-      className="col-start-2 justify-self-end self-end relative flex items-center border-brandDefault border-brandButtonOutline rounded-full p-1 text-brandTextSecondary bp420:px-2 sm:hidden"
+      className="col-start-2 justify-self-end self-end relative flex items-center border-brandDefault border-brandButtonOutline rounded-full p-1 text-brandTextSecondary transition-colors dark:border-brandDarkButtonOutline dark:text-brandDarkBorderSeparator bp420:px-2 sm:hidden"
       onClick={(e) => handleClick(e)}
     >
       <ShareDrawerGlyph />

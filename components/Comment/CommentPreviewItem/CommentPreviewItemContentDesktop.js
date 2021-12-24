@@ -11,7 +11,7 @@ const CommentPreviewItemContentDesktop = ({ commentData, parentData, storyId, pe
   return (
     <div className={clsx(
       "hidden sm:grid grid-cols-[auto,1fr]",
-      { "border-brandDefault border-brandBorder border-t-transparent rounded-b m-[-1px] mt-0 p-2 transition-colors hover:border-brandBorderHover": isRoot },
+      { "border-brandDefault border-brandBorder border-t-transparent rounded-b m-[-1px] mt-0 p-2 transition-colors dark:border-brandDarkBorder dark:border-t-transparent hover:border-brandBorderHover hover:dark:border-brandDarkBorderHover": isRoot },
     )}>
       {/* vertical line */}
       <PermalinkRoute 
@@ -22,13 +22,13 @@ const CommentPreviewItemContentDesktop = ({ commentData, parentData, storyId, pe
           isRoot ? "mr-2 px-[0.6875rem]" : "mr-4"
         )}
       >
-        <div className="border-l-2 border-l-brandButtonOutline border-dashed" />
+        <div className="border-l-2 border-l-brandButtonOutline border-dashed transition-colors dark:border-brandDarkBorder" />
       </PermalinkRoute>
 
       {/* comment data */}
       <div className={clsx(
         "relative grid content-start",
-        { "rounded px-2 pt-[6px] pb-1 bg-brandOrange/5": isHighlighted },
+        { "rounded px-2 pt-[6px] pb-1 bg-brandOrange/5 transition-colors dark:bg-brandDarkButton/5": isHighlighted },
       )}>
         {/* wrapper link */}
         <PermalinkRoute 
@@ -37,10 +37,10 @@ const CommentPreviewItemContentDesktop = ({ commentData, parentData, storyId, pe
         />
 
         {/* header */}
-        <div className="justify-self-start relative text-xs text-brandTextSecondary">
+        <div className="justify-self-start relative text-xs text-brandTextSecondary dark:text-brandDarkTextSecondary">
           <UserHoverCard 
             userId={parentData?.by ?? commentData.by} 
-            className="inline-block text-brandTextPrimary"
+            className="inline-block text-brandTextPrimary dark:text-brandDarkTextPrimary"
           />
           <span className="tracking-widest">
             &nbsp;·&nbsp;
@@ -50,7 +50,7 @@ const CommentPreviewItemContentDesktop = ({ commentData, parentData, storyId, pe
 
         {/* content */}
         <div className={clsx(
-          "relative mt-1",
+          "relative mt-1 text-brandTextPrimary dark:text-brandDarkTextPrimary",
           { "mb-3": parentData && isRoot },
           { "pr-1": isRoot }
         )}>

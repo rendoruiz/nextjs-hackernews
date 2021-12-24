@@ -12,13 +12,13 @@ const ShareDropdown = ({ itemData, storyId, withGlyph, triggerClassName }) => {
     <DropdownMenu.Root modal={false}>
       <DropdownMenu.Trigger className={clsx(
         triggerClassName, 
-        "items-center rounded transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive"
+        "items-center rounded transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive sm:dark:hover:bg-brandDarkButtonHover sm:dark:active:bg-brandDarkButtonActive"
       )}> 
         { withGlyph && (<ShareGlyph />) }
         <span className="ml-1 font-bold only:ml-0">Share</span>
       </DropdownMenu.Trigger>
       <DropdownMenu.Content 
-        className="hidden sm:grid border-brandDefault border-brandButtonOutline rounded bg-white text-sm text-brandTextSecondary shadow-transientObject overflow-hidden"
+        className="hidden sm:grid border-brandDefault border-brandButtonOutline rounded bg-white text-sm text-brandTextSecondary shadow-transientObject overflow-hidden dark:border-brandDarkBorder dark:bg-brandDarkObjectBackground dark:shadow-transientObjectDark"
         align="start"
       >
         <ShareItem
@@ -28,14 +28,14 @@ const ShareDropdown = ({ itemData, storyId, withGlyph, triggerClassName }) => {
         />
         
         { itemData.url && (<>
-          <DropdownMenu.Separator className="border-b-brandDefault border-brandButtonOutline" />
+          <DropdownMenu.Separator className="border-b-brandDefault border-b-brandButtonOutline dark:border-b-brandDarkBorder" />
           <ShareItem
             displayText="Copy Story Link"
             displayGlyph={<ExternalLinkGlyph className="w-4 h-4" />}
             clipboardString={itemData.url}
           />
         </>)}
-        <DropdownMenu.Separator className="border-b-brandDefault border-brandButtonOutline" />
+        <DropdownMenu.Separator className="border-b-brandDefault border-b-brandButtonOutline dark:border-b-brandDarkBorder" />
         <ShareItem
           displayText="Copy Y Combinator Link"
           displayGlyph={<HackerNewsGlyph className="w-4 h-4" />}
@@ -49,7 +49,7 @@ const ShareDropdown = ({ itemData, storyId, withGlyph, triggerClassName }) => {
 const ShareItem = ({ displayText, displayGlyph, clipboardString }) => {
   return (
     <DropdownMenu.Item 
-      className="flex items-center rounded-sm px-2 py-[0.625rem] transition-colors cursor-pointer hover:bg-brandOrange/30 hover:text-brandTextPrimary"
+      className="flex items-center rounded-sm px-2 py-[0.625rem] transition-colors cursor-pointer hover:bg-brandOrange/30 hover:text-brandTextPrimary  dark:hover:text-brandDarkTextPrimary"
       onClick={() => copy(clipboardString)}
     >
       { displayGlyph }

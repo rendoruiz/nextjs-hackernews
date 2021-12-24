@@ -29,7 +29,7 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
     !data.deleted && (  
       <div className={clsx(
         "relative grid text-sm sm:grid-cols-[auto,1fr] sm:gap-x-2 sm:last:pb-0",
-        { "border-t-brandDefault border-t-brandButtonOutline px-4 py-3 first:border-t-0 first:pt-0 sm:border-none sm:px-2": parentDepth === 0 },
+        { "border-t-brandDefault border-t-brandButtonOutline px-4 py-3 transition-colors first:border-t-0 first:pt-0 dark:border-t-brandDarkBorder sm:border-none sm:px-2": parentDepth === 0 },
         { "py-3 first:pt-3 sm:py-2 sm:first:pt-2": isPermalink },
       )}>    
         {/* permalink highlight */}
@@ -58,7 +58,7 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
             title="collapse comment item"
             onClick={(e) => toggleDisplayState(e)}
           >
-            <div className="border-r-2 border-r-brandButtonOutline mt-2 h-full group-hover:border-brandOrange" />
+            <div className="border-r-2 border-r-brandButtonOutline mt-2 h-full transition-colors dark:border-r-brandDarkBorder group-hover:border-brandOrange" />
           </button>
         </div>
 
@@ -90,7 +90,7 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
 
         {/* if there are comment replies: display if meets set condition, else display trigger to load replies */}
         <div className={clsx(
-          "relative grid sm:col-start-2",
+          "relative grid mb-1 sm:col-start-2 sm:mb-0",
           { "!hidden": isCollapsed },
           { "mt-3 sm:mt-0": isPermalink },
         )}>
