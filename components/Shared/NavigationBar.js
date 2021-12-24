@@ -91,7 +91,7 @@ const MobileNavigationDropdown = ({ navigationItems, routePrefix, countQueryStri
         <ChevronDownGlyph />
 
         {/* custom overlay */}
-        { isOpen && (<div className="fixed z-10 inset-0 bg-bg-brandDarkAppBackground/40 dark:bg-brandDarkAppBackground/70 sm:hidden" />) }
+        { isOpen && (<div className="fixed z-10 inset-0 bg-brandDarkAppBackground/40 dark:bg-brandDarkAppBackground/70 sm:hidden" />) }
       </DropdownMenu.Trigger>
       <DropdownMenu.Content 
         className="grid -ml-4 w-screen min-w-[282px] text-brandTextSecondary overflow-hidden dark:text-brandDarkTextSecondary sm:hidden"
