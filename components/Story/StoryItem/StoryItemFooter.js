@@ -9,7 +9,7 @@ const StoryItemFooter = ({ storyData }) => {
   return storyData.type !== "job" && (  
     <div className="col-start-1 self-end grid grid-flow-col auto-cols-auto justify-start gap-2 text-xs text-brandTextSecondary whitespace-nowrap dark:text-brandDarkBorderSeparator sm:row-start-auto sm:col-start-auto sm:relative sm:gap-1 sm:-ml-1 sm:dark:text-brandDarkTextSecondary">
       {/* karma (small breakpoint only) */}
-      <div className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 dark:border-brandDarkButtonOutline sm:hidden">
+      <div className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 transition-colors dark:border-brandDarkButtonOutline sm:hidden">
         <ArrowUpGlyph />
         <span className="ml-1 font-medium">
           { storyData.score }
@@ -19,7 +19,7 @@ const StoryItemFooter = ({ storyData }) => {
       {/* comment count */}
       <Link href={'/story/' + storyData.id}>
         <a 
-          className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 dark:border-brandDarkButtonOutline sm:border-none sm:rounded sm:pr-2 sm:pl-1 sm:transition-colors sm:hover:bg-brandButtonHover sm:active:bg-brandButtonActive sm:dark:hover:bg-brandDarkButtonHover sm:dark:active:bg-brandDarkButtonActive"
+          className="flex items-center border-brandDefault border-brandButtonOutline rounded-full pl-2 pr-3 py-1 transition-colors dark:border-brandDarkButtonOutline sm:border-none sm:rounded sm:pr-2 sm:pl-1 sm:transition-colors sm:hover:bg-brandButtonHover sm:active:bg-brandButtonActive sm:dark:hover:bg-brandDarkButtonHover sm:dark:active:bg-brandDarkButtonActive"
           title="view story discussion"
         >
           <ChatGlyph />

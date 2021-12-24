@@ -42,7 +42,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
             <a 
               className={clsx(
                 "hidden sm:flex justify-center items-start rounded-l py-2 bg-brandObjectBackground/80 transition-colors dark:bg-brandDarkObjectBackground/80",
-                { "pointer-events-none sm:bg-brandObjectBackground": isStatic }
+                { "pointer-events-none sm:bg-brandObjectBackground sm:dark:bg-brandDarkObjectBackground": isStatic }
               )}
               title="view story discussion"
             >
@@ -99,7 +99,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
             
             {/* text/content */}
             { textContent && (
-              <div className="col-span-2 inline-block mb-1 text-sm break-words sm:col-auto sm:mb-2">
+              <div className="col-span-2 inline-block mb-1 text-sm text-brandTextPrimary break-words dark:text-brandDarkTextPrimary sm:col-auto sm:mb-2">
                 { textContent }
               </div>
             )}

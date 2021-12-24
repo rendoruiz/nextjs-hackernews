@@ -20,7 +20,7 @@ const CommentItemHeader = ({ commentData, submitterId, storyId, itemDepth, isDea
 
   return (  
     <div className={clsx(
-      "relative grid grid-cols-[auto,1fr] gap-x-2 text-brandTextPrimary sm:col-span-2 sm:gap-0",
+      "relative grid grid-cols-[auto,1fr] gap-x-2 text-brandTextPrimary dark:text-brandDarkTextPrimary sm:col-span-2 sm:gap-0",
       { "opacity-60": isDead },
     )}>
       {/* dead comment indicator */}
