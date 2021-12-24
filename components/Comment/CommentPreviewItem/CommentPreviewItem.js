@@ -67,8 +67,8 @@ const IsLoading = ({ heading }) => {
 
 const DeletedItem = () => {
   return (
-    <div className="py-1 px-2 font-medium text-xs text-brandTextSecondary italic dark:text-brandDarkTextSecondary sm:py-0">
-      Content cannot be found. Comment status is dead or deleted.
+    <div className="py-1 px-2 font-medium text-xs text-brandTextSecondary italic dark:bg-brandDarkAppBackground dark:text-brandDarkTextSecondary sm:py-0 sm:dark:bg-transparent">
+      Content invalid. Comment status is dead or deleted.
     </div>
   )
 }

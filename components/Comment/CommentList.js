@@ -39,7 +39,7 @@ const CommentList = ({ storyId, permalinkId }) => {
   }, [itemCount, storyData]);
 
   return isLoading ? (<IsLoading />) : isError || !storyData ? (<IsError />) : isSuccess && (storyData.type === "story" || storyData.type === "poll") && (  
-    <div className="self-start grid content-start bg-brandObjectBackground text-brandTextPrimary transition-colors dark:bg-brandDarkAppBackground dark:text-brandDarkTextPrimary sm:border-brandDefault sm:border-brandBorder sm:rounded sm:pl-1 sm:pr-5 sm:shadow-sm sm:dark:border-brandDarkBorder sm:dark:bg-brandDarkObjectBackground">
+    <div className="self-start grid content-start bg-brandObjectBackground text-brandTextPrimary transition-colors dark:border-b-brandDefault dark:border-b-brandDarkBorder dark:bg-brandDarkAppBackground dark:text-brandDarkTextPrimary sm:border-brandDefault sm:border-brandBorder sm:rounded sm:pl-1 sm:pr-5 sm:shadow-sm sm:dark:border-brandDarkBorder sm:dark:bg-brandDarkObjectBackground">
       {/* hide on permalink */}
       { !isPermalink && (
         <>
