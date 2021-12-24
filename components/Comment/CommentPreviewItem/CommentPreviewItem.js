@@ -13,8 +13,8 @@ const CommentPreviewItem = ({ commentId, userId }) => {
   const [parentStory, setParentStory] = useState(null);
   const [comment, setComment] = useState(null);
 
+  // run indefinitely until parent story has been set
   useEffect(() => {
-    // run indefinitely until parent story has been set
     if (data && !parentStory) {
       // assign comment, parentComment and/or parentStory
       if (!comment) {
@@ -30,8 +30,6 @@ const CommentPreviewItem = ({ commentId, userId }) => {
           setParentStory(data);
         } 
       }
-      // refetch data
-      setContentId(null);
       setContentId(data.parent);
     }
   }, [contentId, data]);
