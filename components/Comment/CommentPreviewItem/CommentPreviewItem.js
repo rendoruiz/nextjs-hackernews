@@ -4,6 +4,7 @@ import { useComment } from "../../../hooks/useComment";
 import CommentPreviewItemStory from "./CommentPreviewItemStory";
 import CommentPreviewItemContent from "./CommentPreviewItemContent";
 import ItemIsDeadOrDeleted from "../../StatusMessage/ItemIsDeadOrDeleted";
+import CommentPreviewItemLoader from "./CommentPreviewItemLoader";
 
 const CommentPreviewItem = ({ commentId, userId }) => {
   const [contentId, setContentId] = useState(commentId)
@@ -35,7 +36,7 @@ const CommentPreviewItem = ({ commentId, userId }) => {
     }
   }, [contentId, data]);
 
-  return !comment && isLoading ? <IsLoading heading="comment" isLoading={isLoading} isError={isError} /> : (!parentComment || !parentStory) && isLoading ? <IsLoading heading="parent story/comment" isLoading={isLoading} isError={isError} /> : parentStory && (  
+  return !comment && isLoading ? <CommentPreviewItemLoader heading="comment" isLoading={isLoading} isError={isError} /> : (!parentComment || !parentStory) && isLoading ? <CommentPreviewItemLoader heading="parent story/comment" isLoading={isLoading} isError={isError} /> : parentStory && (  
     comment.deleted ? <ItemIsDeadOrDeleted type="comment" /> : (
     <div className="grid content-start bg-brandObjectBackground text-sm leading-snug transition-colors dark:bg-brandDarkAppBackground sm:border-brandDefault sm:border-brandBorder sm:rounded sm:shadow-sm sm:hover:cursor-pointer sm:dark:border-brandDarkBorder sm:dark:bg-brandDarkObjectBackground">
       {/* story */}
@@ -56,20 +57,6 @@ const CommentPreviewItem = ({ commentId, userId }) => {
       />
     </div>
   ));
-}
-
-const IsLoading = ({ heading, isLoading, isError }) => {
-  return (
-    <div className="grid content-start px-4 py-2 bg-brandObjectBackground dark:bg-brandDarkAppBackground sm:border-brandBorder  sm:rounded sm:shadow-sm sm:dark:border-brandDarkBorder sm:dark:bg-brandDarkObjectBackground">
-      {/* debug */}
-      { (isLoading || isError) && (
-        <span className="justify-self-start rounded mb-1 px-1 py-[0.125rem] bg-brandButtonOutline font-bold text-xs2 text-brandTextSecondary uppercase dark:bg-brandDarkButtonOutline dark:text-brandTextSecondary">
-          { isLoading ? "isLoading" : isError && "isError" }
-        </span>
-      )}
-      <p className="font-medium text-sm uppercase text-red-500">Loading { heading }...</p>
-    </div>
-  );
 }
  
 export default CommentPreviewItem;
