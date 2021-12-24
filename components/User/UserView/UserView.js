@@ -21,7 +21,7 @@ const UserView = () => {
         <meta property="og:title" content={`${userData.id} (u/${userData.id}) - Hacker News`} />
       </Head>
 
-      <SiteLayout contentClassName="md:grid-cols-[1fr,auto] md:gap-x-6">
+      <SiteLayout contentClassName="transition-colors dark:bg-brandDarkObjectBackground md:grid-cols-[1fr,auto] md:gap-x-6 sm:dark:bg-transparent">
         {/* details header (mobile)/sidebar (desktop) */}
         <UserViewDetails userData={userData} />
 

@@ -6,7 +6,7 @@ import UserLink from '../../User/UserLink';
 
 const StoryItemHeader = ({ storyData, userView }) => {
   return !storyData ? null : (  
-    <div className="relative row-start-1 col-start-1 flex items-center text-sm text-brandTextInfo sm:row-start-auto sm:col-start-auto sm:text-xs sm:tracking-wide">
+    <div className="relative row-start-1 col-start-1 flex items-center text-sm text-brandTextInfo dark:text-brandDarkTextSecondary sm:row-start-auto sm:col-start-auto sm:text-xs sm:tracking-wide">
       {/* mobile layout: [avatar] [userId] • [timeCreated] */}
       <div className='flex items-center sm:hidden'>
         { !userView && (
@@ -16,7 +16,7 @@ const StoryItemHeader = ({ storyData, userView }) => {
               userId={storyData.by}
             /> 
             <UserLink
-              className="font-medium text-brandTextPrimary"
+              className="font-medium text-brandTextPrimary dark:text-brandDarkTextPrimary"
               userId={storyData.by}
             />
             <span>&nbsp;•&nbsp;</span>

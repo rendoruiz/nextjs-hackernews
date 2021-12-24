@@ -39,7 +39,7 @@ const CommentList = ({ storyId, permalinkId }) => {
   }, [itemCount, storyData]);
 
   return isLoading ? (<IsLoading />) : isError || !storyData ? (<IsError />) : isSuccess && (storyData.type === "story" || storyData.type === "poll") && (  
-    <div className="grid content-start bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:pl-1 sm:pr-5 sm:shadow-sm">
+    <div className="self-start grid content-start bg-brandObjectBackground text-brandTextPrimary transition-colors dark:border-b-brandDefault dark:border-b-brandDarkBorder dark:bg-brandDarkAppBackground dark:text-brandDarkTextPrimary sm:border-brandDefault sm:border-brandBorder sm:rounded sm:pl-1 sm:pr-5 sm:shadow-sm sm:dark:border-brandDarkBorder sm:dark:bg-brandDarkObjectBackground">
       {/* hide on permalink */}
       { !isPermalink && (
         <>
@@ -95,9 +95,9 @@ const CommentList = ({ storyId, permalinkId }) => {
 
       {/* load more comments trigger */}
       { !isPermalink && storyData.kids && storyData.kids.length > itemCount && (
-        <div className="grid border-t-brandDefault border-t-brandButtonOutline px-4 py-3 sm:border-none sm:p-3">
+        <div className="grid border-t-brandDefault border-t-brandButtonOutline px-4 py-3 transition-colors dark:border-t-brandDarkBorder sm:border-none sm:p-3">
           <button
-            className="font-bold text-xs text-brandButtonInlineText tracking-wider text-left sm:text-brandOrange sm:hover:underline"
+            className="font-medium text-xs text-brandButtonInlineText tracking-wider text-left dark:text-brandDarkTextPrimary sm:text-brandOrange sm:hover:underline sm:dark:text-brandOrange"
             onClick={(e) => handleClick(e)}
           >
             <span className="sm:hidden">

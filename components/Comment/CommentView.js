@@ -7,7 +7,7 @@ import CommentList from "./CommentList";
 const CommentView = ({ storyId, permalinkId }) => {
   return (  
     <>
-      <SiteLayout contentClassName="grid-rows-[auto,auto,1fr] gap-2 sm:gap-4">
+      <SiteLayout contentClassName="grid-rows-[auto,1fr] gap-2 transition-colors dark:bg-brandDarkObjectBackground sm:gap-4 sm:dark:bg-transparent">
         <StoryItem 
           storyId={storyId} 
           withText 

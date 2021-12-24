@@ -26,7 +26,7 @@ const CommentPreviewItemContent = ({ commentData, parentData, storyId }) => {
             title="view comment permalink"
           />
         </Link>
-        <div className="italic">
+        <div className="text-brandTextPrimary italic dark:text-brandDarkTextPrimary">
           { commentText }
         </div>
       </div>

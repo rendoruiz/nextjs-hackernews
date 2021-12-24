@@ -20,7 +20,7 @@ const CommentItemHeader = ({ commentData, submitterId, storyId, itemDepth, isDea
 
   return (  
     <div className={clsx(
-      "relative grid grid-cols-[auto,1fr] gap-x-2 text-brandTextPrimary sm:col-span-2 sm:gap-0",
+      "relative grid grid-cols-[auto,1fr] gap-x-2 text-brandTextPrimary dark:text-brandDarkTextPrimary sm:col-span-2 sm:gap-0",
       { "opacity-60": isDead },
     )}>
       {/* dead comment indicator */}
@@ -51,7 +51,7 @@ const CommentItemHeader = ({ commentData, submitterId, storyId, itemDepth, isDea
       <div className="grid grid-cols-[auto,1fr,auto] items-center text-xs sm:auto-cols-auto">
         <div className={clsx(
           "flex items-center font-bold sm:font-medium", 
-          { "text-brandOrange sm:text-brandTextPrimary": commentData.by === submitterId }
+          { "text-brandOrange sm:text-brandTextPrimary sm:dark:text-brandDarkTextPrimary": commentData.by === submitterId }
         )}>
           {/* mobile user link */}
           <UserLink 
@@ -87,7 +87,7 @@ const CommentItemHeader = ({ commentData, submitterId, storyId, itemDepth, isDea
               </Tooltip.Root>
               
               <MicrophoneGlyph 
-                className="ml-1 w-4 h-4 text-brandOrange sm:hidden" 
+                className="ml-1 w-4 h-4 sm:hidden" 
                 title="original poster indicator"
               />
             </>

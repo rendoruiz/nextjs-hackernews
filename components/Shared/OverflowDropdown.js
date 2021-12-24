@@ -10,21 +10,21 @@ const OverflowDropdown = ({ itemData, triggerClassName }) => {
       <DropdownMenu.Trigger 
         className={clsx(
           triggerClassName,
-          "self-center items-center rounded transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive"
+          "self-center items-center rounded transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive sm:dark:hover:bg-brandDarkButtonHover sm:dark:active:bg-brandDarkButtonActive"
         )}
         title="story overflow menu trigger"
       > 
         <HorizontalDotsGlyph />
       </DropdownMenu.Trigger>
       <DropdownMenu.Content 
-        className="hidden sm:grid border-brandDefault border-brandButtonOutline rounded bg-white text-sm text-brandTextSecondary shadow-transientObject overflow-hidden"
+        className="hidden sm:grid border-brandDefault border-brandButtonOutline rounded bg-brandObjectBackground text-sm text-brandTextSecondary shadow-transientObject overflow-hidden dark:border-brandDarkBorder dark:bg-brandDarkObjectBackground dark:shadow-transientObjectDark"
         align="start"
       >
         <DropdownMenu.Item asChild>
           <a 
             href={'https://news.ycombinator.com/item?id=' + itemData.id}
             target="_blank"
-            className="flex items-center rounded-sm px-2 py-[0.625rem] transition-colors cursor-pointer hover:bg-brandOrange/30 hover:text-brandTextPrimary"
+            className="flex items-center rounded-sm px-2 py-[0.625rem] transition-colors cursor-pointer hover:bg-brandOrange/30 hover:text-brandTextPrimary dark:hover:text-brandDarkTextPrimary"
           >
             <HackerNewsGlyph className="w-4 h-4" />
             <span className="ml-2 font-medium leading-none">

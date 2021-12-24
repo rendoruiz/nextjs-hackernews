@@ -39,7 +39,7 @@ const NavigationBar = ({ navigationItems, routePrefix = "", withPersistQueryStri
   return (
     <div className={clsx(
       className,
-      "grid grid-flow-col auto-cols-auto justify-between gap-5 mb-1 px-4 bg-white sm:border-brandDefault sm:border-brandBorder sm:rounded sm:mb-4 sm:px-3 sm:py-[0.625rem]",
+      "grid grid-flow-col auto-cols-auto justify-between gap-5 mb-1 px-4 bg-brandObjectBackground transition-colors dark:bg-brandDarkObjectBackground dark:text-brandDarkTextPrimary sm:border-brandDefault sm:border-brandBorder sm:rounded sm:mb-4 sm:px-3 sm:py-[0.625rem] sm:dark:border-brandDarkBorder",
     )}>
       {/* mobile nav */}
       <MobileNavigationDropdown 
@@ -74,7 +74,7 @@ const MobileNavigationDropdown = ({ navigationItems, routePrefix, countQueryStri
       open={isOpen} 
       onOpenChange={(state) => setIsOpen(state)}
     >
-      <DropdownMenu.Trigger className="flex items-center rounded px-2 py-3 text-brandTextSecondary sm:hidden"> 
+      <DropdownMenu.Trigger className="flex items-center rounded px-2 py-3 text-brandTextSecondary dark:text-brandDarkTextSecondary sm:hidden"> 
         { navigationItems.map((item, index) => index === activeItem && (
           <div 
             key={index}
@@ -91,17 +91,17 @@ const MobileNavigationDropdown = ({ navigationItems, routePrefix, countQueryStri
         <ChevronDownGlyph />
 
         {/* custom overlay */}
-        { isOpen && (<div className="fixed z-10 inset-0 bg-black/40 sm:hidden" />) }
+        { isOpen && (<div className="fixed z-10 inset-0 bg-brandDarkAppBackground/40 dark:bg-brandDarkAppBackground/70 sm:hidden" />) }
       </DropdownMenu.Trigger>
       <DropdownMenu.Content 
-        className="grid -ml-4 w-screen min-w-[282px] text-brandTextSecondary overflow-hidden sm:hidden"
+        className="grid -ml-4 w-screen min-w-[282px] text-brandTextSecondary overflow-hidden dark:text-brandDarkTextSecondary sm:hidden"
         align="center"
         sideOffset={-8}
       >
         {/* custom arrow */}
         <DropdownMenu.Label asChild>
           <svg
-            className="ml-12 w-4 h-2 scale-y-[-1] text-white fill-current"
+            className="ml-12 w-4 h-2 scale-y-[-1] fill-current"
             preserveAspectRatio="none"
             viewBox="0 0 30 10"
           >
@@ -110,11 +110,11 @@ const MobileNavigationDropdown = ({ navigationItems, routePrefix, countQueryStri
         </DropdownMenu.Label>
         {/* actual content */}
         <DropdownMenu.Group 
-          className="grid mx-3 px-2 bg-white" 
+          className="grid border-brandDefault border-brandBorder mx-3 px-2 bg-brandObjectBackground dark:bg-brandDarkAppBackground" 
           onClick={() => handleClick()}
         >
-          <DropdownMenu.Label className="py-3 font-bold text-xs uppercase tracking-widest">Sort Posts By:</DropdownMenu.Label>
-          <DropdownMenu.Separator className="border-b-brandDefault border-brandBorder" /> 
+          <DropdownMenu.Label className="py-4 font-bold text-xs2 uppercase tracking-widest">Sort Posts By:</DropdownMenu.Label>
+          <DropdownMenu.Separator className="border-b-brandDefault border-brandBorder dark:border-brandDarkBorderSeparator" /> 
           { navigationItems.map((item, index) => (
             <DropdownMenu.Item key={index}>
               <Link 
@@ -128,7 +128,7 @@ const MobileNavigationDropdown = ({ navigationItems, routePrefix, countQueryStri
                   <div className={clsx("w-6 h-6", { "text-brandOrange": index === activeItem })}>
                     { item.glyph }
                   </div>
-                  <span className="ml-3 text-brandTextPrimary">
+                  <span className="ml-3 text-brandTextPrimary dark:text-brandDarkTextPrimary">
                     { item.text }
                   </span>
                 </a>
@@ -155,8 +155,8 @@ const DesktopNavigationList = ({ navigationItems, routePrefix, countQueryString,
           shallow
         >
           <a className={clsx(
-            "flex items-center rounded-full pl-2 pr-[0.625rem] py-1 transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive", 
-            index === activeItem ? "bg-brandButtonSelected text-brandOrange" : "text-brandTextSecondary"
+            "flex items-center rounded-full pl-2 pr-[0.625rem] py-1 transition-colors hover:bg-brandButtonHover active:bg-brandButtonActive hover:dark:bg-brandDarkButtonHover active:dark:bg-brandDarkButtonActive", 
+            index === activeItem ? "bg-brandButtonSelected text-brandOrange dark:bg-brandDarkButtonSelected dark:text-brandDarkTextPrimary" : "text-brandTextSecondary dark:text-brandDarkTextSecondary"
           )}>
             <div className="w-6 h-6">
               { item.glyph }

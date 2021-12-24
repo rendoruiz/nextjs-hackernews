@@ -11,6 +11,7 @@
     "@radix-ui/react-hover-card": "^0.1.1",
     "@radix-ui/react-id": "^0.1.1",
     "@radix-ui/react-popover": "^0.1.1",
+    "@radix-ui/react-switch": "^0.1.4",
     "@radix-ui/react-tooltip": "^0.1.1",
     "axios": "^0.24.0",
     "clsx": "^1.1.1",
@@ -18,11 +19,13 @@
     "date-fns": "^2.26.0",
     "date-fns-tz": "^1.1.6",
     "html-react-parser": "^1.4.1",
-    "next": "latest",
+    "next": "^12.0.7",
     "query-string": "^7.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-query": "^3.33.5"
+    "react-query": "^3.33.5",
+    "recoil": "^0.5.2",
+    "recoil-persist": "^4.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.0",

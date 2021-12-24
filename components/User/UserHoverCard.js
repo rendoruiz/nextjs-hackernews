@@ -30,7 +30,7 @@ const UserHoverCard = ({ userId, className, withPrefix, withAvatar, avatarClassN
         </div>
       </HoverCard.Trigger>
       <HoverCard.Content 
-        className="grid gap-4 border-brandDefault border-brandBorder rounded p-3 pb-4 bg-white shadow-md"
+        className="grid gap-4 border-brandDefault border-brandBorder rounded p-3 pb-4 bg-brandObjectBackground text-brandTextSecondary shadow-md dark:border-brandDarkBorder dark:bg-brandDarkObjectBackground dark:to-brandDarkTextSecondary dark:shadow-transientObjectDark"
         sideOffset={2}
         align="start"
       >
@@ -70,14 +70,13 @@ const CardContent = ({ userId, isOpen }) => {
         className="w-9 h-9 text-2xl"
         userId={data.id}
       />
-      {/* <div className="rounded bg-brandOrange "></div> */}
       <div className="grid">
         <UserLink
-          className="font-medium text-lg text-brandTextPrimary"
+          className="font-medium text-lg text-brandTextPrimary dark:text-brandDarkTextPrimary"
           userId={data.id}
           withPrefix
         />
-        <p className="text-xs text-brandTextSecondary leading-tight tracking-wide">
+        <p className="text-xs leading-tight tracking-wide">
           { data.id } • { relativeTime }
         </p>
       </div>
@@ -87,19 +86,19 @@ const CardContent = ({ userId, isOpen }) => {
     <section className="grid grid-cols-2 gap-5">
       {/* score */}
       <div className="grid">
-        <p className="order-2 text-xs text-brandTextSecondary leading-snug tracking-wide">
+        <p className="order-2 text-xs leading-snug tracking-wide">
           Karma
         </p>
-        <p className="order-1 font-medium text-lg text-brandTextPrimary leading-snug">
+        <p className="order-1 font-medium text-lg text-brandTextPrimary leading-snug dark:text-brandDarkTextPrimary">
           { karma }
         </p>
       </div>
       {/* creation date */}
       <div className="grid">
-        <p className="order-2 text-xs text-brandTextSecondary leading-snug tracking-wide">
+        <p className="order-2 text-xs leading-snug tracking-wide">
           Submissions
         </p>
-        <p className="order-1 font-medium text-lg text-brandTextPrimary leading-snug">
+        <p className="order-1 font-medium text-lg text-brandTextPrimary leading-snug dark:text-brandDarkTextPrimary">
           { submissions }
         </p>
       </div>
@@ -112,20 +111,20 @@ const IsLoading = () => {
   return (
     <>
       <div className="grid grid-cols-[auto,1fr] items-end gap-2 mt-1">
-        <div className="rounded-full w-9 h-9 bg-brandTextSecondary/30 animate-pulse"></div>
+        <div className="rounded-full w-9 h-9 bg-brandTextSecondary/30 animate-pulse dark:bg-brandDarkTextSecondary/30"></div>
         <div className="grid gap-1">
-          <div className="rounded-md w-20 h-6 bg-brandTextSecondary/30 animate-pulse"></div>
-          <div className="rounded-md w-36 h-3 bg-brandTextSecondary/30 animate-pulse"></div>
+          <div className="rounded-md w-20 h-6 bg-brandTextSecondary/30 animate-pulse dark:bg-brandDarkTextSecondary/30"></div>
+          <div className="rounded-md w-36 h-3 bg-brandTextSecondary/30 animate-pulse dark:bg-brandDarkTextSecondary/30"></div>
         </div>
       </div>
       <div className="grid grid-cols-2 gap-5 mt-1">
         <div className="grid gap-1">
-          <div className="rounded-md w-10 h-5 bg-brandTextSecondary/30 animate-pulse"></div>
-          <div className="rounded-md w-12 h-3 bg-brandTextSecondary/30 animate-pulse"></div>
+          <div className="rounded-md w-10 h-5 bg-brandTextSecondary/30 animate-pulse dark:bg-brandDarkTextSecondary/30"></div>
+          <div className="rounded-md w-12 h-3 bg-brandTextSecondary/30 animate-pulse dark:bg-brandDarkTextSecondary/30"></div>
         </div>
         <div className="grid gap-1">
-          <div className="rounded-md w-10 h-5 bg-brandTextSecondary/30 animate-pulse"></div>
-          <div className="rounded-md w-20 h-3 bg-brandTextSecondary/30 animate-pulse"></div>
+          <div className="rounded-md w-10 h-5 bg-brandTextSecondary/30 animate-pulse dark:bg-brandDarkTextSecondary/30"></div>
+          <div className="rounded-md w-20 h-3 bg-brandTextSecondary/30 animate-pulse dark:bg-brandDarkTextSecondary/30"></div>
         </div>
       </div>
     </>

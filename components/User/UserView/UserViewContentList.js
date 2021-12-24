@@ -67,9 +67,9 @@ const UserViewContentList = ({ contentIds, userId }) => {
 
       {/* view more contents button */}
       { itemCount && itemCount < contentIds.length && (
-        <div className="grid px-4 py-[0.625rem] bg-white sm:place-items-center sm:bg-transparent sm:pb-0">
+        <div className="grid px-4 py-[0.625rem] bg-brandObjectBackground transition-colors dark:bg-brandDarkAppBackground sm:justify-center sm:bg-transparent sm:dark:bg-transparent sm:pb-0">
           <button 
-            className="rounded-full px-10 py-[0.375rem] bg-brandOrange font-medium text-sm text-white transition-opacity hover:opacity-80 active:opacity-60"
+            className="rounded-full px-10 py-[9px] bg-brandOrange font-bold text-sm text-white tracking-wide leading-none transition-all hover:opacity-80 active:opacity-60 dark:bg-brandDarkButton dark:text-brandTextPrimary"
             onClick={(e) => handleClick(e)}
           >
             View More Submissions
@@ -85,12 +85,12 @@ const MessageNoContentFound = ({ userId }) => {
     <div className="grid place-items-center px-5 py-10 md:py-20">
       <p className="grid gap-5 text-center sm:gap-8 lg:gap-10">
         <span 
-          className="text-5xl drop-shadow-md sm:text-6xl lg:text-8xl lg:drop-shadow-lg"
+          className="text-6xl drop-shadow-md sm:text-7xl lg:text-8xl lg:drop-shadow-lg"
           title="thinking emoji"
         >
           🤔
         </span>
-        <span className="font-medium text-lg tracking-wide">
+        <span className="font-medium text-lg text-brandTextPrimary dark:text-brandDarkTextPrimary tracking-wide">
           hmm... u/{ userId } hasn't posted anything
         </span>
       </p>

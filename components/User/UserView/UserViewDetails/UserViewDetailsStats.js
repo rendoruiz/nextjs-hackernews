@@ -45,7 +45,7 @@ const UserViewDetailsStats = ({ userData }) => {
           <span className="font-medium">Karma</span>
           <div className="flex items-center">
             <StarGlyph className="w-4 h-4 text-brandOrange/80" />
-            <span className="ml-1 text-xs text-brandTextSecondary">
+            <span className="ml-1 text-xs text-brandTextSecondary dark:text-brandDarkTextSecondary">
               { karma }
             </span>
           </div>
@@ -55,7 +55,7 @@ const UserViewDetailsStats = ({ userData }) => {
           <div className="flex items-center">
             <CakeGlyph className="w-4 h-4 text-brandOrange/80" />
             <CakeDayTooltip tooltip={relativeTimeWithSuffix}>
-              <span className="ml-1 text-xs text-brandTextSecondary">
+              <span className="ml-1 text-xs text-brandTextSecondary dark:text-brandDarkTextSecondary">
                 { fullDateTime }
               </span>
             </CakeDayTooltip>
@@ -65,7 +65,7 @@ const UserViewDetailsStats = ({ userData }) => {
           <span className="font-medium">Submissions</span>
           <div className="flex items-center">
             <PlusGlyph className="w-4 h-4 text-brandOrange/80" />
-            <span className="ml-1 text-xs text-brandTextSecondary">
+            <span className="ml-1 text-xs text-brandTextSecondary dark:text-brandDarkTextSecondary">
               { submissions }
             </span>
           </div>
