@@ -90,9 +90,10 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
 
         {/* if there are comment replies: display if meets set condition, else display trigger to load replies */}
         <div className={clsx(
-          "relative grid mb-1 sm:col-start-2 sm:mb-0",
+          "relative grid sm:col-start-2",
           { "!hidden": isCollapsed },
           { "mt-3 sm:mt-0": isPermalink },
+          { "mb-1 sm:mb-0": parentDepth === 0 }
         )}>
           <CommentItemReplies 
             replyIds={data.kids}
