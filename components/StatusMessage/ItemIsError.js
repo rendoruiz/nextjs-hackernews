@@ -1,7 +1,6 @@
 // fetch error
-const ItemIsError = ({ error }) => {
-  console.log(error)
-  return (
+const ItemIsError = ({ error, noError = false }) => {
+  return noError ? null : (
     <div>
       <p>An error occured.</p>
       { error && (

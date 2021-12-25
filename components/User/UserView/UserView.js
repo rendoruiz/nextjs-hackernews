@@ -8,20 +8,27 @@ import SiteLayout from "../../SiteLayout";
 import UserViewDetails from "./UserViewDetails/UserViewDetails";
 import UserViewNavigationBar from "./UserViewNavigationBar";
 import UserViewContentList from "./UserViewContentList";
+import { useEffect } from "react";
 
 const UserView = () => {
   const router = useRouter();
   const { userid } = router.query;
   const { isLoading, isError, data: userData, isSuccess } = useUser(userid);
+  
 
-  return userid && isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (  
+  useEffect(() => {
+    console.log({userData})
+  })
+
+  return userid && isLoading ? (<Loader isLoading />) : (isError || !userData) ? (<Loader isError />) : isSuccess && userData && (  
     <>
+      { console.log({userData})}
       <Head>
         <title>{userData.id} (u/{userData.id}) - Hacker News</title>
         <meta property="og:title" content={`${userData.id} (u/${userData.id}) - Hacker News`} />
       </Head>
 
-      <SiteLayout contentClassName="transition-colors dark:bg-brandDarkObjectBackground md:grid-cols-[1fr,auto] md:gap-x-6 sm:dark:bg-transparent">
+      <SiteLayout contentClassName="md:grid-cols-[1fr,auto] md:gap-x-6">
         {/* details header (mobile)/sidebar (desktop) */}
         <UserViewDetails userData={userData} />
 
@@ -35,6 +42,14 @@ const UserView = () => {
         </div>
       </SiteLayout>
     </>
+  );
+}
+
+const Loader = ({ isError = false, isLoading = false }) => {
+  return (isError || isLoading) && (
+    <SiteLayout contentClassName="!grid-rows-1 !place-items-center">
+      { isLoading ? (<IsLoading />) : isError && (<IsError />) }
+    </SiteLayout>
   );
 }
  

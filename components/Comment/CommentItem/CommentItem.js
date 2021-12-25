@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 
-import { useComment } from "../../../hooks/useComment";
+import { useContent } from "../../../hooks/useContent";
 import { useHtmlParser } from "../../../hooks/useHtmlParser";
 import ItemIsError from "../../StatusMessage/ItemIsError";
 import CommentItemHeader from "./CommentItemHeader";
@@ -10,7 +10,7 @@ import CommentItemReplies from "./CommentItemReplies";
 import CommentItemLoader from "./CommentItemLoader";
 
 const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentDepth = 0, isPermalink = false }) => {
-  const { isLoading, isError, data, isSuccess, error } = useComment(commentId);
+  const { isLoading, isError, data, isSuccess, error } = useContent(commentId);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [textContent, setTextContent] = useState(false);
 
@@ -30,7 +30,7 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
       <div className={clsx(
         "relative grid text-sm sm:grid-cols-[auto,1fr] sm:gap-x-2 sm:last:pb-0",
         { "border-t-brandDefault border-t-brandButtonOutline px-4 py-3 transition-colors first:border-t-0 first:pt-0 dark:border-t-brandDarkBorder sm:border-none sm:px-2": parentDepth === 0 },
-        { "py-3 first:pt-3 sm:py-2 sm:first:pt-2": isPermalink },
+        { "py-3 overflow-hidden first:pt-3 sm:py-2 sm:first:pt-2 sm:overflow-visible": isPermalink },
       )}>    
         {/* permalink highlight */}
         { isPermalink && (
@@ -74,7 +74,7 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
             { "opacity-60": data.dead }
           )}>
             { textContent ?? (
-              <div className="text-xs2 uppercase font-bold text-brandTextSecondary italic">
+              <div className="text-xs2 uppercase font-bold text-brandTextSecondary italic dark:text-brandDarkTextSecondary">
                 (empty content)
               </div>
             )}

@@ -30,7 +30,7 @@ const UserViewDetailsAboutExpander = ({ rawHtmlString }) => {
 
   return textContent && (  
     <div className="grid gap-1 mb-2 md:mb-0">
-      <span className="hidden md:block tracking-wide font-medium">About</span>
+      <span className="hidden md:block mt-1 tracking-wide font-medium">About</span>
       <div 
         ref={textWrapperRef}
         className={clsx(

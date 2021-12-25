@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import clsx from 'clsx';
 
-import { useStory } from "../../../hooks/useStory";
+import { useContent } from '../../../hooks/useContent';
 import { useHtmlParser } from '../../../hooks/useHtmlParser';
 import StoryItemLoader from './StoryItemLoader';
 import ItemIsError from '../../StatusMessage/ItemIsError';
@@ -14,8 +14,8 @@ import StoryItemFooter from "./StoryItemFooter";
 import StoryItemMobileShareTrigger from './StoryItemMobileShareTrigger';
 import MobileActionsModal from '../../Shared/MobileActionsModal';
 
-const StoryItem = ({ storyId, withText = false, isStatic = false, userView = false, useTitle = false }) => {
-  const { isLoading, isError, isSuccess, data } = useStory(storyId);
+const StoryItem = ({ storyId, withText = false, isStatic = false, userView = false, useTitle = false, noError = false }) => {
+  const { isLoading, isError, isSuccess, data } = useContent(storyId);
   const [textContent, setTextContent] = useState(null);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
     }
   }, [withText, data?.text])
 
-  return isLoading ? (<StoryItemLoader />) : isError || !data ? (<ItemIsError />) : isSuccess && (
+  return isLoading ? (<StoryItemLoader />) : isError || !data ? (<ItemIsError noError={noError} />) : isSuccess && (
     data.deleted || data.dead ? (<ItemIsDeadOrDeleted />) : data.type === "comment" ? null : (
       <>
         { useTitle && (
@@ -93,8 +93,8 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
             {/* story link */}
             <ShortenedExternalLink 
               rawLink={data.url}
-              wrapperClassName="row-start-2 col-start-2 justify-self-end relative grid items-end w-[70px] h-[52px] bg-brandOrange text-[0.625rem] dark:bg-brandOrange/80 sm:row-start-auto sm:col-start-auto sm:justify-self-start sm:inline-flex sm:items-center sm:-mt-1 sm:t-1 sm:pb-2 sm:w-auto sm:h-auto sm:bg-transparent sm:text-xs sm:text-brandOrange sm:hover:underline sm:dark:bg-transparent"
-              textClassName="p-1 bg-black/70 text-white truncate sm:p-0 sm:px-0 sm:bg-transparent sm:text-current sm:overflow-auto"
+              wrapperClassName="row-start-2 col-start-2 justify-self-end relative grid items-end w-[70px] h-[52px] bg-brandOrange text-[0.625rem] text-brandObjectBackground dark:bg-brandOrange/80 dark:text-brandDarkTextPrimary sm:row-start-auto sm:col-start-auto sm:justify-self-start sm:inline-flex sm:items-center sm:-mt-1 sm:t-1 sm:pb-2 sm:w-auto sm:h-auto sm:bg-transparent sm:text-brandOrange sm:text-xs sm:hover:underline sm:dark:bg-transparent sm:dark:text-brandOrange/90"
+              textClassName="p-1 bg-black/70 truncate sm:p-0 sm:px-0 sm:bg-transparent sm:overflow-auto"
               glyphClassName="hidden ml-1 w-4 h-4 sm:inline-block"
             />
             

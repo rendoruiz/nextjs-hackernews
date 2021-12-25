@@ -31,7 +31,7 @@ const useHtmlParser = (rawHtmlString) => {
           <a 
             href={attribs.href}
             target="_blank"
-            className="relative text-brandOrange sm:underline break-all"
+            className="relative text-brandOrange break-all dark:text-brandOrange/90 sm:underline"
             title="view external link in new tab"
           >
             { domToReact(children, options) }
