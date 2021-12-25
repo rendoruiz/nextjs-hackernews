@@ -10,7 +10,7 @@ const parseHtmlString = (rawHtmlString) => {
       // paragraph spacing
       if (type === "tag" && name === "p") {
         return (
-          <p className="mt-2 sm:mt-3">
+          <p className="mt-2 break-words sm:mt-3">
             { domToReact(children, options) }
           </p>
         )
