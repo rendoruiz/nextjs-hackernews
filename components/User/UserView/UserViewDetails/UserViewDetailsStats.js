@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import * as Tooltip from '@radix-ui/react-tooltip';
 
 import { getRelativeTime, getFullDateTime } from "../../../../helpers/formatDateTime";
-import { formatNumber } from "../../../../hooks/formatNumber";
+import { formatNumber } from "../../../../helpers/formatNumber";
 import StarGlyph from "../../../Glyphs/StarGlyph";
 import CakeGlyph from "../../../Glyphs/CakeGlyph";
 import PlusGlyph from "../../../Glyphs/PlusGlyph";
