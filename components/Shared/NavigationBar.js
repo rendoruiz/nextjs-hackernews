@@ -28,18 +28,15 @@ const NavigationBar = ({ navigationItems, routePrefix = "", withPersistQueryStri
 
   // for assigning count querystring
   useEffect(() => {
-    if (withPersistQueryString && router) {
-      const countQuery = router?.query?.count;
-      if (countQuery) {
-        setCountQueryString(countQuery);
-      }
+    if (withPersistQueryString && router?.query?.count) {
+      setCountQueryString(router.query.count);
     }
   }, [router?.query?.count]);
 
   return (
     <div className={clsx(
       className,
-      "grid grid-flow-col auto-cols-auto justify-between gap-5 mb-1 px-4 bg-brandObjectBackground transition-colors dark:bg-brandDarkObjectBackground dark:text-brandDarkTextPrimary sm:border-brandDefault sm:border-brandBorder sm:rounded sm:mb-4 sm:px-3 sm:py-[0.625rem] sm:dark:border-brandDarkBorder",
+      "grid grid-flow-col auto-cols-auto justify-between gap-5 mb-1 px-4 bg-brandObjectBackground transition-colors dark:bg-brandDarkAppBackground dark:text-brandDarkTextPrimary sm:border-brandDefault sm:border-brandBorder sm:rounded sm:mb-4 sm:px-3 sm:py-[0.625rem] sm:dark:bg-brandDarkObjectBackground sm:dark:border-brandDarkBorder",
     )}>
       {/* mobile nav */}
       <MobileNavigationDropdown 

@@ -1,16 +1,16 @@
-import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
-import { useRelativeTime, useShortRelativeTime } from '../../hooks/useDate';
+import { getRelativeTime, getShortRelativeTime } from '../../helpers/formatDateTime';
 
 const TimeRoute = ({ className, contentId, unixTime, isShort }) => {
   const [itemTime, setItemTime] = useState(null);
 
   useEffect(() => {
     if (isShort) {
-      setItemTime(useShortRelativeTime(unixTime));
+      setItemTime(getShortRelativeTime(unixTime));
     } else {
-      setItemTime(useRelativeTime(unixTime));
+      setItemTime(getRelativeTime(unixTime));
     }
   }, [unixTime, isShort])
 

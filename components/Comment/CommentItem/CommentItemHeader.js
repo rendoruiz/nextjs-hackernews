@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 import * as Tooltip from '@radix-ui/react-tooltip';
 
-import { useShortRelativeTime } from "../../../hooks/useDate";
+import { getShortRelativeTime } from "../../../helpers/formatDateTime";
 import TimeTooltip from "../../Shared/TimeTooltip";
 import MobileActionsModal from "../../Shared/MobileActionsModal";
 import UserLink from "../../User/UserLink";
@@ -15,7 +15,7 @@ const CommentItemHeader = ({ commentData, submitterId, storyId, itemDepth, isDea
   const [shortRelativeTime, setShortRelativeTime] = useState(null);
 
   useEffect(() => {
-    setShortRelativeTime(useShortRelativeTime(commentData.time));
+    setShortRelativeTime(getShortRelativeTime(commentData.time));
   }, [commentData.time]);
 
   return (  
@@ -25,7 +25,7 @@ const CommentItemHeader = ({ commentData, submitterId, storyId, itemDepth, isDea
     )}>
       {/* dead comment indicator */}
       { isDead && (
-        <div className="col-span-2 justify-self-start rounded mb-1 px-1 py-[0.125rem] bg-brandButtonOutline font-bold text-xs2 text-brandTextSecondary uppercase sm:col-span-2">
+        <div className="col-span-2 justify-self-start rounded mb-1 px-1 py-[0.125rem] bg-brandButtonOutline font-bold text-xs2 text-brandTextSecondary uppercase dark:bg-brandDarkButtonOutline dark:text-brandTextSecondary sm:col-span-2">
           Dead Comment
         </div>
       )}

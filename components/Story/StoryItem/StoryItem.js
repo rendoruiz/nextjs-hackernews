@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
+import Head from 'next/head';
 import Link from 'next/link';
 import clsx from 'clsx';
 
-import { useStory } from "../../../hooks/useStory";
-import { useHtmlParser } from '../../../hooks/useHtmlParser';
+import { useContent } from '../../../hooks/useContent';
+import { parseHtmlString } from '../../../helpers/parseHtmlString';
+import StoryItemLoader from './StoryItemLoader';
 import ItemIsError from '../../StatusMessage/ItemIsError';
 import ItemIsDeadOrDeleted from '../../StatusMessage/ItemIsDeadOrDeleted';
 import StoryItemHeader from "./StoryItemHeader";
@@ -11,19 +13,18 @@ import ShortenedExternalLink from '../../Shared/ShortenedExternalLink';
 import StoryItemFooter from "./StoryItemFooter";
 import StoryItemMobileShareTrigger from './StoryItemMobileShareTrigger';
 import MobileActionsModal from '../../Shared/MobileActionsModal';
-import Head from 'next/head';
 
-const StoryItem = ({ storyId, withText = false, isStatic = false, userView = false, useTitle = false }) => {
-  const { isLoading, isError, isSuccess, data } = useStory(storyId);
+const StoryItem = ({ storyId, withText = false, isStatic = false, userView = false, useTitle = false, noError = false }) => {
+  const { isLoading, isError, isSuccess, data } = useContent(storyId);
   const [textContent, setTextContent] = useState(null);
 
   useEffect(() => {
     if (withText && data) {
-      setTextContent(useHtmlParser(data.text));
+      setTextContent(parseHtmlString(data.text));
     }
   }, [withText, data?.text])
 
-  return isLoading ? (<IsLoading />) : isError || !data ? (<ItemIsError />) : isSuccess && (
+  return isLoading ? (<StoryItemLoader />) : isError ? (<ItemIsError noError={noError} />) : !data ? (<ItemIsError contentId={storyId} noError={noError} />) : isSuccess && (
     data.deleted || data.dead ? (<ItemIsDeadOrDeleted />) : data.type === "comment" ? null : (
       <>
         { useTitle && (
@@ -92,8 +93,8 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
             {/* story link */}
             <ShortenedExternalLink 
               rawLink={data.url}
-              wrapperClassName="row-start-2 col-start-2 justify-self-end relative grid items-end w-[70px] h-[52px] bg-brandOrange text-[0.625rem] dark:bg-brandOrange/80 sm:row-start-auto sm:col-start-auto sm:justify-self-start sm:inline-flex sm:items-center sm:-mt-1 sm:t-1 sm:pb-2 sm:w-auto sm:h-auto sm:bg-transparent sm:text-xs sm:text-brandOrange sm:hover:underline sm:dark:bg-transparent"
-              textClassName="p-1 bg-black/70 text-white truncate sm:p-0 sm:px-0 sm:bg-transparent sm:text-current sm:overflow-auto"
+              wrapperClassName="row-start-2 col-start-2 justify-self-end relative grid items-end w-[70px] h-[52px] bg-brandOrange text-[0.625rem] text-brandObjectBackground dark:bg-brandOrange/80 dark:text-brandDarkTextPrimary sm:row-start-auto sm:col-start-auto sm:justify-self-start sm:inline-flex sm:items-center sm:-mt-1 sm:t-1 sm:pb-2 sm:w-auto sm:h-auto sm:bg-transparent sm:text-brandOrange sm:text-xs sm:hover:underline sm:dark:bg-transparent sm:dark:text-brandOrange/90"
+              textClassName="p-1 bg-black/70 truncate sm:p-0 sm:px-0 sm:bg-transparent sm:overflow-auto"
               glyphClassName="hidden ml-1 w-4 h-4 sm:inline-block"
             />
             
@@ -113,29 +114,6 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
         </div>
       </>
     )
-  );
-}
-
-// story item loader
-const IsLoading = () => {
-  return (
-    <div className="grid sm:grid-cols-[40px,1fr] sm:border-brandDefault sm:border-brandBorder sm:rounded sm:dark:border-brandDarkBorder">
-      <div className="hidden sm:flex justify-center items-start py-2 bg-brandObjectBackground/80 dark:bg-brandDarkObjectBackground/80">
-        <div className="rounded-md w-3/4 h-3 bg-brandTextSecondary/30 animate-pulse dark:bg-brandDarkTextSecondary/30"></div>
-      </div>
-      <div className="grid gap-3 items-start px-4 pt-2 pb-3 bg-brandObjectBackground dark:bg-brandDarkAppBackground sm:p-2 sm:dark:bg-brandDarkObjectBackground">
-        <div className="flex items-center">
-          <div className="rounded-full mr-[0.375rem] w-6 h-6 bg-brandTextSecondary/30 animate-pulse dark:bg-brandDarkTextSecondary/30"></div>
-          <div className="rounded-md w-1/2 h-4 bg-brandTextSecondary/30 animate-pulse dark:bg-brandDarkTextSecondary/30 sm:w-5/12"></div>
-        </div>
-        <div className="rounded-md w-10/12 h-5 bg-brandTextSecondary/30 animate-pulse dark:bg-brandDarkTextSecondary/30 sm:w-3/4"></div>
-        <div className="rounded-md w-1/2 h-5 bg-brandTextSecondary/30 animate-pulse dark:bg-brandDarkTextSecondary/30 sm:h-4 sm:w-1/3"></div>
-        <div className="mt-[0.375rem] flex sm:mt-0">
-          <div className="rounded-md w-20 h-5 bg-brandTextSecondary/30 animate-pulse dark:bg-brandDarkTextSecondary/30 sm:w-28"></div>
-          <div className="rounded-md ml-2 w-14 h-5 bg-brandTextSecondary/30 animate-pulse dark:bg-brandDarkTextSecondary/30 sm:w-28"></div>
-        </div>
-      </div>
-    </div>
   );
 }
  

@@ -1,6 +1,6 @@
 import parse, { domToReact } from 'html-react-parser';
 
-const useHtmlParser = (rawHtmlString) => {
+const parseHtmlString = (rawHtmlString) => {
   if (!rawHtmlString) {
     return null;
   }
@@ -31,7 +31,7 @@ const useHtmlParser = (rawHtmlString) => {
           <a 
             href={attribs.href}
             target="_blank"
-            className="relative text-brandOrange sm:underline break-all"
+            className="relative text-brandOrange break-all dark:text-brandOrange/90 sm:underline"
             title="view external link in new tab"
           >
             { domToReact(children, options) }
@@ -51,4 +51,4 @@ const useHtmlParser = (rawHtmlString) => {
   return parse(rawHtmlString, options);
 }
 
-export { useHtmlParser }
+export { parseHtmlString }

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
-import { useHtmlParser } from "../../../../hooks/useHtmlParser";
+import { parseHtmlString } from "../../../../helpers/parseHtmlString";
 import ChevronDownGlyph from "../../../Glyphs/ChevronDownGlyph";
 
 const UserViewDetailsAboutExpander = ({ rawHtmlString }) => {
@@ -14,7 +14,7 @@ const UserViewDetailsAboutExpander = ({ rawHtmlString }) => {
 
   // parse html
   useEffect(() => {
-    setTextContent(useHtmlParser(rawHtmlString));
+    setTextContent(parseHtmlString(rawHtmlString));
   }, [rawHtmlString]);
 
   // get wrapper height
@@ -30,7 +30,7 @@ const UserViewDetailsAboutExpander = ({ rawHtmlString }) => {
 
   return textContent && (  
     <div className="grid gap-1 mb-2 md:mb-0">
-      <span className="hidden md:block tracking-wide font-medium">About</span>
+      <span className="hidden md:block mt-1 tracking-wide font-medium">About</span>
       <div 
         ref={textWrapperRef}
         className={clsx(

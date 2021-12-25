@@ -45,7 +45,11 @@ const CommentPreviewItemContentDesktop = ({ commentData, parentData, storyId, pe
           <span className="tracking-widest">
             &nbsp;·&nbsp;
           </span>
-          <TimeTooltip unixTime={parentData?.time ?? commentData.time} />
+          <TimeTooltip 
+            unixTime={parentData?.time ?? commentData.time} 
+            contentId={`${storyId}/${parentData?.id ?? commentData?.id}`} 
+            openNewTab
+          />
         </div>
 
         {/* content */}

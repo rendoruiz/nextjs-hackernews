@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-import { useShortRelativeTime } from '../../../hooks/useDate';
-import { useHtmlParser } from '../../../hooks/useHtmlParser';
+import { getShortRelativeTime } from '../../../helpers/formatDateTime';
+import { parseHtmlString } from '../../../helpers/parseHtmlString';
 import ChatGlyph from '../../Glyphs/ChatGlyph';
 import UserLink from '../../User/UserLink';
 import UserHoverCard from '../../User/UserHoverCard';
@@ -13,12 +13,14 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
   const [storyText, setStoryText] = useState(null);
   const [shortRelativeTime, setShortRelativeTime] = useState(null);
 
+  // story data title
   useEffect(() => {
-    setStoryText(useHtmlParser(storyData.title));
+    setStoryText(parseHtmlString(storyData.title));
   }, [storyData?.title])
 
+  // comment time
   useEffect(() => {
-    setShortRelativeTime(useShortRelativeTime(commentTime));
+    setShortRelativeTime(getShortRelativeTime(commentTime));
   }, [commentTime]);
 
   return storyData && (storyData.dead || storyData.deleted) ? <ItemIsDeadOrDeleted /> : commentTime && (
@@ -33,7 +35,7 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
         {/* chat icon link */}
         <Link href={"/story/" + storyData.id}>
           <a 
-            className="hidden pl-2 sm:grid place-items-center"
+            className="hidden pl-2 sm:grid self-stretch items-center"
             title="view story discussion"
           >
             <ChatGlyph className="w-6 h-6" />
@@ -71,7 +73,7 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
 
           {/* desktop external link */}
           <ShortenedExternalLink 
-            wrapperClassName="group relative hidden items-center text-brandOrange sm:inline-flex"
+            wrapperClassName="group relative hidden items-center text-brandOrange dark:text-brandOrange/90 sm:inline-flex"
             textClassName="inline-block group-hover:underline"
             glyphClassName="inline-block ml-1 w-3 h-3"
             rawLink={storyData.url}
