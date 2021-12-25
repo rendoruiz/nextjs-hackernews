@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
-import { useComment } from "../../../hooks/useComment";
+import { useContent } from "../../../hooks/useContent";
 import StoryItem from "../../Story/StoryItem/StoryItem";
 import CommentPreviewItem from "../../Comment/CommentPreviewItem/CommentPreviewItem";
 
 const UserViewContentItemSelector = ({ contentId, contentTypeFilter, userId }) => {
-  const { data, isSuccess } = useComment(contentId);
+  const { data, isSuccess } = useContent(contentId);
   const [contentItem, setContentItem] = useState(null);
 
   // show content if filter has not been set, else return null if item type is equal to the filter

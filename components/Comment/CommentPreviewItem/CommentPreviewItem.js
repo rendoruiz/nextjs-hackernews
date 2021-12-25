@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-import { useComment } from "../../../hooks/useComment";
+import { useContent } from "../../../hooks/useContent";
 import CommentPreviewItemStory from "./CommentPreviewItemStory";
 import CommentPreviewItemContent from "./CommentPreviewItemContent";
 import ItemIsDeadOrDeleted from "../../StatusMessage/ItemIsDeadOrDeleted";
@@ -8,7 +8,7 @@ import CommentPreviewItemLoader from "./CommentPreviewItemLoader";
 
 const CommentPreviewItem = ({ commentId, userId }) => {
   const [contentId, setContentId] = useState(commentId)
-  const { data, isLoading, isError } = useComment(contentId)
+  const { data, isLoading, isError } = useContent(contentId, true);
   const [parentComment, setParentComment] = useState(null);
   const [parentStory, setParentStory] = useState(null);
   const [comment, setComment] = useState(null);

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useEffect, useState } from "react";
 
-import { useComment } from "../../../hooks/useComment";
+import { useContent } from "../../../hooks/useContent";
 import { useHtmlParser } from "../../../hooks/useHtmlParser";
 import ItemIsError from "../../StatusMessage/ItemIsError";
 import CommentItemHeader from "./CommentItemHeader";
@@ -10,7 +10,7 @@ import CommentItemReplies from "./CommentItemReplies";
 import CommentItemLoader from "./CommentItemLoader";
 
 const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentDepth = 0, isPermalink = false }) => {
-  const { isLoading, isError, data, isSuccess, error } = useComment(commentId);
+  const { isLoading, isError, data, isSuccess, error } = useContent(commentId);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [textContent, setTextContent] = useState(false);
 
