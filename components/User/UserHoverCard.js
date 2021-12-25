@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import * as HoverCard from '@radix-ui/react-hover-card';
 
-import { useRelativeTime } from '../../hooks/useDate';
+import { formatNumber } from '../../helpers/formatNumber';
+import { getRelativeTime } from '../../helpers/formatDateTime';
 import { useUser } from '../../hooks/useUser';
 import UserAvatar from './UserAvatar';
 import UserLink from './UserLink';
-import { useNumberFormatter } from '../../hooks/useNumberFormatter';
 
 const UserHoverCard = ({ userId, className, withPrefix, withAvatar, avatarClassName }) => {
   const [isOpen, setIsOpen] = useState(false); 
@@ -52,13 +52,13 @@ const CardContent = ({ userId, isOpen }) => {
   useEffect(() => {
     if (isOpen && data) {
       if (!relativeTime && data.created) {
-        setRelativeTime(useRelativeTime(data.created))
+        setRelativeTime(getRelativeTime(data.created))
       }
       if (!karma) {
-        setKarma(useNumberFormatter(data.karma));
+        setKarma(formatNumber(data.karma));
       }
       if (!submissions) {
-        setSubmissions(!data.submitted ? "0" : useNumberFormatter(data.submitted.length));
+        setSubmissions(!data.submitted ? "0" : formatNumber(data.submitted.length));
       }
     }
   }, [isOpen, data]);

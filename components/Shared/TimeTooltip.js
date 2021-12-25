@@ -2,25 +2,25 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import * as Tooltip from '@radix-ui/react-tooltip';
 
-import { useFullDateTime, useRelativeTime } from '../../hooks/useDate';
+import { getFullDateTime, getRelativeTime } from '../../helpers/formatDateTime';
 
-const TimeTooltip = ({ className, unixTime, contentId, openNewTab }) => {
+const TimeTooltip = ({ className, unixTime, contentId, openNewTab = false }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [relativeTime, setRelativeTime] = useState(null);
   const [fullDateTime, setFullDateTime] = useState(null);
 
   useEffect(() => {
-    setRelativeTime(useRelativeTime(unixTime));
+    setRelativeTime(getRelativeTime(unixTime));
     // also update if already loaded
     if (fullDateTime) {
-      setFullDateTime(useFullDateTime(unixTime));
+      setFullDateTime(getFullDateTime(unixTime));
     }
   }, [unixTime]);
 
   // run once
   useEffect(() => {
     if (isOpen && !fullDateTime) {
-      setFullDateTime(useFullDateTime(unixTime));
+      setFullDateTime(getFullDateTime(unixTime));
     }
   }, [unixTime, isOpen])
 

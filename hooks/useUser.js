@@ -7,7 +7,7 @@ const fetchUser = async (userId) => {
   return response.data;
 }
 const useUser = (userId) => {
-  return useQuery(['user.'+userId, userId], () => fetchUser(userId));
+  return useQuery(['user.'+userId, userId], () => fetchUser(userId), { staleTime: 300000 });
 }
 
 export { useUser, fetchUser }

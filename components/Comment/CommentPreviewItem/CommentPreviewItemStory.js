@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-import { useShortRelativeTime } from '../../../hooks/useDate';
-import { useHtmlParser } from '../../../hooks/useHtmlParser';
+import { getShortRelativeTime } from '../../../helpers/formatDateTime';
+import { parseHtmlString } from '../../../helpers/parseHtmlString';
 import ChatGlyph from '../../Glyphs/ChatGlyph';
 import UserLink from '../../User/UserLink';
 import UserHoverCard from '../../User/UserHoverCard';
@@ -15,12 +15,12 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
 
   // story data title
   useEffect(() => {
-    setStoryText(useHtmlParser(storyData.title));
+    setStoryText(parseHtmlString(storyData.title));
   }, [storyData?.title])
 
   // comment time
   useEffect(() => {
-    setShortRelativeTime(useShortRelativeTime(commentTime));
+    setShortRelativeTime(getShortRelativeTime(commentTime));
   }, [commentTime]);
 
   return storyData && (storyData.dead || storyData.deleted) ? <ItemIsDeadOrDeleted /> : commentTime && (

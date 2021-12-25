@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 import * as Tooltip from '@radix-ui/react-tooltip';
 
-import { useShortRelativeTime } from "../../../hooks/useDate";
+import { getShortRelativeTime } from "../../../helpers/formatDateTime";
 import TimeTooltip from "../../Shared/TimeTooltip";
 import MobileActionsModal from "../../Shared/MobileActionsModal";
 import UserLink from "../../User/UserLink";
@@ -15,7 +15,7 @@ const CommentItemHeader = ({ commentData, submitterId, storyId, itemDepth, isDea
   const [shortRelativeTime, setShortRelativeTime] = useState(null);
 
   useEffect(() => {
-    setShortRelativeTime(useShortRelativeTime(commentData.time));
+    setShortRelativeTime(getShortRelativeTime(commentData.time));
   }, [commentData.time]);
 
   return (  

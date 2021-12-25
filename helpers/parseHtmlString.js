@@ -1,6 +1,6 @@
 import parse, { domToReact } from 'html-react-parser';
 
-const useHtmlParser = (rawHtmlString) => {
+const parseHtmlString = (rawHtmlString) => {
   if (!rawHtmlString) {
     return null;
   }
@@ -51,4 +51,4 @@ const useHtmlParser = (rawHtmlString) => {
   return parse(rawHtmlString, options);
 }
 
-export { useHtmlParser }
+export { parseHtmlString }

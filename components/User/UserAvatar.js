@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import clsx from 'clsx';
 
 const UserAvatar = ({ className, userId }) => {
   const [backgroundColor, setBackgroundColor] = useState(null);

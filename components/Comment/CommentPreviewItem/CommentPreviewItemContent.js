@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Link from 'next/link';
 
-import { useHtmlParser } from "../../../hooks/useHtmlParser";
+import { parseHtmlString } from "../../../helpers/parseHtmlString";
 import CommentPreviewItemContentDesktop from "./CommentPreviewItemContentDesktop";
 
 const CommentPreviewItemContent = ({ commentData, parentData, storyId }) => {
@@ -10,12 +10,12 @@ const CommentPreviewItemContent = ({ commentData, parentData, storyId }) => {
 
   // parent comment
   useEffect(() => {
-    setParentCommentText(useHtmlParser(parentData?.text));
+    setParentCommentText(parseHtmlString(parentData?.text));
   }, [parentData?.text]);
 
   // comment
   useEffect(() => {
-    setCommentText(useHtmlParser(commentData.text));
+    setCommentText(parseHtmlString(commentData.text));
   }, [commentData?.text]);
 
   return commentData && storyId && (  
