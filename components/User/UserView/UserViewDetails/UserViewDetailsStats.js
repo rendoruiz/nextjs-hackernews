@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import * as Tooltip from '@radix-ui/react-tooltip';
 
 import { getRelativeTime, getFullDateTime } from "../../../../helpers/formatDateTime";
-import { useNumberFormatter } from "../../../../hooks/useNumberFormatter";
+import { formatNumber } from "../../../../hooks/formatNumber";
 import StarGlyph from "../../../Glyphs/StarGlyph";
 import CakeGlyph from "../../../Glyphs/CakeGlyph";
 import PlusGlyph from "../../../Glyphs/PlusGlyph";
@@ -19,8 +19,8 @@ const UserViewDetailsStats = ({ userData }) => {
       setRelativeTime(getRelativeTime(userData.created, false));
       setRelativeTimeWithSuffix(getRelativeTime(userData.created));
       setFullDateTime(getFullDateTime(userData.created, true));
-      setKarma(useNumberFormatter(userData.karma));
-      setSubmissions(!userData.submitted ? "0" :  useNumberFormatter(userData.submitted.length));
+      setKarma(formatNumber(userData.karma));
+      setSubmissions(!userData.submitted ? "0" :  formatNumber(userData.submitted.length));
     }
   });
 
