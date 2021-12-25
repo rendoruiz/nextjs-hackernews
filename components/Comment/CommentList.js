@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState, useEffect } from "react";
 
-import { useStory } from "../../hooks/useStory";
+import { useContent } from '../../hooks/useContent';
 import IsError from "../StatusMessage/IsError";
 import IsLoading from "../StatusMessage/IsLoading";
 import CommentItem from "./CommentItem/CommentItem";
@@ -10,7 +10,7 @@ const CommentList = ({ storyId, permalinkId }) => {
   const defaultItemCount = 5;
   const itemIncrementCount = 8;
   const defaultDepthLimit = 2;
-  const { isLoading, isError, data: storyData, isSuccess } = useStory(storyId, false);
+  const { isLoading, isError, data: storyData, isSuccess } = useContent(storyId);
   const [itemCount, setItemCount] = useState(defaultItemCount);
   const [itemIds, setItemIds] = useState(null);
   const isPermalink = permalinkId ? true : false;
