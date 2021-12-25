@@ -25,7 +25,7 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
     }
   }, [data?.text]);
 
-  return isLoading ? (<CommentItemLoader itemDepth={parentDepth} /> ) : isError || !data ? (<ItemIsError error={error} />) : isSuccess && (
+  return isLoading ? (<CommentItemLoader itemDepth={parentDepth} /> ) : isError ? (<ItemIsError error={error} />) : !data ? (<ItemIsError error={`Content ID [${commentId}] cannot be found.`} />) : isSuccess && (
     !data.deleted && (  
       <div className={clsx(
         "relative grid text-sm sm:grid-cols-[auto,1fr] sm:gap-x-2 sm:last:pb-0",
