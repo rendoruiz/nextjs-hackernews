@@ -2,7 +2,7 @@
 
 [![Vercel Deployment Status](https://therealsujitk-vercel-badge.vercel.app/?app=recon-hackernews)](https://hn.rendo.me/)
 
-The project is hosted on Vercel can be viewed live at [hn.rendo.me](https://hn.rendo.me/).
+The project is hosted on Vercel can be viewed live [here](https://recon-hackernews.vercel.app/) or at [hn.rendo.me](https://hn.rendo.me/).
 
 This web app is my second attempt at a Hacker News Viewer viewer ([Archived GitHub repo](https://github.com/rendoruiz/reactjs-hackernews)) ([View at Netlify](https://v1.hn.rendo.me/)).
 
