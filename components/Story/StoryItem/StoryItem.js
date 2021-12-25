@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import clsx from 'clsx';
 
-import { useStory } from "../../../hooks/useStory";
+import { useContent } from '../../../hooks/useContent';
 import { useHtmlParser } from '../../../hooks/useHtmlParser';
 import StoryItemLoader from './StoryItemLoader';
 import ItemIsError from '../../StatusMessage/ItemIsError';
@@ -15,7 +15,7 @@ import StoryItemMobileShareTrigger from './StoryItemMobileShareTrigger';
 import MobileActionsModal from '../../Shared/MobileActionsModal';
 
 const StoryItem = ({ storyId, withText = false, isStatic = false, userView = false, useTitle = false, noError = false }) => {
-  const { isLoading, isError, isSuccess, data } = useStory(storyId);
+  const { isLoading, isError, isSuccess, data } = useContent(storyId);
   const [textContent, setTextContent] = useState(null);
 
   useEffect(() => {
