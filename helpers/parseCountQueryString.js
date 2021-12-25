@@ -1,6 +1,6 @@
 import { parse } from "query-string";
 
-const useCountQueryString  = (defaultCount) => {
+const parseCountQueryString  = (defaultCount) => {
   const countQueryString = parse(location.search).count;
   if (countQueryString) {
     const count = parseInt(countQueryString);
@@ -9,4 +9,4 @@ const useCountQueryString  = (defaultCount) => {
   return defaultCount;
 }
 
-export { useCountQueryString }
+export { parseCountQueryString }

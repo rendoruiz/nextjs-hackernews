@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 
-import { useCountQueryString } from "../../../hooks/useCountQueryString";
+import { parseCountQueryString } from "../../../helpers/parseCountQueryString";
 import UserViewContentItemSelector from "./UserViewContentItemSelector";
 
 const UserViewContentList = ({ contentIds, userId }) => {
@@ -25,7 +25,7 @@ const UserViewContentList = ({ contentIds, userId }) => {
 
   // set count from count query string on page load
   useEffect(() => {
-    setItemCount(useCountQueryString(defaultItemCount));
+    setItemCount(parseCountQueryString(defaultItemCount));
   }, []);
 
   // set and update filter on pathname change

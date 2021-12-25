@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/dist/client/router";
 
-import { useCountQueryString } from "../../hooks/useCountQueryString";
+import { parseCountQueryString } from "../../helpers/parseCountQueryString";
 import IsError from "../StatusMessage/IsError";
 import IsLoading from "../StatusMessage/IsLoading";
 import StoryItem from "./StoryItem/StoryItem";
@@ -34,7 +34,7 @@ const StoryList = ({ useHook }) => {
 
   // get count query string
   useEffect(() => {
-    setItemCount(useCountQueryString(defaultItemCount));
+    setItemCount(parseCountQueryString(defaultItemCount));
   }, []);
 
   return isLoading ? (<IsLoading />) : isError ? (<IsError />) : isSuccess && (  
