@@ -4,8 +4,7 @@
 
 The project is hosted on Vercel can be viewed live [here](https://recon-hackernews.vercel.app/) or at [hn.rendo.me](https://hn.rendo.me/).
 
-This web app is my second attempt at a Hacker News Viewer viewer ([Archived GitHub repo](https://github.com/rendoruiz/reactjs-hackernews)) ([View at Netlify](https://v1.hn.rendo.me/)).
-
+This web app is my second attempt at a Hacker News Viewer viewer. Coincidentally, this is also my second Next.js project. The website is still live at [Netlify](https://v1.hn.rendo.me/) and archived repository can be viewed [here](https://github.com/rendoruiz/reactjs-hackernews).
 
 ## Changes
 
@@ -30,4 +29,3 @@ This web app is my second attempt at a Hacker News Viewer viewer ([Archived GitH
 ## Known Issues
 
 - Performance is horrid on Firefox. **DO NOT** use on Firefox.
-
