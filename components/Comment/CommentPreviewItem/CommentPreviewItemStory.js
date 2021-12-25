@@ -35,7 +35,7 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
         {/* chat icon link */}
         <Link href={"/story/" + storyData.id}>
           <a 
-            className="hidden pl-2 sm:grid place-items-center"
+            className="hidden pl-2 sm:grid self-stretch items-center"
             title="view story discussion"
           >
             <ChatGlyph className="w-6 h-6" />

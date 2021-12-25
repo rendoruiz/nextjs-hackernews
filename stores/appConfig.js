@@ -17,7 +17,7 @@ export const useDarkMode = () => {
 
   useEffect(() => {
     setIsInitial(false);
-  });
+  }, []);
 
   useEffect(() => {
     if (darkModeStored) {
