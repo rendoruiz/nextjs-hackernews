@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-import { useShortRelativeTime } from '../../../hooks/useDate';
+import { getShortRelativeTime } from '../../../helpers/formatDateTime';
 import { useHtmlParser } from '../../../hooks/useHtmlParser';
 import ChatGlyph from '../../Glyphs/ChatGlyph';
 import UserLink from '../../User/UserLink';
@@ -20,7 +20,7 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
 
   // comment time
   useEffect(() => {
-    setShortRelativeTime(useShortRelativeTime(commentTime));
+    setShortRelativeTime(getShortRelativeTime(commentTime));
   }, [commentTime]);
 
   return storyData && (storyData.dead || storyData.deleted) ? <ItemIsDeadOrDeleted /> : commentTime && (

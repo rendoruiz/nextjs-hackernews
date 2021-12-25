@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import * as HoverCard from '@radix-ui/react-hover-card';
 
 import { useNumberFormatter } from '../../hooks/useNumberFormatter';
-import { useRelativeTime } from '../../hooks/useDate';
+import { getRelativeTime } from '../../helpers/formatDateTime';
 import { useUser } from '../../hooks/useUser';
 import UserAvatar from './UserAvatar';
 import UserLink from './UserLink';
@@ -52,7 +52,7 @@ const CardContent = ({ userId, isOpen }) => {
   useEffect(() => {
     if (isOpen && data) {
       if (!relativeTime && data.created) {
-        setRelativeTime(useRelativeTime(data.created))
+        setRelativeTime(getRelativeTime(data.created))
       }
       if (!karma) {
         setKarma(useNumberFormatter(data.karma));
