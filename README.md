@@ -1,29 +1,33 @@
-# Next.js + Tailwind CSS Example
+# Hacker News Viewer
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v2.2)](https://blog.tailwindcss.com/tailwindcss-2-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+[![Vercel Deployment Status](https://therealsujitk-vercel-badge.vercel.app/?app=recon-hackernews)](https://hn.rendo.me/)
 
-It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-mode) for Tailwind CSS.
+The project is hosted on Vercel can be viewed live at [hn.rendo.me](https://hn.rendo.me/).
 
-## Preview
+This web app is my second attempt at a Hacker News Viewer viewer ([Archived GitHub repo](https://github.com/rendoruiz/reactjs-hackernews)) ([View at Netlify](https://v1.hn.rendo.me/)).
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+## Changes
 
-## Deploy your own
+- Create React App to **[Next.js](https://nextjs.org/)** framework
+- CSS Modules to **[Tailwind CSS](https://tailwindcss.com/)** framework for styling
+- Moment.js to **[date-fns](https://date-fns.org/)** for date and time handling
+- Font Awesome Icons to **[Heroicons](https://heroicons.dev/)** and **[Tabler Icons](https://tablericons.com/)** for *free* SVG icons
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+## Improvements
 
-## How to use
+- [React Query](https://react-query.tanstack.com/) for server-side data cache
+- [Recoil](https://recoiljs.org/) + [Recoil Persist](https://github.com/polemius/recoil-persist) for state management and data persistence
+- [Radix](https://www.radix-ui.com/) for unstyled commonly used UI components
+- Dark mode switch
+- Comment permalinks
+- Separate UI and UX suited for mobile usage
+- Page and component loaders
+- Overall more in line with Reddit's design and layout
+- Better file/component organization
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+## Known Issues
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+- Performance is horrid on Firefox. **DO NOT** use on Firefox.
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
