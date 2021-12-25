@@ -24,7 +24,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
     }
   }, [withText, data?.text])
 
-  return isLoading ? (<StoryItemLoader />) : isError || !data ? (<ItemIsError noError={noError} />) : isSuccess && (
+  return isLoading ? (<StoryItemLoader />) : isError ? (<ItemIsError noError={noError} />) : !data ? (<ItemIsError contentId={storyId} noError={noError} />) : isSuccess && (
     data.deleted || data.dead ? (<ItemIsDeadOrDeleted />) : data.type === "comment" ? null : (
       <>
         { useTitle && (
