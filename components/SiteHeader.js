@@ -30,13 +30,13 @@ const DarkModeSwitch = () => {
         checked={isChecked}
         onCheckedChange={(oldState) => setIsChecked(oldState)}
         className={clsx(
-          "group flex items-center rounded-full w-10 h-6 transition-colors hover:bg-opacity-80",
+          "group flex items-center rounded-full w-11 h-6 transition-colors hover:bg-opacity-80",
           isChecked ? "bg-brandOrange" : "bg-brandAppBackground sm:bg-brandDarkObjectBackground"
         )}
       >
         <Switch.Thumb className={clsx(
           "rounded-full mx-[2px] w-full h-5 max-w-[20px] bg-brandDarkObjectBackground scale-[0.80] transition-all group-hover:scale-90 group-active:scale-90 group-active:max-w-[24px] sm:bg-brandObjectBackground",
-          isChecked ? "translate-x-4 group-active:translate-x-3" : ""
+          { "translate-x-5 group-active:translate-x-4": isChecked }
         )} />
       </Switch.Root>
     </div>
