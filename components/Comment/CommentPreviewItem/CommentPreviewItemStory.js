@@ -73,7 +73,7 @@ const CommentPreviewItemStory = ({ storyData, userId, commentTime }) => {
 
           {/* desktop external link */}
           <ShortenedExternalLink 
-            wrapperClassName="group relative hidden items-center text-brandOrange sm:inline-flex"
+            wrapperClassName="group relative hidden items-center text-brandOrange dark:text-brandOrange/90 sm:inline-flex"
             textClassName="inline-block group-hover:underline"
             glyphClassName="inline-block ml-1 w-3 h-3"
             rawLink={storyData.url}
