@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { useEffect, useState } from "react";
 
 import { useContent } from "../../../hooks/useContent";
-import { useHtmlParser } from "../../../hooks/useHtmlParser";
+import { parseHtmlString } from "../../../helpers/parseHtmlString";
 import ItemIsError from "../../StatusMessage/ItemIsError";
 import CommentItemHeader from "./CommentItemHeader";
 import CommentItemFooter from "./CommentItemFooter";
@@ -21,7 +21,7 @@ const CommentItem = ({ commentId, submitterId, storyId, replyDepthLimit, parentD
 
   useEffect(() => {
     if (data?.text) {
-      setTextContent(useHtmlParser(data.text));
+      setTextContent(parseHtmlString(data.text));
     }
   }, [data?.text]);
 

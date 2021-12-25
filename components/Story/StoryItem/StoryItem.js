@@ -4,7 +4,7 @@ import Link from 'next/link';
 import clsx from 'clsx';
 
 import { useContent } from '../../../hooks/useContent';
-import { useHtmlParser } from '../../../hooks/useHtmlParser';
+import { parseHtmlString } from '../../../helpers/parseHtmlString';
 import StoryItemLoader from './StoryItemLoader';
 import ItemIsError from '../../StatusMessage/ItemIsError';
 import ItemIsDeadOrDeleted from '../../StatusMessage/ItemIsDeadOrDeleted';
@@ -20,7 +20,7 @@ const StoryItem = ({ storyId, withText = false, isStatic = false, userView = fal
 
   useEffect(() => {
     if (withText && data) {
-      setTextContent(useHtmlParser(data.text));
+      setTextContent(parseHtmlString(data.text));
     }
   }, [withText, data?.text])
 

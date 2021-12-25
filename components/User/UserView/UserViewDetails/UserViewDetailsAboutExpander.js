@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
-import { useHtmlParser } from "../../../../hooks/useHtmlParser";
+import { parseHtmlString } from "../../../../helpers/parseHtmlString";
 import ChevronDownGlyph from "../../../Glyphs/ChevronDownGlyph";
 
 const UserViewDetailsAboutExpander = ({ rawHtmlString }) => {
@@ -14,7 +14,7 @@ const UserViewDetailsAboutExpander = ({ rawHtmlString }) => {
 
   // parse html
   useEffect(() => {
-    setTextContent(useHtmlParser(rawHtmlString));
+    setTextContent(parseHtmlString(rawHtmlString));
   }, [rawHtmlString]);
 
   // get wrapper height
