@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import * as HoverCard from '@radix-ui/react-hover-card';
 
+import { useNumberFormatter } from '../../hooks/useNumberFormatter';
 import { useRelativeTime } from '../../hooks/useDate';
 import { useUser } from '../../hooks/useUser';
 import UserAvatar from './UserAvatar';
 import UserLink from './UserLink';
-import { useNumberFormatter } from '../../hooks/useNumberFormatter';
 
 const UserHoverCard = ({ userId, className, withPrefix, withAvatar, avatarClassName }) => {
   const [isOpen, setIsOpen] = useState(false); 

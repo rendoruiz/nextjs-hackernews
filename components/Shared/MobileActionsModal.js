@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import * as Dialog from '@radix-ui/react-dialog';
@@ -7,7 +8,6 @@ import LinkGlyph from '../Glyphs/LinkGlyph';
 import HackerNewsGlyph from '../Glyphs/HackerNewsGlyph';
 import UserGlyph from '../Glyphs/UserGlyph';
 import CloseGlyph from '../Glyphs/CloseGlyph';
-import { useEffect, useState } from 'react';
 
 const MobileActionsModal = ({ itemData, storyId, triggerClassName }) => {
   const [hasApostropheS, setHasApostropheS] = useState(null);

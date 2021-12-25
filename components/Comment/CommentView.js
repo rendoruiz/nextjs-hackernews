@@ -1,5 +1,3 @@
-import Head from "next/head";
-
 import SiteLayout from "../SiteLayout";
 import StoryItem from "../Story/StoryItem/StoryItem";
 import CommentList from "./CommentList";

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useRouter } from "next/dist/client/router";
 import Head from 'next/head';
 
@@ -8,7 +9,6 @@ import SiteLayout from "../../SiteLayout";
 import UserViewDetails from "./UserViewDetails/UserViewDetails";
 import UserViewNavigationBar from "./UserViewNavigationBar";
 import UserViewContentList from "./UserViewContentList";
-import { useEffect } from "react";
 
 const UserView = () => {
   const router = useRouter();
