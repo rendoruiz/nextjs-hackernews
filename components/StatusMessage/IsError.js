@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 
 // fetch error
-const IsError = ({ contentId }) => {
+const IsError = ({ contentId, contentType }) => {
   const router = useRouter(); 
 
   const handleClick = (e) => {
@@ -24,7 +24,7 @@ const IsError = ({ contentId }) => {
             An error occured.
           </span>
           { contentId && (
-            <span className="text-xs text-brandTextSecondary italic dark:text-brandDarkTextSecondary sm:text-sm">Content ID "{ contentId }" cannot be found.</span>
+            <span className="text-xs text-brandTextSecondary italic dark:text-brandDarkTextSecondary sm:text-sm">{ !contentType ? "Content" : contentType } ID "{ contentId }" cannot be found.</span>
           )}
         </p>
 
