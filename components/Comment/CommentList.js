@@ -21,8 +21,6 @@ const CommentList = ({ storyId, permalinkId }) => {
     setItemCount(newCount);
   }
 
-  console.log(storyData)
-
   // if permalink
   useEffect(() => {
     if (permalinkId) {
