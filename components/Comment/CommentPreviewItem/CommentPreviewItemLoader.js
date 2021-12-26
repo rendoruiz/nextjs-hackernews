@@ -2,7 +2,7 @@ const CommentPreviewItemLoader = ({ heading, isLoading, isError }) => {
   return (  
     <div className="grid content-start gap-2 px-4 py-2 bg-brandObjectBackground transition-colors dark:bg-brandDarkAppBackground sm:gap-0 sm:border-brandDefault sm:border-brandBorder sm:rounded sm:px-2 sm:py-0 sm:shadow-sm sm:dark:border-brandDarkBorder sm:dark:bg-brandDarkObjectBackground">
       {/* debug */}
-      { (isLoading || isError) && (
+      { isError && (
         <p className="justify-self-start rounded mb-1 px-1 py-[0.125rem] bg-brandButtonOutline font-bold text-xs2 text-brandTextSecondary uppercase dark:bg-brandDarkButtonOutline dark:text-brandTextSecondary">
           <span >{ heading }:&nbsp;</span>
           <span>{ isLoading ? "isLoading" : isError && "isError" }</span>
