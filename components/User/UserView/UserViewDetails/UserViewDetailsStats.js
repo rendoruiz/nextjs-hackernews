@@ -22,7 +22,7 @@ const UserViewDetailsStats = ({ userData }) => {
       setKarma(formatNumber(userData.karma));
       setSubmissions(!userData.submitted ? "0" :  formatNumber(userData.submitted.length));
     }
-  }, []);
+  }, [userData]);
 
   return (  
     <>
