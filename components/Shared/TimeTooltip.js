@@ -33,7 +33,7 @@ const TimeTooltip = ({ className, unixTime, contentId, openNewTab = false }) => 
         { contentId ? (
           <span className={className}>
             <Link href={"/story/" + contentId}>
-              <a className="hover:underline" target={openNewTab && "_blank"}>
+              <a className="hover:underline" target={openNewTab ? "_blank" : "_self"}>
                 { relativeTime }
               </a>
             </Link>

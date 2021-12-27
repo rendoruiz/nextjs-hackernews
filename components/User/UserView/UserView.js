@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useRouter } from "next/dist/client/router";
 import Head from 'next/head';
 
@@ -14,15 +13,9 @@ const UserView = () => {
   const router = useRouter();
   const { userid } = router.query;
   const { isLoading, isError, data: userData, isSuccess } = useUser(userid);
-  
-
-  useEffect(() => {
-    console.log({userData})
-  })
 
   return userid && isLoading ? (<Loader isLoading />) : (isError || !userData) ? (<Loader isError />) : isSuccess && userData && (  
     <>
-      { console.log({userData})}
       <Head>
         <title>{userData.id} (u/{userData.id}) - Hacker News</title>
         <meta property="og:title" content={`${userData.id} (u/${userData.id}) - Hacker News`} />
