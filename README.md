@@ -1,8 +1,8 @@
 # Hacker News Viewer
 
-[![Vercel Deployment Status](https://therealsujitk-vercel-badge.vercel.app/?app=recon-hackernews)](https://hn.rendo.me/)
+[![Vercel Deployment Status](https://therealsujitk-vercel-badge.vercel.app/?app=recon-hackernews)](https://rhn.rendo.app/)
 
-The project is hosted on Vercel can be viewed live [here](https://recon-hackernews.vercel.app/) or at [hn.rendo.me](https://hn.rendo.me/).
+The project is hosted on Vercel can be viewed live [here](https://recon-hackernews.vercel.app/) or at [rhn.rendo.app](https://rhn.rendo.app/).
 
 This web app is my second attempt at a Hacker News Viewer viewer. Coincidentally, this is also my second Next.js project. The website is still live at [Netlify](https://cra.hn.rendo.me/) and archived repository can be viewed [here](https://github.com/rendoruiz/reactjs-hackernews).
 
